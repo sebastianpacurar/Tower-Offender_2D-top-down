@@ -19,6 +19,7 @@ namespace Player {
                 _timer += Time.deltaTime;
                 if (_timer > timeBetweenFiring) {
                     canFire = true;
+                    _timer = 0f;
                 }
             }
         }

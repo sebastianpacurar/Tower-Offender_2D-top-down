@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,7 +6,6 @@ namespace Player {
     public class TankController : MonoBehaviour {
         private PlayerControls _controls;
         private InputAction _moveAction, _steerAction;
-        
         private Rigidbody2D _rb;
 
         private float _move, _rotation;
@@ -14,6 +14,7 @@ namespace Player {
         [SerializeField] private float accFactor = 10f;
         [SerializeField] private float steerFactor = 3.5f;
         [SerializeField] private float driftFactor = 0f;
+        [SerializeField] private Vector3 engineForce;
 
 
         private void Awake() {
@@ -37,8 +38,11 @@ namespace Player {
                 _rb.drag = 0;
             }
 
-            var engineForce = transform.up * (_move * accFactor); // create a force Vector to move upwards (forward)
+            engineForce = transform.up * (_move * accFactor); // create a force Vector to move upwards (forward)
             _rb.AddForce(engineForce, ForceMode2D.Force);
+
+            // set 5f as max speed of the tank
+            _rb.velocity = new Vector2(Mathf.Clamp(_rb.velocity.x, -5f, 5f), Mathf.Clamp(_rb.velocity.y, -5f, 5f));
         }
 
         private void ApplySteering() {
