@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1854506223192595660}
   - component: {fileID: 1854506223192595663}
   - component: {fileID: 7621402966544897974}
+  - component: {fileID: 1943462792625019054}
   m_Layer: 0
   m_Name: TowerBullet
   m_TagString: TowerBullet
@@ -106,3 +107,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &1943462792625019054
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854506223192595662}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

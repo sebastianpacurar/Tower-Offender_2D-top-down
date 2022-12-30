@@ -12,7 +12,7 @@ namespace Player {
             _rb = GetComponent<Rigidbody2D>();
         }
 
-        void Start() {
+        private void Start() {
             _ac = GameObject.FindGameObjectWithTag("Player").GetComponent<AimController>();
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             _mousePos = _mainCam.ScreenToWorldPoint(_ac.AimVal);

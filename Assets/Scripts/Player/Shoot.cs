@@ -5,29 +5,30 @@ namespace Player {
     public class Shoot : MonoBehaviour {
         private float _timer;
         private PlayerControls _controls;
-        [SerializeField] private bool canFire;
+        public bool CanFire { get; set; }
+
         [SerializeField] private float timeBetweenFiring;
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private GameObject turretEdge;
 
-        private void Awake() {
+        [SerializeField] private void Awake() {
             _controls = new PlayerControls();
         }
 
         private void Update() {
-            if (!canFire) {
+            if (!CanFire) {
                 _timer += Time.deltaTime;
                 if (_timer > timeBetweenFiring) {
-                    canFire = true;
+                    CanFire = true;
                     _timer = 0f;
                 }
             }
         }
 
         private void ShootBullet(InputAction.CallbackContext ctx) {
-            if (canFire) {
+            if (CanFire) {
                 Instantiate(bulletPrefab, turretEdge.transform.position, Quaternion.identity);
-                canFire = false;
+                CanFire = false;
             }
         }
 

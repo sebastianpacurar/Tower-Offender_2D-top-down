@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - TowerBullet
+  - TankBullet
   layers:
   - Default
   - TransparentFX
