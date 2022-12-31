@@ -5,13 +5,14 @@ namespace Player {
     public class Shoot : MonoBehaviour {
         private float _timer;
         private PlayerControls _controls;
-        public bool CanFire { get; set; }
+        public bool CanFire { get; private set; }
 
         [SerializeField] private float timeBetweenFiring;
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private GameObject turretEdge;
+        [SerializeField] private GameObject bulletsContainer;
 
-        [SerializeField] private void Awake() {
+        private void Awake() {
             _controls = new PlayerControls();
         }
 
@@ -27,7 +28,7 @@ namespace Player {
 
         private void ShootBullet(InputAction.CallbackContext ctx) {
             if (CanFire) {
-                Instantiate(bulletPrefab, turretEdge.transform.position, Quaternion.identity);
+                Instantiate(bulletPrefab, turretEdge.transform.position, Quaternion.identity, bulletsContainer.transform);
                 CanFire = false;
             }
         }

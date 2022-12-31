@@ -1,18 +1,16 @@
 using UnityEngine;
 
-namespace Player {
-    public class TankBullet : MonoBehaviour {
-        [SerializeField] private float speed;
+namespace Enemy {
+    public class TowerBullet : MonoBehaviour {
+        [SerializeField] private float bulletSpeed;
+        private Transform _towerPosition;
         private CircleCollider2D _circleCollider2D;
-        private SpriteRenderer _sr;
         private Rigidbody2D _rb;
+        private SpriteRenderer _sr;
+        private Transform _tankPos;
 
         private ParticleSystem _ps;
         private ParticleSystem.EmissionModule _emissionModule;
-
-        private AimController _ac;
-        private Vector3 _mousePos;
-        private Camera _mainCam;
 
         private void Awake() {
             _rb = GetComponent<Rigidbody2D>();
@@ -24,15 +22,15 @@ namespace Player {
             _ps = transform.Find("Particle System").GetComponent<ParticleSystem>();
             _emissionModule = _ps.emission;
 
-            _ac = GameObject.FindGameObjectWithTag("Player").GetComponent<AimController>();
-            _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-            _mousePos = _mainCam.ScreenToWorldPoint(_ac.AimVal);
-            var direction = _mousePos - transform.position;
-            _rb.velocity = new Vector2(direction.x, direction.y).normalized * speed;
+            _towerPosition = transform.parent.transform.parent.Find("TowerObj").gameObject.transform;
+            _tankPos = GameObject.FindGameObjectWithTag("Player").transform;
+
+            var direction = _tankPos.position - _towerPosition.position;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y).normalized * bulletSpeed;
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.CompareTag("Wall") || col.gameObject.CompareTag("Tower")) {
+            if (col.gameObject.CompareTag("Wall") || col.gameObject.CompareTag("Player")) {
                 DestroyBullet();
             }
         }

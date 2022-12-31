@@ -7,7 +7,6 @@ namespace Player {
         private void OnTriggerEnter2D(Collider2D col) {
             if (col.gameObject.CompareTag("TowerBullet")) {
                 HealthPoints -= 1;
-                Destroy(col.gameObject);
             }
         }
     }

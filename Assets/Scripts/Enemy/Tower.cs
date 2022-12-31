@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using UnityEngine;
 
 namespace Enemy {
@@ -7,8 +9,8 @@ namespace Enemy {
         [SerializeField] private Transform turret;
         [SerializeField] private Transform turretEdge;
         [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private GameObject bulletsContainer;
         [SerializeField] private float timeBetweenFiring;
-        [SerializeField] private float bulletSpeed;
         private Transform _tankPos;
         private bool _detected;
         private float _timer;
@@ -27,13 +29,11 @@ namespace Enemy {
             var turretPos = transform.position;
             var direction = _tankPos.position - turretPos;
             var rayInfo = Physics2D.RaycastAll(turretPos, direction, range);
-
-            if (rayInfo.Length > 0) {
-                if (rayInfo[1].collider.CompareTag("Player")) {
-                    SetDetectionOn(direction);
-                } else {
-                    SetDetectionOff();
-                }
+            var playerIndex = Array.FindIndex(rayInfo, obj => obj.collider.CompareTag("Player"));
+            var wallIndex = Array.FindIndex(rayInfo, obj => obj.collider.CompareTag("Wall"));
+            
+            if (playerIndex < wallIndex) {
+                SetDetectionOn(direction);
             } else {
                 SetDetectionOff();
             }
@@ -61,9 +61,7 @@ namespace Enemy {
                 }
             } else {
                 _canFire = false;
-                var bullet = Instantiate(bulletPrefab, turretEdge.position, Quaternion.identity);
-                var direction = _tankPos.transform.position - transform.position;
-                bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y).normalized * bulletSpeed;
+                Instantiate(bulletPrefab, turretEdge.position, Quaternion.identity, bulletsContainer.transform);
             }
         }
     }
