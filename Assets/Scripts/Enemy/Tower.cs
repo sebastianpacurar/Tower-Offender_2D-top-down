@@ -1,23 +1,26 @@
 using System;
-using System.Linq;
+using Player;
 using UnityEngine;
 
 namespace Enemy {
     public class Tower : MonoBehaviour {
         [SerializeField] private float range;
         [SerializeField] private SpriteRenderer triggerLight;
-        [SerializeField] private Transform turret;
+        [SerializeField] private Transform triggerPos;
         [SerializeField] private Transform turretEdge;
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private GameObject bulletsContainer;
         [SerializeField] private float timeBetweenFiring;
         private Transform _tankPos;
+        private HpHandler _tankHpHandler;
         private bool _detected;
         private float _timer;
         private bool _canFire = true;
 
         private void Start() {
-            _tankPos = GameObject.FindGameObjectWithTag("Player").transform;
+            var tank = GameObject.FindGameObjectWithTag("Player");
+            _tankPos = tank.transform;
+            _tankHpHandler = tank.GetComponent<HpHandler>();
         }
 
         private void Update() {
@@ -26,12 +29,17 @@ namespace Enemy {
         }
 
         private void HandleDetection() {
+            if (_tankHpHandler.HealthPoints == 0) {
+                SetDetectionOff();
+                return;
+            }
+            
             var turretPos = transform.position;
-            var direction = _tankPos.position - turretPos;
+            var direction = _tankPos.position - triggerPos.position;
             var rayInfo = Physics2D.RaycastAll(turretPos, direction, range);
             var playerIndex = Array.FindIndex(rayInfo, obj => obj.collider.CompareTag("Player"));
             var wallIndex = Array.FindIndex(rayInfo, obj => obj.collider.CompareTag("Wall"));
-            
+
             if (playerIndex < wallIndex) {
                 SetDetectionOn(direction);
             } else {
@@ -42,7 +50,7 @@ namespace Enemy {
         private void SetDetectionOn(Vector3 direction) {
             _detected = true;
             triggerLight.color = Color.green;
-            turret.transform.up = direction;
+            triggerPos.transform.up = -direction;
         }
 
         private void SetDetectionOff() {

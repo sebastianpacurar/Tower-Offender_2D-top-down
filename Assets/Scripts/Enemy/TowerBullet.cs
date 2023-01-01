@@ -30,7 +30,7 @@ namespace Enemy {
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.CompareTag("Wall") || col.gameObject.CompareTag("Player")) {
+            if (col.gameObject.CompareTag("Wall") || col.gameObject.CompareTag("Player") || col.gameObject.CompareTag("Tower")) {
                 DestroyBullet();
             }
         }
