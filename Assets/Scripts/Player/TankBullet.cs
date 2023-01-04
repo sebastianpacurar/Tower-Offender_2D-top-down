@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Player {
     public class TankBullet : MonoBehaviour {
         [SerializeField] private float speed;
-        private CircleCollider2D _circleCollider2D;
+        private CapsuleCollider2D _capsuleCollider2D;
         private SpriteRenderer _sr;
         private Rigidbody2D _rb;
 
@@ -17,7 +17,7 @@ namespace Player {
         private void Awake() {
             _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
-            _circleCollider2D = GetComponent<CircleCollider2D>();
+            _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         }
 
         private void Start() {
@@ -27,8 +27,12 @@ namespace Player {
             _ac = GameObject.FindGameObjectWithTag("Player").GetComponent<AimController>();
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             _mousePos = _mainCam.ScreenToWorldPoint(_ac.AimVal);
+
             var direction = _mousePos - transform.position;
             _rb.velocity = new Vector2(direction.x, direction.y).normalized * speed;
+
+            var rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, rotZ - 90f);
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
@@ -40,7 +44,7 @@ namespace Player {
         private void DestroyBullet() {
             _emissionModule.enabled = true;
             _rb.velocity = new Vector2(0, 0);
-            Destroy(_circleCollider2D);
+            Destroy(_capsuleCollider2D);
             Destroy(_sr);
             Invoke(nameof(DestroyObj), 0.25f);
         }

@@ -8,6 +8,7 @@ TagManager:
   - TowerBullet
   - TankBullet
   - Tower
+  - CM2D
   layers:
   - Default
   - TransparentFX

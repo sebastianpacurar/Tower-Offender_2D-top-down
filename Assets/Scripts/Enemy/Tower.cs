@@ -6,11 +6,12 @@ namespace Enemy {
     public class Tower : MonoBehaviour {
         [SerializeField] private float range;
         [SerializeField] private SpriteRenderer triggerLight;
-        [SerializeField] private Transform triggerPos;
+        [SerializeField] private Transform turretPos;
         [SerializeField] private Transform turretEdge;
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private GameObject bulletsContainer;
         [SerializeField] private float timeBetweenFiring;
+        [SerializeField] private Animator turretFireAnimation;
         private Transform _tankPos;
         private HpHandler _tankHpHandler;
         private bool _detected;
@@ -33,14 +34,13 @@ namespace Enemy {
                 SetDetectionOff();
                 return;
             }
-            
-            var turretPos = transform.position;
-            var direction = _tankPos.position - triggerPos.position;
-            var rayInfo = Physics2D.RaycastAll(turretPos, direction, range);
+
+            var direction = _tankPos.position - turretPos.position;
+            var rayInfo = Physics2D.RaycastAll(turretPos.position, direction, range);
             var playerIndex = Array.FindIndex(rayInfo, obj => obj.collider.CompareTag("Player"));
             var wallIndex = Array.FindIndex(rayInfo, obj => obj.collider.CompareTag("Wall"));
 
-            if (playerIndex < wallIndex) {
+            if (playerIndex >= 0) {
                 SetDetectionOn(direction);
             } else {
                 SetDetectionOff();
@@ -50,7 +50,7 @@ namespace Enemy {
         private void SetDetectionOn(Vector3 direction) {
             _detected = true;
             triggerLight.color = Color.green;
-            triggerPos.transform.up = -direction;
+            turretPos.transform.up = direction;
         }
 
         private void SetDetectionOff() {
@@ -69,6 +69,7 @@ namespace Enemy {
                 }
             } else {
                 _canFire = false;
+                turretFireAnimation.SetBool("IsShooting", true);
                 Instantiate(bulletPrefab, turretEdge.position, Quaternion.identity, bulletsContainer.transform);
             }
         }

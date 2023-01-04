@@ -1,3 +1,5 @@
+using System;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,17 +12,29 @@ namespace Player {
         private float _move, _rotation;
         private float _rotationAngle = 0f;
 
+        [Header("Physics related")]
         [SerializeField] private float accFactor = 10f;
+
         [SerializeField] private float steerFactor = 3.5f;
         [SerializeField] private float driftFactor = 0f;
         [SerializeField] private Vector3 engineForce;
+        [SerializeField] private float maxSpeed;
 
+        [Header("Track Animators")]
+        [SerializeField] private Animator[] tankTracks;
+
+        private CinemachineVirtualCamera _cineMachineCam;
 
         private void Awake() {
             _controls = new PlayerControls();
             _moveAction = _controls.Player.Move;
             _steerAction = _controls.Player.Steer;
             _rb = GetComponent<Rigidbody2D>();
+        }
+
+        private void Start() {
+            _cineMachineCam = GameObject.FindGameObjectWithTag("CM2D").GetComponent<CinemachineVirtualCamera>();
+            _cineMachineCam.Follow = transform;
         }
 
         private void FixedUpdate() {
@@ -40,8 +54,15 @@ namespace Player {
             engineForce = transform.up * (_move * accFactor); // create a force Vector to move upwards (forward)
             _rb.AddForce(engineForce, ForceMode2D.Force);
 
-            // set 5f as max speed of the tank
-            _rb.velocity = new Vector2(Mathf.Clamp(_rb.velocity.x, -5f, 5f), Mathf.Clamp(_rb.velocity.y, -5f, 5f));
+            // set [maxSpeed] as max speed of the tank
+            _rb.velocity = new Vector2(Mathf.Clamp(_rb.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(_rb.velocity.y, -maxSpeed, maxSpeed));
+
+            // handle tank tracks animation
+            if (_rb.velocity.magnitude >= 0.1f || _rotation != 0) {
+                Array.ForEach(tankTracks, track => track.SetBool("IsMoving", true));
+            } else {
+                Array.ForEach(tankTracks, track => track.SetBool("IsMoving", false));
+            }
         }
 
         private void ApplySteering() {
