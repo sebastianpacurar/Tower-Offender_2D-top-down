@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Enemy {
+namespace Enemy.Weapon {
     public class FireAnimation : MonoBehaviour {
         private Animator _animator;
 

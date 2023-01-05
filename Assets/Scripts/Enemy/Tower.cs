@@ -8,10 +8,12 @@ namespace Enemy {
         [SerializeField] private SpriteRenderer triggerLight;
         [SerializeField] private Transform turretPos;
         [SerializeField] private Transform turretEdge;
-        [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private GameObject targetBullet;
         [SerializeField] private GameObject bulletsContainer;
         [SerializeField] private float timeBetweenFiring;
         [SerializeField] private Animator turretFireAnimation;
+
+        private GameObject _resultBullet;
         private Transform _tankPos;
         private HpHandler _tankHpHandler;
         private bool _detected;
@@ -70,7 +72,7 @@ namespace Enemy {
             } else {
                 _canFire = false;
                 turretFireAnimation.SetBool("IsShooting", true);
-                Instantiate(bulletPrefab, turretEdge.position, Quaternion.identity, bulletsContainer.transform);
+                Instantiate(targetBullet, turretEdge.position, Quaternion.identity, bulletsContainer.transform);
             }
         }
     }

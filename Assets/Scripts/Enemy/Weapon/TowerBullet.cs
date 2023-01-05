@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Enemy {
+namespace Enemy.Weapon {
     public class TowerBullet : MonoBehaviour {
         [SerializeField] private float bulletSpeed;
         private Transform _towerPosition;
@@ -19,11 +19,16 @@ namespace Enemy {
         }
 
         private void Start() {
-            _ps = transform.Find("Particle System").GetComponent<ParticleSystem>();
+            _tankPos = GameObject.FindGameObjectWithTag("Player").transform;
+            _ps = transform.Find("Shell").Find("Particle System").GetComponent<ParticleSystem>();
             _emissionModule = _ps.emission;
 
-            _towerPosition = transform.parent.transform.parent.Find("TowerObj").gameObject.transform;
-            _tankPos = GameObject.FindGameObjectWithTag("Player").transform;
+            // in case the passing value is a multiShell game object
+            if (!transform.parent.name.Equals("BulletsContainer")) {
+                _towerPosition = transform.parent.transform.parent.transform.parent.Find("TowerObj").gameObject.transform;
+            } else {
+                _towerPosition = transform.parent.transform.parent.Find("TowerObj").gameObject.transform;
+            }
 
             var direction = _tankPos.position - _towerPosition.position;
             GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y).normalized * bulletSpeed;

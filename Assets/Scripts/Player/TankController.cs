@@ -7,6 +7,7 @@ namespace Player {
     public class TankController : MonoBehaviour {
         private PlayerControls _controls;
         private InputAction _moveAction, _steerAction;
+        private CinemachineVirtualCamera _cineMachineCam;
         private Rigidbody2D _rb;
 
         private float _move, _rotation;
@@ -20,11 +21,9 @@ namespace Player {
         [SerializeField] private Vector3 engineForce;
         [SerializeField] private float maxSpeed;
 
-        [Header("Track Animators")]
+        [Header("Animators")]
         [SerializeField] private Animator[] tankTracks;
-
-        private CinemachineVirtualCamera _cineMachineCam;
-
+        
         private void Awake() {
             _controls = new PlayerControls();
             _moveAction = _controls.Player.Move;

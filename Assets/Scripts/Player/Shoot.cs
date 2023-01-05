@@ -11,6 +11,7 @@ namespace Player {
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private GameObject turretEdge;
         [SerializeField] private GameObject bulletsContainer;
+        [SerializeField] private Animator shootAnimationPoint;
 
         private void Awake() {
             _controls = new PlayerControls();
@@ -29,6 +30,7 @@ namespace Player {
         private void ShootBullet(InputAction.CallbackContext ctx) {
             if (CanFire) {
                 Instantiate(bulletPrefab, turretEdge.transform.position, Quaternion.identity, bulletsContainer.transform);
+                shootAnimationPoint.SetBool("IsShooting", true);
                 CanFire = false;
             }
         }

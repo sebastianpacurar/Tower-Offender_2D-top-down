@@ -46,7 +46,7 @@ namespace Player {
             _rb.velocity = new Vector2(0, 0);
             Destroy(_capsuleCollider2D);
             Destroy(_sr);
-            Invoke(nameof(DestroyObj), 0.25f);
+            Invoke(nameof(DestroyObj), 0.5f);
         }
 
         private void DestroyObj() {
