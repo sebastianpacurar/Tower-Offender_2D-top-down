@@ -1,8 +1,10 @@
+using ScriptableObjects;
 using UnityEngine;
 
-namespace Enemy {
+namespace Enemy.Hp {
     public class TowerHpHandler : MonoBehaviour {
-        public float TowerHealthPoints { get; private set; } = 5;
+        public float towerHealthPoints;
+        [SerializeField] private TowerStatsSo towerStatsSo;
         [SerializeField] private GameObject towerUI;
         [SerializeField] private SpriteRenderer towerTrigger;
         [SerializeField] private SpriteRenderer towerTurret;
@@ -12,19 +14,20 @@ namespace Enemy {
         private ParticleSystem.EmissionModule _emissionModule;
 
         private void Start() {
+            towerHealthPoints = towerStatsSo.Hp;
             _towerScript = GetComponent<Tower>();
             _ps = transform.Find("Particle System").GetComponent<ParticleSystem>();
             _emissionModule = _ps.emission;
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.CompareTag("TankBullet")) {
-                TowerHealthPoints -= 1;
+            if (col.gameObject.CompareTag("TankShell")) {
+                towerHealthPoints -= 1;
             }
         }
 
         private void Update() {
-            if (TowerHealthPoints == 0) {
+            if (towerHealthPoints == 0) {
                 towerUI.SetActive(false);
                 _towerScript.enabled = false;
                 towerTrigger.enabled = false;

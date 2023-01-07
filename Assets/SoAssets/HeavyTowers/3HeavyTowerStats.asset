@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aae4dd7d392c70d2b924182eac75a5e4, type: 3}
+  m_Name: 3HeavyTowerStats
+  m_EditorClassIdentifier: 
+  range: 20
+  shellPrefab: {fileID: 6322227243628857275, guid: 1e5eb8b68871f2353baf5eecd0d7e9ba, type: 3}
+  secondsBetweenShooting: 2
+  hp: 5

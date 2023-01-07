@@ -5,10 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wall
-  - TowerBullet
-  - TankBullet
   - Tower
   - CM2D
+  - WorldBorder
+  - TankShell
+  - ShellTower
+  - HomingShell
+  - BasicShell
   layers:
   - Default
   - TransparentFX

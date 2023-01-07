@@ -1,3 +1,4 @@
+using Enemy.Hp;
 using UnityEngine;
 
 namespace Enemy {
@@ -12,7 +13,7 @@ namespace Enemy {
         }
 
         private void Update() {
-            if (!(_hpHandlerScript.TowerHealthPoints > 0)) return;
+            if (!(_hpHandlerScript.towerHealthPoints > 0)) return;
             if (Vector2.Distance(locations[_index].transform.position, transform.position) < 0.1f) {
                 _index++;
                 if (_index >= locations.Length) {

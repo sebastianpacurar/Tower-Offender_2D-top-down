@@ -1,19 +1,19 @@
 using System;
 using Player;
+using ScriptableObjects;
 using UnityEngine;
 
 namespace Enemy {
     public class Tower : MonoBehaviour {
-        [SerializeField] private float range;
+        [SerializeField] private float isHomingShell;
+        [SerializeField] private TowerStatsSo towerStatsSo;
+
         [SerializeField] private SpriteRenderer triggerLight;
         [SerializeField] private Transform turretPos;
         [SerializeField] private Transform turretEdge;
-        [SerializeField] private GameObject targetBullet;
-        [SerializeField] private GameObject bulletsContainer;
-        [SerializeField] private float timeBetweenFiring;
+        [SerializeField] private GameObject shellsContainer;
         [SerializeField] private Animator turretFireAnimation;
 
-        private GameObject _resultBullet;
         private Transform _tankPos;
         private HpHandler _tankHpHandler;
         private bool _detected;
@@ -32,13 +32,13 @@ namespace Enemy {
         }
 
         private void HandleDetection() {
-            if (_tankHpHandler.HealthPoints == 0) {
+            if (_tankHpHandler.healthPoints <= 0) {
                 SetDetectionOff();
                 return;
             }
 
             var direction = _tankPos.position - turretPos.position;
-            var rayInfo = Physics2D.RaycastAll(turretPos.position, direction, range);
+            var rayInfo = Physics2D.RaycastAll(turretPos.position, direction, towerStatsSo.Range);
             var playerIndex = Array.FindIndex(rayInfo, obj => obj.collider.CompareTag("Player"));
             var wallIndex = Array.FindIndex(rayInfo, obj => obj.collider.CompareTag("Wall"));
 
@@ -65,14 +65,14 @@ namespace Enemy {
 
             if (!_canFire) {
                 _timer += Time.deltaTime;
-                if (_timer > timeBetweenFiring) {
+                if (_timer > towerStatsSo.SecondsBetweenShooting) {
                     _canFire = true;
                     _timer = 0f;
                 }
             } else {
                 _canFire = false;
                 turretFireAnimation.SetBool("IsShooting", true);
-                Instantiate(targetBullet, turretEdge.position, Quaternion.identity, bulletsContainer.transform);
+                Instantiate(towerStatsSo.ShellPrefab, turretEdge.position, Quaternion.identity, shellsContainer.transform);
             }
         }
     }

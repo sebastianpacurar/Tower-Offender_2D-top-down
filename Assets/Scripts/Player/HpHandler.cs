@@ -1,8 +1,9 @@
+using Shells;
 using UnityEngine;
 
 namespace Player {
     public class HpHandler : MonoBehaviour {
-        public float HealthPoints { get; private set; } = 10;
+        public float healthPoints;
         [SerializeField] private GameObject tankHull;
 
         private Rigidbody2D _tankRb;
@@ -26,12 +27,12 @@ namespace Player {
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.CompareTag("TowerBullet")) {
-                if (HealthPoints > 0) {
-                    HealthPoints -= 1;
+            if (col.gameObject.CompareTag("BasicShell") || col.gameObject.CompareTag("HomingShell")) {
+                if (healthPoints > 0) {
+                    healthPoints -= col.gameObject.GetComponent<TowerShell>().shellDamage;
                 }
 
-                switch (HealthPoints) {
+                switch (healthPoints) {
                     case > 5 and < 8:
                         _emissionModule.enabled = true;
                         _mainModule.startColor = new Color(0.4622642f, 0.4295568f, 0.4311143f);

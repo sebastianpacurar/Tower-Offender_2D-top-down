@@ -2,6 +2,8 @@ using System;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Player {
     public class TankController : MonoBehaviour {
@@ -14,16 +16,25 @@ namespace Player {
         private float _rotationAngle = 0f;
 
         [Header("Physics related")]
-        [SerializeField] private float accFactor = 10f;
+        [SerializeField] private float accFactor = 2f;
 
         [SerializeField] private float steerFactor = 3.5f;
         [SerializeField] private float driftFactor = 0f;
-        [SerializeField] private Vector3 engineForce;
-        [SerializeField] private float maxSpeed;
+        [SerializeField] private float maxSpeed = 3.0f;
+
+        [SerializeField] private Vector2 engineForce;
+        [SerializeField] private float opposingForce; // if negative then apply breaks
 
         [Header("Animators")]
         [SerializeField] private Animator[] tankTracks;
-        
+
+        [Header("For Debugging Purposes")]
+        [SerializeField] private float rigidBodyDrag;
+
+        [SerializeField] private Vector3 forwardVelocity;
+        [SerializeField] private Vector3 rightVelocity;
+
+
         private void Awake() {
             _controls = new PlayerControls();
             _moveAction = _controls.Player.Move;
@@ -43,12 +54,8 @@ namespace Player {
         }
 
         private void ApplyEngineForce() {
-            // if Up or Down keys are not pressed, then cause the _rb to drag until it comes to a complete stop
-            if (_move == 0f) {
-                _rb.drag = Mathf.Lerp(_rb.drag, 3.0f, Time.fixedDeltaTime * 3);
-            } else {
-                _rb.drag = 0;
-            }
+            HandleEngineBreaks();
+            rigidBodyDrag = _rb.drag;
 
             engineForce = transform.up * (_move * accFactor); // create a force Vector to move upwards (forward)
             _rb.AddForce(engineForce, ForceMode2D.Force);
@@ -97,10 +104,24 @@ namespace Player {
 
         // add more friction to the tank to avoid drifting in a single direction
         private void KillOrthogonalVelocity() {
-            var forwardVelocity = transform.up * Vector2.Dot(_rb.velocity, transform.up);
-            var rightVelocity = transform.right * Vector2.Dot(_rb.velocity, transform.right);
+            forwardVelocity = transform.up * Vector2.Dot(_rb.velocity, transform.up);
+            rightVelocity = transform.right * Vector2.Dot(_rb.velocity, transform.right);
 
             _rb.velocity = forwardVelocity + rightVelocity * driftFactor;
+        }
+
+        private void HandleEngineBreaks() {
+            opposingForce = Vector2.Dot(_rb.velocity, engineForce);
+            if (_move == 0f) {
+                _rb.drag = Mathf.Lerp(_rb.drag, 3.0f, Time.fixedDeltaTime * 3); // apply Engine Breaks
+                accFactor = 2.0f;
+            } else if (_move != 0f && opposingForce < 0) {
+                accFactor = 4.0f;
+                _rb.drag = Mathf.Lerp(_rb.drag, 5.0f, Time.fixedDeltaTime * 5); // apply Manual Breaks - in case the tank is still moving towards the opposite of the desired direction
+            } else {
+                accFactor = 2.0f;
+                _rb.drag = 0f; // don't apply any breaks when not moving forward/backward
+            }
         }
 
         private void OnEnable() {

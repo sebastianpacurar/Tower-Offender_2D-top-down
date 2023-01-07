@@ -8,9 +8,9 @@ namespace Player {
         public bool CanFire { get; private set; }
 
         [SerializeField] private float timeBetweenFiring;
-        [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private GameObject shellPrefab;
         [SerializeField] private GameObject turretEdge;
-        [SerializeField] private GameObject bulletsContainer;
+        [SerializeField] private GameObject shellsContainer;
         [SerializeField] private Animator shootAnimationPoint;
 
         private void Awake() {
@@ -27,9 +27,9 @@ namespace Player {
             }
         }
 
-        private void ShootBullet(InputAction.CallbackContext ctx) {
+        private void ShootShell(InputAction.CallbackContext ctx) {
             if (CanFire) {
-                Instantiate(bulletPrefab, turretEdge.transform.position, Quaternion.identity, bulletsContainer.transform);
+                Instantiate(shellPrefab, turretEdge.transform.position, Quaternion.identity, shellsContainer.transform);
                 shootAnimationPoint.SetBool("IsShooting", true);
                 CanFire = false;
             }
@@ -37,11 +37,11 @@ namespace Player {
 
         private void OnEnable() {
             _controls.Player.Shoot.Enable();
-            _controls.Player.Shoot.performed += ShootBullet;
+            _controls.Player.Shoot.performed += ShootShell;
         }
 
         private void OnDisable() {
-            _controls.Player.Shoot.performed -= ShootBullet;
+            _controls.Player.Shoot.performed -= ShootShell;
             _controls.Player.Shoot.Disable();
         }
     }
