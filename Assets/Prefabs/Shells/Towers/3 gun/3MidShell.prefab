@@ -20,25 +20,61 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1912227002026002796, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: shellTrail
+      value: 
+      objectReference: {fileID: 11400000, guid: 05abc16aff9ede45ca54abad15700e30, type: 2}
+    - target: {fileID: 1912227002026002796, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
       propertyPath: shellDamage
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 1912227002026002796, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: shellStatsSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 8a37f7cd6e2424130a5c02f00ec9d483, type: 2}
+    - target: {fileID: 1912227002026002796, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: shellExplosion
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ffbe9dd1ccc057a2abf781c567d683f, type: 2}
     - target: {fileID: 1912227002052905287, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
       propertyPath: shellSpeed
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1912227002052905287, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: shellTrail
+      value: 
+      objectReference: {fileID: 11400000, guid: 05abc16aff9ede45ca54abad15700e30, type: 2}
+    - target: {fileID: 1912227002052905287, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
       propertyPath: shellDamage
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 1912227002052905287, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: shellStatsSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 8a37f7cd6e2424130a5c02f00ec9d483, type: 2}
+    - target: {fileID: 1912227002052905287, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: shellExplosion
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ffbe9dd1ccc057a2abf781c567d683f, type: 2}
     - target: {fileID: 1912227002630424883, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
       propertyPath: shellSpeed
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1912227002630424883, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: shellTrail
+      value: 
+      objectReference: {fileID: 11400000, guid: 05abc16aff9ede45ca54abad15700e30, type: 2}
+    - target: {fileID: 1912227002630424883, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
       propertyPath: shellDamage
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 1912227002630424883, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: shellStatsSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 8a37f7cd6e2424130a5c02f00ec9d483, type: 2}
+    - target: {fileID: 1912227002630424883, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: shellExplosion
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ffbe9dd1ccc057a2abf781c567d683f, type: 2}
     - target: {fileID: 7917091256094371852, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
       propertyPath: m_Sprite
       value: 

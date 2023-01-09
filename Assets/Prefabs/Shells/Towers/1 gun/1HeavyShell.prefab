@@ -117,15 +117,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7182659678604302748, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7182659678604302748, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7182659678604302748, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7182659678604302748, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
@@ -160,8 +160,29 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7992261285247722992, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
+      propertyPath: shellTrail
+      value: 
+      objectReference: {fileID: 11400000, guid: bd3dddd0ce18dfe16b0f3de1ce30b154, type: 2}
+    - target: {fileID: 7992261285247722992, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: shellDamage
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7992261285247722992, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
+      propertyPath: shellStatsSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 11d9b5439a7bf127e8dbb0543ea6a1d8, type: 2}
+    - target: {fileID: 7992261285247722992, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
+      propertyPath: shellExplosion
+      value: 
+      objectReference: {fileID: 11400000, guid: 74b09787acbfaeb31965d9a60248057a, type: 2}
+    - target: {fileID: 8320543024818233617, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8320543024818233617, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7524667159671521956, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}

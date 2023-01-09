@@ -100,7 +100,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1854506223192595662, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: m_Name
-      value: ThirdShell
+      value: SideShellRight
       objectReference: {fileID: 0}
     - target: {fileID: 1854506223192595663, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: m_Color.g
@@ -114,7 +114,8 @@ PrefabInstance:
       propertyPath: bulletSpeed
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7524667159671521956, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
 --- !u!4 &7917091256094371855 stripped
 Transform:
@@ -174,7 +175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1854506223192595662, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: m_Name
-      value: FirstShell
+      value: SideShellLeft
       objectReference: {fileID: 0}
     - target: {fileID: 1854506223192595663, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: m_Color.b
@@ -188,7 +189,8 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7524667159671521956, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
 --- !u!4 &7917091257660174459 stripped
 Transform:
@@ -248,7 +250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1854506223192595662, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: m_Name
-      value: SecondShell
+      value: MiddleShell
       objectReference: {fileID: 0}
     - target: {fileID: 1854506223192595663, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: m_Color.g
@@ -266,7 +268,8 @@ PrefabInstance:
       propertyPath: bulletSpeed
       value: 7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7524667159671521956, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
 --- !u!4 &7917091257636286544 stripped
 Transform:

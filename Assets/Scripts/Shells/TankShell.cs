@@ -37,7 +37,7 @@ namespace Shells {
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.CompareTag("Tower")) {
+            if (col.gameObject.CompareTag("Tower") || col.gameObject.CompareTag("WorldBorder")) {
                 DestroyShell();
             }
 

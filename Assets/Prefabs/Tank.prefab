@@ -970,7 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1af0feedfabfb775a747001dd932f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenFiring: 1
+  timeBetweenFiring: 0.25
   shellPrefab: {fileID: 5160466854658843649, guid: 017b145cbe18186ba9e32c37d3a09147, type: 3}
   turretEdge: {fileID: 1981674769691150231}
   shellsContainer: {fileID: 1502260699}
@@ -987,7 +987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d1e5086013a0b848b5f9aff65be8f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 25
+  healthPoints: 100
   tankHull: {fileID: 1981674769095348847}
 --- !u!1 &2218405330404542845
 GameObject:

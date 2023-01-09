@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aae4dd7d392c70d2b924182eac75a5e4, type: 3}
-  m_Name: 3HeavyTowerStats
+  m_Script: {fileID: 11500000, guid: 519d685e130d3aa0a9d0662cb76e6884, type: 3}
+  m_Name: LightShellStats
   m_EditorClassIdentifier: 
-  range: 20
-  shellPrefab: {fileID: 6322227243628857275, guid: 1e5eb8b68871f2353baf5eecd0d7e9ba, type: 3}
-  secondsBetweenShooting: 2
-  hp: 5
+  sideShellsSpeed: 17.5
+  middleShellSpeed: 20
+  timeToLive: 10
+  damage: 2.5

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7621402966544897974}
   - component: {fileID: 1084552789634938436}
   - component: {fileID: 7992261285247722992}
-  - component: {fileID: 7524667159671521956}
   m_Layer: 0
   m_Name: 1LightShell
   m_TagString: BasicShell
@@ -139,20 +138,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shellDamage: 0.5
-  shellSpeed: 7
---- !u!114 &7524667159671521956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1854506223192595662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa270783d91f6898480e9f04f51c33a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToLiveInSecs: 5
+  shellStatsSo: {fileID: 11400000, guid: d600161018f235fa1b1fe766e9db2db9, type: 2}
+  shellExplosion: {fileID: 11400000, guid: 1e9637cc644ee0952869cc6141466642, type: 2}
+  shellTrail: {fileID: 11400000, guid: 50734a3293e703bc4b7d27174d0206b1, type: 2}
 --- !u!1 &6376363418381984662
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,7 +426,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1020,7 +1008,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 15
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1458,7 +1446,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.9370693, b: 0, a: 1}
+        key0: {r: 1, g: 1, b: 0, a: 1}
         key1: {r: 1, g: 0, b: 0, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -5013,7 +5001,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -5250,7 +5238,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5827,7 +5815,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
@@ -5942,7 +5930,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 30
+        scalar: 100
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -5992,7 +5980,7 @@ ParticleSystem:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-      cycleCount: 30
+      cycleCount: 1
       repeatInterval: 0.01
       probability: 1
   SizeModule:
@@ -6386,7 +6374,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   UVModule:
     serializedVersion: 2
-    enabled: 1
+    enabled: 0
     mode: 1
     timeMode: 0
     fps: 30
@@ -8246,7 +8234,7 @@ ParticleSystem:
     enabled: 0
     curve:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -8299,7 +8287,7 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -8352,7 +8340,7 @@ ParticleSystem:
         m_RotationOrder: 4
     z:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:

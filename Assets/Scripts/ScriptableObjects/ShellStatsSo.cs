@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ShellStatsSo : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+namespace ScriptableObjects {
+    [CreateAssetMenu(fileName = "ShellStatsSO", menuName = "SOs/ShellStats")]
+    public class ShellStatsSo : ScriptableObject {
+        [SerializeField] private float sideShellsSpeed;
+        [SerializeField] private float middleShellSpeed;
+        [SerializeField] private float timeToLive;
+        [SerializeField] private float damage;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public float SideShellsSpeed => sideShellsSpeed;
+        public float MiddleShellSpeed => middleShellSpeed;
+        public float TimeToLive => timeToLive;
+        public float Damage => damage;
     }
 }

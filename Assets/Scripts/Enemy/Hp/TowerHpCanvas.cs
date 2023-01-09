@@ -17,12 +17,12 @@ namespace Enemy.Hp {
             canvas.renderMode = RenderMode.WorldSpace;
             canvas.worldCamera = _mainCam;
 
-            _maxHp = _hpHandlerScript.towerHealthPoints;
+            _maxHp = _hpHandlerScript.TowerHealthPoints;
         }
 
         private void Update() {
             transform.position = towerObj.transform.position;
-            greenBar.fillAmount = _hpHandlerScript.towerHealthPoints / _maxHp;
+            greenBar.fillAmount = _hpHandlerScript.TowerHealthPoints / _maxHp;
         }
     }
 }
