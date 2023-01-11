@@ -6,11 +6,11 @@ namespace ScriptableObjects {
         [SerializeField] private float range;
         [SerializeField] private GameObject shellPrefab;
         [SerializeField] private float secondsBetweenShooting;
-        [SerializeField] private int hp;
+        [SerializeField] private int maxHp;
 
         public float Range => range;
         public GameObject ShellPrefab => shellPrefab;
         public float SecondsBetweenShooting => secondsBetweenShooting;
-        public int Hp => hp;
+        public int MaxHp => maxHp;
     }
 }

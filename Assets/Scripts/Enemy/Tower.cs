@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Enemy {
     public class Tower : MonoBehaviour {
-        [SerializeField] private float isHomingShell;
+        public bool IsPowerOff { get; set; } = false;
         [SerializeField] private TowerStatsSo towerStatsSo;
 
         [SerializeField] private SpriteRenderer triggerLight;
@@ -17,7 +17,8 @@ namespace Enemy {
         private Transform _tankPos;
         private HpHandler _tankHpHandler;
         private bool _detected;
-        private float _timer;
+        private float _fireTimer;
+        private float _powerOFfTimer;
         private bool _canFire = true;
 
         private void Start() {
@@ -26,13 +27,27 @@ namespace Enemy {
             _tankHpHandler = tank.GetComponent<HpHandler>();
         }
 
+        private void HandlePowerOffCd() {
+            if (!IsPowerOff) return;
+            _powerOFfTimer += Time.deltaTime;
+            if (_powerOFfTimer > 10f) {
+                IsPowerOff = false;
+                _powerOFfTimer = 0f;
+            }
+        }
+
         private void Update() {
-            HandleDetection();
-            Shoot();
+            HandlePowerOffCd();
+            if (IsPowerOff) {
+                triggerLight.color = Color.grey;
+            } else {
+                HandleDetection();
+                Shoot();
+            }
         }
 
         private void HandleDetection() {
-            if (_tankHpHandler.healthPoints <= 0) {
+            if (_tankHpHandler.TankHealthPoints <= 0) {
                 SetDetectionOff();
                 return;
             }
@@ -64,10 +79,10 @@ namespace Enemy {
             if (!_detected) return;
 
             if (!_canFire) {
-                _timer += Time.deltaTime;
-                if (_timer > towerStatsSo.SecondsBetweenShooting) {
+                _fireTimer += Time.deltaTime;
+                if (_fireTimer > towerStatsSo.SecondsBetweenShooting) {
                     _canFire = true;
-                    _timer = 0f;
+                    _fireTimer = 0f;
                 }
             } else {
                 _canFire = false;

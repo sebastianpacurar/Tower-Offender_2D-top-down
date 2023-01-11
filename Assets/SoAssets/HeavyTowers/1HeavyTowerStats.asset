@@ -15,4 +15,4 @@ MonoBehaviour:
   range: 20
   shellPrefab: {fileID: 6116866073713699048, guid: b6dfb66049b36535697d4f7d4f7d374f, type: 3}
   secondsBetweenShooting: 0.5
-  hp: 10
+  maxHp: 5

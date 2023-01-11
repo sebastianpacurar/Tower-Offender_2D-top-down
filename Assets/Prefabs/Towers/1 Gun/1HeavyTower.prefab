@@ -31,6 +31,10 @@ PrefabInstance:
       propertyPath: timeBetweenFiring
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4474080852930012553, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
+      propertyPath: towerStatsSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 17c1cbf756188b83da88d2893868ef43, type: 2}
     - target: {fileID: 6100540536213009582, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
       propertyPath: towerStatsSo
       value: 
@@ -49,11 +53,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8897720835073988832, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.8617325
+      value: 15.5
       objectReference: {fileID: 0}
     - target: {fileID: 8897720835073988832, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.2863154
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 8897720835073988832, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -90,6 +94,10 @@ PrefabInstance:
     - target: {fileID: 8897720835073988838, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
       propertyPath: m_Name
       value: 1HeavyTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897720835073988838, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
+      propertyPath: m_TagString
+      value: HomingShell
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}

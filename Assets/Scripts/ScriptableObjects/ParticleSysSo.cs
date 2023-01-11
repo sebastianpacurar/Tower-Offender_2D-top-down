@@ -83,10 +83,15 @@ namespace ScriptableObjects {
         public bool IsColorOverLifetimeEnabled => isColorOverLifetimeEnabled;
         public Gradient ColOverLifetime => colOverLifetime;
 
-
         [Space(20)]
-        [Header("Renderer Component")]
-        [SerializeField] private Material materialObj;
+        [Header("Size over Lifetime Module")]
+        [SerializeField] private bool isSizeOverLifetimeEnabled;
+
+        public bool IsSizeOverLifetimeEnabled => isSizeOverLifetimeEnabled;
+
+
+        [Space(20)] [Header("Renderer Component")] [SerializeField]
+        private Material materialObj;
 
         public Material MaterialObj => materialObj; // this should be "Default-ParticleSystem"
     }

@@ -154,6 +154,54 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""5c39deb7-be7a-4b39-8100-bdd88c0c27b7"",
+            ""actions"": [
+                {
+                    ""name"": ""FirstWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""566ec825-472b-4763-afe6-4d7dba054528"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SecondWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""f4692fe5-df31-442a-a081-630eb596811a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1cee0238-66f1-43d7-b7f8-652d0bfc69f4"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FirstWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bf424976-132c-4116-8dc8-ef026308ef3b"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SecondWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -181,6 +229,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Steer = m_Player.FindAction("Steer", throwIfNotFound: true);
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_FirstWeapon = m_UI.FindAction("FirstWeapon", throwIfNotFound: true);
+        m_UI_SecondWeapon = m_UI.FindAction("SecondWeapon", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -293,6 +345,47 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_FirstWeapon;
+    private readonly InputAction m_UI_SecondWeapon;
+    public struct UIActions
+    {
+        private @PlayerControls m_Wrapper;
+        public UIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @FirstWeapon => m_Wrapper.m_UI_FirstWeapon;
+        public InputAction @SecondWeapon => m_Wrapper.m_UI_SecondWeapon;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            {
+                @FirstWeapon.started -= m_Wrapper.m_UIActionsCallbackInterface.OnFirstWeapon;
+                @FirstWeapon.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnFirstWeapon;
+                @FirstWeapon.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnFirstWeapon;
+                @SecondWeapon.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSecondWeapon;
+                @SecondWeapon.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSecondWeapon;
+                @SecondWeapon.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSecondWeapon;
+            }
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @FirstWeapon.started += instance.OnFirstWeapon;
+                @FirstWeapon.performed += instance.OnFirstWeapon;
+                @FirstWeapon.canceled += instance.OnFirstWeapon;
+                @SecondWeapon.started += instance.OnSecondWeapon;
+                @SecondWeapon.performed += instance.OnSecondWeapon;
+                @SecondWeapon.canceled += instance.OnSecondWeapon;
+            }
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -308,5 +401,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnSteer(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnFirstWeapon(InputAction.CallbackContext context);
+        void OnSecondWeapon(InputAction.CallbackContext context);
     }
 }

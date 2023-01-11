@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b51098c18c755d98176d46a410eb49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerStatsSo: {fileID: 11400000, guid: beccc113afa391aa684a15a820220f1f, type: 2}
   canvas: {fileID: 7221949181640312318}
   towerObj: {fileID: 7221949181811295860}
   greenBar: {fileID: 3104149053472199887}
@@ -5773,7 +5774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556b7104579bc348abfb53eab02c8bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHomingShell: 0
   towerStatsSo: {fileID: 11400000, guid: beccc113afa391aa684a15a820220f1f, type: 2}
   triggerLight: {fileID: 7221949181248407138}
   turretPos: {fileID: 7221949180764546180}
@@ -5792,7 +5792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e2933b742d2a32abe37cc5b70a3705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerHealthPoints: 3
+  tankLightShellStats: {fileID: 11400000, guid: fd317d3d09831c0bf8b4dbdf51d81037, type: 2}
   towerStatsSo: {fileID: 11400000, guid: beccc113afa391aa684a15a820220f1f, type: 2}
   towerUI: {fileID: 7221949180006732809}
   towerTrigger: {fileID: 7221949181248407138}

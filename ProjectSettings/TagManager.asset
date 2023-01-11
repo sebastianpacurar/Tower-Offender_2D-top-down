@@ -8,10 +8,12 @@ TagManager:
   - Tower
   - CM2D
   - WorldBorder
-  - TankShell
   - ShellTower
   - HomingShell
   - BasicShell
+  - GameUI
+  - TankLightShell
+  - TankEmpShell
   layers:
   - Default
   - TransparentFX

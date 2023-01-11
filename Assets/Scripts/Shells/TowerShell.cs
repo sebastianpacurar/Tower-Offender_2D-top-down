@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Shells {
     public class TowerShell : MonoBehaviour {
-        [HideInInspector] public float shellDamage;
+        public float ShellDamage { get; set; }
         [SerializeField] private ShellStatsSo shellStatsSo;
         [SerializeField] private ParticleSysSo shellExplosion, shellTrail;
 
         private Transform _towerPosition;
-        private CircleCollider2D _circleCollider2D;
+        private CapsuleCollider2D _capsuleCollider2D;
         private Rigidbody2D _rb;
         private SpriteRenderer _sr;
         private Transform _tankPos;
@@ -21,7 +21,8 @@ namespace Shells {
         private void Awake() {
             _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
-            _circleCollider2D = GetComponent<CircleCollider2D>();
+            _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+            ShellDamage = shellStatsSo.Damage;
         }
 
         // TODO: could be improved
@@ -34,7 +35,6 @@ namespace Shells {
 
         private void Start() {
             float shellSpeed;
-            shellDamage = shellStatsSo.Damage;
             _tankPos = GameObject.FindGameObjectWithTag("Player").transform;
             _explodePs = transform.Find("Shell").Find("Explode Particle System").GetComponent<ParticleSystem>();
             _trailPs = transform.Find("Shell").Find("Trail Particle System").GetComponent<ParticleSystem>();
@@ -64,19 +64,21 @@ namespace Shells {
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.CompareTag("Player") || col.gameObject.CompareTag("Tower") || col.gameObject.CompareTag("WorldBorder")) {
+            if (col.gameObject.CompareTag("Player") || col.gameObject.CompareTag("WorldBorder")) {
                 DestroyShell();
             }
         }
 
         private void DestroyShell() {
-            _explodePs.Play();
-            _explodeEmissionMod.enabled = true;
-            _trailEmissionMod.enabled = false; // TODO: this can be improved for a more visual effect
+            _sr.enabled = false;
+            _capsuleCollider2D.enabled = false;
             _rb.velocity = new Vector2(0, 0);
-            Destroy(_circleCollider2D);
-            Destroy(_sr);
-            Invoke(nameof(DestroyObj), 0.25f);
+
+            _explodeEmissionMod.enabled = true;
+            _trailEmissionMod.enabled = false;
+
+            _explodePs.Play();
+            Invoke(nameof(DestroyObj), 0.5f);
         }
 
         private void DestroyObj() {

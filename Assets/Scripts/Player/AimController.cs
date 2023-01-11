@@ -27,8 +27,9 @@ namespace Player {
 
         private void MoveHull() {
             var mousePos = _mainCam.ScreenToWorldPoint(AimVal);
-            var rotation = mousePos - hull.transform.position;
-            var rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+            
+            var direction = mousePos - hull.transform.position;
+            var rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             hull.transform.rotation = Quaternion.Euler(0, 0, rotZ - 90f);
         }
 

@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7221949180006732810, guid: 252853afaf03ad5fb8d0e66e568c309f, type: 3}
+      propertyPath: towerStatsSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 17b06b318a596cc3e93296617234f6d2, type: 2}
     - target: {fileID: 7221949180764546182, guid: 252853afaf03ad5fb8d0e66e568c309f, type: 3}
       propertyPath: m_Controller
       value: 
@@ -25,11 +29,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7221949181135935922, guid: 252853afaf03ad5fb8d0e66e568c309f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 7221949181135935922, guid: 252853afaf03ad5fb8d0e66e568c309f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.5
+      value: 7.76
       objectReference: {fileID: 0}
     - target: {fileID: 7221949181135935922, guid: 252853afaf03ad5fb8d0e66e568c309f, type: 3}
       propertyPath: m_LocalPosition.z

@@ -1,9 +1,11 @@
+using ScriptableObjects;
 using Shells;
 using UnityEngine;
 
 namespace Player {
     public class HpHandler : MonoBehaviour {
-        public float healthPoints;
+        public float TankHealthPoints { get; private set; }
+        [SerializeField] private TankStatsSo tankStatsSo;
         [SerializeField] private GameObject tankHull;
 
         private Rigidbody2D _tankRb;
@@ -24,15 +26,18 @@ namespace Player {
             _ps = transform.Find("Particle System").GetComponent<ParticleSystem>();
             _emissionModule = _ps.emission;
             _mainModule = _ps.main;
+
+            TankHealthPoints = tankStatsSo.MaxHp;
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.CompareTag("BasicShell") || col.gameObject.CompareTag("HomingShell")) {
-                if (healthPoints > 0) {
-                    healthPoints -= col.gameObject.GetComponent<TowerShell>().shellDamage;
+            // TODO: need to rethink logic
+            if (col.gameObject.CompareTag("BasicShell")) {
+                if (TankHealthPoints > 0) {
+                    TankHealthPoints -= col.gameObject.GetComponent<TowerShell>().ShellDamage;
                 }
 
-                switch (healthPoints) {
+                switch (TankHealthPoints) {
                     case > 5 and < 8:
                         _emissionModule.enabled = true;
                         _mainModule.startColor = new Color(0.4622642f, 0.4295568f, 0.4311143f);

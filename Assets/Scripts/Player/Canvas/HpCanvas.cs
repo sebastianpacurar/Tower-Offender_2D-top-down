@@ -1,12 +1,13 @@
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Player {
+namespace Player.Canvas {
     public class HpCanvas : MonoBehaviour {
-        [SerializeField] private Canvas canvas;
+        [SerializeField] private TankStatsSo tankStatsSo;
+        [SerializeField] private UnityEngine.Canvas canvas;
         [SerializeField] private GameObject tankObj;
         [SerializeField] private Image greenBar;
-        private float _maxHp;
 
         private Camera _mainCam;
         private HpHandler _hpHandlerScript;
@@ -16,12 +17,11 @@ namespace Player {
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             canvas.renderMode = RenderMode.WorldSpace;
             canvas.worldCamera = _mainCam;
-            _maxHp = _hpHandlerScript.healthPoints;
         }
 
         private void Update() {
             transform.position = tankObj.transform.position;
-            greenBar.fillAmount = _hpHandlerScript.healthPoints / _maxHp;
+            greenBar.fillAmount = (_hpHandlerScript.TankHealthPoints / tankStatsSo.MaxHp) * 0.5f;
         }
     }
 }

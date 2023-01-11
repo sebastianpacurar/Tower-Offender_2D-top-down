@@ -1,5 +1,6 @@
 using System;
 using Cinemachine;
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Vector2 = UnityEngine.Vector2;
@@ -15,12 +16,14 @@ namespace Player {
         private float _move, _rotation;
         private float _rotationAngle = 0f;
 
+        [SerializeField] private TankStatsSo tankStatsSo;
+        
         [Header("Physics related")]
-        [SerializeField] private float accFactor = 2f;
+        [SerializeField] private float accFactor;
 
-        [SerializeField] private float steerFactor = 3.5f;
-        [SerializeField] private float driftFactor = 0f;
-        [SerializeField] private float maxSpeed = 3.0f;
+        [SerializeField] private float steerFactor;
+        [SerializeField] private float driftFactor;
+        [SerializeField] private float maxSpeed;
 
         [SerializeField] private Vector2 engineForce;
         [SerializeField] private float opposingForce; // if negative then apply breaks
@@ -40,6 +43,11 @@ namespace Player {
             _moveAction = _controls.Player.Move;
             _steerAction = _controls.Player.Steer;
             _rb = GetComponent<Rigidbody2D>();
+
+            accFactor = tankStatsSo.AccFactor;
+            steerFactor = tankStatsSo.SteerFactor;
+            driftFactor = tankStatsSo.DriftFactor;
+            maxSpeed = tankStatsSo.MaxSpeed;
         }
 
         private void Start() {

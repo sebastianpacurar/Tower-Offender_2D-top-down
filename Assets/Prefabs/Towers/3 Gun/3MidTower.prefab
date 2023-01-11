@@ -13,11 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5955178969681982468, guid: 618e2e62ff605f694a1a56b3de7c399b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8
+      value: -8.5
       objectReference: {fileID: 0}
     - target: {fileID: 5955178969681982468, guid: 618e2e62ff605f694a1a56b3de7c399b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.5
+      value: 7.76
       objectReference: {fileID: 0}
     - target: {fileID: 5955178969681982468, guid: 618e2e62ff605f694a1a56b3de7c399b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -83,6 +83,10 @@ PrefabInstance:
       propertyPath: timeBetweenFiring
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5955178970767636924, guid: 618e2e62ff605f694a1a56b3de7c399b, type: 3}
+      propertyPath: towerStatsSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 2f0c7e4c57e372b27937366401932ee3, type: 2}
     - target: {fileID: 5955178970980174128, guid: 618e2e62ff605f694a1a56b3de7c399b, type: 3}
       propertyPath: m_Controller
       value: 
