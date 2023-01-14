@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7503048296134704721}
   - component: {fileID: 8155436184701015179}
   m_Layer: 0
-  m_Name: Explode Particle System
+  m_Name: ExplosionPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4882,7 +4882,7 @@ GameObject:
   - component: {fileID: 6034282807397452930}
   - component: {fileID: 7991253964351273857}
   m_Layer: 0
-  m_Name: Trail Particle System
+  m_Name: TrailPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9882,6 +9882,8 @@ MonoBehaviour:
   empShellStats: {fileID: 11400000, guid: 6cf65be9ec689712594054171afcd509, type: 2}
   shellExplosion: {fileID: 11400000, guid: 5b89c457ed7978a778f7b2b0e5df8ddc, type: 2}
   shellTrail: {fileID: 11400000, guid: 81e63149fda97694388e534b5074cd3b, type: 2}
+  explosionPs: {fileID: 7503048296134704721}
+  trailPs: {fileID: 6034282807397452930}
 --- !u!1 &9064014951016998385
 GameObject:
   m_ObjectHideFlags: 0

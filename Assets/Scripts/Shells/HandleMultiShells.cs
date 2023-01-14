@@ -10,8 +10,8 @@ namespace Shells {
 
             // rotate towards the tank
             var rotation = _tankPos.position - _towerPos.position;
-            var rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, rotZ - 90f);
+            var rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg - 90f;
+            transform.rotation = Quaternion.Euler(0, 0, rotZ);
         }
 
         // destroy container when there are no shells as children

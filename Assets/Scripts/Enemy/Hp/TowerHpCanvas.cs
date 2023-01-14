@@ -10,10 +10,10 @@ namespace Enemy.Hp {
         [SerializeField] private Image greenBar;
 
         private Camera _mainCam;
-        private TowerHpHandler _hpHandlerScript;
+        private TowerHpManager _towerHpManager;
 
         private void Start() {
-            _hpHandlerScript = transform.parent.Find("TowerObj").GetComponent<TowerHpHandler>();
+            _towerHpManager = transform.parent.Find("TowerObj").GetComponent<TowerHpManager>();
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             canvas.renderMode = RenderMode.WorldSpace;
             canvas.worldCamera = _mainCam;
@@ -21,7 +21,7 @@ namespace Enemy.Hp {
 
         private void Update() {
             transform.position = towerObj.transform.position;
-            greenBar.fillAmount = _hpHandlerScript.TowerHealthPoints / towerStatsSo.MaxHp;
+            greenBar.fillAmount = _towerHpManager.TowerHealthPoints / towerStatsSo.MaxHp;
         }
     }
 }

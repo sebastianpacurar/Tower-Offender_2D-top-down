@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Shells {
     public class TowerShell : MonoBehaviour {
-        public float ShellDamage { get; set; }
+        public float ShellDamage { get; private set; }
         [SerializeField] private ShellStatsSo shellStatsSo;
-        [SerializeField] private ParticleSysSo shellExplosion, shellTrail;
+        [SerializeField] private ParticleSystem explosionPs, trailPs;
 
         private Transform _towerPosition;
         private CapsuleCollider2D _capsuleCollider2D;
@@ -15,8 +15,7 @@ namespace Shells {
         private Transform _tankPos;
         private float _isMultiShell;
 
-        private ParticleSystem _explodePs, _trailPs;
-        private ParticleSystem.EmissionModule _explodeEmissionMod, _trailEmissionMod;
+        private ParticleSystem.EmissionModule _explosionEmMod, _trailEmMod;
 
         private void Awake() {
             _rb = GetComponent<Rigidbody2D>();
@@ -36,14 +35,9 @@ namespace Shells {
         private void Start() {
             float shellSpeed;
             _tankPos = GameObject.FindGameObjectWithTag("Player").transform;
-            _explodePs = transform.Find("Shell").Find("Explode Particle System").GetComponent<ParticleSystem>();
-            _trailPs = transform.Find("Shell").Find("Trail Particle System").GetComponent<ParticleSystem>();
 
-            Global.InitParticleSystem(_explodePs, shellExplosion);
-            Global.InitParticleSystem(_trailPs, shellTrail);
-
-            _explodeEmissionMod = _explodePs.emission;
-            _trailEmissionMod = _trailPs.emission;
+            _explosionEmMod = explosionPs.emission;
+            _trailEmMod = trailPs.emission;
 
             // in case the passing value is a multiShell game object
             if (!transform.parent.name.Equals("ShellsContainer")) {
@@ -57,8 +51,8 @@ namespace Shells {
             var direction = _tankPos.position - _towerPosition.position;
             GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y).normalized * shellSpeed;
 
-            var rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, rotZ - 90f);
+            var rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+            transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
             StartCoroutine(StartCountdown());
         }
@@ -74,10 +68,10 @@ namespace Shells {
             _capsuleCollider2D.enabled = false;
             _rb.velocity = new Vector2(0, 0);
 
-            _explodeEmissionMod.enabled = true;
-            _trailEmissionMod.enabled = false;
+            _explosionEmMod.enabled = true;
+            _trailEmMod.enabled = false;
 
-            _explodePs.Play();
+            explosionPs.Play();
             Invoke(nameof(DestroyObj), 0.5f);
         }
 

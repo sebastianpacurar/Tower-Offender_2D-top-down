@@ -10,10 +10,10 @@ namespace Player.Canvas {
         [SerializeField] private Image greenBar;
 
         private Camera _mainCam;
-        private HpHandler _hpHandlerScript;
+        private TankHpManager _tankHpManager;
 
         private void Start() {
-            _hpHandlerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<HpHandler>();
+            _tankHpManager = GameObject.FindGameObjectWithTag("Player").GetComponent<TankHpManager>();
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             canvas.renderMode = RenderMode.WorldSpace;
             canvas.worldCamera = _mainCam;
@@ -21,7 +21,7 @@ namespace Player.Canvas {
 
         private void Update() {
             transform.position = tankObj.transform.position;
-            greenBar.fillAmount = (_hpHandlerScript.TankHealthPoints / tankStatsSo.MaxHp) * 0.5f;
+            greenBar.fillAmount = (_tankHpManager.TankHealthPoints / tankStatsSo.MaxHp) * 0.5f;
         }
     }
 }
