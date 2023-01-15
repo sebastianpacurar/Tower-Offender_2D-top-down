@@ -3,12 +3,13 @@ using UnityEngine.InputSystem;
 
 namespace Player.Controllers {
     public class AimController : MonoBehaviour {
-        public Vector2 AimVal { get; set; }
+        public Vector3 AimVal { get; private set; }
+
+        [SerializeField] private GameObject hull;
+        [SerializeField] private GameObject aoeGhost;
 
         private PlayerControls _controls;
         private Camera _mainCam;
-
-        [SerializeField] private GameObject hull;
 
         private void Awake() {
             _controls = new PlayerControls();
@@ -19,7 +20,7 @@ namespace Player.Controllers {
         }
 
         private void Aim(InputAction.CallbackContext ctx) {
-            AimVal = _controls.Player.Aim.ReadValue<Vector2>();
+            AimVal = _mainCam.ScreenToWorldPoint(_controls.Player.Aim.ReadValue<Vector2>());
         }
 
         private void Update() {
@@ -27,11 +28,11 @@ namespace Player.Controllers {
         }
 
         private void MoveHull() {
-            var mousePos = _mainCam.ScreenToWorldPoint(AimVal);
-
-            var direction = mousePos - hull.transform.position;
+            var direction = AimVal - hull.transform.position;
             var rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
             hull.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+
+            aoeGhost.transform.position = new Vector3(AimVal.x, AimVal.y, 0f);
         }
 
         private void OnEnable() {

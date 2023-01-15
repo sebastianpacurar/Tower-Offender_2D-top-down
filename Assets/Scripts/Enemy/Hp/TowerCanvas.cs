@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Enemy.Hp {
-    public class TowerHpCanvas : MonoBehaviour {
+    public class TowerCanvas : MonoBehaviour {
         [SerializeField] private TowerStatsSo towerStatsSo;
         [SerializeField] private TankShellStatsSo empShellStats;
         [SerializeField] private Canvas canvas;

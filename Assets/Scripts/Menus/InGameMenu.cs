@@ -8,13 +8,14 @@ namespace Menus {
     public class InGameMenu : MonoBehaviour {
         public GameObject SelectedShell { get; private set; }
 
-        private PlayerControls _controls;
-        private AmmoManager _ammoManager;
-
         [SerializeField] private Image[] weaponImages;
         [SerializeField] private GameObject[] shellPrefabs;
         [SerializeField] private TextMeshProUGUI lightShellAmmo;
         [SerializeField] private TextMeshProUGUI empShellAmmo;
+
+        private PlayerControls _controls;
+        private AmmoManager _ammoManager;
+        private GameObject _aoeGhostCircle;
         private Color _unavailableColor = new(0.75f, 0f, 0f, 1f);
         private Color _unselectedColor = new(0.75f, 0.75f, 0f, 1f);
         private Color _selectedColor = new(0f, 0.75f, 0f, 1f);
@@ -26,6 +27,7 @@ namespace Menus {
 
         private void Start() {
             _ammoManager = GameObject.FindGameObjectWithTag("Player").GetComponent<AmmoManager>();
+            _aoeGhostCircle = GameObject.FindGameObjectWithTag("AoeGhost").transform.Find("CircleArea").gameObject;
         }
 
         private void Update() {
@@ -52,6 +54,8 @@ namespace Menus {
         private void SelectFirstShell(InputAction.CallbackContext ctx) {
             SelectedShell = shellPrefabs[0];
             weaponImages[0].color = _selectedColor;
+            _aoeGhostCircle.SetActive(false);
+
             if (_ammoManager.EmpShellAmmo > 0) {
                 weaponImages[1].color = _unselectedColor;
             } else {
@@ -62,6 +66,8 @@ namespace Menus {
         private void SelectSecondShell(InputAction.CallbackContext ctx) {
             SelectedShell = shellPrefabs[1];
             weaponImages[1].color = _selectedColor;
+            _aoeGhostCircle.SetActive(true);
+
             if (_ammoManager.LightShellAmmo > 0) {
                 weaponImages[0].color = _unselectedColor;
             } else {

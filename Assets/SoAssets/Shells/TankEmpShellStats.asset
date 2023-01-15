@@ -17,5 +17,5 @@ MonoBehaviour:
   damage: 0
   ammo: 50
   shellColor: {r: 0, g: 1, b: 1, a: 1}
-  aoeRadius: 2.5
-  aoeEffectDuration: 10
+  aoeRadius: 5
+  aoeEffectDuration: 5

@@ -14,6 +14,9 @@ TagManager:
   - GameUI
   - TankLightShell
   - TankEmpShell
+  - AoeGhost
+  - TankEmpShellEntity
+  - AoeHitArea
   layers:
   - Default
   - TransparentFX

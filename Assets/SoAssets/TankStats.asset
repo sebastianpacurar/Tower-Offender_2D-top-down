@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e45cbcad8ccab889a7eacf4ba22d128, type: 3}
   m_Name: TankStats
   m_EditorClassIdentifier: 
-  maxHp: 10000
+  maxHp: 1000
   accFactor: 3
   steerFactor: 3.5
   driftFactor: 0

@@ -15,8 +15,6 @@ namespace Shells.Tank {
         private ParticleSystem.EmissionModule _explosionEmMod, _trailEmMod;
 
         private AimController _ac;
-        private Vector3 _mousePos;
-        private Camera _mainCam;
 
         private void Awake() {
             _rb = GetComponent<Rigidbody2D>();
@@ -29,10 +27,8 @@ namespace Shells.Tank {
             _trailEmMod = trailPs.emission;
 
             _ac = GameObject.FindGameObjectWithTag("Player").GetComponent<AimController>();
-            _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-            _mousePos = _mainCam.ScreenToWorldPoint(_ac.AimVal);
 
-            var direction = _mousePos - transform.position;
+            var direction = _ac.AimVal - transform.position;
             _rb.velocity = new Vector2(direction.x, direction.y).normalized * lightShellStatsSo.Speed;
 
             var rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;

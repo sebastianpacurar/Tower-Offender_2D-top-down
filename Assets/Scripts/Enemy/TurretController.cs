@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Enemy {
     public class TurretController : MonoBehaviour {
-        public bool IsPowerOff { get; set; } = false;
+        public bool IsPowerOff { get; set; }
         [SerializeField] private TowerStatsSo towerStatsSo;
         [SerializeField] private TankShellStatsSo empShellStatsSo;
         [SerializeField] private SpriteRenderer triggerLight;

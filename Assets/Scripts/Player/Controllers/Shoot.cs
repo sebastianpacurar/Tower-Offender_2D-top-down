@@ -12,18 +12,19 @@ namespace Player.Controllers {
         public float EmpShellCdTimer { get; private set; }
         public bool CanFireLightShell { get; private set; } = true;
 
-        private AmmoManager _ammoManager;
-
         [SerializeField] private TankStatsSo tankStatsSo;
         [SerializeField] private GameObject turretEdge;
         [SerializeField] private GameObject shellsContainer;
         [SerializeField] private Animator shootAnimationPoint;
 
         private InGameMenu _inGameMenu;
+        private AmmoManager _ammoManager;
+        private AimController _aimController;
 
         private void Awake() {
             _controls = new PlayerControls();
             _ammoManager = GetComponent<AmmoManager>();
+            _aimController = GetComponent<AimController>();
         }
 
         private void Start() {
@@ -58,12 +59,16 @@ namespace Player.Controllers {
                 CanFireLightShell = false;
                 shootAnimationPoint.SetBool("IsShooting", true);
                 Instantiate(selectedShell, turretEdge.transform.position, Quaternion.identity, shellsContainer.transform);
-            } // TODO: find a better way to handle this separation
-            else if (CanFireEmpShell && selectedShell.CompareTag("TankEmpShell")) {
+            } else if (CanFireEmpShell && selectedShell.CompareTag("TankEmpShellEntity")) {
+                var mousePos = _aimController.AimVal;
+                var targetPos = new Vector3(mousePos.x, mousePos.y, 0f);
                 _ammoManager.EmpShellAmmo -= 1;
                 CanFireEmpShell = false;
                 shootAnimationPoint.SetBool("IsShooting", true);
-                Instantiate(selectedShell, turretEdge.transform.position, Quaternion.identity, shellsContainer.transform);
+
+                var empShell = Instantiate(selectedShell, transform.position, Quaternion.identity, shellsContainer.transform);
+                empShell.transform.GetChild(0).transform.position = turretEdge.transform.position;
+                empShell.transform.GetChild(1).transform.position = targetPos;
             }
         }
 
