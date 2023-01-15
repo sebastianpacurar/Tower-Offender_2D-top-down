@@ -7,6 +7,7 @@ namespace Enemy {
     public class TurretController : MonoBehaviour {
         public bool IsPowerOff { get; set; } = false;
         [SerializeField] private TowerStatsSo towerStatsSo;
+        [SerializeField] private TankShellStatsSo empShellStatsSo;
         [SerializeField] private SpriteRenderer triggerLight;
         [SerializeField] private Transform turretEdge;
         [SerializeField] private GameObject shellsContainer;
@@ -14,7 +15,8 @@ namespace Enemy {
         private Transform _tankPos;
         private TankHpManager _tankHpHandler;
         private bool _detected;
-        private float _fireTimer, _powerOffTimer;
+        public float ShootTimer { get; set; }
+        public float PowerOffTimer { get; set; }
         private bool _canFire = true;
 
         private void Awake() {
@@ -29,10 +31,10 @@ namespace Enemy {
 
         private void HandlePowerOffCd() {
             if (!IsPowerOff) return;
-            _powerOffTimer += Time.deltaTime;
-            if (_powerOffTimer > 10f) {
+            PowerOffTimer += Time.deltaTime;
+            if (PowerOffTimer > empShellStatsSo.AoeEffectDuration) {
                 IsPowerOff = false;
-                _powerOffTimer = 0f;
+                PowerOffTimer = 0f;
             }
         }
 
@@ -66,23 +68,23 @@ namespace Enemy {
 
         private void SetDetectionOn(Vector3 direction) {
             _detected = true;
-            triggerLight.color = Color.green;
+            triggerLight.color = Color.yellow;
             transform.transform.up = direction;
         }
 
         private void SetDetectionOff() {
             _detected = false;
-            triggerLight.color = Color.red;
+            triggerLight.color = new Color(0f, 0.75f, 0f, 1f);
         }
 
         private void Shoot() {
             if (!_detected) return;
 
             if (!_canFire) {
-                _fireTimer += Time.deltaTime;
-                if (_fireTimer > towerStatsSo.SecondsBetweenShooting) {
+                ShootTimer += Time.deltaTime;
+                if (ShootTimer > towerStatsSo.SecondsBetweenShooting) {
                     _canFire = true;
-                    _fireTimer = 0f;
+                    ShootTimer = 0f;
                 }
             } else {
                 _canFire = false;
