@@ -15,7 +15,7 @@ namespace Menus {
 
         private PlayerControls _controls;
         private AmmoManager _ammoManager;
-        private GameObject _aoeGhostCircle;
+        private GameObject _aoeGhost;
         private Color _unavailableColor = new(0.75f, 0f, 0f, 1f);
         private Color _unselectedColor = new(0.75f, 0.75f, 0f, 1f);
         private Color _selectedColor = new(0f, 0.75f, 0f, 1f);
@@ -27,7 +27,7 @@ namespace Menus {
 
         private void Start() {
             _ammoManager = GameObject.FindGameObjectWithTag("Player").GetComponent<AmmoManager>();
-            _aoeGhostCircle = GameObject.FindGameObjectWithTag("AoeGhost").transform.Find("CircleArea").gameObject;
+            _aoeGhost = GameObject.FindGameObjectWithTag("AoeGhost");
         }
 
         private void Update() {
@@ -54,7 +54,8 @@ namespace Menus {
         private void SelectFirstShell(InputAction.CallbackContext ctx) {
             SelectedShell = shellPrefabs[0];
             weaponImages[0].color = _selectedColor;
-            _aoeGhostCircle.SetActive(false);
+            _aoeGhost.GetComponent<CircleCollider2D>().enabled = false;
+            _aoeGhost.transform.Find("CircleArea").gameObject.SetActive(false);
 
             if (_ammoManager.EmpShellAmmo > 0) {
                 weaponImages[1].color = _unselectedColor;
@@ -66,7 +67,8 @@ namespace Menus {
         private void SelectSecondShell(InputAction.CallbackContext ctx) {
             SelectedShell = shellPrefabs[1];
             weaponImages[1].color = _selectedColor;
-            _aoeGhostCircle.SetActive(true);
+            _aoeGhost.GetComponent<CircleCollider2D>().enabled = true;
+            _aoeGhost.transform.Find("CircleArea").gameObject.SetActive(true);
 
             if (_ammoManager.LightShellAmmo > 0) {
                 weaponImages[0].color = _unselectedColor;

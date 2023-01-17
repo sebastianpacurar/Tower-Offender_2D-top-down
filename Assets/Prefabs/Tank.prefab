@@ -26956,7 +26956,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6380470494080676758}
-  - component: {fileID: 3365487752507789871}
   - component: {fileID: 366656785903254499}
   m_Layer: 0
   m_Name: AoeGhost
@@ -26974,34 +26973,13 @@ Transform:
   m_GameObject: {fileID: 7967878687594393518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.66667, y: 0.675, z: 1}
+  m_LocalScale: {x: 0.572, y: 0.572, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3211383368864141387}
   m_Father: {fileID: 1981674770873572463}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &3365487752507789871
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7967878687594393518}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!58 &366656785903254499
 CircleCollider2D:
   m_ObjectHideFlags: 0

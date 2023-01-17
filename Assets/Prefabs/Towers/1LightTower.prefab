@@ -25081,11 +25081,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8653789178523122703}
   - component: {fileID: 6460188150864376136}
-  - component: {fileID: 6100540536213009582}
   - component: {fileID: 2127158489}
+  - component: {fileID: 6100540536213009582}
+  - component: {fileID: 717205419786374083}
   m_Layer: 0
   m_Name: TowerObj
-  m_TagString: Tower
+  m_TagString: TowerObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25133,23 +25134,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7115833, y: 0.71611136}
   m_EdgeRadius: 0
---- !u!114 &6100540536213009582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3158290689936724945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e2933b742d2a32abe37cc5b70a3705, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tankLightShellStats: {fileID: 11400000, guid: fd317d3d09831c0bf8b4dbdf51d81037, type: 2}
-  towerStatsSo: {fileID: 11400000, guid: 230bc78d8acf1301892e4ddab92a4b55, type: 2}
-  towerUI: {fileID: 3460709449184135026}
-  towerTrigger: {fileID: 8897720834947870798}
-  towerTurret: {fileID: 8897720834775444441}
 --- !u!50 &2127158489
 Rigidbody2D:
   serializedVersion: 4
@@ -25171,6 +25155,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6100540536213009582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3158290689936724945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e2933b742d2a32abe37cc5b70a3705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankLightShellStats: {fileID: 11400000, guid: fd317d3d09831c0bf8b4dbdf51d81037, type: 2}
+  towerStatsSo: {fileID: 11400000, guid: 230bc78d8acf1301892e4ddab92a4b55, type: 2}
+  towerUI: {fileID: 3460709449184135026}
+  towerTrigger: {fileID: 8897720834947870798}
+  towerTurret: {fileID: 8897720834775444441}
+--- !u!114 &717205419786374083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3158290689936724945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b05333c5b88a8957b95e9c8a9b92f22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerBody: {fileID: 807231326425679837}
+  towerTurret: {fileID: 8897720834775444441}
 --- !u!1 &3416495127666612277
 GameObject:
   m_ObjectHideFlags: 0
@@ -40594,7 +40609,7 @@ GameObject:
   - component: {fileID: 8897720835073988832}
   m_Layer: 0
   m_Name: 1LightTower
-  m_TagString: BasicShell
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40608,7 +40623,7 @@ Transform:
   m_GameObject: {fileID: 8897720835073988838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.8, y: 1.8, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3098003707036526176}

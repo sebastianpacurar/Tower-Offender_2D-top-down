@@ -18,4 +18,4 @@ MonoBehaviour:
   ammo: 50
   shellColor: {r: 0, g: 1, b: 1, a: 1}
   aoeRadius: 5
-  aoeEffectDuration: 5
+  aoeEffectDuration: 3

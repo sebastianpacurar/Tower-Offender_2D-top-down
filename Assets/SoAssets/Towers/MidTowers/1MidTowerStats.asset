@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 17.5
   shellPrefab: {fileID: 5530753799889815462, guid: 1a6b33b69cc8a4c2685b9fbb71ecde3f, type: 3}
-  secondsBetweenShooting: 1
+  secondsBetweenShooting: 0.5
   maxHp: 3
   destroyedBody: {fileID: 714741414, guid: 92cc09f7cf2f17f02a2ad2e12388eb5e, type: 3}

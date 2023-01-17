@@ -1,4 +1,3 @@
-using System.Collections;
 using Player.Controllers;
 using ScriptableObjects;
 using UnityEngine;
@@ -7,7 +6,7 @@ namespace Shells.Tank {
     public class TankEmpShell : MonoBehaviour {
         [SerializeField] private TankShellStatsSo empShellStats;
         [SerializeField] private ParticleSystem explosionPs, trailPs;
-        [SerializeField] private GameObject aoeHitArea;
+        [SerializeField] private GameObject aoeHitAreaObj;
 
         private CapsuleCollider2D _capsuleCollider2D;
         private SpriteRenderer _sr;
@@ -38,12 +37,13 @@ namespace Shells.Tank {
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.CompareTag("Tower") || col.gameObject.CompareTag("WorldBorder") || col.gameObject.CompareTag("AoeHitArea")) {
+            if (col.gameObject.CompareTag("TowerObj") || col.gameObject.CompareTag("WorldBorder")) {
                 DestroyShell();
             }
         }
 
-        private void DestroyShell() {
+        public void DestroyShell() {
+            Destroy(aoeHitAreaObj);
             _aoeScript.EnableCircleCollider();
             _sr.enabled = false;
             _capsuleCollider2D.enabled = false;
@@ -53,7 +53,6 @@ namespace Shells.Tank {
             _trailEmMod.enabled = false;
             explosionPs.Play();
 
-            Destroy(aoeHitArea);
             Invoke(nameof(DestroyObj), 2.0f);
         }
 

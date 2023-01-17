@@ -17,6 +17,7 @@ TagManager:
   - AoeGhost
   - TankEmpShellEntity
   - AoeHitArea
+  - TowerObj
   layers:
   - Default
   - TransparentFX

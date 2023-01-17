@@ -17,5 +17,5 @@ MonoBehaviour:
   steerFactor: 3.5
   driftFactor: 0
   maxSpeed: 4
-  lightShellReloadTime: 0.75
-  empShellReloadTime: 5
+  lightShellReloadTime: 0.25
+  empShellReloadTime: 3
