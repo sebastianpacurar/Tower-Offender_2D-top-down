@@ -7,9 +7,12 @@ namespace ScriptableObjects {
         [SerializeField] private float timeToLive;
         [SerializeField] private float damage;
         [SerializeField] private int ammo;
-        [SerializeField] private Color shellColor;
-        [SerializeField] private float aoeRadius;
         [SerializeField] private float aoeEffectDuration;
+
+        [Header("Currently unused")]
+        [SerializeField] private Color shellColor;
+
+        [SerializeField] private float aoeRadius;
 
         public float Speed => speed;
         public float TimeToLive => timeToLive;

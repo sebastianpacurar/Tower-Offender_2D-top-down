@@ -14,6 +14,7 @@ namespace Shells {
         private SpriteRenderer _sr;
         private Transform _tankPos;
         private float _isMultiShell;
+        private float _finalSpeed;
 
         private ParticleSystem.EmissionModule _explosionEmMod, _trailEmMod;
 
@@ -33,7 +34,6 @@ namespace Shells {
         }
 
         private void Start() {
-            float shellSpeed;
             _tankPos = GameObject.FindGameObjectWithTag("Player").transform;
 
             _explosionEmMod = explosionPs.emission;
@@ -42,23 +42,38 @@ namespace Shells {
             // in case the passing value is a multiShell game object
             if (!transform.parent.name.Equals("ShellsContainer")) {
                 _towerPosition = transform.parent.transform.parent.transform.parent.Find("TowerObj").gameObject.transform;
-                shellSpeed = name.Equals("MiddleShell") ? shellStatsSo.MiddleShellSpeed : shellStatsSo.SideShellsSpeed;
+                _finalSpeed = name.Equals("MiddleShell") ? shellStatsSo.MiddleShellSpeed : shellStatsSo.SideShellsSpeed;
             } else {
                 _towerPosition = transform.parent.transform.parent.Find("TowerObj").gameObject.transform;
-                shellSpeed = shellStatsSo.SideShellsSpeed;
+                _finalSpeed = shellStatsSo.SideShellsSpeed;
             }
 
-            var direction = _tankPos.position - _towerPosition.position;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y).normalized * shellSpeed;
+            if (CompareTag("BasicShell")) {
+                var direction = _tankPos.position - _towerPosition.position;
+                _rb.velocity = new Vector2(direction.x, direction.y).normalized * _finalSpeed;
+
+                var rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+                transform.rotation = Quaternion.Euler(0, 0, rotZ);
+            }
+            StartCoroutine(StartCountdown());
+        }
+
+        private void Update() {
+            if (!CompareTag("HomingShell")) return;
+
+            var direction = _tankPos.position - transform.position;
+            _rb.velocity = new Vector2(direction.x, direction.y).normalized * _finalSpeed;
 
             var rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
             transform.rotation = Quaternion.Euler(0, 0, rotZ);
-
-            StartCoroutine(StartCountdown());
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
             if (col.gameObject.CompareTag("Player") || col.gameObject.CompareTag("WorldBorder")) {
+                DestroyShell();
+            }
+
+            if (CompareTag("HomingShell") && col.gameObject.CompareTag("AoeRadius")) {
                 DestroyShell();
             }
         }

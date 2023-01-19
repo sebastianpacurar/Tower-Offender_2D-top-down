@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Shells.Tank {
     public class TankEmpShell : MonoBehaviour {
         [SerializeField] private TankShellStatsSo empShellStats;
-        [SerializeField] private ParticleSystem explosionPs, trailPs;
+        [SerializeField] private ParticleSystem explosionPs, explosionWavePs, trailPs;
         [SerializeField] private GameObject aoeHitAreaObj;
 
         private CapsuleCollider2D _capsuleCollider2D;
@@ -13,7 +13,7 @@ namespace Shells.Tank {
         private Rigidbody2D _rb;
         private AreaOfEffect _aoeScript;
 
-        private ParticleSystem.EmissionModule _explosionEmMod, _trailEmMod;
+        private ParticleSystem.EmissionModule _explosionEmMod, _explosionWaveEmMod, _trailEmMod;
         private AimController _ac;
 
         private void Awake() {
@@ -22,6 +22,7 @@ namespace Shells.Tank {
             _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
 
             _explosionEmMod = explosionPs.emission;
+            _explosionWaveEmMod = explosionWavePs.emission;
             _trailEmMod = trailPs.emission;
         }
 
@@ -37,21 +38,23 @@ namespace Shells.Tank {
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.CompareTag("TowerObj") || col.gameObject.CompareTag("WorldBorder")) {
+            if (col.gameObject.CompareTag("TowerObj") || col.gameObject.CompareTag("WorldBorder") || col.gameObject.CompareTag("HomingShell")) {
                 DestroyShell();
             }
         }
 
         public void DestroyShell() {
             Destroy(aoeHitAreaObj);
+            _trailEmMod.enabled = false;
             _aoeScript.EnableCircleCollider();
             _sr.enabled = false;
             _capsuleCollider2D.enabled = false;
             _rb.velocity = new Vector2(0, 0);
 
             _explosionEmMod.enabled = true;
-            _trailEmMod.enabled = false;
+            _explosionWaveEmMod.enabled = true;
             explosionPs.Play();
+            explosionWavePs.Play();
 
             Invoke(nameof(DestroyObj), 2.0f);
         }

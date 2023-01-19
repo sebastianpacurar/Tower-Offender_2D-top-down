@@ -6,24 +6,15 @@ namespace Player.Controllers {
         public Vector3 AimVal { get; private set; }
 
         [SerializeField] private GameObject hull;
-        [SerializeField] private GameObject aoeGhost;
-
-        private PlayerControls _controls;
+        [SerializeField] private GameObject aoeGhost, shellGhost;
         private Camera _mainCam;
-
-        private void Awake() {
-            _controls = new PlayerControls();
-        }
 
         private void Start() {
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         }
 
-        private void Aim(InputAction.CallbackContext ctx) {
-            AimVal = _mainCam.ScreenToWorldPoint(_controls.Player.Aim.ReadValue<Vector2>());
-        }
-
         private void Update() {
+            AimVal = _mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             MoveHull();
         }
 
@@ -33,16 +24,7 @@ namespace Player.Controllers {
             hull.transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
             aoeGhost.transform.position = new Vector3(AimVal.x, AimVal.y, 0f);
-        }
-
-        private void OnEnable() {
-            _controls.Player.Aim.Enable();
-            _controls.Player.Aim.performed += Aim;
-        }
-
-        private void OnDisable() {
-            _controls.Player.Aim.performed -= Aim;
-            _controls.Player.Aim.Disable();
+            shellGhost.transform.position = new Vector3(AimVal.x, AimVal.y, 0f);
         }
     }
 }

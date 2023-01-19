@@ -18,6 +18,8 @@ TagManager:
   - TankEmpShellEntity
   - AoeHitArea
   - TowerObj
+  - AoeRadius
+  - ShellGhost
   layers:
   - Default
   - TransparentFX

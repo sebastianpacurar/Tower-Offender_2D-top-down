@@ -13,7 +13,6 @@ namespace Shells.Tank {
         private Rigidbody2D _rb;
 
         private ParticleSystem.EmissionModule _explosionEmMod, _trailEmMod;
-
         private AimController _ac;
 
         private void Awake() {
