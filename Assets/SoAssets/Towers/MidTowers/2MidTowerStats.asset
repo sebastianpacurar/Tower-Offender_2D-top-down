@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae4dd7d392c70d2b924182eac75a5e4, type: 3}
   m_Name: 2MidTowerStats
   m_EditorClassIdentifier: 
-  range: 17.5
+  range: 11
   shellPrefab: {fileID: 3682952862102650177, guid: 816222385a6e80e2193b3e91c5021364, type: 3}
   secondsBetweenShooting: 0.5
   maxHp: 4

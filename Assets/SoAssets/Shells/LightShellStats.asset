@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sideShellsSpeed: 17.5
   middleShellSpeed: 20
-  timeToLive: 10
-  damage: 2.5
+  timeToLive: 5
+  damage: 0.5

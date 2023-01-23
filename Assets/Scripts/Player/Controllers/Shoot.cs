@@ -20,6 +20,7 @@ namespace Player.Controllers {
         private InGameMenu _inGameMenu;
         private AmmoManager _ammoManager;
         private AimController _aimController;
+        private static readonly int IsShooting = Animator.StringToHash("IsShooting");
 
         private void Awake() {
             _controls = new PlayerControls();
@@ -57,14 +58,14 @@ namespace Player.Controllers {
             if (CanFireLightShell && selectedShell.CompareTag("TankLightShell")) {
                 _ammoManager.LightShellAmmo -= 1;
                 CanFireLightShell = false;
-                shootAnimationPoint.SetBool("IsShooting", true);
+                shootAnimationPoint.SetBool(IsShooting, true);
                 Instantiate(selectedShell, turretEdge.transform.position, Quaternion.identity, shellsContainer.transform);
             } else if (CanFireEmpShell && selectedShell.CompareTag("TankEmpShellEntity")) {
                 var mousePos = _aimController.AimVal;
                 var targetPos = new Vector3(mousePos.x, mousePos.y, 0f);
                 _ammoManager.EmpShellAmmo -= 1;
                 CanFireEmpShell = false;
-                shootAnimationPoint.SetBool("IsShooting", true);
+                shootAnimationPoint.SetBool(IsShooting, true);
 
                 var empShell = Instantiate(selectedShell, transform.position, Quaternion.identity, shellsContainer.transform);
                 empShell.transform.GetChild(0).transform.position = turretEdge.transform.position;

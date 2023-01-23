@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SpriteAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 12
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 1757493051, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: -1826499437, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: -337986178, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: 138172393, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: 1123246773, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: 777336308, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: 254235194, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: -587187590, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: -1367801628, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: -2094165046, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: -763602411, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: 1218244348, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: 1978449464, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: -1484445019, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: 1754289044, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: -1466893676, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: 1619538134, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: 354827177, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: -1197879993, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: -1582982405, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: -623030183, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: -634459746, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: 75776090, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: -677530519, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: 788309191, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: 1842363797, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: 1468553930, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: -435468585, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: 152062434, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: 1493983807, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: -1689568872, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: -853574264, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: -1920824438, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: 805971678, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  - {fileID: 778867072, guid: e5e571e333836bdd4b74de549de59221, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - terrain_30
+  - terrain_31
+  - terrain_32
+  - terrain_33
+  - terrain_23
+  - terrain_34
+  - terrain_22
+  - terrain_21
+  - terrain_20
+  - terrain_16
+  - terrain_27
+  - terrain_17
+  - terrain_26
+  - terrain_14
+  - terrain_25
+  - terrain_15
+  - terrain_24
+  - terrain_12
+  - terrain_13
+  - terrain_10
+  - terrain_29
+  - terrain_11
+  - terrain_28
+  - terrain_18
+  - terrain_19
+  - terrain_3
+  - terrain_2
+  - terrain_1
+  - terrain_0
+  - terrain_7
+  - terrain_6
+  - terrain_5
+  - terrain_4
+  - terrain_9
+  - terrain_8
+  m_RenderDataMap: {}
+  m_Tag: SpriteAtlas
+  m_IsVariant: 0

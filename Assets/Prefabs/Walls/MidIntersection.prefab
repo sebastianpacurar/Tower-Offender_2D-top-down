@@ -10,14 +10,22 @@ PrefabInstance:
     - target: {fileID: -6978336904035556594, guid: 72b8b2cd2c0b79b499fe294305386d72, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 981096672, guid: 92cc09f7cf2f17f02a2ad2e12388eb5e, type: 3}
+      objectReference: {fileID: 620872635, guid: 92cc09f7cf2f17f02a2ad2e12388eb5e, type: 3}
     - target: {fileID: 1210015872840893392, guid: 72b8b2cd2c0b79b499fe294305386d72, type: 3}
       propertyPath: m_Name
-      value: MidWallIntersection
+      value: MidIntersection
       objectReference: {fileID: 0}
     - target: {fileID: 6799523675063841657, guid: 72b8b2cd2c0b79b499fe294305386d72, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799523675063841657, guid: 72b8b2cd2c0b79b499fe294305386d72, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799523675063841657, guid: 72b8b2cd2c0b79b499fe294305386d72, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6799523675063841657, guid: 72b8b2cd2c0b79b499fe294305386d72, type: 3}
       propertyPath: m_LocalPosition.x

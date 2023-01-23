@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1612149604344966418, guid: 6f78c6d129642678789b56c3167ffe16, type: 3}
       propertyPath: m_Name
-      value: WallLeftEnd
+      value: LightEnd
       objectReference: {fileID: 0}
     - target: {fileID: 1612149604344966428, guid: 6f78c6d129642678789b56c3167ffe16, type: 3}
       propertyPath: m_RootOrder
@@ -67,5 +67,13 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1186417158, guid: 0f8320e26d42e314b992dc96a8e237ee, type: 3}
+    - target: {fileID: 8449103456520314786, guid: 6f78c6d129642678789b56c3167ffe16, type: 3}
+      propertyPath: m_Size.x
+      value: 1.8160933
+      objectReference: {fileID: 0}
+    - target: {fileID: 8449103456520314786, guid: 6f78c6d129642678789b56c3167ffe16, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.08094603
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f78c6d129642678789b56c3167ffe16, type: 3}
