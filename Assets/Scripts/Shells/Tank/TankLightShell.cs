@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using Player.Controllers;
 using ScriptableObjects;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Shells.Tank {
@@ -32,15 +34,6 @@ namespace Shells.Tank {
 
             var rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
             transform.rotation = Quaternion.Euler(0, 0, rotZ);
-
-            StartCoroutine(StartCountdown());
-        }
-
-        private IEnumerator StartCountdown() {
-            while (true) {
-                yield return new WaitForSeconds(lightShellStatsSo.TimeToLive);
-                Destroy(gameObject);
-            }
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
@@ -50,7 +43,12 @@ namespace Shells.Tank {
 
             if (col.gameObject.CompareTag("Wall")) {
                 DestroyShell();
-                Destroy(col.gameObject);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D col) {
+            if (col.gameObject.CompareTag("ShellGhost")) {
+                DestroyShell();
             }
         }
 

@@ -24,6 +24,7 @@ namespace Enemy.Tower.Hp {
             if (IsDead || TowerHealthPoints > 0) return;
             Destroy(towerUI);
             Destroy(turretObj);
+            gameObject.layer = 0;
             IsDead = true;
         }
     }

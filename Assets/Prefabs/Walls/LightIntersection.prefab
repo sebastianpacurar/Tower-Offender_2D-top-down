@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6799523675063841657}
   - component: {fileID: -6978336904035556594}
   - component: {fileID: 423077949683169740}
+  - component: {fileID: 4793147811953069209}
   m_Layer: 0
   m_Name: LightIntersection
   m_TagString: Wall
@@ -147,3 +148,15 @@ PolygonCollider2D:
       - {x: 0.44615385, y: -0.6615385}
       - {x: 0.41538462, y: -0.50769234}
       - {x: 0.26153848, y: -0.35384616}
+--- !u!114 &4793147811953069209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210015872840893392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c74d9e470c5603abf560e4d16a0a52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

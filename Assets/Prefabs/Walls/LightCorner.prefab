@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2804299460561805792}
   - component: {fileID: 3768043057219178593}
   - component: {fileID: 1384205578530947839}
+  - component: {fileID: 7948278951908875972}
   m_Layer: 0
   m_Name: LightCorner
   m_TagString: Wall
@@ -128,3 +129,15 @@ PolygonCollider2D:
       - {x: 0.41538462, y: -0.72307694}
       - {x: 0.41538462, y: -0.50769234}
       - {x: 0.26153848, y: -0.35384616}
+--- !u!114 &7948278951908875972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779880186060055704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c74d9e470c5603abf560e4d16a0a52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

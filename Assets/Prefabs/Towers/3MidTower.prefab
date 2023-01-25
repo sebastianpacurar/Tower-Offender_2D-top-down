@@ -45,11 +45,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8897720835073988832, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.356031
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8897720835073988832, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8897720835073988832, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -85,7 +85,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8897720835073988838, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
       propertyPath: m_Name
-      value: 3MidTower Variant
+      value: 3MidTower
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}

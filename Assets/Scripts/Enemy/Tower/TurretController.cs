@@ -22,6 +22,7 @@ namespace Enemy.Tower {
         public float ShootTimer { get; private set; }
         public float PowerOffTimer { get; private set; }
         private bool _canFire = true;
+        private bool _towerDetected;
         private static readonly int IsShooting = Animator.StringToHash("IsShooting");
 
         private void Awake() {
@@ -29,26 +30,13 @@ namespace Enemy.Tower {
         }
 
         private void Start() {
-            var grandParentName = transform.parent.parent.name;
             var tank = GameObject.FindGameObjectWithTag("Player");
             _tankPos = tank.transform;
             _tankHpHandler = tank.GetComponent<TankHpManager>();
 
-            if (grandParentName.Contains("Light")) {
-                circleRangeSr.color = new Color(1f, 1f, 0f, 0.05f);
-                detectionLine.startColor = new Color(1f, 1f, 0f, 0.25f);
-                detectionLine.endColor = new Color(1f, 1f, 0f, 0.25f);
-            } else if (grandParentName.Contains("Mid")) {
-                circleRangeSr.color = new Color(1f, 0f, 0f, 0.05f);
-                detectionLine.startColor = new Color(1f, 0f, 0f, 0.25f);
-                detectionLine.endColor = new Color(1f, 0f, 0f, 0.25f);
-            } else if (grandParentName.Contains("Heavy")) {
-                circleRangeSr.color = new Color(0.5411765f, 0.1686275f, 0.8862745f, 0.05f);
-                detectionLine.startColor = new Color(0.5411765f, 0.1686275f, 0.8862745f, 0.25f);
-                detectionLine.endColor = new Color(0.5411765f, 0.1686275f, 0.8862745f, 0.025f);
-            }
-
+            circleRangeSr.color = towerStatsSo.CircleRangeAreaColor;
             circleRangeTransform.localScale = new Vector3(towerStatsSo.Range * 2, towerStatsSo.Range * 2, 1f);
+
             detectionLine.positionCount = 2;
             detectionLine.SetPosition(0, transform.position);
             detectionLine.SetPosition(1, _tankPos.position);
@@ -82,22 +70,25 @@ namespace Enemy.Tower {
             }
 
             var direction = _tankPos.position - transform.position;
-            var rayInfo = Physics2D.RaycastAll(transform.position, direction, towerStatsSo.Range);
-            var playerIndex = Array.FindIndex(rayInfo, obj => obj.collider.CompareTag("Player"));
-            var wallIndex = Array.FindIndex(rayInfo, obj => obj.collider.CompareTag("Wall"));
+            var rayMask = 1 << LayerMask.NameToLayer("Military Unit");
+            var rayInfo = Physics2D.RaycastAll(transform.position, direction, towerStatsSo.Range, rayMask);
+
+            var playerIndex = Array.FindIndex(rayInfo[1..], obj => obj.collider.CompareTag("Player"));
+            _towerDetected = Array.FindLastIndex(rayInfo[1..], obj => obj.collider.CompareTag("TowerObj")) > -1;
 
             if (playerIndex >= 0) {
-                SetDetectionOn(direction);
+                SetDetectionOn(direction, _towerDetected);
             } else {
                 SetDetectionOff();
             }
         }
 
-        private void SetDetectionOn(Vector3 direction) {
+        private void SetDetectionOn(Vector3 direction, bool isTowerDetected) {
             _detected = true;
             detectionLine.SetPosition(1, _tankPos.position);
             detectionLine.enabled = true;
             circleRangeSr.enabled = false;
+            detectionLine.colorGradient = isTowerDetected ? towerStatsSo.DetectionLineInactiveColor : towerStatsSo.DetectionLineActiveColor;
 
             triggerLight.color = Color.yellow;
             transform.transform.up = direction;
@@ -108,12 +99,12 @@ namespace Enemy.Tower {
             detectionLine.SetPosition(1, transform.position);
             detectionLine.enabled = false;
             circleRangeSr.enabled = true;
-            
+
             triggerLight.color = new Color(0f, 0.75f, 0f, 1f);
         }
 
         private void Shoot() {
-            if (!_detected) return;
+            if (!_detected || _towerDetected) return;
 
             if (!_canFire) {
                 ShootTimer += Time.deltaTime;

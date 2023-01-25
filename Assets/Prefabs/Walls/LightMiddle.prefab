@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1612149604344966428}
   - component: {fileID: 1612149604344966429}
   - component: {fileID: 8449103456520314786}
+  - component: {fileID: 3396908402996019307}
   m_Layer: 0
   m_Name: LightMiddle
   m_TagString: Wall
@@ -111,3 +112,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9755878, y: 0.46201652}
   m_EdgeRadius: 0
+--- !u!114 &3396908402996019307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612149604344966418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c74d9e470c5603abf560e4d16a0a52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
