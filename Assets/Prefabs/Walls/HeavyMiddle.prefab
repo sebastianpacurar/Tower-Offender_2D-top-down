@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1612149604344966418, guid: 6f78c6d129642678789b56c3167ffe16, type: 3}
       propertyPath: m_Name
-      value: HeavyWallMiddle Variant
+      value: HeavyMiddle
       objectReference: {fileID: 0}
     - target: {fileID: 1612149604344966428, guid: 6f78c6d129642678789b56c3167ffe16, type: 3}
       propertyPath: m_RootOrder
@@ -59,5 +59,13 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1991266542, guid: 44cd308dcb0e4bd168793b197e07c5c2, type: 3}
+    - target: {fileID: 3396908402996019307, guid: 6f78c6d129642678789b56c3167ffe16, type: 3}
+      propertyPath: mapTileColorSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 3b969675480c47e13a3206adb685c9c1, type: 2}
+    - target: {fileID: 3853431734672503098, guid: 6f78c6d129642678789b56c3167ffe16, type: 3}
+      propertyPath: mapTileColorSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 3b969675480c47e13a3206adb685c9c1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f78c6d129642678789b56c3167ffe16, type: 3}

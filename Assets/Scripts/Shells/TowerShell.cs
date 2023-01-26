@@ -24,14 +24,7 @@ namespace Shells {
             _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
             ShellDamage = shellStatsSo.Damage;
         }
-
-        // TODO: could be improved
-        private IEnumerator StartCountdown() {
-            while (true) {
-                yield return new WaitForSeconds(shellStatsSo.TimeToLive);
-                Destroy(gameObject);
-            }
-        }
+        
 
         private void Start() {
             _tankPos = GameObject.FindGameObjectWithTag("Player").transform;
@@ -55,7 +48,6 @@ namespace Shells {
                 var rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
                 transform.rotation = Quaternion.Euler(0, 0, rotZ);
             }
-            StartCoroutine(StartCountdown());
         }
 
         private void Update() {

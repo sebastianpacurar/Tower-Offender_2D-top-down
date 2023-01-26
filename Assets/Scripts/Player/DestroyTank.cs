@@ -1,4 +1,3 @@
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace Player {
@@ -7,20 +6,19 @@ namespace Player {
         private float _explosionPhaseTimer, _burnPhaseTimer;
         private bool _explosionStarted, _explosionEnded, _heavySmokeStarted, _heavySmokeEnded, _criticalSmokeStarted;
         private bool _triggerMenu;
-        private ParticleSystem.EmissionModule _heavySmokeEmMod, _criticalSmokeEmMod;
+        private ParticleSystem.EmissionModule _explosionCenterEmMod, _explosionFireWaveEmMod, _explosionShockwaveEmMod, _heavySmokeEmMod, _criticalSmokeEmMod;
         private TankHpManager _tankHpManager;
 
         private void Awake() {
+            _explosionCenterEmMod = explosionCenterPs.emission;
+            _explosionFireWaveEmMod = explosionFireWavePs.emission;
+            _explosionShockwaveEmMod = explosionShockWavePs.emission;
             _heavySmokeEmMod = heavySmokePs.emission;
             _criticalSmokeEmMod = criticalSmokePs.emission;
         }
 
         private void Start() {
             _tankHpManager = GetComponent<TankHpManager>();
-
-            explosionCenterPs.Stop();
-            explosionFireWavePs.Stop();
-            explosionShockWavePs.Stop();
         }
 
         private void Update() {
@@ -32,9 +30,15 @@ namespace Player {
             if (!_explosionEnded) {
                 _explosionPhaseTimer += Time.deltaTime;
                 if (!_explosionStarted) {
+                    _explosionCenterEmMod.enabled = true;
                     explosionCenterPs.Play();
+
+                    _explosionFireWaveEmMod.enabled = true;
                     explosionFireWavePs.Play();
+
+                    _explosionShockwaveEmMod.enabled = true;
                     explosionShockWavePs.Play();
+                    
                     _explosionStarted = true;
                 }
             }

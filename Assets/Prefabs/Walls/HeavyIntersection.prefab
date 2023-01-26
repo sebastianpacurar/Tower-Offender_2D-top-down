@@ -15,6 +15,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeavyIntersection
       objectReference: {fileID: 0}
+    - target: {fileID: 1701878043603481033, guid: 72b8b2cd2c0b79b499fe294305386d72, type: 3}
+      propertyPath: mapTileColorSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 3b969675480c47e13a3206adb685c9c1, type: 2}
+    - target: {fileID: 4793147811953069209, guid: 72b8b2cd2c0b79b499fe294305386d72, type: 3}
+      propertyPath: mapTileColorSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 3b969675480c47e13a3206adb685c9c1, type: 2}
     - target: {fileID: 6799523675063841657, guid: 72b8b2cd2c0b79b499fe294305386d72, type: 3}
       propertyPath: m_RootOrder
       value: 0

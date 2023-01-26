@@ -15,6 +15,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MidIntersection
       objectReference: {fileID: 0}
+    - target: {fileID: 4579961790607147329, guid: 72b8b2cd2c0b79b499fe294305386d72, type: 3}
+      propertyPath: mapTileColorSo
+      value: 
+      objectReference: {fileID: 11400000, guid: a1b3fefb79e109a2ebfff9889972ea20, type: 2}
+    - target: {fileID: 4793147811953069209, guid: 72b8b2cd2c0b79b499fe294305386d72, type: 3}
+      propertyPath: mapTileColorSo
+      value: 
+      objectReference: {fileID: 11400000, guid: a1b3fefb79e109a2ebfff9889972ea20, type: 2}
     - target: {fileID: 6799523675063841657, guid: 72b8b2cd2c0b79b499fe294305386d72, type: 3}
       propertyPath: m_RootOrder
       value: 0

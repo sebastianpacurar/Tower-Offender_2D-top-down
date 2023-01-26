@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1589427578584361486, guid: 1696a7338acae958e904ec0798b98923, type: 3}
+      propertyPath: mapTileColorSo
+      value: 
+      objectReference: {fileID: 11400000, guid: a1b3fefb79e109a2ebfff9889972ea20, type: 2}
     - target: {fileID: 2804299460561805792, guid: 1696a7338acae958e904ec0798b98923, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -59,5 +63,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: MidCorner
       objectReference: {fileID: 0}
+    - target: {fileID: 7948278951908875972, guid: 1696a7338acae958e904ec0798b98923, type: 3}
+      propertyPath: mapTileColorSo
+      value: 
+      objectReference: {fileID: 11400000, guid: a1b3fefb79e109a2ebfff9889972ea20, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1696a7338acae958e904ec0798b98923, type: 3}

@@ -1,7 +1,10 @@
+using ScriptableObjects;
 using UnityEngine;
 
 namespace Enemy {
     public class DestroyWall : MonoBehaviour {
+        [SerializeField] private SpriteRenderer mapTileSr;
+        [SerializeField] private MapTileColorSo mapTileColorSo;
         private int _lives;
 
         private void Awake() {
@@ -10,6 +13,11 @@ namespace Enemy {
             else if (name.StartsWith("Mid"))
                 _lives = 3;
             else if (name.StartsWith("Heavy")) _lives = 5;
+        }
+
+        private void Start() {
+            mapTileSr.enabled = true;
+            mapTileSr.color = mapTileColorSo.ActiveColor;
         }
 
         private void Update() {

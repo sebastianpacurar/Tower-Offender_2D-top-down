@@ -7,9 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1881381663558654921, guid: b8bcfe74e4bae1290a75b9990016313b, type: 3}
+      propertyPath: mapTileColorSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 3b969675480c47e13a3206adb685c9c1, type: 2}
+    - target: {fileID: 2484715996201334125, guid: b8bcfe74e4bae1290a75b9990016313b, type: 3}
+      propertyPath: mapTileColorSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 3b969675480c47e13a3206adb685c9c1, type: 2}
     - target: {fileID: 3765788726349389609, guid: b8bcfe74e4bae1290a75b9990016313b, type: 3}
       propertyPath: m_Name
-      value: Heavy2WayIntersetction Variant
+      value: Heavy2WayIntersetction
       objectReference: {fileID: 0}
     - target: {fileID: 5630417564231801995, guid: b8bcfe74e4bae1290a75b9990016313b, type: 3}
       propertyPath: m_Sprite

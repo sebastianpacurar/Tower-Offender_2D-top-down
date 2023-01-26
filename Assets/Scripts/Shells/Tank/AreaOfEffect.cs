@@ -1,4 +1,3 @@
-using Enemy;
 using Enemy.Tower;
 using UnityEngine;
 
@@ -14,6 +13,7 @@ namespace Shells.Tank {
             _circleCollider2D.enabled = true;
         }
 
+        //TODO: fix the issue with aoe game object exception for EMP Shell, in case it hits a tower before reaching the aoe target
         private void OnTriggerEnter2D(Collider2D col) {
             if (col.gameObject.CompareTag("TowerObj")) {
                 col.gameObject.transform.Find("Turret").GetComponent<TurretController>().IsPowerOff = true;

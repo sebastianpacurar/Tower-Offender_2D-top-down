@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae4dd7d392c70d2b924182eac75a5e4, type: 3}
   m_Name: 1HeavyTowerStats
   m_EditorClassIdentifier: 
-  range: 12
+  range: 15
   shellPrefab: {fileID: 6116866073713699048, guid: b6dfb66049b36535697d4f7d4f7d374f, type: 3}
-  secondsBetweenShooting: 5
+  secondsBetweenShooting: 3
   maxHp: 5
   destroyedBody: {fileID: 38880680, guid: 44cd308dcb0e4bd168793b197e07c5c2, type: 3}
   circleRangeAreaColor: {r: 0.5411765, g: 0.1686275, b: 0.8862745, a: 0.050980393}
   detectionLineActiveColor:
     serializedVersion: 2
-    key0: {r: 0.5411765, g: 0.16862746, b: 0.8862745, a: 0.09411765}
-    key1: {r: 0.5411765, g: 0.16862746, b: 0.8862745, a: 0.2509804}
+    key0: {r: 0.5411765, g: 0.16862746, b: 0.8862745, a: 0.1764706}
+    key1: {r: 0.5411765, g: 0.16862746, b: 0.8862745, a: 0.3529412}
     key2: {r: 0, g: 1, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 1, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}

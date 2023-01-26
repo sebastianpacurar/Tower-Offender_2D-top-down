@@ -9,22 +9,21 @@ namespace Enemy.Tower {
         private float _explosionPhaseTimer, _burnPhaseTimer;
         private bool _explosionStarted, _explosionEnded, _burnStarted, _burnEnded, _smokeStarted;
         private TowerHpManager _towerHpManager;
-        private ParticleSystem.EmissionModule _burnEmMod, _smokeEmMod;
+        private ParticleSystem.EmissionModule _explosionCenterEmMod, _explosionFireWaveEmMod, _explosionShockwaveEmMod, _burnEmMod, _smokeEmMod;
         private SpriteRenderer _sr;
 
 
         private void Awake() {
             _sr = GetComponent<SpriteRenderer>();
+            _explosionCenterEmMod = explosionCenterPs.emission;
+            _explosionFireWaveEmMod = explosionFireWavePs.emission;
+            _explosionShockwaveEmMod = explosionShockWavePs.emission;
             _burnEmMod = burnPhasePs.emission;
             _smokeEmMod = smokePhasePs.emission;
         }
 
         private void Start() {
             _towerHpManager = transform.parent.GetComponent<TowerHpManager>();
-
-            explosionCenterPs.Stop();
-            explosionFireWavePs.Stop();
-            explosionShockWavePs.Stop();
         }
 
         private void Update() {
@@ -34,9 +33,15 @@ namespace Enemy.Tower {
             if (!_explosionEnded) {
                 _explosionPhaseTimer += Time.deltaTime;
                 if (!_explosionStarted) {
+                    _explosionCenterEmMod.enabled = true;
                     explosionCenterPs.Play();
+
+                    _explosionFireWaveEmMod.enabled = true;
                     explosionFireWavePs.Play();
+
+                    _explosionShockwaveEmMod.enabled = true;
                     explosionShockWavePs.Play();
+
                     _explosionStarted = true;
                 }
             }

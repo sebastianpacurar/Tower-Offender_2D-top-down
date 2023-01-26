@@ -59,6 +59,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -76253578, guid: 92cc09f7cf2f17f02a2ad2e12388eb5e, type: 3}
+    - target: {fileID: 3396908402996019307, guid: 6f78c6d129642678789b56c3167ffe16, type: 3}
+      propertyPath: mapTileColorSo
+      value: 
+      objectReference: {fileID: 11400000, guid: a1b3fefb79e109a2ebfff9889972ea20, type: 2}
+    - target: {fileID: 3853431734672503098, guid: 6f78c6d129642678789b56c3167ffe16, type: 3}
+      propertyPath: mapTileColorSo
+      value: 
+      objectReference: {fileID: 11400000, guid: a1b3fefb79e109a2ebfff9889972ea20, type: 2}
     - target: {fileID: 8449103456520314786, guid: 6f78c6d129642678789b56c3167ffe16, type: 3}
       propertyPath: m_Size.x
       value: 1.8170601

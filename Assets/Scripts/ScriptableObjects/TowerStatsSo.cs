@@ -22,7 +22,7 @@ namespace ScriptableObjects {
             },
             mode = GradientMode.Blend
         };
-        
+
         [SerializeField] private Gradient detectionLineInactiveColor = new() {
             alphaKeys = new[] {
                 new GradientAlphaKey(0, 0f),
@@ -44,6 +44,5 @@ namespace ScriptableObjects {
         public Color CircleRangeAreaColor => circleRangeAreaColor;
         public Gradient DetectionLineActiveColor => detectionLineActiveColor;
         public Gradient DetectionLineInactiveColor => detectionLineInactiveColor;
-
     }
 }

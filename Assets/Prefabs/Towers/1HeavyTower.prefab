@@ -59,6 +59,10 @@ PrefabInstance:
       propertyPath: towerHealthPoints
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6659959298641774312, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
+      propertyPath: mapTileColorSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 545641af8f0cb966f8bba94f48f3dc76, type: 2}
     - target: {fileID: 8897720834775444441, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
       propertyPath: m_Sprite
       value: 
