@@ -12,6 +12,9 @@ namespace Player.Controllers {
         public float EmpShellCdTimer { get; private set; }
         public bool CanFireLightShell { get; private set; } = true;
 
+        public float SniperShellCdTimer { get; private set; }
+        public bool CanFireSniperShell { get; private set; } = true;
+
         [SerializeField] private TankStatsSo tankStatsSo;
         [SerializeField] private GameObject turretEdge;
         [SerializeField] private GameObject shellsContainer;
@@ -51,6 +54,13 @@ namespace Player.Controllers {
                     EmpShellCdTimer = 0f;
                 }
             }
+            if (!CanFireSniperShell) {
+                SniperShellCdTimer += Time.deltaTime;
+                if (SniperShellCdTimer > tankStatsSo.SniperShellReloadTime) {
+                    CanFireSniperShell = true;
+                    SniperShellCdTimer = 0f;
+                }
+            }
         }
 
         private void ShootShell(InputAction.CallbackContext ctx) {
@@ -59,21 +69,50 @@ namespace Player.Controllers {
                 _ammoManager.LightShellAmmo -= 1;
                 CanFireLightShell = false;
                 shootAnimationPoint.SetBool(IsShooting, true);
-                Instantiate(selectedShell, turretEdge.transform.position, Quaternion.identity, shellsContainer.transform);
+                var lightShell = Instantiate(selectedShell, turretEdge.transform.position, Quaternion.identity, shellsContainer.transform);
+                InitShell(lightShell, tankStatsSo.LightShellStatsSo.Speed);
             } else if (CanFireEmpShell && selectedShell.CompareTag("TankEmpShellEntity")) {
-                var mousePos = _aimController.AimVal;
-                var targetPos = new Vector3(mousePos.x, mousePos.y, 0f);
                 _ammoManager.EmpShellAmmo -= 1;
                 CanFireEmpShell = false;
                 shootAnimationPoint.SetBool(IsShooting, true);
-
                 var empShell = Instantiate(selectedShell, transform.position, Quaternion.identity, shellsContainer.transform);
-                empShell.transform.GetChild(0).transform.position = turretEdge.transform.position;
-                empShell.transform.GetChild(1).transform.position = targetPos;
+                InitShell(empShell, tankStatsSo.EmpShellStatsSo.Speed);
+            } else if (CanFireSniperShell && selectedShell.CompareTag("TankSniperShell")) {
+                _ammoManager.SniperShellAmmo -= 1;
+                CanFireSniperShell = false;
+                shootAnimationPoint.SetBool(IsShooting, true);
+                var sniperShell = Instantiate(selectedShell, transform.position, Quaternion.identity, shellsContainer.transform);
+                InitShell(sniperShell, tankStatsSo.SniperShellStatsSo.Speed);
             }
         }
 
+        private void InitShell(GameObject obj, float moveSpeed) {
+            var mousePos = _aimController.AimVal;
+            var direction = mousePos - obj.transform.position;
+            var rbVelocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
+            var rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
 
+            switch (_inGameMenu.SelectedShell.tag) {
+                case "TankLightShell":
+                case "TankSniperShell":
+                    obj.GetComponent<Rigidbody2D>().velocity = rbVelocity;
+                    obj.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+                    break;
+
+                case "TankEmpShellEntity":
+                    var shellObj = obj.transform.GetChild(0);
+                    var shellTransform = shellObj.transform;
+                    var aoeObj = obj.transform.GetChild(1);
+                    var startPoint = turretEdge.transform.position;
+
+                    shellObj.GetComponent<Rigidbody2D>().velocity = rbVelocity;
+                    shellTransform.rotation = Quaternion.Euler(0, 0, rotZ);
+                    shellTransform.position = startPoint;
+                    aoeObj.transform.position = mousePos;
+                    break;
+            }
+        }
+        
         private void OnEnable() {
             _controls.Player.Shoot.Enable();
             _controls.Player.Shoot.performed += ShootShell;

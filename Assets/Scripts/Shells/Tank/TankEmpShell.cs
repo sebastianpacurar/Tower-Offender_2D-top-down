@@ -1,10 +1,7 @@
-using Player.Controllers;
-using ScriptableObjects;
 using UnityEngine;
 
 namespace Shells.Tank {
     public class TankEmpShell : MonoBehaviour {
-        [SerializeField] private TankShellStatsSo empShellStats;
         [SerializeField] private ParticleSystem explosionPs, explosionWavePs, trailPs;
         [SerializeField] private GameObject aoeHitAreaObj;
 
@@ -14,7 +11,6 @@ namespace Shells.Tank {
         private AreaOfEffect _aoeScript;
 
         private ParticleSystem.EmissionModule _explosionEmMod, _explosionWaveEmMod, _trailEmMod;
-        private AimController _ac;
 
         private void Awake() {
             _rb = GetComponent<Rigidbody2D>();
@@ -28,13 +24,6 @@ namespace Shells.Tank {
 
         private void Start() {
             _aoeScript = transform.Find("AreaOfEffect").GetComponent<AreaOfEffect>();
-            _ac = GameObject.FindGameObjectWithTag("Player").GetComponent<AimController>();
-
-            var direction = _ac.AimVal - transform.position;
-            _rb.velocity = new Vector2(direction.x, direction.y).normalized * empShellStats.Speed;
-
-            var rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-            transform.rotation = Quaternion.Euler(0, 0, rotZ);
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
@@ -43,7 +32,14 @@ namespace Shells.Tank {
             }
         }
 
-        public void DestroyShell() {
+        // using Stay for the hit area sibling, so the shell can be as close to its position as possible
+        private void OnTriggerStay2D(Collider2D col) {
+            if (col.gameObject.CompareTag("AoeHitArea")) {
+                DestroyShell();
+            }
+        }
+
+        private void DestroyShell() {
             Destroy(aoeHitAreaObj);
             _trailEmMod.enabled = false;
             _aoeScript.EnableCircleCollider();

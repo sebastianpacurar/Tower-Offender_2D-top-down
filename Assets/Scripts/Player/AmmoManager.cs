@@ -5,14 +5,13 @@ namespace Player {
     public class AmmoManager : MonoBehaviour {
         public int LightShellAmmo { get; set; }
         public int EmpShellAmmo { get; set; }
-
-        [SerializeField] private TankShellStatsSo lightShellStatsSo;
-        [SerializeField] private TankShellStatsSo empShellStatsSo;
-
+        public int SniperShellAmmo { get; set; }
+        [SerializeField] private TankStatsSo tankStatsSo;
 
         private void Awake() {
-            LightShellAmmo = lightShellStatsSo.Ammo;
-            EmpShellAmmo = empShellStatsSo.Ammo;
+            LightShellAmmo = tankStatsSo.LightShellStatsSo.Ammo;
+            EmpShellAmmo = tankStatsSo.EmpShellStatsSo.Ammo;
+            SniperShellAmmo = tankStatsSo.SniperShellStatsSo.Ammo;
         }
     }
 }

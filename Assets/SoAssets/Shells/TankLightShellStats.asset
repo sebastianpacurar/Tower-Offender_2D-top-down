@@ -15,6 +15,7 @@ MonoBehaviour:
   speed: 12.5
   timeToLive: 2
   damage: 1
-  ammo: 500
+  ammo: 250
+  aoeEffectDuration: 0
   shellColor: {r: 1, g: 0.5019608, b: 0, a: 1}
   aoeRadius: 0

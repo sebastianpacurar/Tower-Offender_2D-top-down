@@ -1,9 +1,8 @@
 using UnityEngine;
 
 namespace Shells.Tank {
-    public class TankLightShell : MonoBehaviour {
+    public class TankSniperShell : MonoBehaviour {
         [SerializeField] private ParticleSystem explosionPs, trailPs;
-
         private CapsuleCollider2D _capsuleCollider2D;
         private SpriteRenderer _sr;
         private Rigidbody2D _rb;
@@ -14,34 +13,39 @@ namespace Shells.Tank {
             _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
             _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
-        }
 
-        private void Start() {
             _explosionEmMod = explosionPs.emission;
             _trailEmMod = trailPs.emission;
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.CompareTag("TowerObj") || col.gameObject.CompareTag("WorldBorder") || col.gameObject.CompareTag("Wall")) {
+            if (col.gameObject.CompareTag("WorldBorder")) {
                 DestroyShell();
+            }
+
+            if (col.gameObject.CompareTag("TowerObj")) {
+                _explosionEmMod.enabled = true;
+            }
+        }
+
+        private void OnTriggerStay2D(Collider2D col) {
+            if (col.gameObject.CompareTag("TowerObj")) {
+                explosionPs.transform.position = col.gameObject.transform.position;
             }
         }
 
         private void OnTriggerExit2D(Collider2D col) {
-            if (col.gameObject.CompareTag("LightShellGhost")) {
-                DestroyShell();
-            }
+            _explosionEmMod.enabled = false;
         }
 
         private void DestroyShell() {
             _rb.velocity = new Vector2(0, 0);
-            _explosionEmMod.enabled = true;
-            _trailEmMod.enabled = false;
-            
-            _sr.enabled = false;
             _capsuleCollider2D.enabled = false;
+            _trailEmMod.enabled = false;
 
-            Invoke(nameof(DestroyObj), 0.5f);
+            _sr.enabled = false;
+            _explosionEmMod.enabled = true;
+            Invoke(nameof(DestroyObj), 2.0f);
         }
 
         private void DestroyObj() {

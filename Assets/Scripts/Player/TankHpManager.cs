@@ -1,4 +1,3 @@
-using System;
 using Player.Controllers;
 using ScriptableObjects;
 using Shells;
@@ -10,7 +9,7 @@ namespace Player {
         public bool IsDead { get; private set; }
         [SerializeField] private ParticleSystem damagePs;
         [SerializeField] private TankStatsSo tankStatsSo;
-        [SerializeField] private GameObject tankHull;
+        [SerializeField] private GameObject[] destroyableObjects;
 
         private Rigidbody2D _tankRb;
         private AimController _aimController;
@@ -57,15 +56,26 @@ namespace Player {
                         break;
                     case <= 0:
                         _tankRb.velocity = new Vector2(0, 0);
-                        tankHull.SetActive(false);
-                        _aimController.enabled = false;
-                        _tankController.enabled = false;
-                        _shoot.enabled = false;
-                        _damageEmMod.enabled = false;
+                        DestroyTankComponents();
+                        DisableTankComponents();
                         IsDead = true;
                         break;
                 }
             }
+        }
+
+        private void DestroyTankComponents() {
+            foreach (var obj in destroyableObjects) {
+                Destroy(obj);
+            }
+        }
+
+        private void DisableTankComponents() {
+            _tankController.SetTrackAnimationTo(false);
+            _tankController.enabled = false;
+            _aimController.enabled = false;
+            _shoot.enabled = false;
+            _damageEmMod.enabled = false;
         }
     }
 }

@@ -25298,7 +25298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e2933b742d2a32abe37cc5b70a3705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tankLightShellStats: {fileID: 11400000, guid: fd317d3d09831c0bf8b4dbdf51d81037, type: 2}
+  tankStatsSo: {fileID: 11400000, guid: 4a8f37d34b956f000b7c883bd955b800, type: 2}
   towerStatsSo: {fileID: 11400000, guid: 230bc78d8acf1301892e4ddab92a4b55, type: 2}
   towerUI: {fileID: 3460709449184135026}
   turretObj: {fileID: 8897720834775444447}
@@ -25672,7 +25672,7 @@ Transform:
   m_GameObject: {fileID: 4622956810076331022}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8897720835073988832}
@@ -25719,7 +25719,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -40808,7 +40808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerStatsSo: {fileID: 11400000, guid: 230bc78d8acf1301892e4ddab92a4b55, type: 2}
-  empShellStatsSo: {fileID: 11400000, guid: 6cf65be9ec689712594054171afcd509, type: 2}
+  tankStatsSo: {fileID: 11400000, guid: 4a8f37d34b956f000b7c883bd955b800, type: 2}
   triggerLight: {fileID: 8897720834947870798}
   turretEdge: {fileID: 8897720836690231101}
   shellsContainer: {fileID: 936591613}

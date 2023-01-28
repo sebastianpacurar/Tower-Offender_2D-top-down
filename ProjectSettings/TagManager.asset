@@ -19,7 +19,9 @@ TagManager:
   - AoeHitArea
   - TowerObj
   - AoeRadius
-  - ShellGhost
+  - TankSniperShell
+  - SniperShellGhost
+  - LightShellGhost
   layers:
   - Default
   - TransparentFX
@@ -29,7 +31,7 @@ TagManager:
   - UI
   - Military Unit
   - Map Tile
-  - 
+  - Main and Map Cameras
   - 
   - 
   - 

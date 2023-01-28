@@ -6,8 +6,11 @@ using UnityEngine;
 namespace Enemy.Tower {
     public class TurretController : MonoBehaviour {
         public bool IsPowerOff { get; set; }
+        public float ShootTimer { get; private set; }
+        public float PowerOffTimer { get; private set; }
+
         [SerializeField] private TowerStatsSo towerStatsSo;
-        [SerializeField] private TankShellStatsSo empShellStatsSo;
+        [SerializeField] private TankStatsSo tankStatsSo;
         [SerializeField] private SpriteRenderer triggerLight;
         [SerializeField] private Transform turretEdge;
         [SerializeField] private GameObject shellsContainer;
@@ -19,8 +22,6 @@ namespace Enemy.Tower {
         private Transform _tankPos;
         private TankHpManager _tankHpHandler;
         private bool _detected;
-        public float ShootTimer { get; private set; }
-        public float PowerOffTimer { get; private set; }
         private bool _canFire = true;
         private bool _towerDetected;
         private static readonly int IsShooting = Animator.StringToHash("IsShooting");
@@ -45,7 +46,7 @@ namespace Enemy.Tower {
         private void HandlePowerOffCd() {
             if (!IsPowerOff) return;
             PowerOffTimer += Time.deltaTime;
-            if (PowerOffTimer > empShellStatsSo.AoeEffectDuration) {
+            if (PowerOffTimer > tankStatsSo.EmpShellStatsSo.AoeEffectDuration) {
                 IsPowerOff = false;
                 PowerOffTimer = 0f;
             }

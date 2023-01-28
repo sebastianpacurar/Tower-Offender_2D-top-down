@@ -22,11 +22,19 @@ namespace ScriptableObjects {
 
         [Space(20)]
         [Header("Shell Related")]
+        [SerializeField] private TankShellStatsSo lightShellStatsSo;
+
+        [SerializeField] private TankShellStatsSo empShellStatsSo;
+        [SerializeField] private TankShellStatsSo sniperShellStatsSo;
         [SerializeField] private float lightShellReloadTime;
-
         [SerializeField] private float empShellReloadTime;
+        [SerializeField] private float sniperShellReloadTime;
 
+        public TankShellStatsSo LightShellStatsSo => lightShellStatsSo;
+        public TankShellStatsSo EmpShellStatsSo => empShellStatsSo;
+        public TankShellStatsSo SniperShellStatsSo => sniperShellStatsSo;
         public float LightShellReloadTime => lightShellReloadTime;
         public float EmpShellReloadTime => empShellReloadTime;
+        public float SniperShellReloadTime => sniperShellReloadTime;
     }
 }

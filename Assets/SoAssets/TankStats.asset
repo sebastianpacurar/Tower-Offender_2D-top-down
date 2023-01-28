@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e45cbcad8ccab889a7eacf4ba22d128, type: 3}
   m_Name: TankStats
   m_EditorClassIdentifier: 
-  maxHp: 650
+  maxHp: 100
   accFactor: 3
   steerFactor: 3.5
   driftFactor: 0
   maxSpeed: 4
+  lightShellStatsSo: {fileID: 11400000, guid: fd317d3d09831c0bf8b4dbdf51d81037, type: 2}
+  empShellStatsSo: {fileID: 11400000, guid: 6cf65be9ec689712594054171afcd509, type: 2}
+  sniperShellStatsSo: {fileID: 11400000, guid: fcab7bc148adbf71fbe9291673952bb3, type: 2}
   lightShellReloadTime: 0.25
   empShellReloadTime: 3
+  sniperShellReloadTime: 5

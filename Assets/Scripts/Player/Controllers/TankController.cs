@@ -17,7 +17,7 @@ namespace Player.Controllers {
         private float _rotationAngle = 0f;
 
         [SerializeField] private TankStatsSo tankStatsSo;
-        
+
         [Header("Physics related")]
         [SerializeField] private float accFactor;
 
@@ -73,9 +73,9 @@ namespace Player.Controllers {
 
             // handle tank tracks animation
             if (_rb.velocity.magnitude >= 0.1f || _rotation != 0) {
-                Array.ForEach(tankTracks, track => track.SetBool("IsMoving", true));
+                SetTrackAnimationTo(true);
             } else {
-                Array.ForEach(tankTracks, track => track.SetBool("IsMoving", false));
+                SetTrackAnimationTo(false);
             }
         }
 
@@ -150,6 +150,10 @@ namespace Player.Controllers {
 
             _moveAction.Disable();
             _steerAction.Disable();
+        }
+
+        public void SetTrackAnimationTo(bool isMoving) {
+            Array.ForEach(tankTracks, track => track.SetBool("IsMoving", isMoving));
         }
     }
 }

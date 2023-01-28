@@ -6,12 +6,13 @@ namespace Player.Controllers {
     public class AimController : MonoBehaviour {
         public Vector3 AimVal { get; private set; }
 
-        [SerializeField] private GameObject hull;
-        [SerializeField] private GameObject aoeGhost, shellGhost;
-        [SerializeField] private LineRenderer directionLine;
+        [SerializeField] private GameObject hull, turretEdge, aoeGhost, lightShellGhost, sniperShellGhost;
+        [SerializeField] private LineRenderer lightAimLine, sniperAimLine;
 
         private Camera _mainCam;
         private InGameMenu _inGameMenu;
+        private Vector2 _lightShellFurthestPoint;
+        private Vector2 _sniperShellFurthestPoint;
 
         private void Start() {
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -22,39 +23,49 @@ namespace Player.Controllers {
             AimVal = _mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             AimVal = new Vector3(AimVal.x, AimVal.y, 0f);
             MoveHull();
-            HandleLightShellDirectionLine();
+            HandleLightShellAimLine();
         }
 
         private void MoveHull() {
+            var pos = transform.position;
             var hullPosition = hull.transform.position;
             var direction = AimVal - hullPosition;
 
             var rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
             hull.transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
-            aoeGhost.transform.position = AimVal;
+            _sniperShellFurthestPoint = pos + direction.normalized * 200f;
+            sniperShellGhost.transform.position = AimVal;
 
-            // TODO: fix hardcoded 12.5f offset
-            var furthestPoint = transform.position + direction.normalized * 12.5f;
-            var mouseDistanceFromHull = Vector2.Distance(AimVal, hullPosition);
+            _lightShellFurthestPoint = pos + direction.normalized * 12.5f;
+            aoeGhost.transform.position = AimVal;
 
             // set the shellGhost on top of the collider circle if mouse is outside of the surrounding circle
             //  if mouse is inside the collider circle, then render shellGhost on the Mouse's position
+            var mouseDistanceFromHull = Vector2.Distance(AimVal, hullPosition);
             if (mouseDistanceFromHull > 12.5f) {
-                shellGhost.transform.position = furthestPoint;
+                lightShellGhost.transform.position = _lightShellFurthestPoint;
             } else {
-                shellGhost.transform.position = AimVal;
+                lightShellGhost.transform.position = AimVal;
             }
         }
 
-        private void HandleLightShellDirectionLine() {
+
+        // TODO: fix bad handling here and in InGameMenu.cs (maybe consolidate)
+        private void HandleLightShellAimLine() {
             if (_inGameMenu.SelectedShell.CompareTag("TankLightShell")) {
-                directionLine.enabled = true;
-                directionLine.SetPosition(0, transform.position);
-                directionLine.SetPosition(1, shellGhost.transform.position);
+                sniperAimLine.enabled = false;
+                lightAimLine.enabled = true;
+                lightAimLine.SetPosition(0, turretEdge.transform.position);
+                lightAimLine.SetPosition(1, lightShellGhost.transform.position);
+            } else if (_inGameMenu.SelectedShell.CompareTag("TankSniperShell")) {
+                lightAimLine.enabled = false;
+                sniperAimLine.enabled = true;
+                sniperAimLine.SetPosition(0, turretEdge.transform.position);
+                sniperAimLine.SetPosition(1, _sniperShellFurthestPoint); // TODO: bad handling for offset
             } else {
-                if (!directionLine.enabled) return;
-                directionLine.enabled = false;
+                lightAimLine.enabled = false;
+                sniperAimLine.enabled = false;
             }
         }
     }

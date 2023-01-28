@@ -5,7 +5,7 @@ namespace Enemy.Tower.Hp {
     public class TowerHpManager : MonoBehaviour {
         public float TowerHealthPoints { get; private set; }
         public bool IsDead { get; private set; }
-        [SerializeField] private TankShellStatsSo tankLightShellStats;
+        [SerializeField] private TankStatsSo tankStatsSo;
         [SerializeField] private TowerStatsSo towerStatsSo;
         [SerializeField] private GameObject towerUI;
         [SerializeField] private GameObject turretObj;
@@ -16,7 +16,11 @@ namespace Enemy.Tower.Hp {
 
         private void OnTriggerEnter2D(Collider2D col) {
             if (col.gameObject.CompareTag("TankLightShell")) {
-                TowerHealthPoints -= tankLightShellStats.Damage;
+                TowerHealthPoints -= tankStatsSo.LightShellStatsSo.Damage;
+            }
+
+            if (col.gameObject.CompareTag("TankSniperShell")) {
+                TowerHealthPoints -= tankStatsSo.SniperShellStatsSo.Damage;
             }
         }
 

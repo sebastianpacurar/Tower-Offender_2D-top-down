@@ -8,6 +8,7 @@ namespace Player.Canvas {
         [SerializeField] private TankStatsSo tankStatsSo;
         [SerializeField] private Image tankShellImgBar;
         [SerializeField] private Image empShellImgBar;
+        [SerializeField] private Image sniperShellImgBar;
         private Shoot _shootScript;
 
         private void Start() {
@@ -17,14 +18,19 @@ namespace Player.Canvas {
         private void Update() {
             UpdateTankShellCd();
             UpdateEmpShellCd();
+            UpdateSniperShellCd();
         }
 
         private void UpdateTankShellCd() {
-            tankShellImgBar.fillAmount = _shootScript.CanFireLightShell ? 0.25f : (_shootScript.LightShellCdTimer / tankStatsSo.LightShellReloadTime) * 0.25f;
+            tankShellImgBar.fillAmount = _shootScript.CanFireLightShell ? 0.125f : (_shootScript.LightShellCdTimer / tankStatsSo.LightShellReloadTime) * 0.125f;
         }
 
         private void UpdateEmpShellCd() {
-            empShellImgBar.fillAmount = _shootScript.CanFireEmpShell ? 0.25f : (_shootScript.EmpShellCdTimer / tankStatsSo.EmpShellReloadTime) * 0.25f;
+            empShellImgBar.fillAmount = _shootScript.CanFireEmpShell ? 0.125f : (_shootScript.EmpShellCdTimer / tankStatsSo.EmpShellReloadTime) * 0.125f;
+        }
+
+        private void UpdateSniperShellCd() {
+            sniperShellImgBar.fillAmount = _shootScript.CanFireSniperShell ? 0.125f : (_shootScript.SniperShellCdTimer / tankStatsSo.SniperShellReloadTime) * 0.125f;
         }
     }
 }
