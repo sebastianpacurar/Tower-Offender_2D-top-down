@@ -1,15 +1,17 @@
 using Enemy.Tower;
+using Enemy.Tower.Hp;
 using ScriptableObjects;
 using UnityEngine;
 
 namespace Shells.Tank {
-    public class AreaOfEffect : MonoBehaviour {
+    public class NukeAreaOfEffect : MonoBehaviour {
         [SerializeField] private TankStatsSo tankStatsSo;
+        private TowerHpManager _towerHpManager;
         private CircleCollider2D _circleCollider2D;
 
         private void Awake() {
             _circleCollider2D = GetComponent<CircleCollider2D>();
-            _circleCollider2D.radius = tankStatsSo.EmpShellStatsSo.AoeRadius;
+            _circleCollider2D.radius = tankStatsSo.NukeShellStatsSo.AoeRadius;
         }
 
         public void EnableCircleCollider() {
@@ -18,8 +20,10 @@ namespace Shells.Tank {
 
         private void OnTriggerEnter2D(Collider2D col) {
             if (col.gameObject.CompareTag("TowerObj")) {
-                if (!col.gameObject.transform.Find("Turret")) return;
-                col.gameObject.transform.Find("Turret").GetComponent<TurretController>().IsPowerOff = true;
+                var tower = col.gameObject.GetComponent<TowerHpManager>();
+                if (!tower.IsDead) {
+                    tower.TowerHealthPoints -= tankStatsSo.NukeShellStatsSo.Damage;
+                }
             }
         }
     }

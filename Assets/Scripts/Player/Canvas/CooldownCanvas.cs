@@ -1,14 +1,14 @@
 using Player.Controllers;
 using ScriptableObjects;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Player.Canvas {
     public class CooldownCanvas : MonoBehaviour {
         [SerializeField] private TankStatsSo tankStatsSo;
-        [SerializeField] private Image tankShellImgBar;
-        [SerializeField] private Image empShellImgBar;
-        [SerializeField] private Image sniperShellImgBar;
+        [SerializeField] private Image tankShellImgBar, empShellImgBar, sniperShellImgBar, nukeShellImgBar;
+        [SerializeField] private TextMeshProUGUI empReloadPercentage, sniperReloadPercentage, nukeReloadPercentage;
         private Shoot _shootScript;
 
         private void Start() {
@@ -19,6 +19,7 @@ namespace Player.Canvas {
             UpdateTankShellCd();
             UpdateEmpShellCd();
             UpdateSniperShellCd();
+            UpdateNukeShellCd();
         }
 
         private void UpdateTankShellCd() {
@@ -26,11 +27,21 @@ namespace Player.Canvas {
         }
 
         private void UpdateEmpShellCd() {
-            empShellImgBar.fillAmount = _shootScript.CanFireEmpShell ? 0.125f : (_shootScript.EmpShellCdTimer / tankStatsSo.EmpShellReloadTime) * 0.125f;
+            var currentProgress = _shootScript.EmpShellCdTimer / tankStatsSo.EmpShellReloadTime;
+            empShellImgBar.fillAmount = _shootScript.CanFireEmpShell ? 0.125f : currentProgress * 0.125f;
+            empReloadPercentage.text = _shootScript.CanFireEmpShell ? "100%" : $"{(int)(currentProgress * 100)}%";
         }
 
         private void UpdateSniperShellCd() {
-            sniperShellImgBar.fillAmount = _shootScript.CanFireSniperShell ? 0.125f : (_shootScript.SniperShellCdTimer / tankStatsSo.SniperShellReloadTime) * 0.125f;
+            var currentProgress = _shootScript.SniperShellCdTimer / tankStatsSo.SniperShellReloadTime;
+            sniperShellImgBar.fillAmount = _shootScript.CanFireSniperShell ? 0.125f : currentProgress * 0.125f;
+            sniperReloadPercentage.text = _shootScript.CanFireSniperShell ? "100%" : $"{(int)(currentProgress * 100)}%";
+        }
+
+        private void UpdateNukeShellCd() {
+            var currentProgress = _shootScript.NukeShellCdTimer / tankStatsSo.NukeShellReloadTime;
+            nukeShellImgBar.fillAmount = _shootScript.CanFireNukeShell ? 0.125f : currentProgress * 0.125f;
+            nukeReloadPercentage.text = _shootScript.CanFireNukeShell ? "100%" : $"{(int)(currentProgress * 100)}%";
         }
     }
 }

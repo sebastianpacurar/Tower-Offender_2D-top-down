@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Enemy.Tower.Hp {
     public class TowerHpManager : MonoBehaviour {
-        public float TowerHealthPoints { get; private set; }
+        public float TowerHealthPoints { get; set; }
         public bool IsDead { get; private set; }
         [SerializeField] private TankStatsSo tankStatsSo;
         [SerializeField] private TowerStatsSo towerStatsSo;

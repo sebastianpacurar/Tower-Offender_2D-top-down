@@ -26,13 +26,13 @@ namespace Enemy.Tower {
 
         private void OnTriggerStay2D(Collider2D col) {
             if (_towerHpManager.IsDead) return;
-            if (col.gameObject.CompareTag("AoeGhost")) {
+            if (col.gameObject.CompareTag("EmpAoeGhost") || col.gameObject.CompareTag("NukeAoeGhost")) {
                 _isHovered = true;
             }
         }
 
         private void OnTriggerExit2D(Collider2D col) {
-            if (col.gameObject.CompareTag("AoeGhost")) {
+            if (col.gameObject.CompareTag("EmpAoeGhost") || col.gameObject.CompareTag("NukeAoeGhost")) {
                 _isHovered = false;
             }
         }

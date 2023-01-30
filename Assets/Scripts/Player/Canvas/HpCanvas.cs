@@ -1,4 +1,5 @@
 using ScriptableObjects;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ namespace Player.Canvas {
         [SerializeField] private UnityEngine.Canvas canvas;
         [SerializeField] private GameObject tankObj;
         [SerializeField] private Image greenBar;
+        [SerializeField] private TextMeshProUGUI hpPercentage;
 
         private Camera _mainCam;
         private TankHpManager _tankHpManager;
@@ -20,8 +22,10 @@ namespace Player.Canvas {
         }
 
         private void Update() {
+            var currentHpValue = _tankHpManager.TankHealthPoints / tankStatsSo.MaxHp;
             transform.position = tankObj.transform.position;
-            greenBar.fillAmount = (_tankHpManager.TankHealthPoints / tankStatsSo.MaxHp) * 0.5f;
+            greenBar.fillAmount = currentHpValue * 0.5f;
+            hpPercentage.text = $"{(int)(currentHpValue * 100)}%";
         }
     }
 }

@@ -15,6 +15,10 @@ namespace Player.Controllers {
         public float SniperShellCdTimer { get; private set; }
         public bool CanFireSniperShell { get; private set; } = true;
 
+        public float NukeShellCdTimer { get; private set; }
+        public bool CanFireNukeShell { get; private set; } = true;
+
+
         [SerializeField] private TankStatsSo tankStatsSo;
         [SerializeField] private GameObject turretEdge;
         [SerializeField] private GameObject shellsContainer;
@@ -61,6 +65,13 @@ namespace Player.Controllers {
                     SniperShellCdTimer = 0f;
                 }
             }
+            if (!CanFireNukeShell) {
+                NukeShellCdTimer += Time.deltaTime;
+                if (NukeShellCdTimer > tankStatsSo.NukeShellReloadTime) {
+                    CanFireNukeShell = true;
+                    NukeShellCdTimer = 0f;
+                }
+            }
         }
 
         private void ShootShell(InputAction.CallbackContext ctx) {
@@ -83,6 +94,12 @@ namespace Player.Controllers {
                 shootAnimationPoint.SetBool(IsShooting, true);
                 var sniperShell = Instantiate(selectedShell, transform.position, Quaternion.identity, shellsContainer.transform);
                 InitShell(sniperShell, tankStatsSo.SniperShellStatsSo.Speed);
+            } else if (CanFireNukeShell && selectedShell.CompareTag("TankNukeShellEntity")) {
+                _ammoManager.NukeShellAmmo -= 1;
+                CanFireNukeShell = false;
+                shootAnimationPoint.SetBool(IsShooting, true);
+                var nukeShell = Instantiate(selectedShell, transform.position, Quaternion.identity, shellsContainer.transform);
+                InitShell(nukeShell, tankStatsSo.NukeShellStatsSo.Speed);
             }
         }
 
@@ -100,6 +117,7 @@ namespace Player.Controllers {
                     break;
 
                 case "TankEmpShellEntity":
+                case "TankNukeShellEntity":
                     var shellObj = obj.transform.GetChild(0);
                     var shellTransform = shellObj.transform;
                     var aoeObj = obj.transform.GetChild(1);
@@ -112,7 +130,7 @@ namespace Player.Controllers {
                     break;
             }
         }
-        
+
         private void OnEnable() {
             _controls.Player.Shoot.Enable();
             _controls.Player.Shoot.performed += ShootShell;

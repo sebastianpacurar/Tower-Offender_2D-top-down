@@ -13,10 +13,11 @@ namespace Menus {
         [SerializeField] private TextMeshProUGUI lightShellAmmo;
         [SerializeField] private TextMeshProUGUI empShellAmmo;
         [SerializeField] private TextMeshProUGUI sniperShellAmmo;
+        [SerializeField] private TextMeshProUGUI nukeShellAmmo;
 
         private PlayerControls _controls;
         private AmmoManager _ammoManager;
-        private GameObject _aoeGhost, _lightShellGhost, _sniperShellGhost;
+        private GameObject _lightShellGhost, _empAoeGhost, _sniperShellGhost, _nukeAoeGhost;
         private Color _unavailableColor = new(0.75f, 0f, 0f, 1f);
         private Color _unselectedColor = new(0.75f, 0.75f, 0f, 1f);
         private Color _selectedColor = new(0f, 0.75f, 0f, 1f);
@@ -28,7 +29,8 @@ namespace Menus {
 
         private void Start() {
             _ammoManager = GameObject.FindGameObjectWithTag("Player").GetComponent<AmmoManager>();
-            _aoeGhost = GameObject.FindGameObjectWithTag("AoeGhost");
+            _empAoeGhost = GameObject.FindGameObjectWithTag("EmpAoeGhost");
+            _nukeAoeGhost = GameObject.FindGameObjectWithTag("NukeAoeGhost");
             _lightShellGhost = GameObject.FindGameObjectWithTag("LightShellGhost");
             _sniperShellGhost = GameObject.FindGameObjectWithTag("SniperShellGhost");
         }
@@ -37,6 +39,7 @@ namespace Menus {
             lightShellAmmo.text = $"x{_ammoManager.LightShellAmmo}";
             empShellAmmo.text = $"x{_ammoManager.EmpShellAmmo}";
             sniperShellAmmo.text = $"x{_ammoManager.SniperShellAmmo}";
+            nukeShellAmmo.text = $"x{_ammoManager.NukeShellAmmo}";
         }
 
         private void SelectFirstShell(InputAction.CallbackContext ctx) {
@@ -51,6 +54,10 @@ namespace Menus {
             PerformWeaponSwitch(shellPrefabs[2]);
         }
 
+        private void SelectFourthShell(InputAction.CallbackContext ctx) {
+            PerformWeaponSwitch(shellPrefabs[3]);
+        }
+
         private void PerformWeaponSwitch(GameObject selectedShell) {
             if (SelectedShell.CompareTag(selectedShell.tag)) return;
             switch (SelectedShell.tag) {
@@ -62,12 +69,17 @@ namespace Menus {
                     break;
                 case "TankEmpShellEntity":
                     weaponImages[1].color = _ammoManager.EmpShellAmmo > 0 ? _unselectedColor : _unavailableColor;
-                    _aoeGhost.GetComponent<CircleCollider2D>().enabled = false;
-                    _aoeGhost.transform.Find("CircleRadiusArea").gameObject.SetActive(false);
+                    _empAoeGhost.GetComponent<CircleCollider2D>().enabled = false;
+                    _empAoeGhost.transform.Find("CircleRadiusArea").gameObject.SetActive(false);
                     break;
                 case "TankSniperShell":
                     weaponImages[2].color = _ammoManager.SniperShellAmmo > 0 ? _unselectedColor : _unavailableColor;
                     _sniperShellGhost.transform.Find("Cursor").gameObject.SetActive(false);
+                    break;
+                case "TankNukeShellEntity":
+                    weaponImages[3].color = _ammoManager.NukeShellAmmo > 0 ? _unselectedColor : _unavailableColor;
+                    _nukeAoeGhost.GetComponent<CircleCollider2D>().enabled = false;
+                    _nukeAoeGhost.transform.Find("CircleRadiusArea").gameObject.SetActive(false);
                     break;
             }
 
@@ -84,14 +96,21 @@ namespace Menus {
                     if (_ammoManager.EmpShellAmmo == 0) return;
                     SelectedShell = shellPrefabs[1];
                     weaponImages[1].color = _selectedColor;
-                    _aoeGhost.GetComponent<CircleCollider2D>().enabled = true;
-                    _aoeGhost.transform.Find("CircleRadiusArea").gameObject.SetActive(true);
+                    _empAoeGhost.GetComponent<CircleCollider2D>().enabled = true;
+                    _empAoeGhost.transform.Find("CircleRadiusArea").gameObject.SetActive(true);
                     break;
                 case "TankSniperShell":
                     if (_ammoManager.SniperShellAmmo == 0) return;
                     SelectedShell = shellPrefabs[2];
                     weaponImages[2].color = _selectedColor;
                     _sniperShellGhost.transform.Find("Cursor").gameObject.SetActive(true);
+                    break;
+                case "TankNukeShellEntity":
+                    if (_ammoManager.NukeShellAmmo == 0) return;
+                    SelectedShell = shellPrefabs[3];
+                    weaponImages[3].color = _selectedColor;
+                    _nukeAoeGhost.GetComponent<CircleCollider2D>().enabled = true;
+                    _nukeAoeGhost.transform.Find("CircleRadiusArea").gameObject.SetActive(true);
                     break;
             }
         }
@@ -100,20 +119,24 @@ namespace Menus {
             _controls.UI.FirstWeapon.Enable();
             _controls.UI.SecondWeapon.Enable();
             _controls.UI.ThirdWeapon.Enable();
+            _controls.UI.FourthWeapon.Enable();
 
             _controls.UI.FirstWeapon.performed += SelectFirstShell;
             _controls.UI.SecondWeapon.performed += SelectSecondShell;
             _controls.UI.ThirdWeapon.performed += SelectThirdShell;
+            _controls.UI.FourthWeapon.performed += SelectFourthShell;
         }
 
         private void OnDisable() {
             _controls.UI.FirstWeapon.performed -= SelectFirstShell;
             _controls.UI.SecondWeapon.performed -= SelectSecondShell;
             _controls.UI.ThirdWeapon.performed -= SelectThirdShell;
+            _controls.UI.FourthWeapon.performed -= SelectFourthShell;
 
             _controls.UI.FirstWeapon.Disable();
             _controls.UI.SecondWeapon.Disable();
             _controls.UI.ThirdWeapon.Disable();
+            _controls.UI.FourthWeapon.Disable();
         }
     }
 }

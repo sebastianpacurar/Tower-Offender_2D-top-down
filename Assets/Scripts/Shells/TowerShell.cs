@@ -66,7 +66,7 @@ namespace Shells {
             }
 
             // destroy homing shell when is in the radius of the emp shell
-            if (CompareTag("HomingShell") && col.gameObject.CompareTag("AoeRadius")) {
+            if (CompareTag("HomingShell") && col.gameObject.CompareTag("EmpAoeRadius")) {
                 DestroyShell();
             }
         }

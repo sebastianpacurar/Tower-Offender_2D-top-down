@@ -6,7 +6,7 @@ namespace Player.Controllers {
     public class AimController : MonoBehaviour {
         public Vector3 AimVal { get; private set; }
 
-        [SerializeField] private GameObject hull, turretEdge, aoeGhost, lightShellGhost, sniperShellGhost;
+        [SerializeField] private GameObject hull, turretEdge, empAoeGhost, nukeAoeGhost, lightShellGhost, sniperShellGhost;
         [SerializeField] private LineRenderer lightAimLine, sniperAimLine;
 
         private Camera _mainCam;
@@ -38,7 +38,8 @@ namespace Player.Controllers {
             sniperShellGhost.transform.position = AimVal;
 
             _lightShellFurthestPoint = pos + direction.normalized * 12.5f;
-            aoeGhost.transform.position = AimVal;
+            empAoeGhost.transform.position = AimVal;
+            nukeAoeGhost.transform.position = AimVal;
 
             // set the shellGhost on top of the collider circle if mouse is outside of the surrounding circle
             //  if mouse is inside the collider circle, then render shellGhost on the Mouse's position
@@ -62,7 +63,7 @@ namespace Player.Controllers {
                 lightAimLine.enabled = false;
                 sniperAimLine.enabled = true;
                 sniperAimLine.SetPosition(0, turretEdge.transform.position);
-                sniperAimLine.SetPosition(1, _sniperShellFurthestPoint); // TODO: bad handling for offset
+                sniperAimLine.SetPosition(1, _sniperShellFurthestPoint);
             } else {
                 lightAimLine.enabled = false;
                 sniperAimLine.enabled = false;

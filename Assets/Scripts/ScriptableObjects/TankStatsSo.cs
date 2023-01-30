@@ -26,15 +26,19 @@ namespace ScriptableObjects {
 
         [SerializeField] private TankShellStatsSo empShellStatsSo;
         [SerializeField] private TankShellStatsSo sniperShellStatsSo;
+        [SerializeField] private TankShellStatsSo nukeShellStatsSo;
         [SerializeField] private float lightShellReloadTime;
         [SerializeField] private float empShellReloadTime;
         [SerializeField] private float sniperShellReloadTime;
+        [SerializeField] private float nukeShellReloadTime;
 
         public TankShellStatsSo LightShellStatsSo => lightShellStatsSo;
         public TankShellStatsSo EmpShellStatsSo => empShellStatsSo;
         public TankShellStatsSo SniperShellStatsSo => sniperShellStatsSo;
+        public TankShellStatsSo NukeShellStatsSo => nukeShellStatsSo;
         public float LightShellReloadTime => lightShellReloadTime;
         public float EmpShellReloadTime => empShellReloadTime;
         public float SniperShellReloadTime => sniperShellReloadTime;
+        public float NukeShellReloadTime => nukeShellReloadTime;
     }
 }

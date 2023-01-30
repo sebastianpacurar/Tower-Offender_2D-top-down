@@ -14,14 +14,19 @@ TagManager:
   - GameUI
   - TankLightShell
   - TankEmpShell
-  - AoeGhost
   - TankEmpShellEntity
-  - AoeHitArea
   - TowerObj
-  - AoeRadius
   - TankSniperShell
   - SniperShellGhost
   - LightShellGhost
+  - EmpAoeGhost
+  - EmpAoeRadius
+  - EmpAoeHitArea
+  - NukeAoeRadius
+  - NukeAoeHitArea
+  - NukeAoeGhost
+  - TankNukeShell
+  - TankNukeShellEntity
   layers:
   - Default
   - TransparentFX
