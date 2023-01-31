@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace Shells.Tank {
     public class TankNukeShell : MonoBehaviour {
-        [SerializeField] private ParticleSystem explosionPs, explosionWavePs, trailPs;
+        [SerializeField] private ParticleSystem[] nukeExplosionPs;
+        [SerializeField] private ParticleSystem trailPs;
         [SerializeField] private GameObject aoeHitAreaObj;
 
         private CircleCollider2D _circleCollider2D;
@@ -10,15 +11,13 @@ namespace Shells.Tank {
         private Rigidbody2D _rb;
         private NukeAreaOfEffect _nukeAoeScript;
 
-        private ParticleSystem.EmissionModule _explosionEmMod, _explosionWaveEmMod, _trailEmMod;
+        private ParticleSystem.EmissionModule _trailEmMod;
 
         private void Awake() {
             _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
             _circleCollider2D = GetComponent<CircleCollider2D>();
-
-            _explosionEmMod = explosionPs.emission;
-            _explosionWaveEmMod = explosionWavePs.emission;
+            
             _trailEmMod = trailPs.emission;
         }
 
@@ -48,16 +47,20 @@ namespace Shells.Tank {
             _circleCollider2D.enabled = false;
             _rb.velocity = new Vector2(0, 0);
 
-            _explosionEmMod.enabled = true;
-            _explosionWaveEmMod.enabled = true;
-            explosionPs.Play();
-            explosionWavePs.Play();
-
-            Invoke(nameof(DestroyObj), 1.0f);
+            StartPsEmModsAndPlay();
+            Invoke(nameof(DestroyObj), 3.0f);
         }
 
         private void DestroyObj() {
             Destroy(transform.parent.gameObject);
+        }
+
+        private void StartPsEmModsAndPlay() {
+            foreach (var ps in nukeExplosionPs) {
+                var emMod = ps.emission;
+                emMod.enabled = true;
+                ps.Play();
+            }
         }
     }
 }

@@ -11,7 +11,6 @@ namespace Enemy.Tower {
 
         [SerializeField] private TowerStatsSo towerStatsSo;
         [SerializeField] private TankStatsSo tankStatsSo;
-        [SerializeField] private SpriteRenderer triggerLight;
         [SerializeField] private Transform turretEdge;
         [SerializeField] private GameObject shellsContainer;
         [SerializeField] private Transform circleRangeTransform;
@@ -57,7 +56,6 @@ namespace Enemy.Tower {
             if (IsPowerOff) {
                 circleRangeSr.enabled = false;
                 detectionLine.enabled = false;
-                triggerLight.color = Color.grey;
             } else {
                 HandleDetection();
                 Shoot();
@@ -90,8 +88,6 @@ namespace Enemy.Tower {
             detectionLine.enabled = true;
             circleRangeSr.enabled = false;
             detectionLine.colorGradient = isTowerDetected ? towerStatsSo.DetectionLineInactiveColor : towerStatsSo.DetectionLineActiveColor;
-
-            triggerLight.color = Color.yellow;
             transform.transform.up = direction;
         }
 
@@ -100,8 +96,6 @@ namespace Enemy.Tower {
             detectionLine.SetPosition(1, transform.position);
             detectionLine.enabled = false;
             circleRangeSr.enabled = true;
-
-            triggerLight.color = new Color(0f, 0.75f, 0f, 1f);
         }
 
         private void Shoot() {

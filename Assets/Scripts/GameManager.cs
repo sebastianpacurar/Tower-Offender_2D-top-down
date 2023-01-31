@@ -25,13 +25,6 @@ public class GameManager : MonoBehaviour {
 
     private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
         if (scene.name.Equals("MainMenu")) return;
-        tank.transform.position = scene.name switch {
-            "LevelOne" => new Vector3(0, 0, 0),
-            "LevelTwo" => new Vector3(0, 0, 0),
-            "LevelThree" => new Vector3(0, 0, 0),
-            "LevelFour" => new Vector3(0, 0, 0),
-            "LevelFive" => new Vector3(0, 0, 0),
-            _ => tank.transform.position
-        };
+        Instantiate(tank, new Vector3(-10, -26, 0), Quaternion.identity);
     }
 }

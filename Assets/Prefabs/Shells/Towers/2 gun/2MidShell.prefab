@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2MidShell
       objectReference: {fileID: 0}
+    - target: {fileID: 131407216184477410, guid: bc6b07c915e67150eb20601592e4b070, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 1071787642742734950, guid: bc6b07c915e67150eb20601592e4b070, type: 3}
       propertyPath: m_Size.x
       value: 0.21697617

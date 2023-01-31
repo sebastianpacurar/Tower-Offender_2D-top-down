@@ -15,5 +15,5 @@ MonoBehaviour:
   speed: 10
   damage: 10
   ammo: 3
-  aoeRadius: 20
+  aoeRadius: 15
   aoeEffectDuration: 0

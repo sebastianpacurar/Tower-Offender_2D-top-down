@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 542858036809936246}
   m_Layer: 0
   m_Name: 2LightShell
-  m_TagString: BasicShell
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

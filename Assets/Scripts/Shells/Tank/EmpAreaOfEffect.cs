@@ -9,7 +9,7 @@ namespace Shells.Tank {
 
         private void Awake() {
             _circleCollider2D = GetComponent<CircleCollider2D>();
-            _circleCollider2D.radius = tankStatsSo.EmpShellStatsSo.AoeRadius;
+            _circleCollider2D.radius = tankStatsSo.EmpShellStatsSo.AoeRadius * 0.81f; // 0.81f is the 1xunit in real world, in terms of scaling, for hollow circle
         }
 
         public void EnableCircleCollider() {
