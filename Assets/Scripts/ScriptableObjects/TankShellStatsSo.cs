@@ -9,10 +9,14 @@ namespace ScriptableObjects {
         [SerializeField] private float aoeRadius;
         [SerializeField] private float aoeEffectDuration;
 
+        [Header("Used for turret HoverIcons obj")]
+        [SerializeField] private Color hoverArrowColor;
+
         public float Speed => speed;
         public float Damage => damage;
         public int Ammo => ammo;
         public float AoeRadius => aoeRadius;
         public float AoeEffectDuration => aoeEffectDuration;
+        public Color HoverArrowColor => hoverArrowColor;
     }
 }

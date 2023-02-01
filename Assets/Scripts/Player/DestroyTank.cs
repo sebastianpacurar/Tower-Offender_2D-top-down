@@ -1,3 +1,4 @@
+using Menus;
 using UnityEngine;
 
 namespace Player {
@@ -7,7 +8,9 @@ namespace Player {
         private bool _explosionStarted, _explosionEnded, _heavySmokeStarted, _heavySmokeEnded, _criticalSmokeStarted;
         private bool _triggerMenu;
         private ParticleSystem.EmissionModule _explosionCenterEmMod, _explosionFireWaveEmMod, _explosionShockwaveEmMod, _heavySmokeEmMod, _criticalSmokeEmMod;
+
         private TankHpManager _tankHpManager;
+        private GameOverMenu _gameOverMenu;
 
         private void Awake() {
             _explosionCenterEmMod = explosionCenterPs.emission;
@@ -19,6 +22,7 @@ namespace Player {
 
         private void Start() {
             _tankHpManager = GetComponent<TankHpManager>();
+            _gameOverMenu = GameObject.FindGameObjectWithTag("Menu").GetComponent<GameOverMenu>();
         }
 
         private void Update() {
@@ -38,7 +42,7 @@ namespace Player {
 
                     _explosionShockwaveEmMod.enabled = true;
                     explosionShockWavePs.Play();
-                    
+
                     _explosionStarted = true;
                 }
             }
@@ -69,7 +73,7 @@ namespace Player {
             }
 
             if (_triggerMenu) {
-                Debug.Log("Menu triggered");
+                _gameOverMenu.ToggleGameOver();
             }
         }
     }

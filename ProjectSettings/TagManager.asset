@@ -27,6 +27,7 @@ TagManager:
   - NukeAoeGhost
   - TankNukeShell
   - TankNukeShellEntity
+  - Menu
   layers:
   - Default
   - TransparentFX

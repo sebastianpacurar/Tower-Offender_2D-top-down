@@ -185,6 +185,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""1f560eb6-0bdc-4287-aa17-8538e4704970"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -231,6 +240,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""FourthWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ffec99a-6bb8-463c-b7e6-3196ec0cd091"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -265,6 +285,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_UI_SecondWeapon = m_UI.FindAction("SecondWeapon", throwIfNotFound: true);
         m_UI_ThirdWeapon = m_UI.FindAction("ThirdWeapon", throwIfNotFound: true);
         m_UI_FourthWeapon = m_UI.FindAction("FourthWeapon", throwIfNotFound: true);
+        m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -377,6 +398,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_SecondWeapon;
     private readonly InputAction m_UI_ThirdWeapon;
     private readonly InputAction m_UI_FourthWeapon;
+    private readonly InputAction m_UI_Pause;
     public struct UIActions
     {
         private @PlayerControls m_Wrapper;
@@ -385,6 +407,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @SecondWeapon => m_Wrapper.m_UI_SecondWeapon;
         public InputAction @ThirdWeapon => m_Wrapper.m_UI_ThirdWeapon;
         public InputAction @FourthWeapon => m_Wrapper.m_UI_FourthWeapon;
+        public InputAction @Pause => m_Wrapper.m_UI_Pause;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -406,6 +429,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @FourthWeapon.started -= m_Wrapper.m_UIActionsCallbackInterface.OnFourthWeapon;
                 @FourthWeapon.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnFourthWeapon;
                 @FourthWeapon.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnFourthWeapon;
+                @Pause.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -422,6 +448,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @FourthWeapon.started += instance.OnFourthWeapon;
                 @FourthWeapon.performed += instance.OnFourthWeapon;
                 @FourthWeapon.canceled += instance.OnFourthWeapon;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -447,5 +476,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnSecondWeapon(InputAction.CallbackContext context);
         void OnThirdWeapon(InputAction.CallbackContext context);
         void OnFourthWeapon(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
