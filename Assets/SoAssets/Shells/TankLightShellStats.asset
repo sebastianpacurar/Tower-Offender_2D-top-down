@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: TankLightShellStats
   m_EditorClassIdentifier: 
   speed: 12.5
-  timeToLive: 2
   damage: 1
-  ammo: 250
-  aoeEffectDuration: 0
-  shellColor: {r: 1, g: 0.5019608, b: 0, a: 1}
+  ammo: 99999
   aoeRadius: 0
+  aoeEffectDuration: 0
+  hoverArrowColor: {r: 0, g: 0, b: 0, a: 0}

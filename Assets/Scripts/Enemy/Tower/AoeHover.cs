@@ -26,6 +26,7 @@ namespace Enemy.Tower {
         private Vector3 _containerInitialPos;
         private bool _isHovered;
         private float _nukeIconRotZ;
+        private Coroutine moveHoverIcons;
 
         private void Awake() {
             _towerHpManager = GetComponent<TowerHpManager>();
@@ -38,13 +39,14 @@ namespace Enemy.Tower {
             _nukeIcon = hoverIconsContainer.transform.Find("NukeIcon").gameObject;
 
             _containerInitialPos = hoverIconsContainer.transform.position;
-            StartCoroutine(SwapEmpLightningIcon());
+            moveHoverIcons = StartCoroutine(SwapEmpLightningIcon());
         }
 
         private void Update() {
             if (!hoverIconsContainer) return;
 
             if (_towerHpManager.IsDead) {
+                StopCoroutine(moveHoverIcons);
                 Destroy(hoverIconsContainer);
                 return;
             }
@@ -54,26 +56,24 @@ namespace Enemy.Tower {
         }
 
         private void OnTriggerStay2D(Collider2D col) {
-            if (_towerHpManager.IsDead) return;
+            if (CompareTag("TowerObj")) {
+                if (col.gameObject.CompareTag("EmpAoeGhost")) {
+                    _empIcon.SetActive(true);
+                    _arrowSr.enabled = true;
+                    _arrowSr.color = tankStatsSo.EmpShellStatsSo.HoverArrowColor;
+                    _isHovered = true;
+                }
 
-            if (col.gameObject.CompareTag("EmpAoeGhost")) {
-                _empIcon.SetActive(true);
-                _arrowSr.enabled = true;
-                _arrowSr.color = tankStatsSo.EmpShellStatsSo.HoverArrowColor;
-                _isHovered = true;
-            }
-
-            if (col.gameObject.CompareTag("NukeAoeGhost")) {
-                _nukeIcon.SetActive(true);
-                _arrowSr.enabled = true;
-                _arrowSr.color = tankStatsSo.NukeShellStatsSo.HoverArrowColor;
-                _isHovered = true;
+                if (col.gameObject.CompareTag("NukeAoeGhost")) {
+                    _nukeIcon.SetActive(true);
+                    _arrowSr.enabled = true;
+                    _arrowSr.color = tankStatsSo.NukeShellStatsSo.HoverArrowColor;
+                    _isHovered = true;
+                }
             }
         }
 
         private void OnTriggerExit2D(Collider2D col) {
-            if (_towerHpManager.IsDead) return;
-
             if (col.gameObject.CompareTag("EmpAoeGhost") || col.gameObject.CompareTag("NukeAoeGhost")) {
                 _empIcon.SetActive(false);
                 _nukeIcon.SetActive(false);

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   damage: 5
-  ammo: 20
+  ammo: 1
   aoeRadius: 0
   aoeEffectDuration: 0
+  hoverArrowColor: {r: 0, g: 0, b: 0, a: 0}

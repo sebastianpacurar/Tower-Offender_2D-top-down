@@ -14,7 +14,7 @@ namespace Player {
         private Rigidbody2D _tankRb;
         private AimController _aimController;
         private TankController _tankController;
-        private Shoot _shoot;
+        private ShootController _shootController;
 
         private ParticleSystem.MainModule _damageMainMod;
         private ParticleSystem.EmissionModule _damageEmMod;
@@ -29,7 +29,7 @@ namespace Player {
             _tankRb = GetComponent<Rigidbody2D>();
             _aimController = GetComponent<AimController>();
             _tankController = GetComponent<TankController>();
-            _shoot = GetComponent<Shoot>();
+            _shootController = GetComponent<ShootController>();
 
             damagePs.Play();
         }
@@ -74,7 +74,7 @@ namespace Player {
             _tankController.SetTrackAnimationTo(false);
             _tankController.enabled = false;
             _aimController.enabled = false;
-            _shoot.enabled = false;
+            _shootController.enabled = false;
             _damageEmMod.enabled = false;
         }
     }

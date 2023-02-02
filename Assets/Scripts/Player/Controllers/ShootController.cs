@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Player.Controllers {
-    public class Shoot : MonoBehaviour {
+    public class ShootController : MonoBehaviour {
         private PlayerControls _controls;
         public float LightShellCdTimer { get; private set; }
         public bool CanFireEmpShell { get; private set; } = true;
@@ -77,7 +77,6 @@ namespace Player.Controllers {
         private void ShootShell(InputAction.CallbackContext ctx) {
             var selectedShell = _inGameMenu.SelectedShell;
             if (CanFireLightShell && selectedShell.CompareTag("TankLightShell")) {
-                _ammoManager.LightShellAmmo -= 1;
                 CanFireLightShell = false;
                 shootAnimationPoint.SetBool(IsShooting, true);
                 var lightShell = Instantiate(selectedShell, turretEdge.transform.position, Quaternion.identity, shellsContainer.transform);

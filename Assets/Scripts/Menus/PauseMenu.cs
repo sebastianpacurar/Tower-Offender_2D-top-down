@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 namespace Menus {
     public class PauseMenu : MonoBehaviour {
+        [SerializeField] private GameObject panel;
         private PlayerControls _controls;
         private AimController _aimController;
-        private Shoot _shootController;
-        [SerializeField] private GameObject panel;
+        private ShootController _shootController;
+
+        private InGameMenu _inGameMenu;
+
 
         private void Awake() {
             _controls = new PlayerControls();
@@ -17,10 +20,12 @@ namespace Menus {
         private void Start() {
             var tank = GameObject.FindGameObjectWithTag("Player");
             _aimController = tank.GetComponent<AimController>();
-            _shootController = tank.GetComponent<Shoot>();
+            _shootController = tank.GetComponent<ShootController>();
+            _inGameMenu = GameObject.FindGameObjectWithTag("GameUI").GetComponent<InGameMenu>();
         }
 
         private void PauseMenuActivate() {
+            Cursor.visible = !_inGameMenu.SelectedShell.CompareTag("TankLightShell");
             Time.timeScale = 0;
             _aimController.enabled = false;
             _shootController.enabled = false;
@@ -28,6 +33,7 @@ namespace Menus {
         }
 
         public void PauseMenuDeactivate() {
+            Cursor.visible = _inGameMenu.SelectedShell.CompareTag("TankLightShell");
             Time.timeScale = 1;
             _aimController.enabled = true;
             _shootController.enabled = true;
@@ -35,6 +41,7 @@ namespace Menus {
         }
 
         public void GoToMainMenu() {
+            Cursor.visible = true;
             Time.timeScale = 1;
             SceneManager.LoadScene("MainMenu");
         }
