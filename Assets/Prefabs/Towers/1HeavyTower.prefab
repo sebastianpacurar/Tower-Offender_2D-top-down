@@ -119,5 +119,13 @@ PrefabInstance:
       propertyPath: m_TagString
       value: HomingShell
       objectReference: {fileID: 0}
+    - target: {fileID: 9110381117414502572, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0.10090183
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110381117414502572, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.08974372
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}

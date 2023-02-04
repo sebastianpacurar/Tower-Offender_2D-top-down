@@ -7,12 +7,15 @@ using UnityEngine.UI;
 namespace Player.Canvas {
     public class CooldownCanvas : MonoBehaviour {
         [SerializeField] private TankStatsSo tankStatsSo;
-        [SerializeField] private Image tankShellImgBar, empShellImgBar, sniperShellImgBar, nukeShellImgBar;
-        [SerializeField] private TextMeshProUGUI empReloadPercentage, sniperReloadPercentage, nukeReloadPercentage;
+        [SerializeField] private Image tankShellImgBar, empShellImgBar, sniperShellImgBar, nukeShellImgBar, speedBoostImgBar;
+        [SerializeField] private TextMeshProUGUI empReloadPercentage, sniperReloadPercentage, nukeReloadPercentage, speedBoostPercentage;
         private ShootController _shootController;
+        private TankController _tankController;
 
         private void Start() {
-            _shootController = GameObject.FindGameObjectWithTag("Player").GetComponent<ShootController>();
+            var tank = GameObject.FindGameObjectWithTag("Player");
+            _shootController = tank.GetComponent<ShootController>();
+            _tankController = tank.GetComponent<TankController>();
         }
 
         private void Update() {
@@ -20,6 +23,7 @@ namespace Player.Canvas {
             UpdateEmpShellCd();
             UpdateSniperShellCd();
             UpdateNukeShellCd();
+            UpdateSpeedBoostCd();
         }
 
         private void UpdateTankShellCd() {
@@ -42,6 +46,12 @@ namespace Player.Canvas {
             var currentProgress = _shootController.NukeShellCdTimer / tankStatsSo.NukeShellReloadTime;
             nukeShellImgBar.fillAmount = _shootController.CanFireNukeShell ? 0.125f : currentProgress * 0.125f;
             nukeReloadPercentage.text = _shootController.CanFireNukeShell ? "100%" : $"{(int)(currentProgress * 100)}%";
+        }
+
+        private void UpdateSpeedBoostCd() {
+            var currentProgress = _tankController.SpeedBoostVal / tankStatsSo.SpeedBoostCapacity;
+            speedBoostImgBar.fillAmount = currentProgress;
+            speedBoostPercentage.text = $"{(int)(currentProgress * 100)}%";
         }
     }
 }

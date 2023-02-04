@@ -21,9 +21,15 @@ namespace Menus {
         private CircleCollider2D _empAoeGhostCircle, _nukeAoeGhostCircle;
         private SpriteRenderer _empAoeCircleRadiusSr, _nukeAoeCircleRadiusSr;
         private ShootController _shootController;
-        private Color _unavailableColor = new(0.75f, 0f, 0f, 1f);
-        private Color _unselectedColor = new(0.75f, 0.75f, 0f, 1f);
-        private Color _selectedColor = new(0f, 0.75f, 0f, 1f);
+
+        private readonly Color _unavailableColor = new(0.75f, 0f, 0f, 1f);
+        private readonly Color _unselectedColor = new(0.75f, 0.75f, 0f, 1f);
+        private readonly Color _selectedColor = new(0f, 0.75f, 0f, 1f);
+
+        private const string LightShellTag = "TankLightShell";
+        private const string EmpShellTag = "TankEmpShellEntity";
+        private const string SniperShellTag = "TankSniperShell";
+        private const string NukeShellTag = "TankNukeShellEntity";
 
 
         private void Awake() {
@@ -85,27 +91,36 @@ namespace Menus {
             PerformWeaponSwitch(shellPrefabs[3]);
         }
 
+        //in case the current selected shell's ammo reaches 0, switch to LightShell (which has infinite ammo)
+        // this method gets called in the ShootController.cs
+        public void AutoSwitchToLightShellIfNoAmmo(GameObject obj) {
+            if ((obj.CompareTag(EmpShellTag) && _ammoManager.EmpShellAmmo == 0) || (obj.CompareTag(SniperShellTag) && _ammoManager.SniperShellAmmo == 0) || (obj.CompareTag(NukeShellTag) && _ammoManager.NukeShellAmmo == 0)) {
+                PerformWeaponSwitch(shellPrefabs[0]);
+            }
+        }
+
         private void PerformWeaponSwitch(GameObject nextShell) {
-            if (SelectedShell.CompareTag(nextShell.tag)) return;
+            // abort in case of same shell selection, or if left mouse button is pressed when firing light shells (auto shoot is on) 
+            if (SelectedShell.CompareTag(nextShell.tag) || _shootController.IsAutoShootOn) return;
 
             // current shell
             switch (SelectedShell.tag) {
-                case "TankLightShell":
+                case LightShellTag:
                     weaponImages[0].color = _unselectedColor;
                     _lightShellGhost.transform.Find("Cursor").gameObject.SetActive(false);
                     _lightShellGhost.transform.Find("CircleRadiusArea").gameObject.SetActive(false);
                     _lightShellGhost.GetComponent<CircleCollider2D>().enabled = false;
                     break;
-                case "TankEmpShellEntity":
+                case EmpShellTag:
                     weaponImages[1].color = _ammoManager.EmpShellAmmo > 0 ? _unselectedColor : _unavailableColor;
                     _empAoeGhostCircle.enabled = false;
                     _empAoeGhost.transform.Find("CircleRadiusArea").gameObject.SetActive(false);
                     break;
-                case "TankSniperShell":
+                case SniperShellTag:
                     weaponImages[2].color = _ammoManager.SniperShellAmmo > 0 ? _unselectedColor : _unavailableColor;
                     _sniperShellGhost.transform.Find("Cursor").gameObject.SetActive(false);
                     break;
-                case "TankNukeShellEntity":
+                case NukeShellTag:
                     weaponImages[3].color = _ammoManager.NukeShellAmmo > 0 ? _unselectedColor : _unavailableColor;
                     _nukeAoeGhostCircle.enabled = false;
                     _nukeAoeGhost.transform.Find("CircleRadiusArea").gameObject.SetActive(false);
@@ -114,7 +129,7 @@ namespace Menus {
 
             // target shell
             switch (nextShell.tag) {
-                case "TankLightShell":
+                case LightShellTag:
                     Cursor.visible = true;
                     SelectedShell = shellPrefabs[0];
                     weaponImages[0].color = _selectedColor;
@@ -122,7 +137,7 @@ namespace Menus {
                     _lightShellGhost.transform.Find("CircleRadiusArea").gameObject.SetActive(true);
                     _lightShellGhost.GetComponent<CircleCollider2D>().enabled = true;
                     break;
-                case "TankEmpShellEntity":
+                case EmpShellTag:
                     if (_ammoManager.EmpShellAmmo == 0) return;
                     Cursor.visible = false;
                     SelectedShell = shellPrefabs[1];
@@ -130,14 +145,14 @@ namespace Menus {
                     _empAoeGhostCircle.enabled = true;
                     _empAoeGhost.transform.Find("CircleRadiusArea").gameObject.SetActive(true);
                     break;
-                case "TankSniperShell":
+                case SniperShellTag:
                     if (_ammoManager.SniperShellAmmo == 0) return;
                     Cursor.visible = false;
                     SelectedShell = shellPrefabs[2];
                     weaponImages[2].color = _selectedColor;
                     _sniperShellGhost.transform.Find("Cursor").gameObject.SetActive(true);
                     break;
-                case "TankNukeShellEntity":
+                case NukeShellTag:
                     if (_ammoManager.NukeShellAmmo == 0) return;
                     Cursor.visible = false;
                     SelectedShell = shellPrefabs[3];
@@ -147,9 +162,6 @@ namespace Menus {
                     break;
             }
         }
-
-        //TODO: fix this in case there is no more ammo, switch to light shell
-        private void AutoSwitchToLightShell(GameObject gameObject) { }
 
         private void OnEnable() {
             _controls.UI.FirstWeapon.Enable();

@@ -56,6 +56,7 @@ namespace Enemy.Tower {
         }
 
         private void OnTriggerStay2D(Collider2D col) {
+            if (_towerHpManager.IsDead) return;
             if (CompareTag("TowerObj")) {
                 if (col.gameObject.CompareTag("EmpAoeGhost")) {
                     _empIcon.SetActive(true);
@@ -74,6 +75,7 @@ namespace Enemy.Tower {
         }
 
         private void OnTriggerExit2D(Collider2D col) {
+            if (_towerHpManager.IsDead) return;
             if (col.gameObject.CompareTag("EmpAoeGhost") || col.gameObject.CompareTag("NukeAoeGhost")) {
                 _empIcon.SetActive(false);
                 _nukeIcon.SetActive(false);

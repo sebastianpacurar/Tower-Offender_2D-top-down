@@ -53,6 +53,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpeedBoost"",
+                    ""type"": ""Button"",
+                    ""id"": ""1c541686-3a1c-45bd-98c4-b5679a20d5ba"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -135,12 +144,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4948ab3e-327f-4b1f-abf8-324d99f6fb9c"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""id"": ""ec423ba2-0c68-481b-a006-5d0914345671"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Shoot"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SpeedBoost"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -279,6 +288,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Steer = m_Player.FindAction("Steer", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+        m_Player_SpeedBoost = m_Player.FindAction("SpeedBoost", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_FirstWeapon = m_UI.FindAction("FirstWeapon", throwIfNotFound: true);
@@ -348,6 +358,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Steer;
     private readonly InputAction m_Player_Shoot;
+    private readonly InputAction m_Player_SpeedBoost;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -355,6 +366,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Steer => m_Wrapper.m_Player_Steer;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
+        public InputAction @SpeedBoost => m_Wrapper.m_Player_SpeedBoost;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -373,6 +385,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                @SpeedBoost.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpeedBoost;
+                @SpeedBoost.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpeedBoost;
+                @SpeedBoost.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpeedBoost;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -386,6 +401,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @SpeedBoost.started += instance.OnSpeedBoost;
+                @SpeedBoost.performed += instance.OnSpeedBoost;
+                @SpeedBoost.canceled += instance.OnSpeedBoost;
             }
         }
     }
@@ -469,6 +487,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnSteer(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnSpeedBoost(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

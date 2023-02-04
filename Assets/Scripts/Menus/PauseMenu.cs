@@ -25,7 +25,7 @@ namespace Menus {
         }
 
         private void PauseMenuActivate() {
-            Cursor.visible = !_inGameMenu.SelectedShell.CompareTag("TankLightShell");
+            Cursor.visible = true;
             Time.timeScale = 0;
             _aimController.enabled = false;
             _shootController.enabled = false;

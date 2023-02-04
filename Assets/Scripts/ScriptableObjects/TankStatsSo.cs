@@ -14,10 +14,12 @@ namespace ScriptableObjects {
         [SerializeField] private float driftFactor;
         [SerializeField] private float maxSpeed;
 
-        public float AccFactor => accFactor;
-        public float SteerFactor => steerFactor;
-        public float DriftFactor => driftFactor;
-        public float MaxSpeed => maxSpeed;
+        [Space(10)]
+        [SerializeField] private float maxSpeedBoostVal;
+
+        [SerializeField] private float speedBoostCapacity;
+        [SerializeField] private float speedBoostFillUnit;
+        [SerializeField] private float speedBoostAccFactor;
 
 
         [Space(20)]
@@ -40,5 +42,14 @@ namespace ScriptableObjects {
         public float EmpShellReloadTime => empShellReloadTime;
         public float SniperShellReloadTime => sniperShellReloadTime;
         public float NukeShellReloadTime => nukeShellReloadTime;
+
+        public float AccFactor => accFactor;
+        public float SteerFactor => steerFactor;
+        public float DriftFactor => driftFactor;
+        public float MaxSpeed => maxSpeed;
+        public float MaxSpeedBoostVal => maxSpeedBoostVal;
+        public float SpeedBoostCapacity => speedBoostCapacity;
+        public float SpeedBoostFillUnit => speedBoostFillUnit;
+        public float SpeedBoostAccFactor => speedBoostAccFactor;
     }
 }
