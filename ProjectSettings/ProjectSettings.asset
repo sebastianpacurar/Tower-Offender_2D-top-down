@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: seby_pacu
   productName: Tank - Tower Offender
-  defaultCursor: {fileID: 0}
+  defaultCursor: {fileID: 2800000, guid: 27f1a5453c3ea05f38888a0be7e30d56, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
@@ -134,7 +134,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.1
+  bundleVersion: 0.2
   preloadedAssets:
   - {fileID: 11400000, guid: 88021f28d033f9adcb56c09f183704c2, type: 2}
   metroInputSource: 0
