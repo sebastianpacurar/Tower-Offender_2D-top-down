@@ -7,6 +7,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 540339249, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.469
+      objectReference: {fileID: 0}
+    - target: {fileID: 540339250, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 540339250, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.11707889
+      objectReference: {fileID: 0}
+    - target: {fileID: 540339250, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 540339250, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
+      propertyPath: m_FalloffIntensity
+      value: 0.457
+      objectReference: {fileID: 0}
+    - target: {fileID: 540339250, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
+      propertyPath: m_PointLightInnerAngle
+      value: 35.5218
+      objectReference: {fileID: 0}
+    - target: {fileID: 540339250, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
+      propertyPath: m_PointLightOuterAngle
+      value: 105.54079
+      objectReference: {fileID: 0}
+    - target: {fileID: 540339250, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 540339250, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1084552789634938436, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: m_Size.x
       value: 0.21697617
@@ -37,11 +73,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1854506223192595660, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.5347194
       objectReference: {fileID: 0}
     - target: {fileID: 1854506223192595660, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -17.893476
       objectReference: {fileID: 0}
     - target: {fileID: 1854506223192595660, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -125,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7182659678604302748, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7182659678604302748, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b

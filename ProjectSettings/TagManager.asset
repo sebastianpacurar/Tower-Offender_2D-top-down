@@ -62,6 +62,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Terrain
+    uniqueID: 1264212369
+    locked: 0
+  - name: MapTile
+    uniqueID: 2067458737
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 1702405961
     locked: 0
