@@ -6,7 +6,6 @@ using UnityEngine;
 namespace Enemy.Tower {
     public class AoeHover : MonoBehaviour {
         [SerializeField] private TankStatsSo tankStatsSo;
-        [SerializeField] private SpriteRenderer body;
         [SerializeField] private SpriteRenderer turret;
         [SerializeField] private GameObject hoverIconsContainer;
 
@@ -102,12 +101,12 @@ namespace Enemy.Tower {
 
         private void HandleTowerHoverTransparency() {
             if (_isHovered) {
-                body.color = Color.Lerp(new Color(0.75f, 0.75f, 0.75f, 0.75f), new Color(0.25f, 0.25f, 0.25f, 0.25f), Mathf.PingPong(Time.time, 0.5f));
+                // body.color = Color.Lerp(new Color(0.75f, 0.75f, 0.75f, 0.75f), new Color(0.25f, 0.25f, 0.25f, 0.25f), Mathf.PingPong(Time.time, 0.5f));
                 if (!_towerHpManager.IsDead) {
                     turret.color = Color.Lerp(new Color(0.75f, 0.75f, 0.75f, 0.75f), new Color(0.25f, 0.25f, 0.25f, 0.25f), Mathf.PingPong(Time.time, 0.5f));
                 }
             } else {
-                body.color = new Color(1f, 1f, 1f, 1f);
+                // body.color = new Color(1f, 1f, 1f, 1f);
                 if (!_towerHpManager.IsDead) {
                     turret.color = new Color(1f, 1f, 1f, 1f);
                 }
