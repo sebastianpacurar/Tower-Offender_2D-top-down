@@ -71,6 +71,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: AoeArea
+    uniqueID: 963712993
+    locked: 0
+  - name: Particles
+    uniqueID: 2827226215
+    locked: 0
   - name: UI
     uniqueID: 1702405961
     locked: 0

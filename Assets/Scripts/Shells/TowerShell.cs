@@ -50,6 +50,8 @@ namespace Shells {
         }
 
         private void Update() {
+            
+            // if Homing Shell then also apply rotation towards the player
             if (!CompareTag("HomingShell")) return;
 
             var direction = _tankPos.position - transform.position;

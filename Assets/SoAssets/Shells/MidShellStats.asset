@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519d685e130d3aa0a9d0662cb76e6884, type: 3}
   m_Name: MidShellStats
   m_EditorClassIdentifier: 
-  sideShellsSpeed: 20
-  middleShellSpeed: 22.5
+  sideShellsSpeed: 10
+  middleShellSpeed: 12.5
   timeToLive: 0
   damage: 5

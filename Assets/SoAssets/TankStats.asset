@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: TankStats
   m_EditorClassIdentifier: 
   maxHp: 750
-  accFactor: 10
+  accFactor: 7.5
   steerFactor: 3.5
   driftFactor: 0
-  maxSpeed: 6
+  maxSpeed: 5
   maxSpeedBoostVal: 9
   speedBoostCapacity: 100
   speedBoostFillUnit: 0.1

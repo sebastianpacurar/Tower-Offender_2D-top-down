@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9babb265024df8d3b3245d283ade202, type: 3}
   m_Name: TankEmpShellStats
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
   damage: 0
-  ammo: 5
-  aoeRadius: 8
+  ammo: 2
+  aoeRadius: 4
   aoeEffectDuration: 3
   hoverArrowColor: {r: 0, g: 0.7490196, b: 0.5019608, a: 1}

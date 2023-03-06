@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e98a5bb5cdbbcdbb6ddd27ab9ba05b, type: 3}
+  m_Name: YellowWallLife
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: 37bcdc62b498411138a5ada667d2618a, type: 2}
+  - {fileID: 11400000, guid: ec949e00f845e4c6ea6d5fa22a8f6492, type: 2}
+  - {fileID: 11400000, guid: 26729d6872b394639aa10e1d9b94ca25, type: 2}
+  - {fileID: 11400000, guid: c8aa35947eb24e0b789e031c5053be71, type: 2}
+  - {fileID: 11400000, guid: 23df9eaf1e195fd02b1adf5205c24ed5, type: 2}
+  - {fileID: 11400000, guid: 18f905730b5ef265facc6c80c997efaf, type: 2}
+  life: 1

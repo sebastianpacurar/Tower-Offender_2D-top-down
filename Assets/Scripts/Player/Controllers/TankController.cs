@@ -25,11 +25,9 @@ namespace Player.Controllers {
 
         [Header("Physics related")]
         [SerializeField] private float accFactor;
-
         [SerializeField] private float steerFactor;
         [SerializeField] private float driftFactor;
         [SerializeField] private float maxSpeed;
-
         [SerializeField] private Vector2 engineForce;
         [SerializeField] private float opposingForce; // if negative then apply breaks
 
@@ -38,13 +36,11 @@ namespace Player.Controllers {
 
         [Header("For Debugging Purposes")]
         [SerializeField] private float rigidBodyDrag;
-
         [SerializeField] private Vector3 forwardVelocity;
         [SerializeField] private Vector3 rightVelocity;
 
         [Space(20)]
         [SerializeField] private GameObject exhaustBack;
-
         [SerializeField] private GameObject exhaustFront;
 
 
@@ -95,6 +91,7 @@ namespace Player.Controllers {
         private IEnumerator HandleSpeedBoostPositiveValue() {
             while (true) {
                 yield return new WaitForSeconds(0.025f);
+
                 if (SpeedBoostVal < tankStatsSo.SpeedBoostCapacity) {
                     SpeedBoostVal += tankStatsSo.SpeedBoostFillUnit;
                 } else if (SpeedBoostVal > tankStatsSo.SpeedBoostCapacity) {
@@ -111,6 +108,7 @@ namespace Player.Controllers {
             if (_isSpeeding) {
                 accFactor = tankStatsSo.SpeedBoostAccFactor;
                 maxSpeed = tankStatsSo.MaxSpeedBoostVal;
+
                 switch (_move) {
                     case > 0: {
                         exhaustBack.SetActive(true);
@@ -188,6 +186,7 @@ namespace Player.Controllers {
                     } else {
                         _isSpeeding = false;
                     }
+
                     break;
                 case InputActionPhase.Canceled:
                     _isSpeeding = false;
@@ -207,6 +206,7 @@ namespace Player.Controllers {
 
         private void HandleEngineBreaks() {
             opposingForce = Vector2.Dot(_rb.velocity, engineForce);
+
             if (_move == 0f) {
                 _rb.drag = Mathf.Lerp(_rb.drag, 2.0f, Time.fixedDeltaTime * 3); // apply Engine Breaks
                 accFactor = tankStatsSo.AccFactor;

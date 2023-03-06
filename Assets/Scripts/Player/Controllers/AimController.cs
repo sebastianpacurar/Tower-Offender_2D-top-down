@@ -37,14 +37,15 @@ namespace Player.Controllers {
             _sniperShellFurthestPoint = pos + direction.normalized * 200f;
             sniperShellGhost.transform.position = AimVal;
 
-            _lightShellFurthestPoint = pos + direction.normalized * 12.5f;
+            _lightShellFurthestPoint = pos + direction.normalized * 6.25f;
             empAoeGhost.transform.position = AimVal;
             nukeAoeGhost.transform.position = AimVal;
 
             // set the shellGhost on top of the collider circle if mouse is outside of the surrounding circle
             //  if mouse is inside the collider circle, then render shellGhost on the Mouse's position
             var mouseDistanceFromHull = Vector2.Distance(AimVal, hullPosition);
-            if (mouseDistanceFromHull > 12.5f) {
+
+            if (mouseDistanceFromHull > 6.25f) {
                 lightShellGhost.transform.position = _lightShellFurthestPoint;
             } else {
                 lightShellGhost.transform.position = AimVal;

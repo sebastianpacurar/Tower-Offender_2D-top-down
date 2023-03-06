@@ -18,6 +18,7 @@ namespace Shells.Tank {
                 _circleCollider2D.radius = tankStatsSo.EmpShellStatsSo.AoeRadius * 0.81f;
                 circleRadiusArea.localScale = new Vector3(tankStatsSo.EmpShellStatsSo.AoeRadius + offset, tankStatsSo.EmpShellStatsSo.AoeRadius + offset, 1f);
                 circleRadiusArea.gameObject.SetActive(false);
+                circleRadiusArea.transform.parent.Find("AoeHitArea").gameObject.SetActive(false);
             } else if (name.StartsWith("Nuke")) {
                 // applies for regular filled circle sprite
                 _circleCollider2D.radius = tankStatsSo.NukeShellStatsSo.AoeRadius;

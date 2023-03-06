@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae4dd7d392c70d2b924182eac75a5e4, type: 3}
   m_Name: 3LightTowerStats
   m_EditorClassIdentifier: 
-  range: 13
+  range: 6.5
   shellPrefab: {fileID: 8386739451392137646, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
   secondsBetweenShooting: 0.5
   maxHp: 7

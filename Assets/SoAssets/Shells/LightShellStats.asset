@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519d685e130d3aa0a9d0662cb76e6884, type: 3}
   m_Name: LightShellStats
   m_EditorClassIdentifier: 
-  sideShellsSpeed: 17.5
-  middleShellSpeed: 20
+  sideShellsSpeed: 12
+  middleShellSpeed: 15
   timeToLive: 0
   damage: 0.5

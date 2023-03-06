@@ -8,7 +8,8 @@ namespace Enemy.Tower.Hp {
         [SerializeField] private TankShellStatsSo empShellStats;
         [SerializeField] private Canvas canvas;
         [SerializeField] private GameObject towerObj;
-        [SerializeField] private Image hpGreenBar, fireCdBar, powerOffFilledBar, lightningIcon;
+        [SerializeField] private GameObject powerOffCdObj;
+        [SerializeField] private Image hpGreenBar, powerOffCdBar;
 
         private TurretController _turretController;
         private Camera _mainCam;
@@ -21,20 +22,24 @@ namespace Enemy.Tower.Hp {
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             canvas.renderMode = RenderMode.WorldSpace;
             canvas.worldCamera = _mainCam;
-            powerOffFilledBar.fillAmount = 0f;
         }
 
         private void Update() {
             transform.position = towerObj.transform.position;
             hpGreenBar.fillAmount = _towerHpManager.TowerHealthPoints / towerStatsSo.MaxHp;
-            fireCdBar.fillAmount = _turretController.ShootTimer / towerStatsSo.SecondsBetweenShooting;
 
             if (!_turretController.IsPowerOff) {
-                powerOffFilledBar.fillAmount = 1f;
-                lightningIcon.color = Color.yellow;
+                powerOffCdBar.fillAmount = 0f;
+
+                if (powerOffCdObj.activeSelf) {
+                    powerOffCdObj.SetActive(false);
+                }
             } else {
-                powerOffFilledBar.fillAmount = _turretController.PowerOffTimer / empShellStats.AoeEffectDuration;
-                lightningIcon.color = Color.red;
+                powerOffCdBar.fillAmount = _turretController.PowerOffTimer / empShellStats.AoeEffectDuration;
+
+                if (!powerOffCdObj.activeSelf) {
+                    powerOffCdObj.SetActive(true);
+                }
             }
         }
     }
