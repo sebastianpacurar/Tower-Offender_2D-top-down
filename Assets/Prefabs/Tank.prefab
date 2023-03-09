@@ -1351,7 +1351,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774008497503437884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.313, z: 0}
+  m_LocalPosition: {x: 0, y: 0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1689,7 +1689,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1981674769691150231}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.789, z: 0}
+  m_LocalPosition: {x: 0, y: 0.4367, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1865,10 +1865,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankStatsSo: {fileID: 11400000, guid: 4a8f37d34b956f000b7c883bd955b800, type: 2}
-  accFactor: 3
-  steerFactor: 3.5
+  accFactor: 2.5
+  steerFactor: 3
   driftFactor: 0
-  maxSpeed: 4
+  maxSpeed: 3
   engineForce: {x: 0, y: 0}
   opposingForce: 0
   tankTracks:
@@ -1915,6 +1915,15 @@ MonoBehaviour:
   turretEdge: {fileID: 1981674769691150231}
   shellsContainer: {fileID: 1502260699}
   shootAnimationPoint: {fileID: 943399738725614314}
+  lightShellCdTimer: 0
+  canFireLightShell: 0
+  sniperShellCdTimer: 0
+  canFireSniperShell: 0
+  distanceBetweenTankAndMouse: 0
+  empShellCdTimer: 0
+  canFireEmpShell: 0
+  nukeShellCdTimer: 0
+  canFireNukeShell: 0
 --- !u!114 &3394351873242548359
 MonoBehaviour:
   m_ObjectHideFlags: 0

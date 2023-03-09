@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: TankStats
   m_EditorClassIdentifier: 
   maxHp: 750
-  accFactor: 7.5
-  steerFactor: 3.5
+  accFactor: 4
+  steerFactor: 3
   driftFactor: 0
-  maxSpeed: 5
+  maxSpeed: 3.25
   maxSpeedBoostVal: 9
   speedBoostCapacity: 100
   speedBoostFillUnit: 0.1
-  speedBoostAccFactor: 15
+  speedBoostAccFactor: 10
   lightShellStatsSo: {fileID: 11400000, guid: fd317d3d09831c0bf8b4dbdf51d81037, type: 2}
   empShellStatsSo: {fileID: 11400000, guid: 6cf65be9ec689712594054171afcd509, type: 2}
   sniperShellStatsSo: {fileID: 11400000, guid: fcab7bc148adbf71fbe9291673952bb3, type: 2}

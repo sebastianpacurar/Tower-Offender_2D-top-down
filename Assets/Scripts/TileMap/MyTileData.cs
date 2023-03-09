@@ -1,8 +1,8 @@
 using UnityEngine.Tilemaps;
 
 namespace TileMap {
-    public class TileData {
-        public TileData(TileBase tile, int lives) {
+    public class MyTileData {
+        public MyTileData(TileBase tile, int lives) {
             Tile = tile;
             Lives = lives;
         }

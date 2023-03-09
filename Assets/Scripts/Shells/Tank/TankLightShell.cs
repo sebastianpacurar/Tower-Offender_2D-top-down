@@ -10,7 +10,7 @@ namespace Shells.Tank {
         private SpriteRenderer _sr;
         private Rigidbody2D _rb;
 
-        private ParticleSystem.EmissionModule _explosionEmMod, _trailEmMod;
+        private ParticleSystem.EmissionModule _explosionEmMod;
 
         private void Awake() {
             mapManager = FindObjectOfType<TileMapManager>();
@@ -22,34 +22,57 @@ namespace Shells.Tank {
 
         private void Start() {
             _explosionEmMod = explosionPs.emission;
-            _trailEmMod = trailPs.emission;
         }
 
-        private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.CompareTag("TowerObj") || col.gameObject.CompareTag("WorldBorder")) {
+        private void OnCollisionEnter2D(Collision2D col) {
+            if (col.gameObject.CompareTag("TowerObj") || col.gameObject.CompareTag("WorldBorder") || col.gameObject.CompareTag(tag)) {
                 DestroyShell();
             }
 
             if (col.gameObject.CompareTag("Wall")) {
-                // trigger the tile life checker
-                mapManager.HandleWallTileLife(transform.position);
-                DestroyShell();
+                var isChecked = false;
+
+                for (var i = 0; i < col.contacts.Length; i++) {
+                    var hit = col.GetContact(i);
+
+                    // if the hit area is the one related to this specific shell
+                    if (hit.otherRigidbody.Equals(_rb)) {
+                        // TODO: investigate this issue in more detail - why are there more than 1 iterations although the length is 1
+                        // avoid reiteration in case there are more contacts related to the same shell
+                        if (!isChecked) {
+                            isChecked = true;
+                            DisablePhysics();
+
+                            // calculate location of hit tile
+                            Vector2 hitPos;
+                            hitPos.x = hit.point.x - 0.01f * hit.normal.x;
+                            hitPos.y = hit.point.y - 0.01f * hit.normal.y;
+
+                            mapManager.HandleWallTileLife(hitPos);
+                            DestroyShell();
+                        }
+                    }
+                }
             }
         }
 
         private void OnTriggerExit2D(Collider2D col) {
             if (col.gameObject.CompareTag("LightShellGhost")) {
+                DisablePhysics();
                 DestroyShell();
             }
         }
 
-        private void DestroyShell() {
-            _rb.velocity = new Vector2(0, 0);
-            _explosionEmMod.enabled = true;
-            _trailEmMod.enabled = false;
+        // destroy Trail Particle System and halt all active physics 
+        private void DisablePhysics() {
+            trailPs.gameObject.SetActive(false);
+            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
 
-            _sr.enabled = false;
+        private void DestroyShell() {
+            _explosionEmMod.enabled = true;
             _capsuleCollider2D.enabled = false;
+            _sr.enabled = false;
 
             Invoke(nameof(DestroyObj), 0.5f);
         }

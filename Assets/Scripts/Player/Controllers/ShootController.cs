@@ -20,6 +20,8 @@ namespace Player.Controllers {
         [SerializeField] private float sniperShellCdTimer;
         [SerializeField] private bool canFireSniperShell;
 
+        [SerializeField] private float distanceBetweenTankAndMouse;
+
         [SerializeField] private float empShellCdTimer;
         public bool canFireEmpShell; // used in InGameMenu to disable the collider and dim the color of the circle range when reloading
 
@@ -29,12 +31,20 @@ namespace Player.Controllers {
         private InGameMenu _inGameMenu;
         private AmmoManager _ammoManager;
         private AimController _aimController;
+        private Camera _camera;
         private static readonly int IsShooting = Animator.StringToHash("IsShooting");
+
+        // prevent from shooting when mouse is too close to the tank
+        private float ValidateShootPoint() {
+            var mouseWorldPos = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            return Vector2.Distance(mouseWorldPos, transform.position);
+        }
 
         private void Awake() {
             _controls = new PlayerControls();
             _ammoManager = GetComponent<AmmoManager>();
             _aimController = GetComponent<AimController>();
+            _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         }
 
         private void Start() {
@@ -43,6 +53,7 @@ namespace Player.Controllers {
 
         private void Update() {
             HandleShellReload();
+            distanceBetweenTankAndMouse = ValidateShootPoint();
         }
 
         private void HandleShellReload() {
@@ -88,6 +99,9 @@ namespace Player.Controllers {
         public IEnumerator ShootLightShells() {
             while (true) {
                 yield return new WaitUntil(() => canFireLightShell);
+
+                // init only mouse is not hovering the tank collider + offset
+                if (!(distanceBetweenTankAndMouse >= 0.8f)) continue;
                 canFireLightShell = false;
                 shootAnimationPoint.SetBool(IsShooting, true);
                 var lightShell = Instantiate(_inGameMenu.SelectedShell, turretEdge.transform.position, Quaternion.identity, shellsContainer.transform);
