@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wall
-  - Tower
   - CM2D
   - WorldBorder
   - ShellTower
@@ -15,7 +14,6 @@ TagManager:
   - TankLightShell
   - TankEmpShell
   - TankEmpShellEntity
-  - TowerObj
   - TankSniperShell
   - SniperShellGhost
   - LightShellGhost
@@ -30,6 +28,7 @@ TagManager:
   - Menu
   - TurretObj
   - TowerTurretsTilemap
+  - BodyObj
   layers:
   - Default
   - TransparentFX

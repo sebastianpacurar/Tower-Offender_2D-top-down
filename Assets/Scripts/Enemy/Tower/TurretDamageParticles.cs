@@ -3,7 +3,7 @@ using ScriptableObjects;
 using UnityEngine;
 
 namespace Enemy.Tower {
-    public class DestroyTurret : MonoBehaviour {
+    public class TurretDamageParticles : MonoBehaviour {
         [SerializeField] private TurretStatsSo turretStatsSo;
         [SerializeField] private ParticleSystem smokeLight, smokeHeavy, smokeCritical;
         private ParticleSystem.EmissionModule _lightEm, _heavyEm, _criticalEm;

@@ -39,6 +39,10 @@ PrefabInstance:
       propertyPath: towerStatsSo
       value: 
       objectReference: {fileID: 11400000, guid: beccc113afa391aa684a15a820220f1f, type: 2}
+    - target: {fileID: 4474080852930012553, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
+      propertyPath: turretStatsSo
+      value: 
+      objectReference: {fileID: 11400000, guid: beccc113afa391aa684a15a820220f1f, type: 2}
     - target: {fileID: 4797237809901387513, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
       propertyPath: towerStatsSo
       value: 

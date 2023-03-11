@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2987760918087982939}
   - component: {fileID: 2987760918087982938}
   - component: {fileID: 2987760918087982940}
+  - component: {fileID: 1171663682387294922}
   m_Layer: 0
-  m_Name: LightBody
-  m_TagString: Untagged
+  m_Name: Body
+  m_TagString: BodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,3 +119,37 @@ MonoBehaviour:
   - {fileID: 1653200966, guid: 44cd308dcb0e4bd168793b197e07c5c2, type: 3}
   - {fileID: -99051158, guid: 44cd308dcb0e4bd168793b197e07c5c2, type: 3}
   - {fileID: -902111855, guid: 44cd308dcb0e4bd168793b197e07c5c2, type: 3}
+  turretPrefabs:
+  - {fileID: 8897720835073988838, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
+  - {fileID: 5962679113450754249, guid: bbce6a4c93d55397691003c8b58c6337, type: 3}
+  - {fileID: 2188831350383575737, guid: 1fdd029fdf2a53262a020cca00b9614d, type: 3}
+  - {fileID: 471490665370607210, guid: 37849d5be3841d3079eadabdb1b484fb, type: 3}
+  - {fileID: 8352020481702138088, guid: 70ed686082e224b1c94dc5dd69243a6a, type: 3}
+  - {fileID: 7154895581170572658, guid: 1b4950043b98c5492b3f49d341612623, type: 3}
+  - {fileID: 3535732803585239162, guid: b796b0beacc8f81ed9862e8017a850ff, type: 3}
+--- !u!61 &1171663682387294922
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2987760918087982937}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.001982212, y: 0.003963083}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.69484615, y: 0.6908832}
+  m_EdgeRadius: 0
