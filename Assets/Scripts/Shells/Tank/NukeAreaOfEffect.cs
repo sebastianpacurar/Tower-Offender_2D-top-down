@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Shells.Tank {
     public class NukeAreaOfEffect : MonoBehaviour {
         [SerializeField] private TankStatsSo tankStatsSo;
-        private TowerHpManager _towerHpManager;
+        private TurretHpManager _turretHpManager;
         private CircleCollider2D _circleCollider2D;
 
         private void Awake() {
@@ -18,10 +18,10 @@ namespace Shells.Tank {
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.CompareTag("TowerObj")) {
-                var tower = col.gameObject.GetComponent<TowerHpManager>();
-                if (!tower.IsDead) {
-                    tower.TowerHealthPoints -= tankStatsSo.NukeShellStatsSo.Damage;
+            if (col.gameObject.CompareTag("TurretObj")) {
+                var turret = col.gameObject.GetComponent<TurretHpManager>();
+                if (!turret.IsDead) {
+                    turret.TurretHealthPoints -= tankStatsSo.NukeShellStatsSo.Damage;
                 }
             }
         }

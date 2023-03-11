@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Shells.Tank {
     public class TankLightShell : MonoBehaviour {
         [SerializeField] private ParticleSystem explosionPs, trailPs;
-        private TileMapManager mapManager;
+        private WallTileManager mapManager;
 
         private CapsuleCollider2D _capsuleCollider2D;
         private SpriteRenderer _sr;
@@ -13,7 +13,7 @@ namespace Shells.Tank {
         private ParticleSystem.EmissionModule _explosionEmMod;
 
         private void Awake() {
-            mapManager = FindObjectOfType<TileMapManager>();
+            mapManager = FindObjectOfType<WallTileManager>();
 
             _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
@@ -25,7 +25,7 @@ namespace Shells.Tank {
         }
 
         private void OnCollisionEnter2D(Collision2D col) {
-            if (col.gameObject.CompareTag("TowerObj") || col.gameObject.CompareTag("WorldBorder") || col.gameObject.CompareTag(tag)) {
+            if (col.gameObject.CompareTag("TurretObj") || col.gameObject.CompareTag("WorldBorder") || col.gameObject.CompareTag(tag)) {
                 DestroyShell();
             }
 

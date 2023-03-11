@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Enemy.Tower {
     public class DestroyTurret : MonoBehaviour {
-        [SerializeField] private TowerStatsSo towerStatsSo;
+        [SerializeField] private TurretStatsSo turretStatsSo;
         [SerializeField] private ParticleSystem smokeLight, smokeHeavy, smokeCritical;
         private ParticleSystem.EmissionModule _lightEm, _heavyEm, _criticalEm;
-        private TowerHpManager _towerHpManager;
+        private TurretHpManager _turretHpManager;
         private Transform _tankPos;
 
         private void Awake() {
@@ -18,7 +18,7 @@ namespace Enemy.Tower {
 
         private void Start() {
             _tankPos = GameObject.FindGameObjectWithTag("Player").transform;
-            _towerHpManager = transform.parent.GetComponent<TowerHpManager>();
+            _turretHpManager = transform.parent.GetComponent<TurretHpManager>();
         }
 
         void Update() {
@@ -28,7 +28,7 @@ namespace Enemy.Tower {
             smokeHeavy.transform.rotation = Quaternion.Euler(0, 0, -rotZ);
             smokeCritical.transform.rotation = Quaternion.Euler(0, 0, -rotZ);
 
-            switch (_towerHpManager.TowerHealthPoints / towerStatsSo.MaxHp) {
+            switch (_turretHpManager.TurretHealthPoints / turretStatsSo.MaxHp) {
                 case > 0.7f and < 0.9f:
                     _lightEm.enabled = true;
                     break;

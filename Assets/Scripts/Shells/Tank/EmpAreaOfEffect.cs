@@ -17,7 +17,7 @@ namespace Shells.Tank {
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.CompareTag("TowerObj")) {
+            if (col.gameObject.CompareTag("TurretObj")) {
                 if (!col.gameObject.transform.Find("Turret")) return;
                 col.gameObject.transform.Find("Turret").GetComponent<TurretController>().IsPowerOff = true;
             }

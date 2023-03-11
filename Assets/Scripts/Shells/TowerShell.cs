@@ -33,10 +33,10 @@ namespace Shells {
 
             // in case the passing value is a multiShell game object
             if (!transform.parent.name.Equals("ShellsContainer")) {
-                _towerPosition = transform.parent.transform.parent.transform.parent.Find("TowerObj").gameObject.transform;
+                _towerPosition = transform.parent.transform.parent.transform.parent.Find("TurretObj").gameObject.transform;
                 _finalSpeed = name.Equals("MiddleShell") ? shellStatsSo.MiddleShellSpeed : shellStatsSo.SideShellsSpeed;
             } else {
-                _towerPosition = transform.parent.transform.parent.Find("TowerObj").gameObject.transform;
+                _towerPosition = transform.parent.transform.parent.Find("TurretObj").gameObject.transform;
                 _finalSpeed = shellStatsSo.SideShellsSpeed;
             }
 

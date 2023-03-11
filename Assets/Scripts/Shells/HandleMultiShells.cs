@@ -6,7 +6,7 @@ namespace Shells {
 
         private void Start() {
             _tankPos = GameObject.FindGameObjectWithTag("Player").transform;
-            _towerPos = transform.parent.transform.parent.Find("TowerObj").gameObject.transform;
+            _towerPos = transform.parent.transform.parent.Find("TurretObj").gameObject.transform;
 
             // rotate towards the tank
             var rotation = _tankPos.position - _towerPos.position;

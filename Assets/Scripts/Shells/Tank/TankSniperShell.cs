@@ -23,13 +23,13 @@ namespace Shells.Tank {
                 DestroyShell();
             }
 
-            if (col.gameObject.CompareTag("TowerObj")) {
+            if (col.gameObject.CompareTag("TurretObj")) {
                 _explosionEmMod.enabled = true;
             }
         }
 
         private void OnTriggerStay2D(Collider2D col) {
-            if (col.gameObject.CompareTag("TowerObj")) {
+            if (col.gameObject.CompareTag("TurretObj")) {
                 explosionPs.transform.position = col.gameObject.transform.position;
             }
         }

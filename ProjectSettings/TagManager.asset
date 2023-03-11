@@ -28,6 +28,8 @@ TagManager:
   - TankNukeShell
   - TankNukeShellEntity
   - Menu
+  - TurretObj
+  - TowerTurretsTilemap
   layers:
   - Default
   - TransparentFX

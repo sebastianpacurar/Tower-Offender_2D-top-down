@@ -21,14 +21,14 @@ namespace Enemy.Tower {
         private SpriteRenderer _arrowSr, _empLightningColor;
 
         private GameObject _arrow, _empIcon, _nukeIcon;
-        private TowerHpManager _towerHpManager;
+        private TurretHpManager _turretHpManager;
         private Vector3 _containerInitialPos;
         private bool _isHovered;
         private float _nukeIconRotZ;
         private Coroutine moveHoverIcons;
 
         private void Awake() {
-            _towerHpManager = GetComponent<TowerHpManager>();
+            _turretHpManager = GetComponent<TurretHpManager>();
         }
 
         private void Start() {
@@ -44,7 +44,7 @@ namespace Enemy.Tower {
         private void Update() {
             if (!hoverIconsContainer) return;
 
-            if (_towerHpManager.IsDead) {
+            if (_turretHpManager.IsDead) {
                 StopCoroutine(moveHoverIcons);
                 Destroy(hoverIconsContainer);
                 return;
@@ -55,8 +55,8 @@ namespace Enemy.Tower {
         }
 
         private void OnTriggerStay2D(Collider2D col) {
-            if (_towerHpManager.IsDead) return;
-            if (CompareTag("TowerObj")) {
+            if (_turretHpManager.IsDead) return;
+            if (CompareTag("TurretObj")) {
                 if (col.gameObject.CompareTag("EmpAoeGhost")) {
                     _empIcon.SetActive(true);
                     _arrowSr.enabled = true;
@@ -74,7 +74,7 @@ namespace Enemy.Tower {
         }
 
         private void OnTriggerExit2D(Collider2D col) {
-            if (_towerHpManager.IsDead) return;
+            if (_turretHpManager.IsDead) return;
             if (col.gameObject.CompareTag("EmpAoeGhost") || col.gameObject.CompareTag("NukeAoeGhost")) {
                 _empIcon.SetActive(false);
                 _nukeIcon.SetActive(false);
@@ -102,12 +102,12 @@ namespace Enemy.Tower {
         private void HandleTowerHoverTransparency() {
             if (_isHovered) {
                 // body.color = Color.Lerp(new Color(0.75f, 0.75f, 0.75f, 0.75f), new Color(0.25f, 0.25f, 0.25f, 0.25f), Mathf.PingPong(Time.time, 0.5f));
-                if (!_towerHpManager.IsDead) {
+                if (!_turretHpManager.IsDead) {
                     turret.color = Color.Lerp(new Color(0.75f, 0.75f, 0.75f, 0.75f), new Color(0.25f, 0.25f, 0.25f, 0.25f), Mathf.PingPong(Time.time, 0.5f));
                 }
             } else {
                 // body.color = new Color(1f, 1f, 1f, 1f);
-                if (!_towerHpManager.IsDead) {
+                if (!_turretHpManager.IsDead) {
                     turret.color = new Color(1f, 1f, 1f, 1f);
                 }
             }

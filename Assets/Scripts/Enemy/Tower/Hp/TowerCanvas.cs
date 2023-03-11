@@ -4,20 +4,20 @@ using UnityEngine.UI;
 
 namespace Enemy.Tower.Hp {
     public class TowerCanvas : MonoBehaviour {
-        [SerializeField] private TowerStatsSo towerStatsSo;
+        [SerializeField] private TurretStatsSo turretStatsSo;
         [SerializeField] private TankShellStatsSo empShellStats;
         [SerializeField] private Canvas canvas;
-        [SerializeField] private GameObject towerObj;
+        [SerializeField] private GameObject turretObj;
         [SerializeField] private GameObject powerOffCdObj;
         [SerializeField] private Image hpGreenBar, powerOffCdBar;
 
         private TurretController _turretController;
+        private TurretHpManager _turretHpManager;
         private Camera _mainCam;
-        private TowerHpManager _towerHpManager;
 
         private void Start() {
-            var towerObjTransform = transform.parent.Find("TowerObj").transform;
-            _towerHpManager = towerObjTransform.GetComponent<TowerHpManager>();
+            var towerObjTransform = transform.parent.Find("TurretObj").transform;
+            _turretHpManager = towerObjTransform.GetComponent<TurretHpManager>();
             _turretController = towerObjTransform.Find("Turret").GetComponent<TurretController>();
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             canvas.renderMode = RenderMode.WorldSpace;
@@ -25,8 +25,8 @@ namespace Enemy.Tower.Hp {
         }
 
         private void Update() {
-            transform.position = towerObj.transform.position;
-            hpGreenBar.fillAmount = _towerHpManager.TowerHealthPoints / towerStatsSo.MaxHp;
+            transform.position = turretObj.transform.position;
+            hpGreenBar.fillAmount = _turretHpManager.TurretHealthPoints / turretStatsSo.MaxHp;
 
             if (!_turretController.IsPowerOff) {
                 powerOffCdBar.fillAmount = 0f;

@@ -27,7 +27,7 @@ namespace Shells.Tank {
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.CompareTag("TowerObj") || col.gameObject.CompareTag("WorldBorder") || col.gameObject.CompareTag("HomingShell")) {
+            if (col.gameObject.CompareTag("TurretObj") || col.gameObject.CompareTag("WorldBorder") || col.gameObject.CompareTag("HomingShell")) {
                 DestroyShell();
             }
         }

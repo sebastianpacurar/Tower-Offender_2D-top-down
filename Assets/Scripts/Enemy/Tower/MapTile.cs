@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Enemy.Tower {
     public class MapTile : MonoBehaviour {
         [SerializeField] private MapTileColorSo mapTileColorSo;
-        private TowerHpManager _towerHpManager;
+        private TurretHpManager _turretHpManager;
         private SpriteRenderer _sr;
 
         private void Awake() {
@@ -15,11 +15,11 @@ namespace Enemy.Tower {
         private void Start() {
             _sr.enabled = true;
             _sr.color = mapTileColorSo.ActiveColor;
-            _towerHpManager = transform.parent.Find("TowerObj").GetComponent<TowerHpManager>();
+            _turretHpManager = transform.parent.Find("TurretObj").GetComponent<TurretHpManager>();
         }
 
         private void Update() {
-            if (!_towerHpManager.IsDead) return;
+            if (!_turretHpManager.IsDead) return;
             _sr.color = mapTileColorSo.InactiveColor;
         }
     }
