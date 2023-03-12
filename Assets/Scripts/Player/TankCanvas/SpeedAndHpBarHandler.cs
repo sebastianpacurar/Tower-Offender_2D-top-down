@@ -17,15 +17,14 @@ namespace Player.TankCanvas {
 
         private void Awake() {
             _canvas = GetComponent<Canvas>();
-        }
-
-        private void Start() {
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
             var tank = GameObject.FindGameObjectWithTag("Player");
             _tankController = tank.GetComponent<TankController>();
             _tankHpManager = tank.GetComponent<TankHpManager>();
+        }
 
+        private void Start() {
             _canvas.renderMode = RenderMode.WorldSpace;
             _canvas.worldCamera = _mainCam;
         }

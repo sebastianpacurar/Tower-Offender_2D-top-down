@@ -15,9 +15,7 @@ namespace Menus {
 
         private void Awake() {
             _controls = new PlayerControls();
-        }
-
-        private void Start() {
+            
             var tank = GameObject.FindGameObjectWithTag("Player");
             _aimController = tank.GetComponent<AimController>();
             _shootController = tank.GetComponent<ShootController>();

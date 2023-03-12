@@ -4,6 +4,7 @@ namespace Player {
     public class TankShootAnimation : MonoBehaviour {
         private Animator _animator;
         private SpriteRenderer _sr;
+        private static readonly int IsShooting = Animator.StringToHash("IsShooting");
 
         private void Awake() {
             _animator = GetComponent<Animator>();
@@ -12,7 +13,7 @@ namespace Player {
 
         public void StopShootAnimation() {
             _sr.enabled = false;
-            _animator.SetBool("IsShooting", false);
+            _animator.SetBool(IsShooting, false);
         }
     }
 }

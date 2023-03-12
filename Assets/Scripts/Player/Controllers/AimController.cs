@@ -14,7 +14,7 @@ namespace Player.Controllers {
         private Vector2 _lightShellFurthestPoint;
         private Vector2 _sniperShellFurthestPoint;
 
-        private void Start() {
+        private void Awake() {
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             _inGameMenu = GameObject.FindGameObjectWithTag("GameUI").GetComponent<InGameMenu>();
         }

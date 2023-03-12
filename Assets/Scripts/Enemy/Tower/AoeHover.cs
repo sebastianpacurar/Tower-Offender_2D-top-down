@@ -29,14 +29,13 @@ namespace Enemy.Tower {
 
         private void Awake() {
             _turretHpManager = GetComponent<TurretHpManager>();
-        }
-
-        private void Start() {
             _arrowSr = hoverIconsContainer.transform.Find("HoverArrow").GetComponent<SpriteRenderer>();
             _empIcon = hoverIconsContainer.transform.Find("EmpIcon").gameObject;
             _empLightningColor = _empIcon.transform.Find("LightningIcon").GetComponent<SpriteRenderer>();
             _nukeIcon = hoverIconsContainer.transform.Find("NukeIcon").gameObject;
+        }
 
+        private void Start() {
             _containerInitialPos = hoverIconsContainer.transform.position;
             moveHoverIcons = StartCoroutine(SwapEmpLightningIcon());
         }

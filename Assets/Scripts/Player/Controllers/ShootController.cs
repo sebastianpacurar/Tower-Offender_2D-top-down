@@ -45,12 +45,9 @@ namespace Player.Controllers {
             _ammoManager = GetComponent<AmmoManager>();
             _aimController = GetComponent<AimController>();
             _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        }
-
-        private void Start() {
             _inGameMenu = GameObject.FindGameObjectWithTag("GameUI").GetComponent<InGameMenu>();
         }
-
+        
         private void Update() {
             HandleShellReload();
             distanceBetweenTankAndMouse = ValidateShootPoint();

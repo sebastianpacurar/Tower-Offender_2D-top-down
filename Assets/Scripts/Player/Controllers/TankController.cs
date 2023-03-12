@@ -47,6 +47,7 @@ namespace Player.Controllers {
         private void Awake() {
             _controls = new PlayerControls();
             _rb = GetComponent<Rigidbody2D>();
+            _cineMachineCam = GameObject.FindGameObjectWithTag("CM2D").GetComponent<CinemachineVirtualCamera>();
 
             accFactor = tankStatsSo.AccFactor;
             steerFactor = tankStatsSo.SteerFactor;
@@ -56,7 +57,6 @@ namespace Player.Controllers {
         }
 
         private void Start() {
-            _cineMachineCam = GameObject.FindGameObjectWithTag("CM2D").GetComponent<CinemachineVirtualCamera>();
             _cineMachineCam.Follow = transform;
         }
 

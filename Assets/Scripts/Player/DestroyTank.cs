@@ -13,18 +13,16 @@ namespace Player {
         private GameOverMenu _gameOverMenu;
 
         private void Awake() {
+            _tankHpManager = GetComponent<TankHpManager>();
+            _gameOverMenu = GameObject.FindGameObjectWithTag("Menu").GetComponent<GameOverMenu>();
+
             _explosionCenterEmMod = explosionCenterPs.emission;
             _explosionFireWaveEmMod = explosionFireWavePs.emission;
             _explosionShockwaveEmMod = explosionShockWavePs.emission;
             _heavySmokeEmMod = heavySmokePs.emission;
             _criticalSmokeEmMod = criticalSmokePs.emission;
         }
-
-        private void Start() {
-            _tankHpManager = GetComponent<TankHpManager>();
-            _gameOverMenu = GameObject.FindGameObjectWithTag("Menu").GetComponent<GameOverMenu>();
-        }
-
+        
         private void Update() {
             if (!_tankHpManager.IsDead) return;
             if (_criticalSmokeStarted) return;
@@ -33,6 +31,7 @@ namespace Player {
 
             if (!_explosionEnded) {
                 _explosionPhaseTimer += Time.deltaTime;
+
                 if (!_explosionStarted) {
                     _explosionCenterEmMod.enabled = true;
                     explosionCenterPs.Play();
@@ -49,6 +48,7 @@ namespace Player {
 
             if (_explosionEnded && !_heavySmokeEnded) {
                 _burnPhaseTimer += Time.deltaTime;
+
                 if (!_heavySmokeStarted) {
                     _heavySmokeEmMod.enabled = true;
                     _heavySmokeStarted = true;

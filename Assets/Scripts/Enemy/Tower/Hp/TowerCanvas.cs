@@ -1,3 +1,4 @@
+using System;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,11 +16,14 @@ namespace Enemy.Tower.Hp {
         private TurretHpManager _turretHpManager;
         private Camera _mainCam;
 
-        private void Start() {
+        private void Awake() {
             var towerObjTransform = transform.parent.Find("TurretObj").transform;
             _turretHpManager = towerObjTransform.GetComponent<TurretHpManager>();
             _turretController = towerObjTransform.Find("Turret").GetComponent<TurretController>();
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        }
+
+        private void Start() {
             canvas.renderMode = RenderMode.WorldSpace;
             canvas.worldCamera = _mainCam;
         }

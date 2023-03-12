@@ -29,6 +29,8 @@ TagManager:
   - TurretObj
   - TowerTurretsTilemap
   - BodyObj
+  - TowerObj
+  - TowerBodiesTilemap
   layers:
   - Default
   - TransparentFX

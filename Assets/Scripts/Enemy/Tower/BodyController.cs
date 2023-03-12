@@ -34,12 +34,13 @@ namespace Enemy.Tower {
             _wallPoints = new Dictionary<string, TileBase>();
             _sr = GetComponent<SpriteRenderer>();
             _boxCollider2D = GetComponent<BoxCollider2D>();
-            _timeToSpawnNextTurret = 2f; // default to 2 seconds
+            _wallMap = GameObject.FindGameObjectWithTag("Wall").GetComponent<Tilemap>();
+            _turretsTilemapObj = GameObject.FindGameObjectWithTag("TowerTurretsTilemap").transform;
+            name = transform.position.ToString(); // set the name of the body to its position in world space
         }
 
         private void Start() {
-            _wallMap = GameObject.FindGameObjectWithTag("Wall").GetComponent<Tilemap>();
-            _turretsTilemapObj = GameObject.FindGameObjectWithTag("TowerTurretsTilemap").transform;
+            _timeToSpawnNextTurret = 2f; // default to 2 seconds
 
             // instantiate 1LT as first turret, and set index checker to true
             _isTurretInList = true;

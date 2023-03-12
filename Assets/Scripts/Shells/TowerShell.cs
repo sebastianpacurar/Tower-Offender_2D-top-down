@@ -18,25 +18,25 @@ namespace Shells {
         private ParticleSystem.EmissionModule _explosionEmMod, _trailEmMod;
 
         private void Awake() {
-            _rb = GetComponent<Rigidbody2D>();
-            _sr = GetComponent<SpriteRenderer>();
-            _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
-            ShellDamage = shellStatsSo.Damage;
-        }
-        
-
-        private void Start() {
-            _tankPos = GameObject.FindGameObjectWithTag("Player").transform;
-
             _explosionEmMod = explosionPs.emission;
             _trailEmMod = trailPs.emission;
 
+            _rb = GetComponent<Rigidbody2D>();
+            _sr = GetComponent<SpriteRenderer>();
+            _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+            _tankPos = GameObject.FindGameObjectWithTag("Player").transform;
+
+            ShellDamage = shellStatsSo.Damage;
+        }
+
+
+        private void Start() {
             // in case the passing value is a multiShell game object
             if (!transform.parent.name.Equals("ShellsContainer")) {
-                _towerPosition = transform.parent.transform.parent.transform.parent.Find("TurretObj").gameObject.transform;
+                _towerPosition = transform.parent.transform;
                 _finalSpeed = name.Equals("MiddleShell") ? shellStatsSo.MiddleShellSpeed : shellStatsSo.SideShellsSpeed;
             } else {
-                _towerPosition = transform.parent.transform.parent.Find("TurretObj").gameObject.transform;
+                _towerPosition = transform.parent.parent.transform;
                 _finalSpeed = shellStatsSo.SideShellsSpeed;
             }
 
@@ -50,7 +50,6 @@ namespace Shells {
         }
 
         private void Update() {
-            
             // if Homing Shell then also apply rotation towards the player
             if (!CompareTag("HomingShell")) return;
 

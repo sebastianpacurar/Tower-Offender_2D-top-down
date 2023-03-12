@@ -20,17 +20,17 @@ namespace Player {
         private ParticleSystem.EmissionModule _damageEmMod;
 
         private void Awake() {
-            _damageMainMod = damagePs.main;
-            _damageEmMod = damagePs.emission;
-        }
-
-        private void Start() {
-            TankHealthPoints = tankStatsSo.MaxHp;
             _tankRb = GetComponent<Rigidbody2D>();
             _aimController = GetComponent<AimController>();
             _tankController = GetComponent<TankController>();
             _shootController = GetComponent<ShootController>();
 
+            _damageMainMod = damagePs.main;
+            _damageEmMod = damagePs.emission;
+            TankHealthPoints = tankStatsSo.MaxHp;
+        }
+
+        private void Start() {
             damagePs.Play();
         }
 

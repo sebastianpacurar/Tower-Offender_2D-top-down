@@ -14,9 +14,6 @@ namespace Enemy.Tower {
             _lightEm = smokeLight.emission;
             _heavyEm = smokeHeavy.emission;
             _criticalEm = smokeCritical.emission;
-        }
-
-        private void Start() {
             _tankPos = GameObject.FindGameObjectWithTag("Player").transform;
             _turretHpManager = transform.parent.GetComponent<TurretHpManager>();
         }

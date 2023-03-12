@@ -10,12 +10,12 @@ namespace Enemy.Tower {
 
         private void Awake() {
             _sr = GetComponent<SpriteRenderer>();
+            _turretHpManager = transform.parent.Find("TurretObj").GetComponent<TurretHpManager>();
         }
 
         private void Start() {
             _sr.enabled = true;
             _sr.color = mapTileColorSo.ActiveColor;
-            _turretHpManager = transform.parent.Find("TurretObj").GetComponent<TurretHpManager>();
         }
 
         private void Update() {
