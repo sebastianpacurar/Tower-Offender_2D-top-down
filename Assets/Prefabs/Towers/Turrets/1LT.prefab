@@ -20726,7 +20726,6 @@ GameObject:
   - component: {fileID: 2127158489}
   - component: {fileID: 6100540536213009582}
   - component: {fileID: 2006422165286782103}
-  - component: {fileID: 5880112792464144541}
   m_Layer: 6
   m_Name: TurretObj
   m_TagString: TurretObj
@@ -20833,21 +20832,6 @@ MonoBehaviour:
   amp: 0.25
   freq: 3
   rotationSpeed: 150
---- !u!114 &5880112792464144541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3158290689936724945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23dda98738fa33fadb741a6854ade7fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  center: {fileID: 8355752459600966484}
-  fireWave: {fileID: 352796725357217779}
-  shockWave: {fileID: 7377606045959354612}
 --- !u!1 &3460709449184135026
 GameObject:
   m_ObjectHideFlags: 0
@@ -31407,7 +31391,6 @@ MonoBehaviour:
   turretStatsSo: {fileID: 11400000, guid: 230bc78d8acf1301892e4ddab92a4b55, type: 2}
   tankStatsSo: {fileID: 11400000, guid: 4a8f37d34b956f000b7c883bd955b800, type: 2}
   turretEdge: {fileID: 8897720836690231101}
-  shellsContainer: {fileID: 0}
   circleRangeTransform: {fileID: 1353452494623243878}
   circleRangeSr: {fileID: 5668678487776573849}
   detectionLine: {fileID: 9110381117414502572}

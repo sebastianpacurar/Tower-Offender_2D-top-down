@@ -18,7 +18,7 @@ namespace Enemy.Tower {
 
         private Animator _shootAnimation;
         private Transform _tankPos;
-        private Transform _towerBody;
+        private Transform _shellsContainer;
         private TankHpManager _tankHpHandler;
         private bool _detected;
         private bool _canFire = true;
@@ -37,7 +37,7 @@ namespace Enemy.Tower {
             _tankHpHandler = tank.GetComponent<TankHpManager>();
 
             // attach the shells to its matching body position
-            _towerBody = GameObject.FindGameObjectWithTag("TowerBodiesTilemap").transform.Find(container.name.Split("_")[1]);
+            _shellsContainer = GameObject.FindGameObjectWithTag("ShellsContainer").transform;
         }
 
         private void Start() {
@@ -120,7 +120,7 @@ namespace Enemy.Tower {
             } else {
                 _canFire = false;
                 _shootAnimation.SetBool(IsShooting, true);
-                Instantiate(turretStatsSo.ShellPrefab, turretEdge.position, Quaternion.identity, _towerBody);
+                Instantiate(turretStatsSo.ShellPrefab, turretEdge.position, Quaternion.identity, _shellsContainer);
             }
         }
     }

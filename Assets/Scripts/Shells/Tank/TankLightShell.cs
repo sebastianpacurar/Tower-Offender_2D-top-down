@@ -37,12 +37,13 @@ namespace Shells.Tank {
 
                     // if the hit area is the one related to this specific shell
                     if (hit.otherRigidbody.Equals(_rb)) {
-                        // TODO: investigate this issue in more detail - why are there more than 1 iterations although the length is 1
+                        // HACK: even though the length is 1, the iteration could be re-triggered, so setting isChecked to true afterwards
                         // avoid reiteration in case there are more contacts related to the same shell
                         if (!isChecked) {
                             isChecked = true;
                             DisablePhysics();
 
+                            // NOTE: this destroys the wall which was hit, even though the collision point is on the edge of the WallTile 
                             // calculate location of hit tile
                             Vector2 hitPos;
                             hitPos.x = hit.point.x - 0.01f * hit.normal.x;

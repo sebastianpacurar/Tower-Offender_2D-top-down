@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Enemy.Tower.Hp;
+using TileMap;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace Enemy.Tower {
     public class BodyController : MonoBehaviour {
+        [SerializeField] private ParticleSystem center, fireWave, shockWave;
+        private ParticleSystem.EmissionModule _centerEm, _fireWaveEm, _shockWaveEm;
+
         [SerializeField] private Sprite[] lightSprites;
         [SerializeField] private Sprite[] midSprites;
         [SerializeField] private Sprite[] heavySprites;
@@ -19,7 +23,9 @@ namespace Enemy.Tower {
         private bool _isTurretInList;
 
         private Dictionary<string, TileBase> _wallPoints;
+
         private Tilemap _wallMap;
+        private WallTileManager mapManager;
 
         private SpriteRenderer _sr;
         private BoxCollider2D _boxCollider2D;
@@ -31,11 +37,18 @@ namespace Enemy.Tower {
         private int _spriteIndex;
 
         private void Awake() {
+            mapManager = FindObjectOfType<WallTileManager>();
+
+            _centerEm = center.emission;
+            _fireWaveEm = fireWave.emission;
+            _shockWaveEm = shockWave.emission;
+
             _wallPoints = new Dictionary<string, TileBase>();
             _sr = GetComponent<SpriteRenderer>();
             _boxCollider2D = GetComponent<BoxCollider2D>();
             _wallMap = GameObject.FindGameObjectWithTag("Wall").GetComponent<Tilemap>();
             _turretsTilemapObj = GameObject.FindGameObjectWithTag("TowerTurretsTilemap").transform;
+
             name = transform.position.ToString(); // set the name of the body to its position in world space
         }
 
@@ -75,6 +88,12 @@ namespace Enemy.Tower {
 
                 // set the update to false to prevent immediate re-trigger from Update()
                 _turretUpdateInProgress = false;
+
+                // disable PS emission
+                _centerEm.enabled = false;
+                _fireWaveEm.enabled = false;
+                _shockWaveEm.enabled = false;
+
                 StopCoroutine(nameof(UpdateTurret));
             }
         }
@@ -92,6 +111,9 @@ namespace Enemy.Tower {
             } else if (_turretEntity.name.Contains("HT")) {
                 _spriteSet = heavySprites;
             }
+
+            // Generate the Fort when the new turret is spawned
+            mapManager.GenerateFort(_turretEntity);
         }
 
 
@@ -101,6 +123,15 @@ namespace Enemy.Tower {
                 if (_isTurretInList) {
                     // if the turret is dead set the update progress to true, and begin updating the turret
                     if (_turretHpManager.IsDead && !_turretUpdateInProgress) {
+                        _centerEm.enabled = true;
+                        center.Play();
+
+                        _fireWaveEm.enabled = true;
+                        fireWave.Play();
+
+                        _shockWaveEm.enabled = true;
+                        shockWave.Play();
+
                         StartCoroutine(nameof(UpdateTurret));
                         _turretUpdateInProgress = true;
                     }
@@ -111,10 +142,10 @@ namespace Enemy.Tower {
 
         // calculate how many sides should have edges, and then rotate the sprite to connect the corresponding walls
         private void CalculateIndexAndSpriteRotation(Sprite[] currentSpriteSet) {
-            var north = _wallPoints[Cardinal.North.ToString()];
-            var south = _wallPoints[Cardinal.South.ToString()];
-            var east = _wallPoints[Cardinal.East.ToString()];
-            var west = _wallPoints[Cardinal.West.ToString()];
+            var north = _wallPoints[Cardinal.N.ToString()];
+            var south = _wallPoints[Cardinal.S.ToString()];
+            var east = _wallPoints[Cardinal.E.ToString()];
+            var west = _wallPoints[Cardinal.W.ToString()];
 
             // evaluate based on how many keys have non-null values
             switch (_wallPoints.Count(entry => entry.Value)) {
@@ -135,15 +166,15 @@ namespace Enemy.Tower {
                     }
 
                     transform.rotation = point switch {
-                        "North" => Quaternion.Euler(0f, 0f, 90f),
-                        "West" => Quaternion.Euler(0f, 0f, 180f),
-                        "South" => Quaternion.Euler(0f, 0f, 270f),
+                        "N" => Quaternion.Euler(0f, 0f, 90f),
+                        "W" => Quaternion.Euler(0f, 0f, 180f),
+                        "S" => Quaternion.Euler(0f, 0f, 270f),
                         _ => Quaternion.identity
                     };
                     break;
 
                 case 2: // handle 2 wall connection
-                    // for 180 degrees based wall edges (like North-South and West-East
+                    // for 180 degrees based wall edges (like N-S and W-E
                     if ((north && south) || (east && west)) {
                         _sr.sprite = currentSpriteSet[2];
 
@@ -151,7 +182,7 @@ namespace Enemy.Tower {
                             transform.rotation = Quaternion.Euler(0f, 0f, 90f);
                         }
                     } else {
-                        // for 90 degrees based wall edges (like North-West or North-East or East-South)
+                        // for 90 degrees based wall edges (like N-W or N-E or E-S)
                         _sr.sprite = currentSpriteSet[3];
 
                         if (east && south) {
@@ -186,18 +217,17 @@ namespace Enemy.Tower {
         private void UpdateWallTilesPositions() {
             var selfPos = new Vector2(transform.position.x, transform.position.y);
             var gridPosition = _wallMap.WorldToCell(selfPos);
-            _wallPoints[Cardinal.North.ToString()] = _wallMap.GetTile(gridPosition + Vector3Int.up);
-            _wallPoints[Cardinal.South.ToString()] = _wallMap.GetTile(gridPosition + Vector3Int.down);
-            _wallPoints[Cardinal.East.ToString()] = _wallMap.GetTile(gridPosition + Vector3Int.right);
-            _wallPoints[Cardinal.West.ToString()] = _wallMap.GetTile(gridPosition + Vector3Int.left);
+            _wallPoints[Cardinal.N.ToString()] = _wallMap.GetTile(gridPosition + Vector3Int.up);
+            _wallPoints[Cardinal.S.ToString()] = _wallMap.GetTile(gridPosition + Vector3Int.down);
+            _wallPoints[Cardinal.E.ToString()] = _wallMap.GetTile(gridPosition + Vector3Int.right);
+            _wallPoints[Cardinal.W.ToString()] = _wallMap.GetTile(gridPosition + Vector3Int.left);
         }
 
-
         private enum Cardinal {
-            North,
-            South,
-            East,
-            West,
+            N,
+            S,
+            E,
+            W,
         }
     }
 }

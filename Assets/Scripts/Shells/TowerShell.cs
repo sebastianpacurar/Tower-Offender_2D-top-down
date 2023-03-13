@@ -7,7 +7,7 @@ namespace Shells {
         [SerializeField] private ShellStatsSo shellStatsSo;
         [SerializeField] private ParticleSystem explosionPs, trailPs;
 
-        private Transform _towerPosition;
+        private Transform startPos;
         private CapsuleCollider2D _capsuleCollider2D;
         private Rigidbody2D _rb;
         private SpriteRenderer _sr;
@@ -33,15 +33,15 @@ namespace Shells {
         private void Start() {
             // in case the passing value is a multiShell game object
             if (!transform.parent.name.Equals("ShellsContainer")) {
-                _towerPosition = transform.parent.transform;
                 _finalSpeed = name.Equals("MiddleShell") ? shellStatsSo.MiddleShellSpeed : shellStatsSo.SideShellsSpeed;
+                startPos = transform.parent;
             } else {
-                _towerPosition = transform.parent.parent.transform;
                 _finalSpeed = shellStatsSo.SideShellsSpeed;
+                startPos = transform;
             }
 
             if (CompareTag("BasicShell")) {
-                var direction = _tankPos.position - _towerPosition.position;
+                var direction = _tankPos.position - startPos.position;
                 _rb.velocity = new Vector2(direction.x, direction.y).normalized * _finalSpeed;
 
                 var rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;

@@ -31,6 +31,7 @@ TagManager:
   - BodyObj
   - TowerObj
   - TowerBodiesTilemap
+  - ShellsContainer
   layers:
   - Default
   - TransparentFX

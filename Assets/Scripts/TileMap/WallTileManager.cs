@@ -13,6 +13,10 @@ namespace TileMap {
         private Dictionary<TileBase, TileDataSo> _tilesStatsSo;
         private Dictionary<Vector3Int, MyTileData> _cachedTiles;
 
+        // 0,1 are yellow L and T shapes
+        // 2,3 are red L and T shapes
+        // 4,5 are purple L and T shapes
+        [SerializeField] private Tile[] spawnableYrpWalls;
 
         private void Awake() {
             _tilesStatsSo = new Dictionary<TileBase, TileDataSo>();
@@ -32,13 +36,46 @@ namespace TileMap {
         }
 
 
+        // create surrounding walls around the tower
+        // NOTE: called in BodyController.cs upon instantiation of new turret
+        public void GenerateFort(GameObject turretObj) {
+            var bodyPos = wallMap.WorldToCell(turretObj.transform.position);
+            var target = new int[] { };
+
+            // NOTE: based on the order of the tiles in list ( LT = yellow{0,1}, MT = red{2,3}, HT = purple{4,5} )
+            if (turretObj.name.Contains("LT")) target = new[] { 0, 1 };
+            else if (turretObj.name.Contains("MT")) target = new[] { 2, 3 };
+            else if (turretObj.name.Contains("HT")) target = new[] { 4, 5 };
+
+            // Going Clockwise from North to NorthWest
+            //
+            // North;    - rotZ = 0
+            GenerateFortWallTile(spawnableYrpWalls[target[1]], bodyPos + Vector3Int.up, 0f);
+            // NorthEast - rotZ = 0
+            GenerateFortWallTile(spawnableYrpWalls[target[0]], bodyPos + Vector3Int.up + Vector3Int.right, 0f);
+            // East      - rotZ = 270
+            GenerateFortWallTile(spawnableYrpWalls[target[1]], bodyPos + Vector3Int.right, 270f);
+            // SouthEast - rotZ = 270
+            GenerateFortWallTile(spawnableYrpWalls[target[0]], bodyPos + Vector3Int.down + Vector3Int.right, 270f);
+            // South     - rotZ = 180
+            GenerateFortWallTile(spawnableYrpWalls[target[1]], bodyPos + Vector3Int.down, 180f);
+            // SouthWest - rotZ = 180
+            GenerateFortWallTile(spawnableYrpWalls[target[0]], bodyPos + Vector3Int.down + Vector3Int.left, 180f);
+            // West      - rotZ = 90
+            GenerateFortWallTile(spawnableYrpWalls[target[1]], bodyPos + Vector3Int.left, 90f);
+            // NorthWest - rotZ = 90
+            GenerateFortWallTile(spawnableYrpWalls[target[0]], bodyPos + Vector3Int.up + Vector3Int.left, 90f);
+        }
+
+
         // decrease life of tile, and destroy it when it reaches 0
+        // NOTE: called in TankLightShell.cs since it's the only one with an isTrigger=false as collider
         public void HandleWallTileLife(Vector2 worldPosition) {
             Vector3Int gridPosition = wallMap.WorldToCell(worldPosition);
             MyTileData cachedEntry;
             Debug.Log(gridPosition);
 
-            // avoid 
+            // HACK: avoid getting null pointer exception
             try {
                 cachedEntry = _cachedTiles[gridPosition];
             } catch (Exception) {
@@ -57,7 +94,17 @@ namespace TileMap {
         }
 
 
-        // TODO: add loading screen until all tiles are cached
+        // set the tile
+        // transform its rotation to match the correct way of positioning on the Z axis
+        // cache the tile with its relevant life value
+        private void GenerateFortWallTile(Tile tile, Vector3Int tilePos, float rotZ) {
+            wallMap.SetTile(tilePos, tile);
+            wallMap.SetTransformMatrix(tilePos, Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0f, 0f, rotZ), Vector3.one));
+            _cachedTiles[tilePos] = new MyTileData(tile, _tilesStatsSo[tile].life);
+        }
+
+
+        // NOTE: initiates only once at start, afterwards the cached tiles are populated manually
         // populate the _cachedTiles
         private IEnumerator GetAllWallTiles() {
             var bounds = wallMap.cellBounds;
