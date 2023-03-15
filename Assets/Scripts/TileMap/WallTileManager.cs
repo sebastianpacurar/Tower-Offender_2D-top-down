@@ -123,7 +123,7 @@ namespace TileMap {
                     // grab the life stats from the tile SO 
                     var life = _tilesStatsSo[tile].life;
                     var tileData = new MyTileData(tile, life);
-                    _cachedTiles.Add(cellPosition, tileData);
+                    _cachedTiles[cellPosition] = tileData;
 
                     yield return tileData;
                 }

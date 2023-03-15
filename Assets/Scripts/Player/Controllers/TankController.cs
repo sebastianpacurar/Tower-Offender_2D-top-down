@@ -12,7 +12,7 @@ namespace Player.Controllers {
         public float SpeedBoostVal { get; private set; }
 
         private PlayerControls _controls;
-        private CinemachineVirtualCamera _cineMachineCam;
+        private CinemachineVirtualCamera _cineMachineMainCam;
         private Rigidbody2D _rb;
 
         private float _move, _rotation;
@@ -47,7 +47,7 @@ namespace Player.Controllers {
         private void Awake() {
             _controls = new PlayerControls();
             _rb = GetComponent<Rigidbody2D>();
-            _cineMachineCam = GameObject.FindGameObjectWithTag("CM2D").GetComponent<CinemachineVirtualCamera>();
+            _cineMachineMainCam = GameObject.FindGameObjectWithTag("CM2D").GetComponent<CinemachineVirtualCamera>();
 
             accFactor = tankStatsSo.AccFactor;
             steerFactor = tankStatsSo.SteerFactor;
@@ -57,7 +57,7 @@ namespace Player.Controllers {
         }
 
         private void Start() {
-            _cineMachineCam.Follow = transform;
+            _cineMachineMainCam.Follow = transform;
         }
 
         private void FixedUpdate() {

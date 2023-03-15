@@ -32,6 +32,8 @@ TagManager:
   - TowerObj
   - TowerBodiesTilemap
   - ShellsContainer
+  - MapCamera
+  - CM2D_Map
   layers:
   - Default
   - TransparentFX
