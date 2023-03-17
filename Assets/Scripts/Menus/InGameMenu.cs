@@ -35,7 +35,7 @@ namespace Menus {
         private void Awake() {
             _controls = new PlayerControls();
             SelectedShell = shellPrefabs[0]; // defaults to TankLightShell
-            
+
             var tank = GameObject.FindGameObjectWithTag("Player");
             _shootController = tank.GetComponent<ShootController>();
             _ammoManager = tank.GetComponent<AmmoManager>();
@@ -60,12 +60,12 @@ namespace Menus {
             // disable circle collider and CircleRangeArea SpriteRenderer when reloading in progress
             switch (SelectedShell.tag) {
                 case "TankEmpShellEntity":
-                    _empAoeGhostCircle.enabled = _shootController.canFireEmpShell;
-                    _empAoeCircleRadiusSr.color = _shootController.canFireEmpShell ? new Color(0f, 1f, 1f, 0.25f) : new Color(0.5f, 0.5f, 0.5f, 0.15f);
+                    _empAoeGhostCircle.enabled = _shootController.CanFireEmpShell;
+                    _empAoeCircleRadiusSr.color = _shootController.CanFireEmpShell ? new Color(0f, 1f, 1f, 0.25f) : new Color(0.5f, 0.5f, 0.5f, 0.15f);
                     break;
                 case "TankNukeShellEntity":
-                    _nukeAoeGhostCircle.enabled = _shootController.canFireNukeShell;
-                    _nukeAoeCircleRadiusSr.color = _shootController.canFireNukeShell ? new Color(1f, 1f, 0f, 0.25f) : new Color(0.5f, 0.5f, 0.5f, 0.15f);
+                    _nukeAoeGhostCircle.enabled = _shootController.CanFireNukeShell;
+                    _nukeAoeCircleRadiusSr.color = _shootController.CanFireNukeShell ? new Color(1f, 1f, 0f, 0.25f) : new Color(0.5f, 0.5f, 0.5f, 0.15f);
                     break;
             }
         }

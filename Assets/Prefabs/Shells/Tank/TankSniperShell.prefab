@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1573855223326079458}
   - component: {fileID: 1573855223326079457}
   - component: {fileID: 1573855223326079456}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: TankSniperShell
   m_TagString: TankSniperShell
   m_Icon: {fileID: 0}
@@ -102,8 +102,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.002046153, y: 0.0029062629}
-  m_Size: {x: 0.12718973, y: 0.76003456}
+  m_Offset: {x: 0.0009212494, y: 0.0029058456}
+  m_Size: {x: 0.078323364, y: 0.40156364}
   m_Direction: 0
 --- !u!50 &1573855223326079457
 Rigidbody2D:
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 1573855223328271201}
   - component: {fileID: 1573855223328271203}
   - component: {fileID: 1573855223328271202}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ExplosionPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5021,7 +5021,7 @@ GameObject:
   - component: {fileID: 1573855223539995779}
   - component: {fileID: 1573855223539995805}
   - component: {fileID: 1573855223539995804}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: TrailPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}

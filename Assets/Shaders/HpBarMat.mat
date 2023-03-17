@@ -52,9 +52,9 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _FillAmountPlaceholder: 1
-    - _FillAmountProgress: 0.9785714
-    - _LineWidthProgress: 0.06
-    - _Radius: 0.4
+    - _FillAmountProgress: 0.7228571
+    - _LineWidthProgress: 0.08
+    - _Radius: 0.41
     - _RotationPlaceholder: -180
     - _RotationProgress: 180
     m_Colors:

@@ -33,7 +33,6 @@ TagManager:
   - TowerBodiesTilemap
   - ShellsContainer
   - MapCamera
-  - CM2D_Map
   layers:
   - Default
   - TransparentFX
@@ -43,7 +42,7 @@ TagManager:
   - UI
   - Military Unit
   - Map Tile
-  - Main and Map Cameras
+  - 
   - 
   - 
   - 

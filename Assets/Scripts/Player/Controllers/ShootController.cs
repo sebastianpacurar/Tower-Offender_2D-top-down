@@ -7,26 +7,26 @@ using UnityEngine.InputSystem;
 namespace Player.Controllers {
     public class ShootController : MonoBehaviour {
         private PlayerControls _controls;
-        public bool IsAutoShootOn { get; private set; }
 
         [SerializeField] private TankStatsSo tankStatsSo;
         [SerializeField] private GameObject turretEdge;
         [SerializeField] private GameObject shellsContainer;
         [SerializeField] private Animator shootAnimationPoint;
-
-        [SerializeField] private float lightShellCdTimer;
-        [SerializeField] private bool canFireLightShell;
-
-        [SerializeField] private float sniperShellCdTimer;
-        [SerializeField] private bool canFireSniperShell;
-
         [SerializeField] private float distanceBetweenTankAndMouse;
 
-        [SerializeField] private float empShellCdTimer;
-        public bool canFireEmpShell; // used in InGameMenu to disable the collider and dim the color of the circle range when reloading
+        public bool IsAutoShootOn { get; private set; }
 
-        [SerializeField] private float nukeShellCdTimer;
-        public bool canFireNukeShell; // used in InGameMenu to disable the collider and dim the color of the circle range when reloading
+        public float LightShellCdTimer { get; private set; }
+        public bool CanFireEmpShell { get; private set; } = true;
+
+        public float EmpShellCdTimer { get; private set; }
+        public bool CanFireLightShell { get; private set; } = true;
+
+        public float SniperShellCdTimer { get; private set; }
+        public bool CanFireSniperShell { get; private set; } = true;
+
+        public float NukeShellCdTimer { get; private set; }
+        public bool CanFireNukeShell { get; private set; } = true;
 
         private InGameMenu _inGameMenu;
         private AmmoManager _ammoManager;
@@ -47,46 +47,46 @@ namespace Player.Controllers {
             _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             _inGameMenu = GameObject.FindGameObjectWithTag("GameUI").GetComponent<InGameMenu>();
         }
-        
+
         private void Update() {
             HandleShellReload();
             distanceBetweenTankAndMouse = ValidateShootPoint();
         }
 
         private void HandleShellReload() {
-            if (!canFireLightShell) {
-                lightShellCdTimer += Time.deltaTime;
+            if (!CanFireLightShell) {
+                LightShellCdTimer += Time.deltaTime;
 
-                if (lightShellCdTimer > tankStatsSo.LightShellReloadTime) {
-                    canFireLightShell = true;
-                    lightShellCdTimer = 0f;
+                if (LightShellCdTimer > tankStatsSo.LightShellReloadTime) {
+                    CanFireLightShell = true;
+                    LightShellCdTimer = 0f;
                 }
             }
 
-            if (!canFireEmpShell) {
-                empShellCdTimer += Time.deltaTime;
+            if (!CanFireEmpShell) {
+                EmpShellCdTimer += Time.deltaTime;
 
-                if (empShellCdTimer > tankStatsSo.EmpShellReloadTime) {
-                    canFireEmpShell = true;
-                    empShellCdTimer = 0f;
+                if (EmpShellCdTimer > tankStatsSo.EmpShellReloadTime) {
+                    CanFireEmpShell = true;
+                    EmpShellCdTimer = 0f;
                 }
             }
 
-            if (!canFireSniperShell) {
-                sniperShellCdTimer += Time.deltaTime;
+            if (!CanFireSniperShell) {
+                SniperShellCdTimer += Time.deltaTime;
 
-                if (sniperShellCdTimer > tankStatsSo.SniperShellReloadTime) {
-                    canFireSniperShell = true;
-                    sniperShellCdTimer = 0f;
+                if (SniperShellCdTimer > tankStatsSo.SniperShellReloadTime) {
+                    CanFireSniperShell = true;
+                    SniperShellCdTimer = 0f;
                 }
             }
 
-            if (!canFireNukeShell) {
-                nukeShellCdTimer += Time.deltaTime;
+            if (!CanFireNukeShell) {
+                NukeShellCdTimer += Time.deltaTime;
 
-                if (nukeShellCdTimer > tankStatsSo.NukeShellReloadTime) {
-                    canFireNukeShell = true;
-                    nukeShellCdTimer = 0f;
+                if (NukeShellCdTimer > tankStatsSo.NukeShellReloadTime) {
+                    CanFireNukeShell = true;
+                    NukeShellCdTimer = 0f;
                 }
             }
         }
@@ -95,11 +95,11 @@ namespace Player.Controllers {
         // used in InGameMenu.cs
         public IEnumerator ShootLightShells() {
             while (true) {
-                yield return new WaitUntil(() => canFireLightShell);
+                yield return new WaitUntil(() => CanFireLightShell);
 
                 // init only mouse is not hovering the tank collider + offset
                 if (!(distanceBetweenTankAndMouse >= 0.8f)) continue;
-                canFireLightShell = false;
+                CanFireLightShell = false;
                 shootAnimationPoint.SetBool(IsShooting, true);
                 var lightShell = Instantiate(_inGameMenu.SelectedShell, turretEdge.transform.position, Quaternion.identity, shellsContainer.transform);
                 InitShell(lightShell, tankStatsSo.LightShellStatsSo.Speed);
@@ -124,24 +124,24 @@ namespace Player.Controllers {
                         break;
                 }
             } else {
-                if (canFireEmpShell && selectedShell.CompareTag("TankEmpShellEntity")) {
+                if (CanFireEmpShell && selectedShell.CompareTag("TankEmpShellEntity")) {
                     // EMP Shell
                     _ammoManager.EmpShellAmmo -= 1;
-                    canFireEmpShell = false;
+                    CanFireEmpShell = false;
                     shootAnimationPoint.SetBool(IsShooting, true);
                     var empShell = Instantiate(selectedShell, transform.position, Quaternion.identity, shellsContainer.transform);
                     InitShell(empShell, tankStatsSo.EmpShellStatsSo.Speed);
-                } else if (canFireSniperShell && selectedShell.CompareTag("TankSniperShell")) {
+                } else if (CanFireSniperShell && selectedShell.CompareTag("TankSniperShell")) {
                     // Sniper Shell
                     _ammoManager.SniperShellAmmo -= 1;
-                    canFireSniperShell = false;
+                    CanFireSniperShell = false;
                     shootAnimationPoint.SetBool(IsShooting, true);
                     var sniperShell = Instantiate(selectedShell, transform.position, Quaternion.identity, shellsContainer.transform);
                     InitShell(sniperShell, tankStatsSo.SniperShellStatsSo.Speed);
-                } else if (canFireNukeShell && selectedShell.CompareTag("TankNukeShellEntity")) {
+                } else if (CanFireNukeShell && selectedShell.CompareTag("TankNukeShellEntity")) {
                     // Nuke Shell
                     _ammoManager.NukeShellAmmo -= 1;
-                    canFireNukeShell = false;
+                    CanFireNukeShell = false;
                     shootAnimationPoint.SetBool(IsShooting, true);
                     var nukeShell = Instantiate(selectedShell, transform.position, Quaternion.identity, shellsContainer.transform);
                     InitShell(nukeShell, tankStatsSo.NukeShellStatsSo.Speed);

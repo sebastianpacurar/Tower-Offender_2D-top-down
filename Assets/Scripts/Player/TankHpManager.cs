@@ -39,7 +39,7 @@ namespace Player {
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.CompareTag("BasicShell")) {
+            if (col.gameObject.CompareTag("BasicShell") || col.gameObject.CompareTag("HomingShell")) {
                 if (TankHealthPoints > 0) {
                     TankHealthPoints -= col.gameObject.GetComponent<TowerShell>().ShellDamage;
                 }
