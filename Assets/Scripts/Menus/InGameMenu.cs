@@ -123,6 +123,7 @@ namespace Menus {
                     weaponImages[3].color = _ammoManager.NukeShellAmmo > 0 ? _unselectedColor : _unavailableColor;
                     _nukeAoeGhostCircle.enabled = false;
                     _nukeAoeGhost.transform.Find("CircleRadiusArea").gameObject.SetActive(false);
+                    _nukeAoeGhost.transform.Find("AoeHitArea").gameObject.SetActive(false);
                     break;
             }
 
@@ -159,6 +160,7 @@ namespace Menus {
                     weaponImages[3].color = _selectedColor;
                     _nukeAoeGhostCircle.enabled = true;
                     _nukeAoeGhost.transform.Find("CircleRadiusArea").gameObject.SetActive(true);
+                    _nukeAoeGhost.transform.Find("AoeHitArea").gameObject.SetActive(true);
                     break;
             }
         }

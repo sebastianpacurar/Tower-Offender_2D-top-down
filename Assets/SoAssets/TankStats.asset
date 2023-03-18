@@ -26,6 +26,6 @@ MonoBehaviour:
   sniperShellStatsSo: {fileID: 11400000, guid: fcab7bc148adbf71fbe9291673952bb3, type: 2}
   nukeShellStatsSo: {fileID: 11400000, guid: ae9549cb37146e5cfa53e2b005d8d85b, type: 2}
   lightShellReloadTime: 0.25
-  empShellReloadTime: 3
+  empShellReloadTime: 0.5
   sniperShellReloadTime: 5
-  nukeShellReloadTime: 10
+  nukeShellReloadTime: 1

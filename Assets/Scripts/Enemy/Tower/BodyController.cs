@@ -53,7 +53,7 @@ namespace Enemy.Tower {
         }
 
         private void Start() {
-            _timeToSpawnNextTurret = 2f; // default to 2 seconds
+            _timeToSpawnNextTurret = 2f; // default to 2.5 seconds
 
             // instantiate 1LT as first turret, and set index checker to true
             _isTurretInList = true;

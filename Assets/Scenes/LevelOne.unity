@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 83c542972e2bfc80a84e49a552466e0d, type: 2}
+  m_Material: {fileID: 2100000, guid: 6eb010e0e7d6a67018a03278443e778b, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -523,6 +523,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &102989395 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2987760918087982937, guid: c739387f5b211433da12a79464093b93, type: 3}
+  m_PrefabInstance: {fileID: 1662194073}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &108852419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1189,7 +1194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: cea71f5e42fd2ad92878479e04213fa1, type: 2}
+  m_Material: {fileID: 2100000, guid: 43c25aa1313faf763a7c32ef99477370, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2236,7 +2241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 14c76da504390d29aa82b45ed75acb8e, type: 2}
+  m_Material: {fileID: 2100000, guid: a609deffdde9939cb90963a36ac5415e, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -119315,12 +119320,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankStatsSo: {fileID: 11400000, guid: 4a8f37d34b956f000b7c883bd955b800, type: 2}
-  speedBoostMat: {fileID: 2100000, guid: bfacf7f78d2e9734fa359c0a9303fd19, type: 2}
-  hpMat: {fileID: 2100000, guid: cea71f5e42fd2ad92878479e04213fa1, type: 2}
-  lightShellMat: {fileID: 2100000, guid: 90d4addde30fec459a0301dcd4d43dc7, type: 2}
-  empShellMat: {fileID: 2100000, guid: 14c76da504390d29aa82b45ed75acb8e, type: 2}
-  sniperShellMat: {fileID: 2100000, guid: b58cbe419c07c1e49b130ed9b53bd534, type: 2}
-  nukeShellMat: {fileID: 2100000, guid: 83c542972e2bfc80a84e49a552466e0d, type: 2}
+  speedBoostMat: {fileID: 2100000, guid: 25b4759a1de67f33aa64f97de458ae24, type: 2}
+  hpMat: {fileID: 2100000, guid: 43c25aa1313faf763a7c32ef99477370, type: 2}
+  lightShellMat: {fileID: 2100000, guid: 2bbb73c6bf6724024b795d591fca5b2a, type: 2}
+  empShellMat: {fileID: 2100000, guid: a609deffdde9939cb90963a36ac5415e, type: 2}
+  sniperShellMat: {fileID: 2100000, guid: 62decc1e61f5e7c28a6f9cd86f7fdd34, type: 2}
+  nukeShellMat: {fileID: 2100000, guid: 6eb010e0e7d6a67018a03278443e778b, type: 2}
   speedBoostTxt: {fileID: 501282958}
   hpTxt: {fileID: 1624895775}
   empAmmoTxt: {fileID: 1098010116}
@@ -120010,7 +120015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 90d4addde30fec459a0301dcd4d43dc7, type: 2}
+  m_Material: {fileID: 2100000, guid: 2bbb73c6bf6724024b795d591fca5b2a, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -121542,6 +121547,85 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2987760918087982939, guid: c739387f5b211433da12a79464093b93, type: 3}
   m_PrefabInstance: {fileID: 1662194073}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1662194078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102989395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 0.52
+  m_LightVolumeIntensity: 1
+  m_LightVolumeIntensityEnabled: 0
+  m_ApplyToSortingLayers: 0000000091595a4b
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensity: 0.75
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_Vertices:
+  - position: {x: 0.9985302, y: 0.9985302, z: 0}
+    color: {r: 0.70710677, g: 0.70710677, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.9985302, y: 0.9985302, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.9985302, y: 0.9985302, z: 0}
+    color: {r: -0.70710677, g: 0.70710677, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.9985302, y: 0.9985302, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.99853003, y: -0.9985304, z: 0}
+    color: {r: -0.70710665, g: -0.7071069, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.99853003, y: -0.9985304, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.99853003, y: -0.9985304, z: 0}
+    color: {r: 0.70710665, g: -0.7071069, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.99853003, y: -0.9985304, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  - position: {x: 0, y: 0, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  m_Triangles: 030001000800020000000100030002000100050003000800040002000300050004000300070005000800060004000500070006000500010007000800000006000700010000000700
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &1664422893
 GameObject:
   m_ObjectHideFlags: 0
@@ -121840,7 +121924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: bfacf7f78d2e9734fa359c0a9303fd19, type: 2}
+  m_Material: {fileID: 2100000, guid: 25b4759a1de67f33aa64f97de458ae24, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -122548,7 +122632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: b58cbe419c07c1e49b130ed9b53bd534, type: 2}
+  m_Material: {fileID: 2100000, guid: 62decc1e61f5e7c28a6f9cd86f7fdd34, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
