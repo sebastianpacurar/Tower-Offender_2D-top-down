@@ -79,6 +79,10 @@ PrefabInstance:
       propertyPath: turretStatsSo
       value: 
       objectReference: {fileID: 11400000, guid: 17c1cbf756188b83da88d2893868ef43, type: 2}
+    - target: {fileID: 5668678487776573849, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ab8a0fe1f496225f68e9a425e1d84de2, type: 2}
     - target: {fileID: 6100540536213009582, guid: f7277d13ff7810f78adf9a39b028d62b, type: 3}
       propertyPath: towerStatsSo
       value: 

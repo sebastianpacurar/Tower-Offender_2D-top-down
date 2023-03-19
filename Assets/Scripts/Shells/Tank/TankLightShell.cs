@@ -25,7 +25,7 @@ namespace Shells.Tank {
         }
 
         private void OnCollisionEnter2D(Collision2D col) {
-            if (col.gameObject.CompareTag("TurretObj") || col.gameObject.CompareTag("BodyObj") || col.gameObject.CompareTag("WorldBorder") || col.gameObject.CompareTag(tag)) {
+            if (col.gameObject.CompareTag("TurretObj") || col.gameObject.CompareTag("BodyObj") || col.gameObject.CompareTag("WorldBorder") || col.gameObject.CompareTag("SafeWalls") || col.gameObject.CompareTag(tag)) {
                 DestroyShell();
             }
 

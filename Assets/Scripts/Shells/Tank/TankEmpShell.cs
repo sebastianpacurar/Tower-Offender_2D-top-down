@@ -31,15 +31,15 @@ namespace Shells.Tank {
         }
 
         // NOTE: to contain the explosion and explosion wave radii inside the default aoe radius, from the SO:
-        // set explosion to default-1
-        // set explosionWave to explosion/2
+        // set explosion to default radius
+        // set explosionWave to default radius -1 
         private void Start() {
-            _explosionShapeMod.radius = tankStatsSo.EmpShellStatsSo.AoeRadius - 1;
-            _explosionWaveShapeMod.radius = _explosionShapeMod.radius / 2;
+            _explosionShapeMod.radius = tankStatsSo.EmpShellStatsSo.AoeRadius;
+            _explosionWaveShapeMod.radius = tankStatsSo.EmpShellStatsSo.AoeRadius - 1f;
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.CompareTag("TurretObj") || col.gameObject.CompareTag("WorldBorder") || col.gameObject.CompareTag("HomingShell")) {
+            if (col.gameObject.CompareTag("WorldBorder")) {
                 DestroyShell();
             }
         }

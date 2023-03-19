@@ -5789,7 +5789,7 @@ GameObject:
   - component: {fileID: 7153717443522003983}
   - component: {fileID: 7326606349408496019}
   - component: {fileID: 8854417991809945711}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: MapCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6006,7 +6006,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1867833794279671746}
   m_Enabled: 1
-  m_Alpha: 0.5
+  m_Alpha: 0.75
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -21031,7 +21031,7 @@ GameObject:
   - component: {fileID: 44085266352639108}
   - component: {fileID: 8610836724177025586}
   - component: {fileID: 538143954518687829}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21123,7 +21123,7 @@ Transform:
   m_GameObject: {fileID: 4598568411494266767}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8897720834775444440}
@@ -21149,7 +21149,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 5d9ee3acdc725c4cb86b30b234041f50, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21171,7 +21171,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.050980393}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -21192,7 +21192,7 @@ GameObject:
   - component: {fileID: 8133288624004384435}
   - component: {fileID: 6448155179743639349}
   - component: {fileID: 6659959298641774312}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: MapTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21291,7 +21291,7 @@ GameObject:
   - component: {fileID: 3532260892319611916}
   - component: {fileID: 1187663636914548552}
   - component: {fileID: 2272306337783546866}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: TurretCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}

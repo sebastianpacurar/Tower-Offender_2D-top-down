@@ -62,6 +62,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CameraZoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""d4c8a5ea-0fef-4397-9f74-775eca8e0467"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,39 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""SpeedBoost"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""2e4e69aa-bb39-414b-bb42-42317724e54a"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraZoom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""57b1195b-2c87-49b1-9646-d050d9dab470"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CameraZoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""7916f62c-4286-4dad-b200-7dc7edfbcd66"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CameraZoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -289,6 +331,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Steer = m_Player.FindAction("Steer", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_SpeedBoost = m_Player.FindAction("SpeedBoost", throwIfNotFound: true);
+        m_Player_CameraZoom = m_Player.FindAction("CameraZoom", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_FirstWeapon = m_UI.FindAction("FirstWeapon", throwIfNotFound: true);
@@ -359,6 +402,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Steer;
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_SpeedBoost;
+    private readonly InputAction m_Player_CameraZoom;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -367,6 +411,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Steer => m_Wrapper.m_Player_Steer;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @SpeedBoost => m_Wrapper.m_Player_SpeedBoost;
+        public InputAction @CameraZoom => m_Wrapper.m_Player_CameraZoom;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -388,6 +433,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SpeedBoost.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpeedBoost;
                 @SpeedBoost.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpeedBoost;
                 @SpeedBoost.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpeedBoost;
+                @CameraZoom.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraZoom;
+                @CameraZoom.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraZoom;
+                @CameraZoom.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraZoom;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -404,6 +452,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SpeedBoost.started += instance.OnSpeedBoost;
                 @SpeedBoost.performed += instance.OnSpeedBoost;
                 @SpeedBoost.canceled += instance.OnSpeedBoost;
+                @CameraZoom.started += instance.OnCameraZoom;
+                @CameraZoom.performed += instance.OnCameraZoom;
+                @CameraZoom.canceled += instance.OnCameraZoom;
             }
         }
     }
@@ -488,6 +539,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnSteer(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnSpeedBoost(InputAction.CallbackContext context);
+        void OnCameraZoom(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

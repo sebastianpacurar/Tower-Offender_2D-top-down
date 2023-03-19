@@ -33,6 +33,7 @@ TagManager:
   - TowerBodiesTilemap
   - ShellsContainer
   - MapCamera
+  - SafeWalls
   layers:
   - Default
   - TransparentFX
@@ -41,8 +42,8 @@ TagManager:
   - Water
   - UI
   - Military Unit
+  - Safe Wall
   - Map Tile
-  - 
   - 
   - 
   - 

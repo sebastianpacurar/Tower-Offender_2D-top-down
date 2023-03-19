@@ -4,6 +4,7 @@ using System.Linq;
 using Enemy.Tower.Hp;
 using TileMap;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
 
 namespace Enemy.Tower {
@@ -20,15 +21,21 @@ namespace Enemy.Tower {
         private float _timeToSpawnNextTurret;
         private int _currTurretIndex;
         private bool _turretUpdateInProgress;
+        private float _explosionTimer;
+        private float _explosionIntensity;
         private bool _isTurretInList;
 
         private Dictionary<string, TileBase> _wallPoints;
-
         private Tilemap _wallMap;
         private WallTileManager mapManager;
 
-        private SpriteRenderer _sr;
+        // the box which results after the explosion occurs, and there are no more turrets in list
         private BoxCollider2D _boxCollider2D;
+        // circle which increases in range during explosion
+        private CircleCollider2D _circleCollider2D;
+        private Light2D _light2D;
+
+        private SpriteRenderer _sr;
         private Transform _turretsTilemapObj;
         private GameObject _turretEntity;
         private TurretHpManager _turretHpManager;
@@ -46,17 +53,28 @@ namespace Enemy.Tower {
             _wallPoints = new Dictionary<string, TileBase>();
             _sr = GetComponent<SpriteRenderer>();
             _boxCollider2D = GetComponent<BoxCollider2D>();
+            _circleCollider2D = GetComponent<CircleCollider2D>();
+            _light2D = GetComponent<Light2D>();
+
             _wallMap = GameObject.FindGameObjectWithTag("Wall").GetComponent<Tilemap>();
             _turretsTilemapObj = GameObject.FindGameObjectWithTag("TowerTurretsTilemap").transform;
 
-            name = transform.position.ToString(); // set the name of the body to its position in world space
+            name = $"{name[..2]}-{transform.position.ToString()}"; // set the name of the body to its position in world space
         }
 
         private void Start() {
-            _timeToSpawnNextTurret = 2f; // default to 2.5 seconds
-
-            // instantiate 1LT as first turret, and set index checker to true
+            _timeToSpawnNextTurret = 2f; // default to 2 seconds
             _isTurretInList = true;
+
+            // instantiate based on the prefab used
+            if (name.StartsWith("LB")) {
+                _currTurretIndex = 0;
+            } else if (name.StartsWith("MB")) {
+                _currTurretIndex = 3;
+            } else if (name.StartsWith("HB")) {
+                _currTurretIndex = 6;
+            }
+
             InstantiateTurret(_currTurretIndex);
         }
 
@@ -64,6 +82,7 @@ namespace Enemy.Tower {
             UpdateWallTilesPositions();
             CalculateIndexAndSpriteRotation(_spriteSet);
             HandleTurretUpgrade();
+            HandleTurretExplosionCollider();
         }
 
 
@@ -104,12 +123,16 @@ namespace Enemy.Tower {
             _turretHpManager = _turretEntity.transform.Find("TurretObj").GetComponent<TurretHpManager>();
 
             // update the color of the sprite set used. if LT then yellow; else if MT then red; else if HT then purple
+            // update the explosion light color
             if (_turretEntity.name.Contains("LT")) {
                 _spriteSet = lightSprites;
+                _light2D.color = Color.yellow;
             } else if (_turretEntity.name.Contains("MT")) {
                 _spriteSet = midSprites;
+                _light2D.color = Color.red;
             } else if (_turretEntity.name.Contains("HT")) {
                 _spriteSet = heavySprites;
+                _light2D.color = Color.magenta;
             }
 
             // Generate the Fort when the new turret is spawned
@@ -137,6 +160,28 @@ namespace Enemy.Tower {
                     }
                 }
             }
+        }
+
+        // creates a small light along with a circle collider to push the tank away from the surrounding tiles
+        // avoid getting caught in the gaps formed between the surrounding walls and newly spawned turret
+        private void HandleTurretExplosionCollider() {
+            if (_turretUpdateInProgress) {
+                _explosionTimer += Time.deltaTime;
+            } else {
+                _explosionTimer = 0f;
+            }
+
+            // set intensity to default to 2, and when the explosion is half way through, start decreasing intensity to 0 twice the speed
+            if (_explosionTimer > _timeToSpawnNextTurret / 2) {
+                _explosionIntensity -= Time.deltaTime * 2;
+            } else {
+                _explosionIntensity = 2f;
+            }
+
+            _circleCollider2D.radius = _explosionTimer; // update the collider radius to push the tank gradually off the spawnable wall tiles
+            _light2D.pointLightOuterRadius = Mathf.Clamp(_explosionTimer, 0, _timeToSpawnNextTurret);
+            _light2D.pointLightInnerRadius = Mathf.Clamp(_explosionTimer / 2, 0, _timeToSpawnNextTurret / 2);
+            _light2D.intensity = Mathf.Clamp(_explosionIntensity, 0, 2);
         }
 
 
@@ -208,7 +253,7 @@ namespace Enemy.Tower {
 
                     break;
 
-                case 4: // hand;e 4 wall connection
+                case 4: // handle 4 wall connection
                     _sr.sprite = currentSpriteSet[5];
                     break;
             }

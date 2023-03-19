@@ -22,7 +22,7 @@ namespace Enemy.Tower {
         private TankHpManager _tankHpHandler;
         private bool _detected;
         private bool _canFire = true;
-        private bool _towerDetected;
+        private bool _canShootAtTank;
         private static readonly int IsShooting = Animator.StringToHash("IsShooting");
 
         private void Awake() {
@@ -78,26 +78,32 @@ namespace Enemy.Tower {
             }
 
             var direction = _tankPos.position - transform.position;
-            var rayMask = 1 << LayerMask.NameToLayer("Military Unit");
+            var rayMask = 1 << LayerMask.NameToLayer("Military Unit") | 1 << LayerMask.NameToLayer("Safe Wall");
             var rayInfo = Physics2D.RaycastAll(transform.position, direction, turretStatsSo.Range, rayMask);
 
             var playerIndex = Array.FindIndex(rayInfo[1..], obj => obj.collider.CompareTag("Player"));
-            _towerDetected = Array.FindLastIndex(rayInfo[1..], obj => obj.collider.CompareTag("TurretObj")) > -1;
+            var wallIndex = Array.FindIndex(rayInfo[1..], obj => obj.collider.CompareTag("SafeWalls"));
+
+            // NOTE: return true if there is no other turret between the current turret and tank, and if there is no safeWall between the current turret and the tank
+            _canShootAtTank = Array.FindLastIndex(rayInfo[1..], obj => obj.collider.CompareTag("TurretObj")) == -1 && (playerIndex < wallIndex || wallIndex == -1);
 
             if (playerIndex >= 0) {
-                SetDetectionOn(direction, _towerDetected);
+                SetDetectionOn(direction, _canShootAtTank);
             } else {
                 SetDetectionOff();
             }
         }
 
-        private void SetDetectionOn(Vector3 direction, bool isTowerDetected) {
+        // set detection to true if _canShootAtTank, and the colors accodingly. 
+        private void SetDetectionOn(Vector3 direction, bool active) {
             _detected = true;
             detectionLine.SetPosition(1, _tankPos.position);
             detectionLine.enabled = true;
             circleRangeSr.enabled = false;
-            detectionLine.colorGradient = isTowerDetected ? turretStatsSo.DetectionLineInactiveColor : turretStatsSo.DetectionLineActiveColor;
-            transform.transform.up = direction;
+            detectionLine.colorGradient = active ? turretStatsSo.DetectionLineActiveColor : turretStatsSo.DetectionLineInactiveColor;
+
+            var rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+            transform.rotation = Quaternion.Euler(0, 0, rotZ);
         }
 
         private void SetDetectionOff() {
@@ -108,7 +114,7 @@ namespace Enemy.Tower {
         }
 
         private void Shoot() {
-            if (!_detected || _towerDetected) return;
+            if (!_detected || !_canShootAtTank) return;
 
             if (!_canFire) {
                 ShootTimer += Time.deltaTime;

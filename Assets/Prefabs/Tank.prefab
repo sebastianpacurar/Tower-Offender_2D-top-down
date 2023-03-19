@@ -1406,6 +1406,7 @@ GameObject:
   - component: {fileID: 941697460953250086}
   - component: {fileID: 7709479081923012382}
   - component: {fileID: 7910877008930517458}
+  - component: {fileID: 6767490953056483308}
   m_Layer: 6
   m_Name: TankObj
   m_TagString: Player
@@ -1637,6 +1638,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapTileSr: {fileID: 1803232186948266353}
   mapTileColorSo: {fileID: 11400000, guid: 52852521a7e99bfb7a061f7f69a33a84, type: 2}
+--- !u!114 &6767490953056483308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981674770873572449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39cf7858a9c62e651a7730eee5b2d986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentZoomVal: 0
+  finalZoomVal: 0
+  minOrthoSize: 7
+  maxOrthoSize: 25
 --- !u!1 &2096259790130990760
 GameObject:
   m_ObjectHideFlags: 0
@@ -27579,7 +27596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4628547220444658638}
   - component: {fileID: 1803232186948266353}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: MapTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
