@@ -27,7 +27,7 @@ namespace Enemy.Tower {
 
         private Dictionary<string, TileBase> _wallPoints;
         private Tilemap _wallMap;
-        private WallTileManager mapManager;
+        private WallTileManager _wallMapManager;
 
         // the box which results after the explosion occurs, and there are no more turrets in list
         private BoxCollider2D _boxCollider2D;
@@ -44,7 +44,7 @@ namespace Enemy.Tower {
         private int _spriteIndex;
 
         private void Awake() {
-            mapManager = FindObjectOfType<WallTileManager>();
+            _wallMapManager = FindObjectOfType<WallTileManager>();
 
             _centerEm = center.emission;
             _fireWaveEm = fireWave.emission;
@@ -136,7 +136,7 @@ namespace Enemy.Tower {
             }
 
             // Generate the Fort when the new turret is spawned
-            mapManager.GenerateFort(_turretEntity);
+            _wallMapManager.GenerateFort(_turretEntity);
         }
 
 

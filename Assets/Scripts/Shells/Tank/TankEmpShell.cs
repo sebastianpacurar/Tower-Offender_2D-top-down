@@ -1,11 +1,13 @@
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Shells.Tank {
     public class TankEmpShell : MonoBehaviour {
         [SerializeField] private TankStatsSo tankStatsSo;
         [SerializeField] private ParticleSystem explosionPs, explosionWavePs, trailPs;
         [SerializeField] private GameObject aoeHitAreaObj;
+        [SerializeField] private Light2D topLight;
 
         private CapsuleCollider2D _capsuleCollider2D;
         private SpriteRenderer _sr;
@@ -14,6 +16,7 @@ namespace Shells.Tank {
 
         private ParticleSystem.EmissionModule _explosionEmMod, _explosionWaveEmMod, _trailEmMod;
         private ParticleSystem.ShapeModule _explosionShapeMod, _explosionWaveShapeMod;
+        private ParticleSystem.NoiseModule _explosionNoiseModule;
 
         private void Awake() {
             _rb = GetComponent<Rigidbody2D>();
@@ -22,20 +25,24 @@ namespace Shells.Tank {
 
             _empAoeScript = transform.Find("AreaOfEffect").GetComponent<EmpAreaOfEffect>();
 
-            _explosionEmMod = explosionPs.emission;
-            _explosionWaveEmMod = explosionWavePs.emission;
             _trailEmMod = trailPs.emission;
 
+            _explosionEmMod = explosionPs.emission;
             _explosionShapeMod = explosionPs.shape;
+            _explosionNoiseModule = explosionPs.noise;
+
             _explosionWaveShapeMod = explosionWavePs.shape;
+            _explosionWaveEmMod = explosionWavePs.emission;
         }
 
         // NOTE: to contain the explosion and explosion wave radii inside the default aoe radius, from the SO:
-        // set explosion to default radius
-        // set explosionWave to default radius -1 
+        // set explosion shape radius to default radius
+        // set explosion noise strength to default / 3.5f
+        // set explosionWave to default radius
         private void Start() {
             _explosionShapeMod.radius = tankStatsSo.EmpShellStatsSo.AoeRadius;
-            _explosionWaveShapeMod.radius = tankStatsSo.EmpShellStatsSo.AoeRadius - 1f;
+            _explosionNoiseModule.strength = tankStatsSo.EmpShellStatsSo.AoeRadius / 3.5f;
+            _explosionWaveShapeMod.radius = tankStatsSo.EmpShellStatsSo.AoeRadius;
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
@@ -54,8 +61,9 @@ namespace Shells.Tank {
 
         private void DestroyShell() {
             Destroy(aoeHitAreaObj);
-            _trailEmMod.enabled = false;
             _empAoeScript.EnableCircleCollider();
+            _trailEmMod.enabled = false;
+            topLight.enabled = false;
             _sr.enabled = false;
             _capsuleCollider2D.enabled = false;
             _rb.velocity = new Vector2(0, 0);
@@ -65,7 +73,7 @@ namespace Shells.Tank {
             explosionPs.Play();
             explosionWavePs.Play();
 
-            Invoke(nameof(DestroyObj), 1.0f);
+            Invoke(nameof(DestroyObj), 2f);
         }
 
         private void DestroyObj() {

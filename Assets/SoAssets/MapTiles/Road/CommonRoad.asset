@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 927f10763c7ff53a8aeef14d7d90e90e, type: 3}
+  m_Name: CommonRoad
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: 35b076f703827d7fb8e69ae68187b8b2, type: 2}
+  - {fileID: 11400000, guid: 1b063cb3c893474b78c8d7e83ef17918, type: 2}
+  - {fileID: 11400000, guid: 1ecace9731eeedd35823fd1b1bc0e8ad, type: 2}
+  - {fileID: 11400000, guid: a2e0393ba5e08c545a48d52d6c177aa8, type: 2}
+  accFactor: 5
+  boostAccFactor: 7
+  maxSpeed: 5.25
+  boostMaxSpeed: 6.25

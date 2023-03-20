@@ -17,7 +17,7 @@ MonoBehaviour:
   steerFactor: 3
   driftFactor: 0
   maxSpeed: 3.25
-  maxSpeedBoostVal: 5
+  maxSpeedBoostVal: 4.25
   speedBoostCapacity: 100
   speedBoostFillUnit: 0.1
   speedBoostAccFactor: 6

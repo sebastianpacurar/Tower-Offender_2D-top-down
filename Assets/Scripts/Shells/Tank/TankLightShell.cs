@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Shells.Tank {
     public class TankLightShell : MonoBehaviour {
         [SerializeField] private ParticleSystem explosionPs, trailPs;
-        private WallTileManager mapManager;
+        private WallTileManager _wallMapManager;
 
         private CapsuleCollider2D _capsuleCollider2D;
         private SpriteRenderer _sr;
@@ -13,7 +13,7 @@ namespace Shells.Tank {
         private ParticleSystem.EmissionModule _explosionEmMod;
 
         private void Awake() {
-            mapManager = FindObjectOfType<WallTileManager>();
+            _wallMapManager = FindObjectOfType<WallTileManager>();
 
             _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
@@ -43,13 +43,13 @@ namespace Shells.Tank {
                             isChecked = true;
                             DisablePhysics();
 
-                            // NOTE: this destroys the wall which was hit, even though the collision point is on the edge of the WallTile 
+                            // NOTE: this destroys the exact wall which was hit, even though the collision point is on the edge of the WallTile 
                             // calculate location of hit tile
                             Vector2 hitPos;
                             hitPos.x = hit.point.x - 0.01f * hit.normal.x;
                             hitPos.y = hit.point.y - 0.01f * hit.normal.y;
 
-                            mapManager.HandleWallTileLife(hitPos);
+                            _wallMapManager.HandleWallTileLife(hitPos);
                             DestroyShell();
                         }
                     }

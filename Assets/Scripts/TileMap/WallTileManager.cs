@@ -8,10 +8,10 @@ using UnityEngine.Tilemaps;
 namespace TileMap {
     public class WallTileManager : MonoBehaviour {
         [SerializeField] private Tilemap wallMap;
-        [SerializeField] private List<TileDataSo> tileDataSos;
+        [SerializeField] private List<WallTileDataSo> tileDataSos;
 
-        private Dictionary<TileBase, TileDataSo> _tilesStatsSo;
-        private Dictionary<Vector3Int, MyTileData> _cachedTiles;
+        private Dictionary<TileBase, WallTileDataSo> _tilesStatsSo;
+        private Dictionary<Vector3Int, WallTileData> _cachedTiles;
 
         // 0,1 are yellow L and T shapes
         // 2,3 are red L and T shapes
@@ -19,12 +19,12 @@ namespace TileMap {
         [SerializeField] private Tile[] spawnableYrpWalls;
 
         private void Awake() {
-            _tilesStatsSo = new Dictionary<TileBase, TileDataSo>();
-            _cachedTiles = new Dictionary<Vector3Int, MyTileData>();
+            _tilesStatsSo = new Dictionary<TileBase, WallTileDataSo>();
+            _cachedTiles = new Dictionary<Vector3Int, WallTileData>();
 
             // fill the tileStats with default life value
             foreach (var tileData in tileDataSos) {
-                foreach (var tile in tileData.tiles) {
+                foreach (var tile in tileData.Tiles) {
                     _tilesStatsSo.Add(tile, tileData);
                 }
             }
@@ -70,14 +70,13 @@ namespace TileMap {
 
         // decrease life of tile, and destroy it when it reaches 0
         // NOTE: called in TankLightShell.cs since it's the only one with an isTrigger=false as collider
-        public void HandleWallTileLife(Vector2 worldPosition) {
-            Vector3Int gridPosition = wallMap.WorldToCell(worldPosition);
-            MyTileData cachedEntry;
-            Debug.Log(gridPosition);
+        public void HandleWallTileLife(Vector2 worldPos) {
+            Vector3Int gridPos = wallMap.WorldToCell(worldPos);
+            WallTileData cachedEntry;
 
             // HACK: avoid getting null pointer exception
             try {
-                cachedEntry = _cachedTiles[gridPosition];
+                cachedEntry = _cachedTiles[gridPos];
             } catch (Exception) {
                 return;
             }
@@ -87,8 +86,8 @@ namespace TileMap {
 
                 // set tile to null in both tilemap and _cachedTiles
                 if (cachedEntry.Lives == 0) {
-                    wallMap.SetTile(gridPosition, null);
-                    _cachedTiles.Remove(gridPosition);
+                    wallMap.SetTile(gridPos, null);
+                    _cachedTiles.Remove(gridPos);
                 }
             }
         }
@@ -100,7 +99,7 @@ namespace TileMap {
         private void GenerateFortWallTile(Tile tile, Vector3Int tilePos, float rotZ) {
             wallMap.SetTile(tilePos, tile);
             wallMap.SetTransformMatrix(tilePos, Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0f, 0f, rotZ), Vector3.one));
-            _cachedTiles[tilePos] = new MyTileData(tile, _tilesStatsSo[tile].life);
+            _cachedTiles[tilePos] = new WallTileData(tile, _tilesStatsSo[tile].Life);
         }
 
 
@@ -121,8 +120,8 @@ namespace TileMap {
                     }
 
                     // grab the life stats from the tile SO 
-                    var life = _tilesStatsSo[tile].life;
-                    var tileData = new MyTileData(tile, life);
+                    var life = _tilesStatsSo[tile].Life;
+                    var tileData = new WallTileData(tile, life);
                     _cachedTiles[cellPosition] = tileData;
 
                     yield return tileData;

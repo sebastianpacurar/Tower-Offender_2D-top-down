@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Cinemachine;
 using ScriptableObjects;
+using TileMap;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Vector2 = UnityEngine.Vector2;
@@ -13,6 +14,7 @@ namespace Player.Controllers {
 
         private PlayerControls _controls;
         private CinemachineVirtualCamera _cineMachineMainCam;
+        private RoadTileManager roadTileManager;
         private Rigidbody2D _rb;
 
         private float _move, _rotation;
@@ -48,11 +50,10 @@ namespace Player.Controllers {
             _controls = new PlayerControls();
             _rb = GetComponent<Rigidbody2D>();
             _cineMachineMainCam = GameObject.FindGameObjectWithTag("CM2D").GetComponent<CinemachineVirtualCamera>();
+            roadTileManager = FindObjectOfType<RoadTileManager>();
 
-            accFactor = tankStatsSo.AccFactor;
             steerFactor = tankStatsSo.SteerFactor;
             driftFactor = tankStatsSo.DriftFactor;
-            maxSpeed = tankStatsSo.MaxSpeed;
             SpeedBoostVal = tankStatsSo.SpeedBoostCapacity;
         }
 
@@ -101,13 +102,31 @@ namespace Player.Controllers {
         }
 
 
+        // NOTE: apply engine force based on which tile position is on (if road tile or not road tile)
         private void ApplyEngineForce() {
-            HandleEngineBreaks();
+            // set the default values for no road tiles
+            var isOnRoad = roadTileManager.IsRoadTile(transform.position);
+            var currMaxSpeed = tankStatsSo.MaxSpeed;
+            var currBoostMaxSpeed = tankStatsSo.MaxSpeedBoostVal;
+            var currAccFactor = tankStatsSo.AccFactor;
+            var currMaxSpeedBoostAccFactor = tankStatsSo.SpeedBoostAccFactor;
+
+            // set the values properly based on the RoadTileDataSo contents
+            if (isOnRoad) {
+                var data = roadTileManager.GetTileData(transform.position);
+                currMaxSpeed = data.MaxSpeed;
+                currAccFactor = data.AccFactor;
+                currBoostMaxSpeed = data.BoostMaxSpeed;
+                currMaxSpeedBoostAccFactor = data.BoostAccFactor;
+            }
+
+            // change rb.drag based on the opposingForce vector
+            HandleEngineBreaks(currAccFactor);
 
             // handle Exhausts Objects, accelerate and maxSpeed 
             if (_isSpeeding) {
-                accFactor = tankStatsSo.SpeedBoostAccFactor;
-                maxSpeed = tankStatsSo.MaxSpeedBoostVal;
+                accFactor = currMaxSpeedBoostAccFactor;
+                maxSpeed = currBoostMaxSpeed;
 
                 switch (_move) {
                     case > 0: {
@@ -122,8 +141,8 @@ namespace Player.Controllers {
                     }
                 }
             } else {
-                accFactor = tankStatsSo.AccFactor;
-                maxSpeed = tankStatsSo.MaxSpeed;
+                accFactor = currAccFactor;
+                maxSpeed = currMaxSpeed;
                 if (exhaustFront.activeSelf) exhaustFront.SetActive(false);
                 if (exhaustBack.activeSelf) exhaustBack.SetActive(false);
             }
@@ -204,17 +223,17 @@ namespace Player.Controllers {
             _rb.velocity = forwardVelocity + rightVelocity * driftFactor;
         }
 
-        private void HandleEngineBreaks() {
+        private void HandleEngineBreaks(float currAccFactor) {
             opposingForce = Vector2.Dot(_rb.velocity, engineForce);
 
             if (_move == 0f) {
                 _rb.drag = Mathf.Lerp(_rb.drag, 2.0f, Time.fixedDeltaTime * 3); // apply Engine Breaks
-                accFactor = tankStatsSo.AccFactor;
+                accFactor = currAccFactor;
             } else if (_move != 0f && opposingForce < 0) {
-                accFactor = tankStatsSo.AccFactor * 3;
+                accFactor = currAccFactor * 3;
                 _rb.drag = Mathf.Lerp(_rb.drag, 5.0f, Time.fixedDeltaTime * 3); // apply Manual Breaks - in case the tank is still moving towards the opposite of the desired direction
             } else {
-                accFactor = tankStatsSo.AccFactor;
+                accFactor = currAccFactor;
                 _rb.drag = 0f; // don't apply any breaks when not moving forward/backward
             }
         }
