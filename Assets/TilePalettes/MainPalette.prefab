@@ -1904,6 +1904,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 73f1814a4446ce6139f906ab3cbda72b, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 01836b5f628ebbc559ac0b0b0df39d2d, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 778867072, guid: e5e571e333836bdd4b74de549de59221, type: 3}
@@ -2215,6 +2217,8 @@ Tilemap:
     m_Data: {fileID: -849722857, guid: 909c65898c083388b9b57855ffb49888, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -1881638899, guid: 909c65898c083388b9b57855ffb49888, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 155
     m_Data:
@@ -2321,7 +2325,7 @@ GameObject:
   - component: {fileID: 3396041601588303452}
   - component: {fileID: 5965851665017633931}
   m_Layer: 0
-  m_Name: Palette
+  m_Name: MainPalette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2355,7 +2359,7 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &8034477701399716022
+--- !u!114 &2222143491711264539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

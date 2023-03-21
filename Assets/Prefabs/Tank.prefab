@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1188970796}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20.3125, y: 20.3125, z: 1}
+  m_LocalScale: {x: 3.15, y: 3.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5659541035075616001}
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 4269312732539277084}
   - component: {fileID: 4404584124865018706}
   - component: {fileID: 1167641701}
-  - component: {fileID: 1637231278}
+  - component: {fileID: 1897822778}
   m_Layer: 0
   m_Name: NukeAoeGhost
   m_TagString: NukeAoeGhost
@@ -511,7 +511,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1637231278
+--- !u!114 &1897822778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -520,12 +520,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 227599051004894948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f973f7f496c41f5bba50d33ae1aa6758, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e327785e830b7044b1325d01e984968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tankStatsSo: {fileID: 11400000, guid: 4a8f37d34b956f000b7c883bd955b800, type: 2}
+  shellStatsSo: {fileID: 11400000, guid: ae9549cb37146e5cfa53e2b005d8d85b, type: 2}
   circleRadiusArea: {fileID: 2565301321222460735}
   multiplyFactor: 2.825
+  radiusVal: 0
 --- !u!1 &446429416094084844
 GameObject:
   m_ObjectHideFlags: 0
@@ -17062,7 +17063,7 @@ GameObject:
   - component: {fileID: 5659541035075616001}
   - component: {fileID: 4312588447016170723}
   - component: {fileID: 289142397}
-  - component: {fileID: 1021423804}
+  - component: {fileID: 1859373825}
   m_Layer: 0
   m_Name: LightShellGhost
   m_TagString: LightShellGhost
@@ -17102,7 +17103,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 6.25
+  m_Radius: 1
 --- !u!50 &289142397
 Rigidbody2D:
   serializedVersion: 4
@@ -17124,7 +17125,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1021423804
+--- !u!114 &1859373825
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17133,12 +17134,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5909765202046716637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f973f7f496c41f5bba50d33ae1aa6758, type: 3}
+  m_Script: {fileID: 11500000, guid: b32e16630ae1fda418bd579df332c0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tankStatsSo: {fileID: 11400000, guid: 4a8f37d34b956f000b7c883bd955b800, type: 2}
+  tankShellStatsSo: {fileID: 11400000, guid: fd317d3d09831c0bf8b4dbdf51d81037, type: 2}
   circleRadiusArea: {fileID: 1188970798}
-  multiplyFactor: 3.25
+  multiplyFactor: 3.15
+  radiusVal: 0
+  finalRadiusVal: 0
 --- !u!1 &5955245763165389683
 GameObject:
   m_ObjectHideFlags: 0
@@ -27425,7 +27428,7 @@ GameObject:
   - component: {fileID: 6380470494080676758}
   - component: {fileID: 366656785903254499}
   - component: {fileID: 1716989842}
-  - component: {fileID: 1646712489}
+  - component: {fileID: 306908581}
   m_Layer: 0
   m_Name: EmpAoeGhost
   m_TagString: EmpAoeGhost
@@ -27487,7 +27490,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1646712489
+--- !u!114 &306908581
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27496,12 +27499,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7967878687594393518}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f973f7f496c41f5bba50d33ae1aa6758, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ee9bda41853fd4e480e065e2a06b9c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tankStatsSo: {fileID: 11400000, guid: 4a8f37d34b956f000b7c883bd955b800, type: 2}
+  shellStatsSo: {fileID: 11400000, guid: 6cf65be9ec689712594054171afcd509, type: 2}
   circleRadiusArea: {fileID: 3211383368864141387}
   multiplyFactor: 3.125
+  radiusVal: 0
 --- !u!1 &7985592927908812625
 GameObject:
   m_ObjectHideFlags: 0

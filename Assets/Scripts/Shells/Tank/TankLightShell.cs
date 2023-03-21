@@ -1,3 +1,4 @@
+using Shells.Tank.AoeScalers;
 using TileMap;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace Shells.Tank {
         private Rigidbody2D _rb;
 
         private ParticleSystem.EmissionModule _explosionEmMod;
+        private LightShellAoeScaler _lightShellAoeScaler;
 
         private void Awake() {
             _wallMapManager = FindObjectOfType<WallTileManager>();
@@ -18,6 +20,7 @@ namespace Shells.Tank {
             _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
             _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+            _lightShellAoeScaler = GameObject.FindGameObjectWithTag("LightShellGhost").GetComponent<LightShellAoeScaler>();
         }
 
         private void Start() {
@@ -25,7 +28,14 @@ namespace Shells.Tank {
         }
 
         private void OnCollisionEnter2D(Collision2D col) {
-            if (col.gameObject.CompareTag("TurretObj") || col.gameObject.CompareTag("BodyObj") || col.gameObject.CompareTag("WorldBorder") || col.gameObject.CompareTag("SafeWalls") || col.gameObject.CompareTag(tag)) {
+            if (col.gameObject.CompareTag("BodyObj") || col.gameObject.CompareTag("WorldBorder") || col.gameObject.CompareTag("SafeWalls") || col.gameObject.CompareTag(tag)) {
+                DestroyShell();
+            }
+
+            // increase LightShellGhost radius with 0.1f when turret is hit
+            if (col.gameObject.CompareTag("TurretObj")) {
+                //TODO: think of a way to handle this dynamical
+                _lightShellAoeScaler.finalRadiusVal = _lightShellAoeScaler.radiusVal + 0.1f;
                 DestroyShell();
             }
 
@@ -48,8 +58,10 @@ namespace Shells.Tank {
                             Vector2 hitPos;
                             hitPos.x = hit.point.x - 0.01f * hit.normal.x;
                             hitPos.y = hit.point.y - 0.01f * hit.normal.y;
-
                             _wallMapManager.HandleWallTileLife(hitPos);
+
+                            // increase LightShellGhost radius with 0.05f when wall is hit
+                            _lightShellAoeScaler.finalRadiusVal = _lightShellAoeScaler.radiusVal + 0.05f;
                             DestroyShell();
                         }
                     }

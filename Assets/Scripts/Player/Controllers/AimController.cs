@@ -1,4 +1,5 @@
 using Menus;
+using Shells.Tank.AoeScalers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,12 +12,15 @@ namespace Player.Controllers {
 
         private Camera _mainCam;
         private InGameMenu _inGameMenu;
+        private LightShellAoeScaler lightShellAoeScaler;
+
         private Vector2 _lightShellFurthestPoint;
         private Vector2 _sniperShellFurthestPoint;
 
         private void Awake() {
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             _inGameMenu = GameObject.FindGameObjectWithTag("GameUI").GetComponent<InGameMenu>();
+            lightShellAoeScaler = GameObject.FindGameObjectWithTag("LightShellGhost").GetComponent<LightShellAoeScaler>();
         }
 
         private void Update() {
@@ -37,7 +41,8 @@ namespace Player.Controllers {
             _sniperShellFurthestPoint = pos + direction.normalized * 200f;
             sniperShellGhost.transform.position = AimVal;
 
-            _lightShellFurthestPoint = pos + direction.normalized * 6.25f;
+            // contain the light shell line renderer inside the LightShellGhost's 
+            _lightShellFurthestPoint = pos + direction.normalized * lightShellAoeScaler.radiusVal;
             empAoeGhost.transform.position = AimVal;
             nukeAoeGhost.transform.position = AimVal;
 
@@ -45,7 +50,7 @@ namespace Player.Controllers {
             //  if mouse is inside the collider circle, then render shellGhost on the Mouse's position
             var mouseDistanceFromHull = Vector2.Distance(AimVal, hullPosition);
 
-            if (mouseDistanceFromHull > 6.25f) {
+            if (mouseDistanceFromHull > lightShellAoeScaler.radiusVal) {
                 lightShellGhost.transform.position = _lightShellFurthestPoint;
             } else {
                 lightShellGhost.transform.position = AimVal;
