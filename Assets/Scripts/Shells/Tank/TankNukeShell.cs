@@ -1,9 +1,8 @@
-using ScriptableObjects;
+using Player;
 using UnityEngine;
 
 namespace Shells.Tank {
     public class TankNukeShell : MonoBehaviour {
-        [SerializeField] private TankStatsSo tankStatsSo;
         [SerializeField] private ParticleSystem explosionCenterPs, explosionPs, explosionWavePs, trailPs;
         [SerializeField] private GameObject aoeHitAreaObj;
 
@@ -11,6 +10,7 @@ namespace Shells.Tank {
         private SpriteRenderer _sr;
         private Rigidbody2D _rb;
         private NukeAreaOfEffect _nukeAoeScript;
+        private WeaponStatsManager _weaponStats;
 
         private ParticleSystem.EmissionModule _explosionEmMod, _explosionCenterEmMod, _explosionWaveEmMod, _trailEmMod;
         private ParticleSystem.ShapeModule _explosionShapeMod, _explosionWaveShapeMod;
@@ -20,6 +20,7 @@ namespace Shells.Tank {
             _sr = GetComponent<SpriteRenderer>();
             _circleCollider2D = GetComponent<CircleCollider2D>();
             _nukeAoeScript = transform.Find("AreaOfEffect").GetComponent<NukeAreaOfEffect>();
+            _weaponStats = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponStatsManager>();
 
             _explosionEmMod = explosionPs.emission;
             _explosionCenterEmMod = explosionCenterPs.emission;
@@ -34,8 +35,8 @@ namespace Shells.Tank {
         // set explosion to default radius / 2.5f
         // set explosionWave to default radius -1f
         private void Start() {
-            _explosionShapeMod.radius = tankStatsSo.NukeShellStatsSo.AoeRadius / 2.5f;
-            _explosionWaveShapeMod.radius = tankStatsSo.NukeShellStatsSo.AoeRadius - 2f;
+            _explosionShapeMod.radius = _weaponStats.nukeAoeRadius / 2.5f;
+            _explosionWaveShapeMod.radius = _weaponStats.nukeAoeRadius - 2f;
         }
 
         private void OnTriggerEnter2D(Collider2D col) {

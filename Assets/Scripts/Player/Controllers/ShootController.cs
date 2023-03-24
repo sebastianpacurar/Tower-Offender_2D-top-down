@@ -14,7 +14,7 @@ namespace Player.Controllers {
         [SerializeField] private Animator shootAnimationPoint;
         [SerializeField] private float distanceBetweenTankAndMouse;
 
-        public bool IsAutoShootOn { get; private set; }
+        public bool IsAutoShootOn { get; set; }
 
         public float LightShellCdTimer { get; private set; }
         public bool CanFireEmpShell { get; private set; } = true;
@@ -30,6 +30,7 @@ namespace Player.Controllers {
 
         private InGameMenu _inGameMenu;
         private AmmoManager _ammoManager;
+        private WeaponStatsManager _weaponStats;
         private AimController _aimController;
         private Camera _camera;
         private static readonly int IsShooting = Animator.StringToHash("IsShooting");
@@ -44,6 +45,7 @@ namespace Player.Controllers {
             _controls = new PlayerControls();
             _ammoManager = GetComponent<AmmoManager>();
             _aimController = GetComponent<AimController>();
+            _weaponStats = GetComponent<WeaponStatsManager>();
             _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             _inGameMenu = GameObject.FindGameObjectWithTag("GameUI").GetComponent<InGameMenu>();
         }
@@ -57,7 +59,7 @@ namespace Player.Controllers {
             if (!CanFireLightShell) {
                 LightShellCdTimer += Time.deltaTime;
 
-                if (LightShellCdTimer > tankStatsSo.LightShellReloadTime) {
+                if (LightShellCdTimer > _weaponStats.lightShellFireRate) {
                     CanFireLightShell = true;
                     LightShellCdTimer = 0f;
                 }
@@ -66,7 +68,7 @@ namespace Player.Controllers {
             if (!CanFireEmpShell) {
                 EmpShellCdTimer += Time.deltaTime;
 
-                if (EmpShellCdTimer > tankStatsSo.EmpShellReloadTime) {
+                if (EmpShellCdTimer > _weaponStats.empFireRate) {
                     CanFireEmpShell = true;
                     EmpShellCdTimer = 0f;
                 }
@@ -75,7 +77,7 @@ namespace Player.Controllers {
             if (!CanFireSniperShell) {
                 SniperShellCdTimer += Time.deltaTime;
 
-                if (SniperShellCdTimer > tankStatsSo.SniperShellReloadTime) {
+                if (SniperShellCdTimer > _weaponStats.sniperFireRate) {
                     CanFireSniperShell = true;
                     SniperShellCdTimer = 0f;
                 }
@@ -84,7 +86,7 @@ namespace Player.Controllers {
             if (!CanFireNukeShell) {
                 NukeShellCdTimer += Time.deltaTime;
 
-                if (NukeShellCdTimer > tankStatsSo.NukeShellReloadTime) {
+                if (NukeShellCdTimer > _weaponStats.nukeFireRate) {
                     CanFireNukeShell = true;
                     NukeShellCdTimer = 0f;
                 }
@@ -102,8 +104,13 @@ namespace Player.Controllers {
                 CanFireLightShell = false;
                 shootAnimationPoint.SetBool(IsShooting, true);
                 var lightShell = Instantiate(_inGameMenu.SelectedShell, turretEdge.transform.position, Quaternion.identity, shellsContainer.transform);
-                InitShell(lightShell, tankStatsSo.LightShellStatsSo.Speed);
+                InitShell(lightShell, _weaponStats.lightShellSpeed);
             }
+        }
+
+        // called in InGameMenu.cs
+        public void StopShellSpawn() {
+            StopCoroutine(nameof(ShootLightShells));
         }
 
         // ShootShell input event
@@ -115,12 +122,14 @@ namespace Player.Controllers {
                 switch (ctx.phase) {
                     case InputActionPhase.Started:
                     case InputActionPhase.Performed:
-                        StartCoroutine(nameof(ShootLightShells));
-                        IsAutoShootOn = true;
-                        break;
-                    case InputActionPhase.Canceled:
-                        StopCoroutine(nameof(ShootLightShells));
-                        IsAutoShootOn = false;
+                        IsAutoShootOn = !IsAutoShootOn;
+
+                        if (IsAutoShootOn) {
+                            StartCoroutine(nameof(ShootLightShells));
+                        } else {
+                            StopShellSpawn();
+                        }
+
                         break;
                 }
             } else {
@@ -182,12 +191,10 @@ namespace Player.Controllers {
         private void OnEnable() {
             _controls.Player.Shoot.Enable();
             _controls.Player.Shoot.performed += ShootShell;
-            _controls.Player.Shoot.canceled += ShootShell;
         }
 
         private void OnDisable() {
             _controls.Player.Shoot.performed -= ShootShell;
-            _controls.Player.Shoot.canceled -= ShootShell;
             _controls.Player.Shoot.Disable();
         }
     }

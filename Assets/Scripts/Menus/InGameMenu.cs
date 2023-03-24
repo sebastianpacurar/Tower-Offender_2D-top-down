@@ -98,12 +98,18 @@ namespace Menus {
         }
 
         private void PerformWeaponSwitch(GameObject nextShell) {
-            // abort in case of same shell selection, or if left mouse button is pressed when firing light shells (auto shoot is on) 
-            if (SelectedShell.CompareTag(nextShell.tag) || _shootController.IsAutoShootOn) return;
+            // abort in case of same shell selection, 
+            if (SelectedShell.CompareTag(nextShell.tag)) return;
 
             // current shell
             switch (SelectedShell.tag) {
                 case LightShellTag:
+                    // stop coroutine if IsAutoShoot=true, and set to false
+                    if (_shootController.IsAutoShootOn) {
+                        _shootController.IsAutoShootOn = false;
+                        _shootController.StopShellSpawn();
+                    }
+
                     weaponImages[0].color = _unselectedColor;
                     _lightShellGhost.transform.Find("Cursor").gameObject.SetActive(false);
                     _lightShellGhost.transform.Find("CircleRadiusArea").gameObject.SetActive(false);

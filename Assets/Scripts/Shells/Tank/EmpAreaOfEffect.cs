@@ -1,15 +1,16 @@
 using Enemy.Tower;
-using ScriptableObjects;
+using Player;
 using UnityEngine;
 
 namespace Shells.Tank {
     public class EmpAreaOfEffect : MonoBehaviour {
-        [SerializeField] private TankStatsSo tankStatsSo;
         private CircleCollider2D _circleCollider2D;
+        private WeaponStatsManager _weaponStats;
 
         private void Awake() {
+            _weaponStats = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponStatsManager>();
             _circleCollider2D = GetComponent<CircleCollider2D>();
-            _circleCollider2D.radius = tankStatsSo.EmpShellStatsSo.AoeRadius;
+            _circleCollider2D.radius = _weaponStats.empAoeRadius;
         }
 
         public void EnableCircleCollider() {

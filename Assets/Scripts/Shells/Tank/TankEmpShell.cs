@@ -1,10 +1,9 @@
-using ScriptableObjects;
+using Player;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 namespace Shells.Tank {
     public class TankEmpShell : MonoBehaviour {
-        [SerializeField] private TankStatsSo tankStatsSo;
         [SerializeField] private ParticleSystem explosionPs, explosionWavePs, trailPs;
         [SerializeField] private GameObject aoeHitAreaObj;
         [SerializeField] private Light2D topLight;
@@ -13,6 +12,7 @@ namespace Shells.Tank {
         private SpriteRenderer _sr;
         private Rigidbody2D _rb;
         private EmpAreaOfEffect _empAoeScript;
+        private WeaponStatsManager _weaponStats;
 
         private ParticleSystem.EmissionModule _explosionEmMod, _explosionWaveEmMod, _trailEmMod;
         private ParticleSystem.ShapeModule _explosionShapeMod, _explosionWaveShapeMod;
@@ -22,6 +22,7 @@ namespace Shells.Tank {
             _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
             _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+            _weaponStats = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponStatsManager>();
 
             _empAoeScript = transform.Find("AreaOfEffect").GetComponent<EmpAreaOfEffect>();
 
@@ -40,9 +41,9 @@ namespace Shells.Tank {
         // set explosion noise strength to default / 3.5f
         // set explosionWave to default radius
         private void Start() {
-            _explosionShapeMod.radius = tankStatsSo.EmpShellStatsSo.AoeRadius;
-            _explosionNoiseModule.strength = tankStatsSo.EmpShellStatsSo.AoeRadius / 3.5f;
-            _explosionWaveShapeMod.radius = tankStatsSo.EmpShellStatsSo.AoeRadius;
+            _explosionShapeMod.radius = _weaponStats.empAoeRadius;
+            _explosionNoiseModule.strength = _weaponStats.empAoeRadius / 3.5f;
+            _explosionWaveShapeMod.radius = _weaponStats.empAoeRadius;
         }
 
         private void OnTriggerEnter2D(Collider2D col) {

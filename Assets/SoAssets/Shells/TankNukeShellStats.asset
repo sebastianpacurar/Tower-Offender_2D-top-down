@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9babb265024df8d3b3245d283ade202, type: 3}
   m_Name: TankNukeShellStats
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 20
   damage: 10
   ammo: 50
+  minAoeRadius: 0
   aoeRadius: 10
+  maxAoeRadius: 20
   aoeEffectDuration: 0
   hoverArrowColor: {r: 1, g: 0.5, b: 0, a: 1}

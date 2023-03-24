@@ -26,6 +26,7 @@ namespace Menus {
         private TankHpManager _tankHpManager;
         private GameObject _tankObj;
         private AmmoManager _ammoManager;
+        private WeaponStatsManager _weaponStats;
         private static readonly int FillAmountProgress = Shader.PropertyToID("_FillAmountProgress");
 
         private void Awake() {
@@ -33,7 +34,8 @@ namespace Menus {
             _shootController = _tankObj.GetComponent<ShootController>();
             _tankController = _tankObj.GetComponent<TankController>();
             _tankHpManager = _tankObj.GetComponent<TankHpManager>();
-            _ammoManager = _tankController.GetComponent<AmmoManager>();
+            _ammoManager = _tankObj.GetComponent<AmmoManager>();
+            _weaponStats = _tankObj.GetComponent<WeaponStatsManager>();
         }
 
         private void Update() {
@@ -59,24 +61,24 @@ namespace Menus {
         }
 
         private void UpdateLightShellReloadCd() {
-            var currentProgress = _shootController.LightShellCdTimer / tankStatsSo.LightShellReloadTime;
+            var currentProgress = _shootController.LightShellCdTimer / _weaponStats.lightShellFireRate;
             lightShellMat.SetFloat(FillAmountProgress, _shootController.CanFireLightShell ? 1 : currentProgress);
         }
 
         private void UpdateEmpShellReloadCd() {
-            var currentProgress = _shootController.EmpShellCdTimer / tankStatsSo.EmpShellReloadTime;
+            var currentProgress = _shootController.EmpShellCdTimer / _weaponStats.empFireRate;
             empShellMat.SetFloat(FillAmountProgress, _shootController.CanFireEmpShell ? 1 : currentProgress);
             empAmmoTxt.text = $"x{_ammoManager.EmpShellAmmo}";
         }
 
         private void UpdateSniperShellReloadCd() {
-            var currentProgress = _shootController.SniperShellCdTimer / tankStatsSo.SniperShellReloadTime;
+            var currentProgress = _shootController.SniperShellCdTimer / _weaponStats.sniperFireRate;
             sniperShellMat.SetFloat(FillAmountProgress, _shootController.CanFireSniperShell ? 1 : currentProgress);
             sniperAmmoTxt.text = $"x{_ammoManager.SniperShellAmmo}";
         }
 
         private void UpdateNukeShellReloadCd() {
-            var currentProgress = _shootController.NukeShellCdTimer / tankStatsSo.NukeShellReloadTime;
+            var currentProgress = _shootController.NukeShellCdTimer / _weaponStats.nukeFireRate;
             nukeShellMat.SetFloat(FillAmountProgress, _shootController.CanFireNukeShell ? 1 : currentProgress);
             nukeAmmoTxt.text = $"x{_ammoManager.NukeShellAmmo}";
         }

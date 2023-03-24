@@ -1408,6 +1408,7 @@ GameObject:
   - component: {fileID: 7709479081923012382}
   - component: {fileID: 7910877008930517458}
   - component: {fileID: 6767490953056483308}
+  - component: {fileID: 521230709076688525}
   m_Layer: 6
   m_Name: TankObj
   m_TagString: Player
@@ -1655,6 +1656,28 @@ MonoBehaviour:
   finalZoomVal: 0
   minOrthoSize: 5
   maxOrthoSize: 22
+--- !u!114 &521230709076688525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981674770873572449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13376637dc803abbc9f56e314eefe1b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankStatsSo: {fileID: 11400000, guid: 4a8f37d34b956f000b7c883bd955b800, type: 2}
+  lightShellDamage: 0
+  lightShellFireRate: 0
+  lightShellSpeed: 0
+  empAoeRadius: 0
+  empFireRate: 0
+  sniperDamage: 0
+  sniperFireRate: 0
+  nukeAoeRadius: 0
+  nukeFireRate: 0
 --- !u!1 &2096259790130990760
 GameObject:
   m_ObjectHideFlags: 0
