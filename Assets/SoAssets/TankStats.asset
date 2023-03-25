@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e45cbcad8ccab889a7eacf4ba22d128, type: 3}
   m_Name: TankStats
   m_EditorClassIdentifier: 
-  maxHp: 350
+  maxHp: 9999
+  cash: 450
   accFactor: 4
   steerFactor: 3
   driftFactor: 0
@@ -25,7 +26,7 @@ MonoBehaviour:
   empShellStatsSo: {fileID: 11400000, guid: 6cf65be9ec689712594054171afcd509, type: 2}
   sniperShellStatsSo: {fileID: 11400000, guid: fcab7bc148adbf71fbe9291673952bb3, type: 2}
   nukeShellStatsSo: {fileID: 11400000, guid: ae9549cb37146e5cfa53e2b005d8d85b, type: 2}
-  lightShellReloadTime: 0.25
-  empShellReloadTime: 0.5
+  lightShellReloadTime: 0.5
+  empShellReloadTime: 5
   sniperShellReloadTime: 5
-  nukeShellReloadTime: 1
+  nukeShellReloadTime: 5

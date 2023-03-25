@@ -4,7 +4,9 @@ namespace ScriptableObjects {
     [CreateAssetMenu(fileName = "TankStatsSO", menuName = "SOs/TankStats")]
     public class TankStatsSo : ScriptableObject {
         [SerializeField] private float maxHp;
+        [SerializeField] private int cash;
         public float MaxHp => maxHp;
+        public int Cash => cash;
 
         [Space(20)]
         [Header("Physics Related")]
@@ -16,16 +18,13 @@ namespace ScriptableObjects {
 
         [Space(10)]
         [SerializeField] private float maxSpeedBoostVal;
-
         [SerializeField] private float speedBoostCapacity;
         [SerializeField] private float speedBoostFillUnit;
         [SerializeField] private float speedBoostAccFactor;
 
-
         [Space(20)]
         [Header("Shell Related")]
         [SerializeField] private TankShellStatsSo lightShellStatsSo;
-
         [SerializeField] private TankShellStatsSo empShellStatsSo;
         [SerializeField] private TankShellStatsSo sniperShellStatsSo;
         [SerializeField] private TankShellStatsSo nukeShellStatsSo;
@@ -42,7 +41,6 @@ namespace ScriptableObjects {
         public float EmpShellReloadTime => empShellReloadTime;
         public float SniperShellReloadTime => sniperShellReloadTime;
         public float NukeShellReloadTime => nukeShellReloadTime;
-
         public float AccFactor => accFactor;
         public float SteerFactor => steerFactor;
         public float DriftFactor => driftFactor;

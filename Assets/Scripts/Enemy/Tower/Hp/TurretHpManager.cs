@@ -1,5 +1,6 @@
 using Player;
 using ScriptableObjects;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Enemy.Tower.Hp {
@@ -11,10 +12,13 @@ namespace Enemy.Tower.Hp {
         [SerializeField] private GameObject turretObj;
 
         private WeaponStatsManager _weaponStats;
+        private CashManager _cashManager;
 
         private void Awake() {
             TurretHealthPoints = turretStatsSo.MaxHp;
-            _weaponStats = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponStatsManager>();
+            var tank = GameObject.FindGameObjectWithTag("Player");
+            _weaponStats = tank.GetComponent<WeaponStatsManager>();
+            _cashManager = tank.GetComponent<CashManager>();
         }
 
         // handle damage from TankLightShell
@@ -33,6 +37,7 @@ namespace Enemy.Tower.Hp {
 
         private void Update() {
             if (IsDead || TurretHealthPoints > 0) return;
+            _cashManager.currCash += turretStatsSo.CashValue;
             Destroy(towerUI);
             Destroy(turretObj);
             gameObject.layer = 0;

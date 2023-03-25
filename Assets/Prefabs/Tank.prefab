@@ -1405,10 +1405,11 @@ GameObject:
   - component: {fileID: 1981674770873572457}
   - component: {fileID: 3394351873242548359}
   - component: {fileID: 941697460953250086}
-  - component: {fileID: 7709479081923012382}
   - component: {fileID: 7910877008930517458}
   - component: {fileID: 6767490953056483308}
+  - component: {fileID: 7709479081923012382}
   - component: {fileID: 521230709076688525}
+  - component: {fileID: 2053498701}
   m_Layer: 6
   m_Name: TankObj
   m_TagString: Player
@@ -1596,6 +1597,7 @@ MonoBehaviour:
   - {fileID: 5058779061862225078}
   - {fileID: 8268231666186713984}
   - {fileID: 0}
+  isBeingFixed: 0
 --- !u!114 &941697460953250086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1613,19 +1615,6 @@ MonoBehaviour:
   explosionShockWavePs: {fileID: 2469094598593863370}
   heavySmokePs: {fileID: 8960289650136083521}
   criticalSmokePs: {fileID: 2461105608170417131}
---- !u!114 &7709479081923012382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1981674770873572449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e977e607dfed733d8de898c182c13f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tankStatsSo: {fileID: 11400000, guid: 4a8f37d34b956f000b7c883bd955b800, type: 2}
 --- !u!114 &7910877008930517458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1656,6 +1645,19 @@ MonoBehaviour:
   finalZoomVal: 0
   minOrthoSize: 5
   maxOrthoSize: 22
+--- !u!114 &7709479081923012382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981674770873572449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e977e607dfed733d8de898c182c13f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankStatsSo: {fileID: 11400000, guid: 4a8f37d34b956f000b7c883bd955b800, type: 2}
 --- !u!114 &521230709076688525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1678,6 +1680,20 @@ MonoBehaviour:
   sniperFireRate: 0
   nukeAoeRadius: 0
   nukeFireRate: 0
+--- !u!114 &2053498701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981674770873572449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa2484430055aae888dd17876120ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankStatsSo: {fileID: 11400000, guid: 4a8f37d34b956f000b7c883bd955b800, type: 2}
+  currCash: 0
 --- !u!1 &2096259790130990760
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,7 +35,9 @@ namespace Menus {
         private void Awake() {
             _controls = new PlayerControls();
             SelectedShell = shellPrefabs[0]; // defaults to TankLightShell
+        }
 
+        private void Start() {
             var tank = GameObject.FindGameObjectWithTag("Player");
             _shootController = tank.GetComponent<ShootController>();
             _ammoManager = tank.GetComponent<AmmoManager>();

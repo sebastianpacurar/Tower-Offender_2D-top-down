@@ -16,7 +16,7 @@ MonoBehaviour:
   shellPrefab: {fileID: 1854506223192595662, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
   secondsBetweenShooting: 0.75
   maxHp: 5
-  destroyedBody: {fileID: 744136148, guid: 0f8320e26d42e314b992dc96a8e237ee, type: 3}
+  cashValue: 5
   circleRangeAreaColor: {r: 1, g: 1, b: 0, a: 0.050980393}
   detectionLineActiveColor:
     serializedVersion: 2

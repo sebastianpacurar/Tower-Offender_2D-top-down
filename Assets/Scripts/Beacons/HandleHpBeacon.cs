@@ -34,7 +34,7 @@ namespace Beacons {
         }
 
         private float GetSineVal() {
-            return Mathf.Cos(Time.time * sineFreq) * sineAmp + initialIntensityVal;
+            return Mathf.Sin(Time.time * sineFreq) * sineAmp + initialIntensityVal;
         }
 
         // fadeIn (on enter) - Sine (on stay) - fadeOut (on exit)
@@ -42,7 +42,7 @@ namespace Beacons {
             if (isOnBeacon) {
                 if (!isSineOn) {
                     if (greenLight.intensity < GetSineVal()) {
-                        greenLight.intensity += 0.05f;
+                        greenLight.intensity += Time.deltaTime;
                     } else {
                         isSineOn = true;
                     }
@@ -53,7 +53,7 @@ namespace Beacons {
                 }
             } else {
                 if (greenLight.intensity > 0) {
-                    greenLight.intensity -= 0.05f;
+                    greenLight.intensity -= Time.deltaTime;
                 } else {
                     isSineOn = true;
                 }

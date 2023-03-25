@@ -1,16 +1,16 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+
+//TODO: currently not using the life concept on walls, due to performance issues
 namespace TileMap {
     public class WallTileManager : MonoBehaviour {
         [SerializeField] private Tilemap wallMap;
         [SerializeField] private List<WallTileDataSo> tileDataSos;
 
-        private Dictionary<TileBase, WallTileDataSo> _tilesStatsSo;
+        // private Dictionary<TileBase, WallTileDataSo> _tilesStatsSo;
         private Dictionary<Vector3Int, WallTileData> _cachedTiles;
 
         // 0,1 are yellow L and T shapes
@@ -19,20 +19,20 @@ namespace TileMap {
         [SerializeField] private Tile[] spawnableYrpWalls;
 
         private void Awake() {
-            _tilesStatsSo = new Dictionary<TileBase, WallTileDataSo>();
-            _cachedTiles = new Dictionary<Vector3Int, WallTileData>();
+            // _tilesStatsSo = new Dictionary<TileBase, WallTileDataSo>();
+            // _cachedTiles = new Dictionary<Vector3Int, WallTileData>();
 
             // fill the tileStats with default life value
-            foreach (var tileData in tileDataSos) {
-                foreach (var tile in tileData.Tiles) {
-                    _tilesStatsSo.Add(tile, tileData);
-                }
-            }
+            // foreach (var tileData in tileDataSos) {
+            //     foreach (var tile in tileData.Tiles) {
+            //         _tilesStatsSo.Add(tile, tileData);
+            //     }
+            // }
         }
 
 
         private void Start() {
-            StartCoroutine(GetAllWallTiles());
+            // StartCoroutine(GetAllWallTiles());
         }
 
 
@@ -68,28 +68,10 @@ namespace TileMap {
         }
 
 
-        // decrease life of tile, and destroy it when it reaches 0
         // NOTE: called in TankLightShell.cs since it's the only one with an isTrigger=false as collider
-        public void HandleWallTileLife(Vector2 worldPos) {
-            Vector3Int gridPos = wallMap.WorldToCell(worldPos);
-            WallTileData cachedEntry;
-
-            // HACK: avoid getting null pointer exception
-            try {
-                cachedEntry = _cachedTiles[gridPos];
-            } catch (Exception) {
-                return;
-            }
-
-            if (cachedEntry.Lives >= 0) {
-                cachedEntry.Lives -= 1;
-
-                // set tile to null in both tilemap and _cachedTiles
-                if (cachedEntry.Lives == 0) {
-                    wallMap.SetTile(gridPos, null);
-                    _cachedTiles.Remove(gridPos);
-                }
-            }
+        public void HandleWallTile(Vector2 worldPos) {
+            var gridPos = wallMap.WorldToCell(worldPos);
+            wallMap.SetTile(gridPos, null);
         }
 
 
@@ -99,34 +81,34 @@ namespace TileMap {
         private void GenerateFortWallTile(Tile tile, Vector3Int tilePos, float rotZ) {
             wallMap.SetTile(tilePos, tile);
             wallMap.SetTransformMatrix(tilePos, Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0f, 0f, rotZ), Vector3.one));
-            _cachedTiles[tilePos] = new WallTileData(tile, _tilesStatsSo[tile].Life);
+            // _cachedTiles[tilePos] = new WallTileData(tile, _tilesStatsSo[tile].Life);
         }
 
 
-        // NOTE: initiates only once at start, afterwards the cached tiles are populated manually
-        // populate the _cachedTiles
-        private IEnumerator GetAllWallTiles() {
-            var bounds = wallMap.cellBounds;
-
-            // iterate over every tile based on its cellBounds min X and min Y values
-            for (var x = bounds.min.x; x < bounds.max.x; x++) {
-                for (var y = bounds.min.y; y < bounds.max.y; y++) {
-                    var cellPosition = new Vector3Int(x, y, 0);
-                    var tile = wallMap.GetTile(cellPosition);
-
-                    // skip if tile is null
-                    if (!tile) {
-                        continue;
-                    }
-
-                    // grab the life stats from the tile SO 
-                    var life = _tilesStatsSo[tile].Life;
-                    var tileData = new WallTileData(tile, life);
-                    _cachedTiles[cellPosition] = tileData;
-
-                    yield return tileData;
-                }
-            }
-        }
+        // // NOTE: initiates only once at start, afterwards the cached tiles are populated manually
+        // // populate the _cachedTiles
+        // private IEnumerator GetAllWallTiles() {
+        //     var bounds = wallMap.cellBounds;
+        //
+        //     // iterate over every tile based on its cellBounds min X and min Y values
+        //     for (var x = bounds.min.x; x < bounds.max.x; x++) {
+        //         for (var y = bounds.min.y; y < bounds.max.y; y++) {
+        //             var cellPosition = new Vector3Int(x, y, 0);
+        //             var tile = wallMap.GetTile(cellPosition);
+        //
+        //             // skip if tile is null
+        //             if (!tile) {
+        //                 continue;
+        //             }
+        //
+        //             // grab the life stats from the tile SO 
+        //             var life = _tilesStatsSo[tile].Life;
+        //             var tileData = new WallTileData(tile, life);
+        //             _cachedTiles[cellPosition] = tileData;
+        //
+        //             yield return tileData;
+        //         }
+        //     }
+        // }
     }
 }

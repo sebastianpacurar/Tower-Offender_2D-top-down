@@ -7,9 +7,8 @@ namespace ScriptableObjects {
         [SerializeField] private GameObject shellPrefab;
         [SerializeField] private float secondsBetweenShooting;
         [SerializeField] private int maxHp;
-        [SerializeField] private Sprite destroyedBody;
+        [SerializeField] private float cashValue;
         [SerializeField] private Color circleRangeAreaColor;
-
         [SerializeField] private Gradient detectionLineActiveColor = new() {
             alphaKeys = new[] {
                 new GradientAlphaKey(0, 0f),
@@ -22,7 +21,6 @@ namespace ScriptableObjects {
             },
             mode = GradientMode.Blend
         };
-
         [SerializeField] private Gradient detectionLineInactiveColor = new() {
             alphaKeys = new[] {
                 new GradientAlphaKey(0, 0f),
@@ -40,7 +38,7 @@ namespace ScriptableObjects {
         public GameObject ShellPrefab => shellPrefab;
         public float SecondsBetweenShooting => secondsBetweenShooting;
         public int MaxHp => maxHp;
-        public Sprite DestroyedBody => destroyedBody;
+        public float CashValue => cashValue;
         public Color CircleRangeAreaColor => circleRangeAreaColor;
         public Gradient DetectionLineActiveColor => detectionLineActiveColor;
         public Gradient DetectionLineInactiveColor => detectionLineInactiveColor;

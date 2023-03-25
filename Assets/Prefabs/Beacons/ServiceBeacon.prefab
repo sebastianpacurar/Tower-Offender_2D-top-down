@@ -660,6 +660,9 @@ GameObject:
   - component: {fileID: 6171208918151263647}
   - component: {fileID: 6171208918151263644}
   - component: {fileID: 6171208918151263645}
+  - component: {fileID: 728554284}
+  - component: {fileID: 1739395473122897454}
+  - component: {fileID: 293805984699724877}
   m_Layer: 0
   m_Name: ServiceBeacon
   m_TagString: Untagged
@@ -761,6 +764,46 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9113595, y: 2.1466193}
   m_EdgeRadius: 0
+--- !u!114 &728554284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6171208918151263642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48bb05dbb0800c0d19943356b40d11d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 3286563106423551448}
+  fadeIn: 0
+  fadeOut: 0
+  totalCash: {fileID: 6171208919294905778}
+--- !u!114 &1739395473122897454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6171208918151263642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01affe36c68173ab39238ab79a89b41e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &293805984699724877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6171208918151263642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb948a502f89d8a8aea28978804516f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6171208918182616837
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,6 +1559,7 @@ GameObject:
   - component: {fileID: 6171208918414761319}
   - component: {fileID: 6171208918414761316}
   - component: {fileID: 6171208918414761317}
+  - component: {fileID: 3286563106423551448}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1605,6 +1649,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &3286563106423551448
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6171208918414761315}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6171208918554522960
 GameObject:
   m_ObjectHideFlags: 0

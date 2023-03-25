@@ -79,8 +79,7 @@ namespace Enemy.Tower {
         }
 
         private void Update() {
-            UpdateWallTilesPositions();
-            CalculateIndexAndSpriteRotation(_spriteSet);
+            PerformWallPositionCalculations();
             HandleTurretUpgrade();
             HandleTurretExplosionCollider();
         }
@@ -257,6 +256,11 @@ namespace Enemy.Tower {
                     _sr.sprite = currentSpriteSet[5];
                     break;
             }
+        }
+
+        private void PerformWallPositionCalculations() {
+            UpdateWallTilesPositions();
+            CalculateIndexAndSpriteRotation(_spriteSet);
         }
 
         private void UpdateWallTilesPositions() {

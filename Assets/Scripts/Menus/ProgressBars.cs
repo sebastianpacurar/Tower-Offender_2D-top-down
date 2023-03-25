@@ -1,3 +1,4 @@
+using System;
 using Player;
 using Player.Controllers;
 using ScriptableObjects;
@@ -29,7 +30,8 @@ namespace Menus {
         private WeaponStatsManager _weaponStats;
         private static readonly int FillAmountProgress = Shader.PropertyToID("_FillAmountProgress");
 
-        private void Awake() {
+
+        private void Start() {
             _tankObj = GameObject.FindGameObjectWithTag("Player");
             _shootController = _tankObj.GetComponent<ShootController>();
             _tankController = _tankObj.GetComponent<TankController>();
