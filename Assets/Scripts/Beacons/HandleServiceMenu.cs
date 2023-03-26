@@ -1,7 +1,5 @@
-using System;
-using Player;
+using Menus.ServiceMenu;
 using Player.Controllers;
-using TMPro;
 using UnityEngine;
 
 namespace Beacons {
@@ -10,23 +8,16 @@ namespace Beacons {
         [SerializeField] private bool fadeIn;
         [SerializeField] private bool fadeOut;
 
-        [SerializeField] private TextMeshProUGUI availableCash;
         private ShootController _shootController;
-        private CashManager _cashManager;
+        private HandleShopSection _shopSection;
 
         private void Start() {
-            var tankObj = GameObject.FindGameObjectWithTag("Player");
-            _shootController = tankObj.GetComponent<ShootController>();
-            _cashManager = tankObj.GetComponent<CashManager>();
+            _shootController = GameObject.FindGameObjectWithTag("Player").GetComponent<ShootController>();
+            _shopSection = GetComponent<HandleShopSection>();
         }
 
         public void Update() {
             FadeMenu();
-            UpdateMoneyDisplay();
-        }
-
-        private void UpdateMoneyDisplay() {
-            availableCash.text = $"Cash: ${Math.Round(_cashManager.currCash, 2)}";
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
@@ -68,6 +59,9 @@ namespace Beacons {
 
                     if (canvasGroup.alpha <= 0) {
                         fadeOut = false;
+
+                        // reset all values to 0 when fade reaches 0
+                        _shopSection.ResetValues();
                     }
                 }
             }

@@ -6,6 +6,7 @@ namespace ScriptableObjects {
         [SerializeField] private float speed;
         [SerializeField] private float damage;
         [SerializeField] private int ammo;
+        [SerializeField] private float cost;
         [SerializeField] private float minAoeRadius;
         [SerializeField] private float aoeRadius;
         [SerializeField] private float maxAoeRadius;
@@ -17,6 +18,7 @@ namespace ScriptableObjects {
         public float Speed => speed;
         public float Damage => damage;
         public int Ammo => ammo;
+        public float Cost => cost;
         public float MinAoeRadius => minAoeRadius;
         public float AoeRadius => aoeRadius;
         public float MaxAoeRadius => maxAoeRadius;

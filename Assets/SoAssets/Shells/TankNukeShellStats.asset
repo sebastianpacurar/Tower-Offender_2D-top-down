@@ -15,6 +15,7 @@ MonoBehaviour:
   speed: 20
   damage: 10
   ammo: 50
+  cost: 50
   minAoeRadius: 0
   aoeRadius: 10
   maxAoeRadius: 6
