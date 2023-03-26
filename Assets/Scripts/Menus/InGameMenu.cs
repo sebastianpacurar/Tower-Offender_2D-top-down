@@ -1,3 +1,4 @@
+using System;
 using Player;
 using Player.Controllers;
 using TMPro;
@@ -15,8 +16,11 @@ namespace Menus {
         [SerializeField] private TextMeshProUGUI sniperShellAmmo;
         [SerializeField] private TextMeshProUGUI nukeShellAmmo;
 
+        [SerializeField] private TextMeshProUGUI availableCash;
+
         private PlayerControls _controls;
         private AmmoManager _ammoManager;
+        private CashManager _cashManager;
         private GameObject _lightShellGhost, _empAoeGhost, _sniperShellGhost, _nukeAoeGhost;
         private CircleCollider2D _empAoeGhostCircle, _nukeAoeGhostCircle;
         private SpriteRenderer _empAoeCircleRadiusSr, _nukeAoeCircleRadiusSr;
@@ -41,6 +45,7 @@ namespace Menus {
             var tank = GameObject.FindGameObjectWithTag("Player");
             _shootController = tank.GetComponent<ShootController>();
             _ammoManager = tank.GetComponent<AmmoManager>();
+            _cashManager = tank.GetComponent<CashManager>();
 
             _lightShellGhost = GameObject.FindGameObjectWithTag("LightShellGhost");
             _sniperShellGhost = GameObject.FindGameObjectWithTag("SniperShellGhost");
@@ -59,13 +64,16 @@ namespace Menus {
             sniperShellAmmo.text = $"x{_ammoManager.SniperShellAmmo}";
             nukeShellAmmo.text = $"x{_ammoManager.NukeShellAmmo}";
 
+            // set the cash current displayed value
+            availableCash.text = $"Cash: ${Math.Round(_cashManager.currCash, 2)}";
+
             // disable circle collider and CircleRangeArea SpriteRenderer when reloading in progress
             switch (SelectedShell.tag) {
-                case "TankEmpShellEntity":
+                case EmpShellTag:
                     _empAoeGhostCircle.enabled = _shootController.CanFireEmpShell;
                     _empAoeCircleRadiusSr.color = _shootController.CanFireEmpShell ? new Color(0f, 1f, 1f, 0.25f) : new Color(0.5f, 0.5f, 0.5f, 0.15f);
                     break;
-                case "TankNukeShellEntity":
+                case NukeShellTag:
                     _nukeAoeGhostCircle.enabled = _shootController.CanFireNukeShell;
                     _nukeAoeCircleRadiusSr.color = _shootController.CanFireNukeShell ? new Color(1f, 1f, 0f, 0.25f) : new Color(0.5f, 0.5f, 0.5f, 0.15f);
                     break;

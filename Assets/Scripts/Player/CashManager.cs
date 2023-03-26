@@ -1,3 +1,4 @@
+using System;
 using ScriptableObjects;
 using UnityEngine;
 
@@ -5,9 +6,33 @@ namespace Player {
     public class CashManager : MonoBehaviour {
         [SerializeField] private TankStatsSo tankStatsSo;
         public float currCash;
+        public float finalCash;
 
         private void Awake() {
-            currCash = tankStatsSo.Cash;
+            finalCash = tankStatsSo.Cash;
+        }
+
+        // increase the change time of the values based on the difference between the 2 cash values
+        private float ShuffleSpeed() {
+            return Math.Abs(currCash - finalCash) switch {
+                < 20 => 10f,
+                > 20 and < 100 => 80f,
+                > 100 and < 200 => 100f,
+                > 200 => 200f,
+                _ => 100f
+            };
+        }
+
+        private void Update() {
+            if (currCash.Equals(finalCash)) return;
+
+            if (currCash < finalCash) {
+                currCash += Time.deltaTime * ShuffleSpeed();
+                currCash = Mathf.Clamp(currCash, currCash, finalCash);
+            } else if (currCash > finalCash) {
+                currCash -= Time.deltaTime * ShuffleSpeed();
+                currCash = Mathf.Clamp(currCash, finalCash, currCash);
+            }
         }
     }
 }

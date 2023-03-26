@@ -1,6 +1,5 @@
 using Player;
 using ScriptableObjects;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Enemy.Tower.Hp {
@@ -35,9 +34,12 @@ namespace Enemy.Tower.Hp {
             }
         }
 
+        // execute only once when TurretHealthPoints equals 0
         private void Update() {
             if (IsDead || TurretHealthPoints > 0) return;
-            _cashManager.currCash += turretStatsSo.CashValue;
+
+            // update the Cash Value accumulated (check BodyController.cs for the rest of the logic)
+            _cashManager.finalCash += turretStatsSo.CashValue;
             Destroy(towerUI);
             Destroy(turretObj);
             gameObject.layer = 0;

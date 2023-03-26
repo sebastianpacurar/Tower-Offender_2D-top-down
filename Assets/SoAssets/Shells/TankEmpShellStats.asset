@@ -16,7 +16,7 @@ MonoBehaviour:
   damage: 0
   ammo: 99
   minAoeRadius: 0
-  aoeRadius: 5
+  aoeRadius: 10
   maxAoeRadius: 5
   aoeEffectDuration: 3
   hoverArrowColor: {r: 0, g: 0.7490196, b: 0.5019608, a: 1}

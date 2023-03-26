@@ -10,7 +10,7 @@ namespace Beacons {
         [SerializeField] private bool fadeIn;
         [SerializeField] private bool fadeOut;
 
-        [SerializeField] private TextMeshProUGUI totalCash;
+        [SerializeField] private TextMeshProUGUI availableCash;
         private ShootController _shootController;
         private CashManager _cashManager;
 
@@ -26,7 +26,7 @@ namespace Beacons {
         }
 
         private void UpdateMoneyDisplay() {
-            totalCash.text = $"Cash: ${Math.Round(_cashManager.currCash, 2)}";
+            availableCash.text = $"Cash: ${Math.Round(_cashManager.currCash, 2)}";
         }
 
         private void OnTriggerEnter2D(Collider2D col) {

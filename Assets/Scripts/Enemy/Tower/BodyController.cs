@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Enemy.Tower.Hp;
 using TileMap;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
@@ -11,6 +12,12 @@ namespace Enemy.Tower {
     public class BodyController : MonoBehaviour {
         [SerializeField] private ParticleSystem center, fireWave, shockWave;
         private ParticleSystem.EmissionModule _centerEm, _fireWaveEm, _shockWaveEm;
+
+        [SerializeField] private Canvas canvas;
+        [SerializeField] private CanvasGroup canvasGroup;
+        [SerializeField] private Transform fadingCashTransform;
+        [SerializeField] private TextMeshProUGUI fadingCashValue;
+        private Camera _mainCam;
 
         [SerializeField] private Sprite[] lightSprites;
         [SerializeField] private Sprite[] midSprites;
@@ -29,7 +36,7 @@ namespace Enemy.Tower {
         private Tilemap _wallMap;
         private WallTileManager _wallMapManager;
 
-        // the box which results after the explosion occurs, and there are no more turrets in list
+        // the box which results after the explosion occurs when there are no more turrets in list
         private BoxCollider2D _boxCollider2D;
         // circle which increases in range during explosion
         private CircleCollider2D _circleCollider2D;
@@ -58,11 +65,15 @@ namespace Enemy.Tower {
 
             _wallMap = GameObject.FindGameObjectWithTag("Wall").GetComponent<Tilemap>();
             _turretsTilemapObj = GameObject.FindGameObjectWithTag("TowerTurretsTilemap").transform;
+            _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
             name = $"{name[..2]}-{transform.position.ToString()}"; // set the name of the body to its position in world space
         }
 
         private void Start() {
+            canvas.renderMode = RenderMode.WorldSpace;
+            canvas.worldCamera = _mainCam;
+
             _timeToSpawnNextTurret = 2f; // default to 2 seconds
             _isTurretInList = true;
 
@@ -82,6 +93,30 @@ namespace Enemy.Tower {
             PerformWallPositionCalculations();
             HandleTurretUpgrade();
             HandleTurretExplosionCollider();
+            DisplayEarnedCash();
+        }
+
+        // when the turret is updating, trigger fadingCash to fade out and move upwards
+        private void DisplayEarnedCash() {
+            if (_turretUpdateInProgress) {
+                fadingCashValue.gameObject.SetActive(true);
+                var fadingCashPos = fadingCashTransform.position;
+                fadingCashTransform.position = new Vector3(fadingCashPos.x, fadingCashPos.y + Time.deltaTime * 2f, 1);
+
+                // needed due to the rotation of the body to match the connecting walls. Set always to 0 rotation 
+                fadingCashTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
+                if (canvasGroup.alpha > 0) {
+                    canvasGroup.alpha -= Time.deltaTime / 2f;
+                }
+            }
+        }
+
+        // hide the cash text, set the position to the body's position, and reset alpha to 1
+        private void RestartDisplayEarnedCash() {
+            fadingCashValue.gameObject.SetActive(false);
+            fadingCashTransform.position = transform.position;
+            canvasGroup.alpha = 1f;
         }
 
 
@@ -112,6 +147,9 @@ namespace Enemy.Tower {
                 _fireWaveEm.enabled = false;
                 _shockWaveEm.enabled = false;
 
+                // set cash value text to its initial setup
+                RestartDisplayEarnedCash();
+
                 StopCoroutine(nameof(UpdateTurret));
             }
         }
@@ -119,20 +157,29 @@ namespace Enemy.Tower {
 
         private void InstantiateTurret(int prefabIndex) {
             _turretEntity = Instantiate(turretPrefabs[prefabIndex], transform.position, Quaternion.identity, _turretsTilemapObj);
-            _turretHpManager = _turretEntity.transform.Find("TurretObj").GetComponent<TurretHpManager>();
+            var turretObj = _turretEntity.transform.Find("TurretObj");
+            _turretHpManager = turretObj.GetComponent<TurretHpManager>();
+
+            var turretData = turretObj.Find("Turret").GetComponent<TurretController>();
 
             // update the color of the sprite set used. if LT then yellow; else if MT then red; else if HT then purple
-            // update the explosion light color
+            // update the explosion light color, and fading CashValue text
             if (_turretEntity.name.Contains("LT")) {
                 _spriteSet = lightSprites;
                 _light2D.color = Color.yellow;
+                fadingCashValue.color = Color.yellow;
             } else if (_turretEntity.name.Contains("MT")) {
                 _spriteSet = midSprites;
                 _light2D.color = Color.red;
+                fadingCashValue.color = Color.red;
             } else if (_turretEntity.name.Contains("HT")) {
                 _spriteSet = heavySprites;
                 _light2D.color = Color.magenta;
+                fadingCashValue.color = Color.magenta;
             }
+
+            // set the cash value based on the following turret's stats
+            fadingCashValue.text = $"${turretData.turretStatsSo.CashValue}";
 
             // Generate the Fort when the new turret is spawned
             _wallMapManager.GenerateFort(_turretEntity);
@@ -181,6 +228,22 @@ namespace Enemy.Tower {
             _light2D.pointLightOuterRadius = Mathf.Clamp(_explosionTimer, 0, _timeToSpawnNextTurret);
             _light2D.pointLightInnerRadius = Mathf.Clamp(_explosionTimer / 2, 0, _timeToSpawnNextTurret / 2);
             _light2D.intensity = Mathf.Clamp(_explosionIntensity, 0, 2);
+        }
+
+
+        private void PerformWallPositionCalculations() {
+            UpdateWallTilesPositions();
+            CalculateIndexAndSpriteRotation(_spriteSet);
+        }
+
+
+        private void UpdateWallTilesPositions() {
+            var selfPos = new Vector2(transform.position.x, transform.position.y);
+            var gridPosition = _wallMap.WorldToCell(selfPos);
+            _wallPoints[Cardinal.N.ToString()] = _wallMap.GetTile(gridPosition + Vector3Int.up);
+            _wallPoints[Cardinal.S.ToString()] = _wallMap.GetTile(gridPosition + Vector3Int.down);
+            _wallPoints[Cardinal.E.ToString()] = _wallMap.GetTile(gridPosition + Vector3Int.right);
+            _wallPoints[Cardinal.W.ToString()] = _wallMap.GetTile(gridPosition + Vector3Int.left);
         }
 
 
@@ -256,20 +319,6 @@ namespace Enemy.Tower {
                     _sr.sprite = currentSpriteSet[5];
                     break;
             }
-        }
-
-        private void PerformWallPositionCalculations() {
-            UpdateWallTilesPositions();
-            CalculateIndexAndSpriteRotation(_spriteSet);
-        }
-
-        private void UpdateWallTilesPositions() {
-            var selfPos = new Vector2(transform.position.x, transform.position.y);
-            var gridPosition = _wallMap.WorldToCell(selfPos);
-            _wallPoints[Cardinal.N.ToString()] = _wallMap.GetTile(gridPosition + Vector3Int.up);
-            _wallPoints[Cardinal.S.ToString()] = _wallMap.GetTile(gridPosition + Vector3Int.down);
-            _wallPoints[Cardinal.E.ToString()] = _wallMap.GetTile(gridPosition + Vector3Int.right);
-            _wallPoints[Cardinal.W.ToString()] = _wallMap.GetTile(gridPosition + Vector3Int.left);
         }
 
         private enum Cardinal {

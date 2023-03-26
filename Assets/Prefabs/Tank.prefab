@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 4404584124865018706}
   - component: {fileID: 1167641701}
   - component: {fileID: 1897822778}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: NukeAoeGhost
   m_TagString: NukeAoeGhost
   m_Icon: {fileID: 0}
@@ -1694,6 +1694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tankStatsSo: {fileID: 11400000, guid: 4a8f37d34b956f000b7c883bd955b800, type: 2}
   currCash: 0
+  finalCash: 0
 --- !u!1 &2096259790130990760
 GameObject:
   m_ObjectHideFlags: 0
@@ -27468,7 +27469,7 @@ GameObject:
   - component: {fileID: 366656785903254499}
   - component: {fileID: 1716989842}
   - component: {fileID: 306908581}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EmpAoeGhost
   m_TagString: EmpAoeGhost
   m_Icon: {fileID: 0}

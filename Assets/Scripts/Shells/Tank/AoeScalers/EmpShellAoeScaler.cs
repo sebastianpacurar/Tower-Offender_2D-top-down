@@ -22,9 +22,5 @@ namespace Shells.Tank.AoeScalers {
             circleRadiusArea.gameObject.SetActive(false);
             circleRadiusArea.transform.parent.Find("AoeHitArea").gameObject.SetActive(false);
         }
-
-        private void Update() {
-            
-        }
     }
 }

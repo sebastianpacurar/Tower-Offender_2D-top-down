@@ -779,7 +779,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 3286563106423551448}
   fadeIn: 0
   fadeOut: 0
-  totalCash: {fileID: 6171208919294905778}
+  availableCash: {fileID: 6171208919294905778}
 --- !u!114 &1739395473122897454
 MonoBehaviour:
   m_ObjectHideFlags: 0

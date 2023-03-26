@@ -9,7 +9,7 @@ namespace Enemy.Tower {
         public float ShootTimer { get; private set; }
         public float PowerOffTimer { get; private set; }
 
-        [SerializeField] private TurretStatsSo turretStatsSo;
+        public TurretStatsSo turretStatsSo; // set to public since it's called in BodyController, to provide the next cash value of the spawned turret
         [SerializeField] private TankStatsSo tankStatsSo;
         [SerializeField] private Transform turretEdge;
         [SerializeField] private Transform circleRangeTransform;

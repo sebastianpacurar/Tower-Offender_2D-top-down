@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1715381026504930655, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 45
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1715381026504930655, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[0].inWeight
@@ -157,7 +157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1715381028156159275, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 45
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1715381028156159275, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[0].inWeight
@@ -249,7 +249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1715381028184175872, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 45
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1715381028184175872, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[0].inWeight
