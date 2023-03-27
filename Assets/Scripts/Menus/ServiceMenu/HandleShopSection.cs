@@ -92,9 +92,9 @@ namespace Menus.ServiceMenu {
             _nukePlusBtn.interactable = _cashManager.finalCash - (currTotalPrice + tankStatsSo.NukeShellStatsSo.Cost) >= 0;
         }
 
-        // buy button is interactable only when there is at least one item in the cart AND the total price is lower than the total cash
+        // buy button is interactable only when there is at least one item in the cart AND the total price is lower or equal to the total cash
         private void ValidateBuyBtn() {
-            _buyBtn.interactable = _empCountVal + _sniperCountVal + _nukeCountVal > 0 && _cashManager.finalCash > nukeFinalPrice + sniperFinalPrice + empFinalPrice;
+            _buyBtn.interactable = _empCountVal + _sniperCountVal + _nukeCountVal > 0 && _cashManager.finalCash >= nukeFinalPrice + sniperFinalPrice + empFinalPrice;
         }
 
         private void UpdateCountAndValueFields() {
