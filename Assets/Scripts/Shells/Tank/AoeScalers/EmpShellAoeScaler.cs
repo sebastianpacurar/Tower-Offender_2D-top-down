@@ -1,10 +1,8 @@
 using Player;
-using ScriptableObjects;
 using UnityEngine;
 
 namespace Shells.Tank.AoeScalers {
     public class EmpShellAoeScaler : MonoBehaviour {
-        [SerializeField] private TankShellStatsSo shellStatsSo;
         [SerializeField] private Transform circleRadiusArea;
         [SerializeField] private float multiplyFactor;
         [SerializeField] private float radiusVal;

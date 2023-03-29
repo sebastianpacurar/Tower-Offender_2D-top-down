@@ -50,10 +50,6 @@ namespace Menus.ServiceMenu {
         private CashManager _cashManager;
 
         private void Awake() {
-            var tank = GameObject.FindGameObjectWithTag("Player");
-            _ammoManager = tank.GetComponent<AmmoManager>();
-            _cashManager = tank.GetComponent<CashManager>();
-
             _empPlusBtn = empPlus.GetComponent<Button>();
             _empMinusBtn = empMinus.GetComponent<Button>();
             _sniperPlusBtn = sniperPlus.GetComponent<Button>();
@@ -62,6 +58,14 @@ namespace Menus.ServiceMenu {
             _nukeMinusBtn = nukeMinus.GetComponent<Button>();
             _buyBtn = buyButton.GetComponent<Button>();
         }
+
+
+        private void Start() {
+            var tank = GameObject.FindGameObjectWithTag("Player");
+            _ammoManager = tank.GetComponent<AmmoManager>();
+            _cashManager = tank.GetComponent<CashManager>();
+        }
+
 
         private void Update() {
             SetFinalPrices();
@@ -84,7 +88,7 @@ namespace Menus.ServiceMenu {
             _nukeMinusBtn.interactable = _nukeCountVal > 0;
         }
 
-        // formula is ->  availableCash - (currTotalPrice + (relevantShellCost + 1))
+        // formula is ->  availableCash - (currTotalPrice + (relevantShellCost * 1))
         private void ValidateIncrementalButtons() {
             var currTotalPrice = empFinalPrice + sniperFinalPrice + nukeFinalPrice;
             _empPlusBtn.interactable = _cashManager.finalCash - (currTotalPrice + tankStatsSo.EmpShellStatsSo.Cost) >= 0;
@@ -99,7 +103,7 @@ namespace Menus.ServiceMenu {
 
         private void UpdateCountAndValueFields() {
             var currTotalPrice = empFinalPrice + sniperFinalPrice + nukeFinalPrice;
-            var currCash = Math.Round(_cashManager.currCash, 2);
+            var currCash = Math.Round(_cashManager.finalCash, 2);
 
             empCount.text = $"{_empCountVal}";
             empValue.text = $"${empFinalPrice}";

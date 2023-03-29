@@ -15,4 +15,4 @@ MonoBehaviour:
   sideShellsSpeed: 12
   middleShellSpeed: 15
   timeToLive: 0
-  damage: 0.5
+  damage: 1

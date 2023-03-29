@@ -20,7 +20,7 @@ namespace Enemy.Tower {
         private Transform _shellsContainer;
         private TankHpManager _tankHpHandler;
         private WeaponStatsManager _weaponStats;
-        
+
         private bool _detected;
         private bool _canFire = true;
         private bool _canShootAtTank;
@@ -48,6 +48,7 @@ namespace Enemy.Tower {
             // circleRangeSr.color = turretStatsSo.CircleRangeAreaColor;
             // circleRangeTransform.localScale = new Vector3(turretStatsSo.Range * 2, turretStatsSo.Range * 2, 1f);
 
+            detectionLine.enabled = false;
             detectionLine.positionCount = 2;
             detectionLine.SetPosition(0, transform.position);
             detectionLine.SetPosition(1, _tankPos.position);

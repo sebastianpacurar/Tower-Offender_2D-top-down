@@ -15,6 +15,9 @@ namespace Enemy.Tower.Hp {
 
         private void Awake() {
             TurretHealthPoints = turretStatsSo.MaxHp;
+        }
+
+        private void Start() {
             var tank = GameObject.FindGameObjectWithTag("Player");
             _weaponStats = tank.GetComponent<WeaponStatsManager>();
             _cashManager = tank.GetComponent<CashManager>();

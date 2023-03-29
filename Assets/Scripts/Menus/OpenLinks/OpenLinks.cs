@@ -13,7 +13,11 @@ namespace Menus.OpenLinks {
             #endif
         }
 
-        public void GoToZintaki() {
+        public void GoToSebyGit() {
+            OpenUrl("https://github.com/sebastianpacurar/Tower-Offender_2D-top-down");
+        }
+
+        public void GoToZintoki() {
             OpenUrl("https://zintoki.itch.io/");
         }
 
@@ -33,8 +37,8 @@ namespace Menus.OpenLinks {
             OpenUrl("https://cazwolf.itch.io/");
         }
 
-        public void GoToRollinRock() {
-            OpenUrl("https://rollinrock.itch.io/");
+        public void GoToNicolemariet() {
+            OpenUrl("https://nicolemariet.itch.io/");
         }
 
         public void GoToMikiz() {

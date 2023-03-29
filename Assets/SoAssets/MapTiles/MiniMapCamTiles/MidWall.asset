@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6448d25d46816514b9db516f0ce4f66c, type: 3}
   m_Name: MidWall
   m_EditorClassIdentifier: 
-  activeColor: {r: 1, g: 0, b: 0, a: 1}
+  activeColor: {r: 1, g: 0, b: 0, a: 0.69803923}
   inactiveColor: {r: 0, g: 0, b: 0, a: 0}

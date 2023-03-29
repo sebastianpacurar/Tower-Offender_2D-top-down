@@ -21,7 +21,7 @@ namespace Enemy.Tower {
             var turretEntityName = transform.parent.name;
 
             turretCounter.text = turretEntityName[0].ToString(); // set the number to be equal to the number of cannons the turret has
-            turretCounter.color = turretEntityName.Contains("LT") ? Color.black : Color.white; // Light is on black and Red/Purple on white
+            turretCounter.color = turretEntityName.Contains("LT") ? new Color(0f, 0f, 0f, 0.7f) : new Color(1f, 1f, 1f, 0.7f); // Light is on black and Red/Purple on white
         }
 
         private void Update() {

@@ -31,10 +31,6 @@ namespace Menus.ServiceMenu.UpgradesSubSections {
 
 
         private void Awake() {
-            var tank = GameObject.FindGameObjectWithTag("Player");
-            _cashManager = tank.GetComponent<CashManager>();
-            _weaponStats = tank.GetComponent<WeaponStatsManager>();
-
             _fireRateBtn = fireRateUpgradeBtnImg.GetComponent<Button>();
             _speedBtn = speedUpgradeBtnImg.GetComponent<Button>();
             _damageBtn = damageUpgradeBtnImg.GetComponent<Button>();
@@ -42,6 +38,13 @@ namespace Menus.ServiceMenu.UpgradesSubSections {
             currFireRatePrice = startPrice;
             currSpeedPrice = startPrice;
             currDamagePrice = startPrice;
+        }
+
+        
+        private void Start() {
+            var tank = GameObject.FindGameObjectWithTag("Player");
+            _cashManager = tank.GetComponent<CashManager>();
+            _weaponStats = tank.GetComponent<WeaponStatsManager>();
         }
 
 

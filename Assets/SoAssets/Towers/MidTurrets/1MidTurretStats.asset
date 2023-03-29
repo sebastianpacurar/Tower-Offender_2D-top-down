@@ -15,7 +15,7 @@ MonoBehaviour:
   range: 12
   shellPrefab: {fileID: 5530753799889815462, guid: 1a6b33b69cc8a4c2685b9fbb71ecde3f, type: 3}
   secondsBetweenShooting: 0.5
-  maxHp: 5
+  maxHp: 7
   cashValue: 12
   circleRangeAreaColor: {r: 1, g: 0, b: 0, a: 0.050980393}
   detectionLineActiveColor:

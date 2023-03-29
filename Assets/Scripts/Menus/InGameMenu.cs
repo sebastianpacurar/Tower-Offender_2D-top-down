@@ -15,7 +15,6 @@ namespace Menus {
         [SerializeField] private TextMeshProUGUI empShellAmmo;
         [SerializeField] private TextMeshProUGUI sniperShellAmmo;
         [SerializeField] private TextMeshProUGUI nukeShellAmmo;
-
         [SerializeField] private TextMeshProUGUI availableCash;
 
         private PlayerControls _controls;
@@ -77,6 +76,11 @@ namespace Menus {
                     _nukeAoeGhostCircle.enabled = _shootController.CanFireNukeShell;
                     _nukeAoeCircleRadiusSr.color = _shootController.CanFireNukeShell ? new Color(1f, 1f, 0f, 0.25f) : new Color(0.5f, 0.5f, 0.5f, 0.15f);
                     break;
+            }
+
+            // set cursor visibility to true only when shoot controller is enabled
+            if (_shootController.enabled) {
+                Cursor.visible = SelectedShell.CompareTag(LightShellTag);
             }
         }
 
@@ -146,7 +150,6 @@ namespace Menus {
             // target shell
             switch (nextShell.tag) {
                 case LightShellTag:
-                    Cursor.visible = true;
                     SelectedShell = shellPrefabs[0];
                     weaponImages[0].color = _selectedColor;
                     _lightShellGhost.transform.Find("Cursor").gameObject.SetActive(true);
@@ -155,7 +158,6 @@ namespace Menus {
                     break;
                 case EmpShellTag:
                     if (_ammoManager.EmpShellAmmo == 0) return;
-                    Cursor.visible = false;
                     SelectedShell = shellPrefabs[1];
                     weaponImages[1].color = _selectedColor;
                     _empAoeGhostCircle.enabled = true;
@@ -164,14 +166,12 @@ namespace Menus {
                     break;
                 case SniperShellTag:
                     if (_ammoManager.SniperShellAmmo == 0) return;
-                    Cursor.visible = false;
                     SelectedShell = shellPrefabs[2];
                     weaponImages[2].color = _selectedColor;
                     _sniperShellGhost.transform.Find("Cursor").gameObject.SetActive(true);
                     break;
                 case NukeShellTag:
                     if (_ammoManager.NukeShellAmmo == 0) return;
-                    Cursor.visible = false;
                     SelectedShell = shellPrefabs[3];
                     weaponImages[3].color = _selectedColor;
                     _nukeAoeGhostCircle.enabled = true;

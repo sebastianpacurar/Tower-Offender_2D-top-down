@@ -34,7 +34,7 @@ namespace Shells.Tank {
         // NOTE: to contain the explosion and explosion wave radii inside the default aoe radius, from the SO:
         // set explosion to default radius / 2.5f
         // set explosionWave to default radius -1f
-        private void Start() {
+        private void Update() {
             _explosionShapeMod.radius = _weaponStats.nukeAoeRadius / 2.5f;
             _explosionWaveShapeMod.radius = _weaponStats.nukeAoeRadius - 2f;
         }

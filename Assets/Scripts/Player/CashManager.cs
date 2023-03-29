@@ -15,10 +15,9 @@ namespace Player {
         // increase the change time of the values based on the difference between the 2 cash values
         private float ShuffleSpeed() {
             return Math.Abs(currCash - finalCash) switch {
-                < 20 => 10f,
-                > 20 and < 100 => 80f,
-                > 100 and < 200 => 100f,
-                > 200 and < 500 => 200f,
+                < 100 => 100f,
+                > 100 and < 200 => 150f,
+                > 200 and < 500 => 300f,
                 > 500 and < 1000 => 500f,
                 > 1000 => 1000f,
                 _ => 1000f

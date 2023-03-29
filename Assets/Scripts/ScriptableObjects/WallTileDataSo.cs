@@ -8,7 +8,7 @@ namespace ScriptableObjects {
         [SerializeField] private TileBase[] tiles;
         public IEnumerable<TileBase> Tiles => tiles;
 
-        [SerializeField] private int life;
-        public int Life => life;
+        [SerializeField] private float hp;
+        public float Hp => hp;
     }
 }

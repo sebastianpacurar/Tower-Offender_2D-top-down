@@ -25,6 +25,6 @@ public class GameManager : MonoBehaviour {
 
     private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
         if (scene.name.Equals("MainMenu")) return;
-        Instantiate(tank, new Vector3(-10, -26, 0), Quaternion.identity);
+        Instantiate(tank, new Vector3(10.5f, -16.5f, 0f), Quaternion.identity);
     }
 }

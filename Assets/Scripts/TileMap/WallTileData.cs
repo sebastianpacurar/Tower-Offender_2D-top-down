@@ -2,12 +2,12 @@ using UnityEngine.Tilemaps;
 
 namespace TileMap {
     public class WallTileData {
-        public WallTileData(TileBase tile, int lives) {
+        public WallTileData(TileBase tile, float hp) {
             Tile = tile;
-            Lives = lives;
+            Hp = hp;
         }
 
         public TileBase Tile { get; set; }
-        public int Lives { get; set; }
+        public float Hp { get; set; }
     }
 }

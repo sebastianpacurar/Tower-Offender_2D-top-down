@@ -431,6 +431,66 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8386739451909013745, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386739451909013745, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.03875834
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386739451909013745, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386739451909013745, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: m_Intensity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386739451909013745, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 0.1256036
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386739452336062597, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386739452336062597, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.03875834
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386739452336062597, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386739452336062597, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: m_Intensity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386739452336062597, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 0.1256036
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386739452379349166, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386739452379349166, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.03875834
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386739452379349166, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386739452379349166, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: m_Intensity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8386739452379349166, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 0.1256036
+      objectReference: {fileID: 0}
     - target: {fileID: 8894244348748044935, guid: 5492906c5968fe7088ad67036663d54f, type: 3}
       propertyPath: m_Size.x
       value: 0.08524704

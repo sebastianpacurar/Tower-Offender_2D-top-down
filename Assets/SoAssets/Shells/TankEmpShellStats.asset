@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   damage: 0
-  ammo: 99
+  ammo: 5
   cost: 20
   minAoeRadius: 0
   aoeRadius: 2.5

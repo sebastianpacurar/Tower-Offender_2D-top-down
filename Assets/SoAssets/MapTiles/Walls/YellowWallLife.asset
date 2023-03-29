@@ -19,4 +19,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c8aa35947eb24e0b789e031c5053be71, type: 2}
   - {fileID: 11400000, guid: 23df9eaf1e195fd02b1adf5205c24ed5, type: 2}
   - {fileID: 11400000, guid: 18f905730b5ef265facc6c80c997efaf, type: 2}
-  life: 1
+  hp: 1

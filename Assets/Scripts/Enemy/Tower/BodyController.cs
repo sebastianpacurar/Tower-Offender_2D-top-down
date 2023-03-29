@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Enemy.Tower.Hp;
+using Menus;
 using TileMap;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
@@ -35,6 +37,7 @@ namespace Enemy.Tower {
         private Dictionary<string, TileBase> _wallPoints;
         private Tilemap _wallMap;
         private WallTileManager _wallMapManager;
+        private LevelCompleteMenu _levelCompleteMenu;
 
         // the box which results after the explosion occurs when there are no more turrets in list
         private BoxCollider2D _boxCollider2D;
@@ -49,6 +52,9 @@ namespace Enemy.Tower {
 
         // this refers to the type of tile used, in case there are walls nearby
         private int _spriteIndex;
+
+        // used by fade object as addition to position.y. its value is Time.deltaTime * 2
+        private float timer;
 
         private void Awake() {
             _wallMapManager = FindObjectOfType<WallTileManager>();
@@ -66,6 +72,7 @@ namespace Enemy.Tower {
             _wallMap = GameObject.FindGameObjectWithTag("Wall").GetComponent<Tilemap>();
             _turretsTilemapObj = GameObject.FindGameObjectWithTag("TowerTurretsTilemap").transform;
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+            _levelCompleteMenu = GameObject.FindGameObjectWithTag("Menu").GetComponent<LevelCompleteMenu>();
 
             name = $"{name[..2]}-{transform.position.ToString()}"; // set the name of the body to its position in world space
         }
@@ -100,14 +107,18 @@ namespace Enemy.Tower {
         private void DisplayEarnedCash() {
             if (_turretUpdateInProgress) {
                 fadingCashValue.gameObject.SetActive(true);
-                var fadingCashPos = fadingCashTransform.position;
-                fadingCashTransform.position = new Vector3(fadingCashPos.x, fadingCashPos.y + Time.deltaTime * 2f, 1);
+
+                var position = transform.position;
+                timer += Time.deltaTime * 2;
+                fadingCashTransform.position = new Vector3(position.x, position.y + timer, 1);
 
                 // needed due to the rotation of the body to match the connecting walls. Set always to 0 rotation 
                 fadingCashTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
                 if (canvasGroup.alpha > 0) {
                     canvasGroup.alpha -= Time.deltaTime / 2f;
+                } else {
+                    timer = 0f;
                 }
             }
         }
@@ -137,6 +148,7 @@ namespace Enemy.Tower {
                 } else {
                     // otherwise enable the box-collider as replacement for the last destroyed turret  
                     _boxCollider2D.enabled = true;
+                    _levelCompleteMenu.towersLeft--;
                 }
 
                 // set the update to false to prevent immediate re-trigger from Update()
@@ -146,9 +158,6 @@ namespace Enemy.Tower {
                 _centerEm.enabled = false;
                 _fireWaveEm.enabled = false;
                 _shockWaveEm.enabled = false;
-
-                // set cash value text to its initial setup
-                RestartDisplayEarnedCash();
 
                 StopCoroutine(nameof(UpdateTurret));
             }
@@ -177,6 +186,9 @@ namespace Enemy.Tower {
                 _light2D.color = Color.magenta;
                 fadingCashValue.color = Color.magenta;
             }
+
+            // set cash value text to its initial setup
+            RestartDisplayEarnedCash();
 
             // set the cash value based on the following turret's stats
             fadingCashValue.text = $"${turretData.turretStatsSo.CashValue}";
@@ -298,6 +310,8 @@ namespace Enemy.Tower {
                             transform.rotation = Quaternion.Euler(0f, 0f, 180f);
                         } else if (north && west) {
                             transform.rotation = Quaternion.Euler(0f, 0f, 270f);
+                        } else if (south && west) {
+                            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                         }
                     }
 
@@ -311,6 +325,8 @@ namespace Enemy.Tower {
                         transform.rotation = Quaternion.Euler(0f, 0f, 180f);
                     } else if (south && west && north) {
                         transform.rotation = Quaternion.Euler(0f, 0f, 270f);
+                    } else if (south && west && east) {
+                        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                     }
 
                     break;

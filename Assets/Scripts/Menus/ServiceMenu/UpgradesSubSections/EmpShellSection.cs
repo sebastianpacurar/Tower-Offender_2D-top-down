@@ -17,7 +17,7 @@ namespace Menus.ServiceMenu.UpgradesSubSections {
         [SerializeField] private Image aoeTimeUpgradeBtnImg;
         [SerializeField] private TextMeshProUGUI aoeTimePrice;
 
-        [SerializeField] private float startPrice = 10f;
+        [SerializeField] private float startPrice = 15f;
         [SerializeField] private float currFireRatePrice;
         [SerializeField] private float currAoeRadiusPrice;
         [SerializeField] private float currAoeTimePrice;
@@ -31,10 +31,6 @@ namespace Menus.ServiceMenu.UpgradesSubSections {
 
 
         private void Awake() {
-            var tank = GameObject.FindGameObjectWithTag("Player");
-            _cashManager = tank.GetComponent<CashManager>();
-            _weaponStats = tank.GetComponent<WeaponStatsManager>();
-
             _aoeRadiusBtn = aoeRadiusUpgradeBtnImg.GetComponent<Button>();
             _aoeTimeBtn = aoeTimeUpgradeBtnImg.GetComponent<Button>();
             _fireRateBtn = fireRateUpgradeBtnImg.GetComponent<Button>();
@@ -42,6 +38,13 @@ namespace Menus.ServiceMenu.UpgradesSubSections {
             currFireRatePrice = startPrice;
             currAoeRadiusPrice = startPrice;
             currAoeTimePrice = startPrice;
+        }
+
+
+        private void Start() {
+            var tank = GameObject.FindGameObjectWithTag("Player");
+            _cashManager = tank.GetComponent<CashManager>();
+            _weaponStats = tank.GetComponent<WeaponStatsManager>();
         }
 
 

@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 540339249, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.185
+      value: 0.118
       objectReference: {fileID: 0}
     - target: {fileID: 540339249, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: m_LocalRotation.x
@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 540339250, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: m_PointLightOuterRadius
-      value: 0.24566418
+      value: 0.1256036
       objectReference: {fileID: 0}
     - target: {fileID: 1084552789634938436, guid: 6dac2d1ba88b51eddbe0053ddfb29eb8, type: 3}
       propertyPath: m_Size.x
