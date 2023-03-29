@@ -9,14 +9,17 @@ namespace Player {
         public float lightShellFireRate;
         public float lightShellSpeed;
 
-        public float empAoeRadius;
         public float empFireRate;
+        public float empAoeRadius;
+        public float empAoeDuration;
 
-        public float sniperDamage;
         public float sniperFireRate;
+        public float sniperDamage;
+        public float sniperSpeed;
 
         public float nukeAoeRadius;
         public float nukeFireRate;
+        public float nukeSpeed;
 
         // initialize to default values
         private void Awake() {
@@ -24,14 +27,17 @@ namespace Player {
             lightShellFireRate = tankStatsSo.LightShellReloadTime;
             lightShellSpeed = tankStatsSo.LightShellStatsSo.Speed;
 
-            empAoeRadius = tankStatsSo.EmpShellStatsSo.AoeRadius;
             empFireRate = tankStatsSo.EmpShellReloadTime;
+            empAoeRadius = tankStatsSo.EmpShellStatsSo.AoeRadius;
+            empAoeDuration = tankStatsSo.EmpShellStatsSo.AoeEffectDuration;
 
-            sniperDamage = tankStatsSo.SniperShellStatsSo.Damage;
             sniperFireRate = tankStatsSo.SniperShellReloadTime;
+            sniperSpeed = tankStatsSo.SniperShellStatsSo.Speed;
+            sniperDamage = tankStatsSo.SniperShellStatsSo.Damage;
 
-            nukeAoeRadius = tankStatsSo.NukeShellStatsSo.AoeRadius;
             nukeFireRate = tankStatsSo.NukeShellReloadTime;
+            nukeAoeRadius = tankStatsSo.NukeShellStatsSo.AoeRadius;
+            nukeSpeed = tankStatsSo.NukeShellStatsSo.Speed;
         }
     }
 }

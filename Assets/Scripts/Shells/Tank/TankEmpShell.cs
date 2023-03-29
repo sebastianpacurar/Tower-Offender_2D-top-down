@@ -40,7 +40,7 @@ namespace Shells.Tank {
         // set explosion shape radius to default radius
         // set explosion noise strength to default / 3.5f
         // set explosionWave to default radius
-        private void Start() {
+        private void Update() {
             _explosionShapeMod.radius = _weaponStats.empAoeRadius;
             _explosionNoiseModule.strength = _weaponStats.empAoeRadius / 3.5f;
             _explosionWaveShapeMod.radius = _weaponStats.empAoeRadius;

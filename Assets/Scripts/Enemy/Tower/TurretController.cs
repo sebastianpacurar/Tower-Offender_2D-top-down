@@ -10,7 +10,6 @@ namespace Enemy.Tower {
         public float PowerOffTimer { get; private set; }
 
         public TurretStatsSo turretStatsSo; // set to public since it's called in BodyController, to provide the next cash value of the spawned turret
-        [SerializeField] private TankStatsSo tankStatsSo;
         [SerializeField] private Transform turretEdge;
         [SerializeField] private Transform circleRangeTransform;
         [SerializeField] private SpriteRenderer circleRangeSr;
@@ -20,6 +19,8 @@ namespace Enemy.Tower {
         private Transform _tankPos;
         private Transform _shellsContainer;
         private TankHpManager _tankHpHandler;
+        private WeaponStatsManager _weaponStats;
+        
         private bool _detected;
         private bool _canFire = true;
         private bool _canShootAtTank;
@@ -41,8 +42,11 @@ namespace Enemy.Tower {
         }
 
         private void Start() {
-            circleRangeSr.color = turretStatsSo.CircleRangeAreaColor;
-            circleRangeTransform.localScale = new Vector3(turretStatsSo.Range * 2, turretStatsSo.Range * 2, 1f);
+            _weaponStats = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponStatsManager>();
+
+            //TODO: currently not used since object is disabled in prefab hierarchy
+            // circleRangeSr.color = turretStatsSo.CircleRangeAreaColor;
+            // circleRangeTransform.localScale = new Vector3(turretStatsSo.Range * 2, turretStatsSo.Range * 2, 1f);
 
             detectionLine.positionCount = 2;
             detectionLine.SetPosition(0, transform.position);
@@ -53,7 +57,7 @@ namespace Enemy.Tower {
             if (!IsPowerOff) return;
             PowerOffTimer += Time.deltaTime;
 
-            if (PowerOffTimer > tankStatsSo.EmpShellStatsSo.AoeEffectDuration) {
+            if (PowerOffTimer > _weaponStats.empAoeDuration) {
                 IsPowerOff = false;
                 PowerOffTimer = 0f;
             }

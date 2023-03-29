@@ -72,6 +72,7 @@ namespace Beacons {
 
         // 1) fade out current content, then disable it
         // 2) enable target content, then fade it in
+        // NOTE: setting currObj to false and targetObj to true, because their parent contains a VerticalLayoutGroup component
         private void FadeBetweenSections() {
             var targetObj = isShopDisplayed ? shopContent : upgradesContent;
             var currObj = isShopDisplayed ? upgradesContent : shopContent;

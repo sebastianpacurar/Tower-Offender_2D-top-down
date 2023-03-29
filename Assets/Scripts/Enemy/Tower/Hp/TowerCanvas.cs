@@ -1,3 +1,4 @@
+using Player;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,7 +6,6 @@ using UnityEngine.UI;
 namespace Enemy.Tower.Hp {
     public class TowerCanvas : MonoBehaviour {
         [SerializeField] private TurretStatsSo turretStatsSo;
-        [SerializeField] private TankShellStatsSo empShellStats;
         [SerializeField] private Canvas canvas;
         [SerializeField] private GameObject turretObj;
         [SerializeField] private GameObject powerOffCdObj;
@@ -15,6 +15,8 @@ namespace Enemy.Tower.Hp {
         private TurretHpManager _turretHpManager;
         private Camera _mainCam;
 
+        private WeaponStatsManager _weaponStats;
+
         private void Awake() {
             var towerObjTransform = transform.parent.Find("TurretObj").transform;
             _turretHpManager = towerObjTransform.GetComponent<TurretHpManager>();
@@ -23,6 +25,8 @@ namespace Enemy.Tower.Hp {
         }
 
         private void Start() {
+            _weaponStats = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponStatsManager>();
+
             canvas.renderMode = RenderMode.WorldSpace;
             canvas.worldCamera = _mainCam;
         }
@@ -38,7 +42,7 @@ namespace Enemy.Tower.Hp {
                     powerOffCdObj.SetActive(false);
                 }
             } else {
-                powerOffCdBar.fillAmount = _turretController.PowerOffTimer / empShellStats.AoeEffectDuration;
+                powerOffCdBar.fillAmount = _turretController.PowerOffTimer / _weaponStats.empAoeDuration;
 
                 if (!powerOffCdObj.activeSelf) {
                     powerOffCdObj.SetActive(true);
