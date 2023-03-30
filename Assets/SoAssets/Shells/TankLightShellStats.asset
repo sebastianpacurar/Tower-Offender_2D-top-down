@@ -17,7 +17,7 @@ MonoBehaviour:
   ammo: 0
   cost: 0
   minAoeRadius: 4
-  aoeRadius: 7.25
-  maxAoeRadius: 12.5
+  aoeRadius: 5
+  maxAoeRadius: 10
   aoeEffectDuration: 0
   hoverArrowColor: {r: 0, g: 0, b: 0, a: 0}

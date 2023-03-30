@@ -35,12 +35,12 @@ namespace Shells.Tank {
             // increase LightShellGhost radius with 0.1f when turret is hit
             if (col.gameObject.CompareTag("TurretObj")) {
                 //TODO: think of a way to handle this dynamical
-                _lightShellAoeScaler.finalRadiusVal = _lightShellAoeScaler.radiusVal + 0.1f;
+                _lightShellAoeScaler.finalRadiusVal = _lightShellAoeScaler.radiusVal + 0.5f;
                 DestroyShell();
             }
 
             if (col.gameObject.CompareTag("Wall")) {
-                _lightShellAoeScaler.finalRadiusVal = _lightShellAoeScaler.radiusVal + 0.05f;
+                _lightShellAoeScaler.finalRadiusVal = _lightShellAoeScaler.radiusVal + 0.25f;
                 var hit = col.GetContact(0);
 
                 DisablePhysics();
