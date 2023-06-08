@@ -13863,7 +13863,7 @@ GameObject:
   - component: {fileID: 6171208918102623748}
   - component: {fileID: 1986336043}
   m_Layer: 5
-  m_Name: MinusBtn
+  m_Name: MinusBtnEmp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15006,7 +15006,7 @@ GameObject:
   - component: {fileID: 6171208918375574829}
   - component: {fileID: 6171208918375574826}
   m_Layer: 5
-  m_Name: PlusBtn
+  m_Name: PlusBtnSniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18116,7 +18116,7 @@ GameObject:
   - component: {fileID: 6171208919642307927}
   - component: {fileID: 6171208919642307924}
   m_Layer: 5
-  m_Name: MinusBtn
+  m_Name: MinusBtnSniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18893,7 +18893,7 @@ GameObject:
   - component: {fileID: 6171208919764292671}
   - component: {fileID: 6171208919764292668}
   m_Layer: 5
-  m_Name: MinusBtn
+  m_Name: MinusBtnNuke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19238,7 +19238,7 @@ GameObject:
   - component: {fileID: 6171208919966719285}
   - component: {fileID: 6171208919966719282}
   m_Layer: 5
-  m_Name: PlusBtn
+  m_Name: PlusBtnEmp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19372,7 +19372,7 @@ GameObject:
   - component: {fileID: 6171208919974171744}
   - component: {fileID: 6171208919974171745}
   m_Layer: 5
-  m_Name: PlusBtn
+  m_Name: PlusBtnNuke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

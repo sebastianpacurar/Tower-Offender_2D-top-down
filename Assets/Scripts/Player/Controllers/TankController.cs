@@ -14,7 +14,7 @@ namespace Player.Controllers {
 
         private PlayerControls _controls;
         private CinemachineVirtualCamera _cineMachineMainCam;
-        private RoadTileManager roadTileManager;
+        private RoadTileManager _roadTileManager;
         private Rigidbody2D _rb;
 
         private float _move, _rotation;
@@ -50,7 +50,7 @@ namespace Player.Controllers {
             _controls = new PlayerControls();
             _rb = GetComponent<Rigidbody2D>();
             _cineMachineMainCam = GameObject.FindGameObjectWithTag("CM2D").GetComponent<CinemachineVirtualCamera>();
-            roadTileManager = FindObjectOfType<RoadTileManager>();
+            _roadTileManager = FindObjectOfType<RoadTileManager>();
 
             steerFactor = tankStatsSo.SteerFactor;
             driftFactor = tankStatsSo.DriftFactor;
@@ -105,7 +105,7 @@ namespace Player.Controllers {
         // NOTE: apply engine force based on which tile position is on (if road tile or not road tile)
         private void ApplyEngineForce() {
             // set the default values for no road tiles
-            var isOnRoad = roadTileManager.IsRoadTile(transform.position);
+            var isOnRoad = _roadTileManager.IsRoadTile(transform.position);
             var currMaxSpeed = tankStatsSo.MaxSpeed;
             var currBoostMaxSpeed = tankStatsSo.MaxSpeedBoostVal;
             var currAccFactor = tankStatsSo.AccFactor;
@@ -113,7 +113,7 @@ namespace Player.Controllers {
 
             // set the values properly based on the RoadTileDataSo contents
             if (isOnRoad) {
-                var data = roadTileManager.GetTileData(transform.position);
+                var data = _roadTileManager.GetTileData(transform.position);
                 currMaxSpeed = data.MaxSpeed;
                 currAccFactor = data.AccFactor;
                 currBoostMaxSpeed = data.BoostMaxSpeed;
@@ -266,6 +266,12 @@ namespace Player.Controllers {
 
         public void SetTrackAnimationTo(bool isMoving) {
             Array.ForEach(tankTracks, track => track.SetBool(IsMoving, isMoving));
+        }
+
+        private void OnDrawGizmos() {
+            Gizmos.color = Color.blue;
+
+            Gizmos.DrawLine(transform.position, transform.position + transform.up.normalized * 3f);
         }
     }
 }
