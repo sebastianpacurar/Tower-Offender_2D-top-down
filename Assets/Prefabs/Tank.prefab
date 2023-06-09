@@ -267,6 +267,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &42633214503754479
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,6 +406,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &201481235243459535
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +525,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e327785e830b7044b1325d01e984968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shellStatsSo: {fileID: 11400000, guid: ae9549cb37146e5cfa53e2b005d8d85b, type: 2}
   circleRadiusArea: {fileID: 2565301321222460735}
   multiplyFactor: 2.825
   radiusVal: 0
@@ -716,6 +717,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1006714722445121397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,6 +1038,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1455958735674586893
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1238,6 +1241,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1981674769594778011
 GameObject:
   m_ObjectHideFlags: 0
@@ -1534,9 +1538,12 @@ MonoBehaviour:
   tankTracks:
   - {fileID: 4658843256546265701}
   - {fileID: 4215000782833271299}
+  serviceBeacon: {fileID: 0}
   rigidBodyDrag: 0
-  forwardVelocity: {x: 0, y: 0, z: 0}
-  rightVelocity: {x: 0, y: 0, z: 0}
+  upVelocity: {x: 0, y: 0}
+  upSpeed: 0
+  rightVelocity: {x: 0, y: 0}
+  rightSpeed: 0
   exhaustBack: {fileID: 201481235243459535}
   exhaustFront: {fileID: 42633214503754479}
 --- !u!114 &1981674770873572459
@@ -1674,12 +1681,13 @@ MonoBehaviour:
   lightShellDamage: 0
   lightShellFireRate: 0
   lightShellSpeed: 0
-  empAoeRadius: 0
   empFireRate: 0
-  sniperDamage: 0
+  empAoeRadius: 0
+  empAoeDuration: 0
   sniperFireRate: 0
-  nukeAoeRadius: 0
+  sniperDamage: 0
   nukeFireRate: 0
+  nukeAoeRadius: 0
 --- !u!114 &2053498701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1800,6 +1808,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2218405330404542845
 GameObject:
   m_ObjectHideFlags: 0
@@ -27289,6 +27298,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7405472110899023981
 GameObject:
   m_ObjectHideFlags: 0
@@ -27542,7 +27552,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee9bda41853fd4e480e065e2a06b9c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shellStatsSo: {fileID: 11400000, guid: 6cf65be9ec689712594054171afcd509, type: 2}
   circleRadiusArea: {fileID: 3211383368864141387}
   multiplyFactor: 3.125
   radiusVal: 0

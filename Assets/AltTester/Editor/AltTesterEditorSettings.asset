@@ -20,7 +20,7 @@ MonoBehaviour:
   - _selected: 1
     _testName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: -1
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestAssembly
     _parentName: 
@@ -34,7 +34,7 @@ MonoBehaviour:
   - _selected: 1
     _testName: Editor
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: -1
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
@@ -48,7 +48,7 @@ MonoBehaviour:
   - _selected: 1
     _testName: Editor.AltTests
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: -1
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: Editor
@@ -62,7 +62,7 @@ MonoBehaviour:
   - _selected: 1
     _testName: Editor.AltTests.tests
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: -1
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: Editor.AltTests
@@ -76,7 +76,7 @@ MonoBehaviour:
   - _selected: 1
     _testName: Editor.AltTests.tests.GamePlay
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: -1
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: Editor.AltTests.tests
@@ -88,11 +88,11 @@ MonoBehaviour:
     path: 
     _testSelectedCount: 1
   - _selected: 1
-    _testName: Editor.AltTests.tests.GamePlay.Purchasables
+    _testName: Editor.AltTests.tests.GamePlay.TankMoveTests
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: -1
     _isSuite: 1
-    _type: NUnit.Framework.Internal.TestSuite
+    _type: NUnit.Framework.Internal.TestFixture
     _parentName: Editor.AltTests.tests.GamePlay
     _testCaseCount: 1
     _foldOut: 1
@@ -102,32 +102,37 @@ MonoBehaviour:
     path: 
     _testSelectedCount: 1
   - _selected: 1
-    _testName: Editor.AltTests.tests.GamePlay.Purchasables.ServiceBeaconShop
+    _testName: Editor.AltTests.tests.GamePlay.TankMoveTests.NavigateToServiceBeacon
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
-    _isSuite: 1
-    _type: NUnit.Framework.Internal.TestFixture
-    _parentName: Editor.AltTests.tests.GamePlay.Purchasables
-    _testCaseCount: 1
-    _foldOut: 0
-    _testResultMessage: 
-    _testStackTrace: 
-    _testDuration: 0
-    path: 
-    _testSelectedCount: 1
-  - _selected: 1
-    _testName: Editor.AltTests.tests.GamePlay.Purchasables.ServiceBeaconShop.NavigateToServiceBeacon
-    _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: -1
     _isSuite: 0
     _type: NUnit.Framework.Internal.TestMethod
-    _parentName: Editor.AltTests.tests.GamePlay.Purchasables.ServiceBeaconShop
+    _parentName: Editor.AltTests.tests.GamePlay.TankMoveTests
     _testCaseCount: 1
-    _foldOut: 0
-    _testResultMessage: 
-    _testStackTrace: 
-    _testDuration: 3.9550225
-    path: Assets/Editor/AltTests/tests/GamePlay/Purchasables/ServiceBeaconShop.cs
+    _foldOut: 1
+    _testResultMessage: 'Altom.AltDriver.AltException : Driver disconnected'
+    _testStackTrace: "  at Altom.AltDriver.Commands.DriverCommunicationWebSocket.Recvall[T]
+      (Altom.AltDriver.Commands.CommandParams param) [0x000ad] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/AltTester/AltDriver/Commands/DriverCommunicationWebSocket.cs:109
+      \n  at Altom.AltDriver.Commands.AltFindObject.Execute () [0x00013] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/AltTester/AltDriver/Commands/FindObjects/AltFindObject.cs:17
+      \n  at Altom.AltDriver.AltDriver.FindObject (Altom.AltDriver.By by, System.String
+      value, Altom.AltDriver.By cameraBy, System.String cameraValue, System.Boolean
+      enabled) [0x00001] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/AltTester/AltDriver/AltDriver.cs:150
+      \n  at Editor.AltTests.props.Props.TankPos (Altom.AltDriver.AltDriver driver)
+      [0x00001] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/props/Props.cs:38
+      \n  at Editor.AltTests.props.Props.TankDistFrom (Altom.AltDriver.AltDriver
+      driver, Altom.AltDriver.AltVector2 target) [0x00001] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/props/Props.cs:49
+      \n  at Editor.AltTests.pages.GamePlay.MoveUpTowardsTarget (Altom.AltDriver.AltVector2
+      target) [0x00023] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/pages/GamePlay.cs:44
+      \n  at Editor.AltTests.pages.GamePlay.NavigateToLocation (Altom.AltDriver.AltVector2
+      location) [0x0000c] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/pages/GamePlay.cs:13
+      \n  at Editor.AltTests.tests.GamePlay.TankMoveTests.NavigateToServiceBeacon
+      () [0x0001d] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/tests/GamePlay/TankMoveTests.cs:31
+      \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n 
+      at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
+      invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo
+      culture) [0x0006a] in <56af3bfda3de4922902bfa6b4d78d122>:0 "
+    _testDuration: 12.0162693
+    path: Assets/Editor/AltTests/tests/GamePlay/TankMoveTests.cs
     _testSelectedCount: 0
   - _selected: 0
     _testName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/AltTester.dll
@@ -312,7 +317,7 @@ MonoBehaviour:
     path: 
     _testSelectedCount: 0
   - _selected: 1
-    _testName: /home/sebipacurar/Documents/my-git/data-0x560b8c4572c0
+    _testName: /home/sebipacurar/Documents/my-git/data-0x562917c6c500
     _testAssembly: JetBrains.Rider.Unity.Editor.Plugin.Net46.Repacked
     _status: 0
     _isSuite: 1

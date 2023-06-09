@@ -69,6 +69,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # Alt Tester
-
-mono_crash.mem.*.blob
+*.blob
 test-report.xml

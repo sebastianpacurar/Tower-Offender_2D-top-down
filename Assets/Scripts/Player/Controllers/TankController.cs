@@ -36,14 +36,17 @@ namespace Player.Controllers {
         [Header("Animators")]
         [SerializeField] private Animator[] tankTracks;
 
-        [Header("For Debugging Purposes")]
-        [SerializeField] private float rigidBodyDrag;
-        [SerializeField] private Vector3 forwardVelocity;
-        [SerializeField] private Vector3 rightVelocity;
-
         [Space(20)]
         [SerializeField] private GameObject exhaustBack;
         [SerializeField] private GameObject exhaustFront;
+
+        [Header("For Debugging Purposes")]
+        [SerializeField] private GameObject serviceBeacon;
+        [SerializeField] private float rigidBodyDrag;
+        [SerializeField] private Vector2 upVelocity;
+        [SerializeField] private Vector2 rightVelocity;
+        [SerializeField] private Vector2 localVelocity;
+        [SerializeField] private Vector2 tankTargetAngles;
 
 
         private void Awake() {
@@ -60,6 +63,8 @@ namespace Player.Controllers {
         private void Start() {
             _cineMachineMainCam.Follow = transform;
         }
+
+        private void Update() => Debugger();
 
         private void FixedUpdate() {
             ApplyEngineForce();
@@ -217,10 +222,13 @@ namespace Player.Controllers {
 
         // add more friction to the tank to avoid drifting in a single direction (multiply right by 0)
         private void KillOrthogonalVelocity() {
-            forwardVelocity = transform.up * Vector2.Dot(_rb.velocity, transform.up);
-            rightVelocity = transform.right * Vector2.Dot(_rb.velocity, transform.right);
+            var upAngle = Vector2.Dot(_rb.velocity, transform.up);
+            upVelocity = transform.up * upAngle;
 
-            _rb.velocity = forwardVelocity + rightVelocity * driftFactor;
+            var rightAngle = Vector2.Dot(_rb.velocity, transform.right);
+            rightVelocity = transform.right * rightAngle;
+
+            _rb.velocity = upVelocity + rightVelocity * driftFactor;
         }
 
         private void HandleEngineBreaks(float currAccFactor) {
@@ -268,10 +276,45 @@ namespace Player.Controllers {
             Array.ForEach(tankTracks, track => track.SetBool(IsMoving, isMoving));
         }
 
-        private void OnDrawGizmos() {
-            Gizmos.color = Color.blue;
 
-            Gizmos.DrawLine(transform.position, transform.position + transform.up.normalized * 3f);
+        #region AltTester related
+        private void Debugger() {
+            //NOTE: change stuff here!!
+            SetTankTargetAngle(serviceBeacon.transform.position);
+            CalculateSpeed();
         }
+
+        private void OnDrawGizmos() {
+            var pos = transform.position;
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(pos, pos + transform.up.normalized * 3f);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(pos, pos + transform.right.normalized * 3f);
+
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawLine(pos, pos + GetDirectionTowards(serviceBeacon.transform.position) * 3f);
+        }
+
+        // return a Vector2(x, y), where => x = right * direction; and y = up * direction
+        private void SetTankTargetAngle(Vector2 target) {
+            var dir = GetDirectionTowards(target);
+            var right = Vector2.Dot(transform.right, dir);
+            var up = Vector2.Dot(transform.up, dir);
+            tankTargetAngles = new Vector2(right, up);
+        }
+
+
+        // localVelocity.x = Left vs Right Speed (>0 = right, <0 = moves left)
+        // localVelocity.y = Up vs Down speed (>0 = up, <0 = down).
+        private void CalculateSpeed() => localVelocity = transform.InverseTransformDirection(_rb.velocity);
+
+
+        private Vector3 GetDirectionTowards(Vector3 objPos) {
+            var v3 = (objPos - transform.position).normalized;
+            return new Vector2(v3.x, v3.y);
+        }
+        #endregion
     }
 }
