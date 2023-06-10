@@ -64,12 +64,13 @@ namespace Editor.AltTests.props {
         #endregion
 
 
+        // TODO: switch back to private after experiment over
         #region private methods
-        private static AltVector2 ToAltV(Vector2 v) => new(v.x, v.y);
-        private static AltVector2 ToAltV(float x, float y) => new(x, y);
+        public static AltVector2 ToAltV(Vector2 v) => new(v.x, v.y);
+        public static AltVector2 ToAltV(float x, float y) => new(x, y);
 
-        private static Vector2 ToV(AltVector2 v) => new(v.x, v.y);
-        private static Vector2 ToV(float x, float y) => new(x, y);
+        public static Vector2 ToV(AltVector2 v) => new(v.x, v.y);
+        public static Vector2 ToV(float x, float y) => new(x, y);
         #endregion
     }
 }
