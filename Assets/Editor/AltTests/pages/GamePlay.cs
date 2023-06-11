@@ -1,3 +1,4 @@
+using System;
 using Altom.AltDriver;
 using Editor.AltTests.props;
 
@@ -6,54 +7,57 @@ namespace Editor.AltTests.pages {
         public GamePlay(AltDriver driver) : base(driver) { }
         private bool _hasTurned;
 
-        public void NavigateToLocation(AltVector2 location) {
-            while (Props.TankDistFrom(Driver, location) > 0.5f) {
-                PerformNavigationTo(location);
-            }
-        }
+        public void NavigateToLocation(AltVector2 location, Func<bool> conditionFunc) {
+            while (true) {
+                AltKeyCode activeKey = AltKeyCode.NoKey;
+                AltKeyCode inactiveKey = AltKeyCode.NoKey;
 
-        private void PerformNavigationTo(AltVector2 target) {
-            AltKeyCode activeKey = AltKeyCode.NoKey;
-            AltKeyCode inactiveKey = AltKeyCode.NoKey;
+                if (!_hasTurned) {
+                    // Rotation Logic
+                    while (true) {
+                        var angX = Props.TankTargetAngles(Driver, location).x;
+                        var angY = Props.TankTargetAngles(Driver, location).y;
 
-            if (!_hasTurned) {
-                while (true) {
-                    var angX = Props.TankTargetAngles(Driver, target).x;
-                    var angY = Props.TankTargetAngles(Driver, target).y;
+                        if (angY > 0.8f) {
+                            Driver.KeysUp(new[] { AltKeyCode.A, AltKeyCode.D });
 
-                    if (angX >= 0 && angY >= -1) {
-                        activeKey = AltKeyCode.D;
-                        inactiveKey = AltKeyCode.A;
-                    } else if (angX < 0 && angY >= -1) {
-                        activeKey = AltKeyCode.A;
-                        inactiveKey = AltKeyCode.D;
-                    }
+                            if (angX < 0f) {
+                                Driver.PressKey(AltKeyCode.D);
+                            } else if (angX > 0f) {
+                                Driver.PressKey(AltKeyCode.A);
+                            }
 
-                    Driver.KeyDown(activeKey);
-                    Driver.KeyUp(inactiveKey);
-
-
-                    if (angY > 0.8f) {
-                        Driver.KeysUp(new[] { AltKeyCode.A, AltKeyCode.D });
-
-                        if (angX > 0f) {
-                            Driver.PressKey(AltKeyCode.D);
-                        } else if (angX > 0f) {
-                            Driver.PressKey(AltKeyCode.A);
+                            _hasTurned = true;
+                            break;
                         }
 
-                        _hasTurned = true;
-                        break;
+                        // calculate which way to rotate
+                        if (angX >= 0 && angY >= -1) {
+                            activeKey = AltKeyCode.D;
+                            inactiveKey = AltKeyCode.A;
+                        } else if (angX < 0 && angY >= -1) {
+                            activeKey = AltKeyCode.A;
+                            inactiveKey = AltKeyCode.D;
+                        }
+
+                        Driver.KeyDown(activeKey);
+                        Driver.KeyUp(inactiveKey);
                     }
-                }
-
-                if (_hasTurned) {
+                } else {
+                    // Move Forward Logic
                     while (true) {
-                        var dist = Props.TankDistFrom(Driver, target);
-                        var angX = Props.TankTargetAngles(Driver, target).x;
-                        var angY = Props.TankTargetAngles(Driver, target).y;
+                        var dist = Props.TankDistFrom(Driver, location);
+                        var angX = Props.TankTargetAngles(Driver, location).x;
+                        var angY = Props.TankTargetAngles(Driver, location).y;
 
-                        if (angX < 0.8f && angY > 0f && !MovingUpTowards(target) || (dist < 2f)) {
+                        // exit when condition met
+                        if (conditionFunc()) {
+                            Driver.KeyUp(AltKeyCode.W);
+                            StopTank();
+                            return;
+                        }
+
+                        if ((angX < 0.8f && angY < 0f && !MovingUpTowards(location)) || dist < 2f) {
                             Driver.KeyUp(AltKeyCode.W);
                             StopTank();
                             break;
@@ -62,10 +66,10 @@ namespace Editor.AltTests.pages {
                         Driver.KeyDown(AltKeyCode.W);
                     }
 
-
-                    if (Props.TankDistFrom(Driver, target) > 2f) {
+                    // if stopped but condition not met, re-execute logic
+                    if (!conditionFunc()) {
                         _hasTurned = false;
-                        PerformNavigationTo(target);
+                        NavigateToLocation(location, conditionFunc);
                     }
                 }
             }
@@ -79,7 +83,7 @@ namespace Editor.AltTests.pages {
             Driver.KeyUp(AltKeyCode.S);
         }
 
-        // TODO: experimental
+        // TODO: seems faulty
         private bool MovingUpTowards(AltVector2 target) {
             var upAngle = Props.TankTargetAngles(Driver, target).y;
             var dist = Props.TankDistFrom(Driver, target);

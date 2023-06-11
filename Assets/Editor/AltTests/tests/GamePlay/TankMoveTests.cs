@@ -27,9 +27,11 @@ namespace Editor.AltTests.tests.GamePlay {
 
         [Test]
         public void NavigateToServiceBeacon() {
-            Assert.AreEqual(Props.GetServiceMenuInteractableStatus(_altDriver), false);
-            _gamePlayPage.NavigateToLocation(Props.ServicePos(_altDriver));
-            Assert.AreEqual(Props.GetServiceMenuInteractableStatus(_altDriver), true);
+            Assert.AreEqual(Props.IsServiceMenuInteractable(_altDriver), false);
+            
+            _gamePlayPage.NavigateToLocation(Props.ServicePos(_altDriver), Props.ServiceMenuInteractableDelegate(_altDriver));
+            
+            Assert.AreEqual(Props.IsServiceMenuInteractable(_altDriver), true);
         }
     }
 }

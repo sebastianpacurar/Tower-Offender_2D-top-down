@@ -1,3 +1,4 @@
+using System;
 using Altom.AltDriver;
 using UnityEngine;
 
@@ -57,19 +58,24 @@ namespace Editor.AltTests.props {
             return ToAltV(p.x, p.y);
         }
 
-        public static bool GetServiceMenuInteractableStatus(AltDriver driver) {
+        public static bool IsServiceMenuInteractable(AltDriver driver) {
             var canvas = driver.FindObject(By.PATH, "//BeaconsGrid/Beacons/ServiceBeacon/Canvas");
             return canvas.GetComponentProperty<bool>("UnityEngine.CanvasGroup", "interactable", "UnityEngine.UIModule");
         }
+        
+        public static Func<bool> ServiceMenuInteractableDelegate(AltDriver driver) {
+            var canvas = driver.FindObject(By.PATH, "//BeaconsGrid/Beacons/ServiceBeacon/Canvas");
+            return () => canvas.GetComponentProperty<bool>("UnityEngine.CanvasGroup", "interactable", "UnityEngine.UIModule");
+        }
+        
         #endregion
 
 
-        // TODO: switch back to private after experiment over
         #region private methods
-        public static AltVector2 ToAltV(Vector2 v) => new(v.x, v.y);
-        public static AltVector2 ToAltV(float x, float y) => new(x, y);
+        private static AltVector2 ToAltV(Vector2 v) => new(v.x, v.y);
+        private static AltVector2 ToAltV(float x, float y) => new(x, y);
 
-        public static Vector2 ToV(AltVector2 v) => new(v.x, v.y);
+        private static Vector2 ToV(AltVector2 v) => new(v.x, v.y);
         public static Vector2 ToV(float x, float y) => new(x, y);
         #endregion
     }

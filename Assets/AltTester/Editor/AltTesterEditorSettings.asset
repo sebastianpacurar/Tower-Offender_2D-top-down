@@ -20,12 +20,12 @@ MonoBehaviour:
   - _selected: 1
     _testName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
     _testAssembly: Assembly-CSharp-Editor
-    _status: -1
+    _status: 1
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestAssembly
     _parentName: 
     _testCaseCount: 1
-    _foldOut: 1
+    _foldOut: 0
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
@@ -34,12 +34,12 @@ MonoBehaviour:
   - _selected: 1
     _testName: Editor
     _testAssembly: Assembly-CSharp-Editor
-    _status: -1
+    _status: 1
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
     _testCaseCount: 1
-    _foldOut: 1
+    _foldOut: 0
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
@@ -48,12 +48,12 @@ MonoBehaviour:
   - _selected: 1
     _testName: Editor.AltTests
     _testAssembly: Assembly-CSharp-Editor
-    _status: -1
+    _status: 1
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: Editor
     _testCaseCount: 1
-    _foldOut: 1
+    _foldOut: 0
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
@@ -62,12 +62,12 @@ MonoBehaviour:
   - _selected: 1
     _testName: Editor.AltTests.tests
     _testAssembly: Assembly-CSharp-Editor
-    _status: -1
+    _status: 1
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: Editor.AltTests
     _testCaseCount: 1
-    _foldOut: 1
+    _foldOut: 0
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
@@ -76,12 +76,12 @@ MonoBehaviour:
   - _selected: 1
     _testName: Editor.AltTests.tests.GamePlay
     _testAssembly: Assembly-CSharp-Editor
-    _status: -1
+    _status: 1
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: Editor.AltTests.tests
     _testCaseCount: 1
-    _foldOut: 1
+    _foldOut: 0
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
@@ -90,12 +90,12 @@ MonoBehaviour:
   - _selected: 1
     _testName: Editor.AltTests.tests.GamePlay.TankMoveTests
     _testAssembly: Assembly-CSharp-Editor
-    _status: -1
+    _status: 1
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestFixture
     _parentName: Editor.AltTests.tests.GamePlay
     _testCaseCount: 1
-    _foldOut: 1
+    _foldOut: 0
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
@@ -104,35 +104,15 @@ MonoBehaviour:
   - _selected: 1
     _testName: Editor.AltTests.tests.GamePlay.TankMoveTests.NavigateToServiceBeacon
     _testAssembly: Assembly-CSharp-Editor
-    _status: -1
+    _status: 1
     _isSuite: 0
     _type: NUnit.Framework.Internal.TestMethod
     _parentName: Editor.AltTests.tests.GamePlay.TankMoveTests
     _testCaseCount: 1
-    _foldOut: 1
-    _testResultMessage: 'Altom.AltDriver.AltException : Driver disconnected'
-    _testStackTrace: "  at Altom.AltDriver.Commands.DriverCommunicationWebSocket.Recvall[T]
-      (Altom.AltDriver.Commands.CommandParams param) [0x000ad] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/AltTester/AltDriver/Commands/DriverCommunicationWebSocket.cs:109
-      \n  at Altom.AltDriver.Commands.AltGetComponentProperty`1[T].Execute () [0x00013]
-      in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/AltTester/AltDriver/Commands/ObjectCommands/AltGetComponentProperty.cs:13
-      \n  at Altom.AltDriver.AltObject.GetComponentProperty[T] (System.String componentName,
-      System.String propertyName, System.String assemblyName, System.Int32 maxDepth)
-      [0x00001] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/AltTester/AltDriver/Common/AltObject.cs:101
-      \n  at Editor.AltTests.props.Props.TankRightVector (Altom.AltDriver.AltDriver
-      driver) [0x00001] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/props/Props.cs:13
-      \n  at Editor.AltTests.props.Props.TankTargetAngles (Altom.AltDriver.AltDriver
-      driver, Altom.AltDriver.AltVector2 target) [0x0001a] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/props/Props.cs:30
-      \n  at Editor.AltTests.pages.GamePlay.PerformNavigationTo (Altom.AltDriver.AltVector2
-      target) [0x00151] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/pages/GamePlay.cs:53
-      \n  at Editor.AltTests.pages.GamePlay.NavigateToLocation (Altom.AltDriver.AltVector2
-      location) [0x00004] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/pages/GamePlay.cs:12
-      \n  at Editor.AltTests.tests.GamePlay.TankMoveTests.NavigateToServiceBeacon
-      () [0x0001d] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/tests/GamePlay/TankMoveTests.cs:31
-      \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n 
-      at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
-      invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo
-      culture) [0x0006a] in <56af3bfda3de4922902bfa6b4d78d122>:0 "
-    _testDuration: 42.2249359
+    _foldOut: 0
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 12.1935536
     path: Assets/Editor/AltTests/tests/GamePlay/TankMoveTests.cs
     _testSelectedCount: 0
   - _selected: 0
@@ -318,7 +298,7 @@ MonoBehaviour:
     path: 
     _testSelectedCount: 0
   - _selected: 1
-    _testName: /home/sebipacurar/Documents/my-git/data-0x55f2118751f0
+    _testName: /home/sebipacurar/Documents/my-git/data-0x559d7fe31ab0
     _testAssembly: JetBrains.Rider.Unity.Editor.Plugin.Net46.Repacked
     _status: 0
     _isSuite: 1
