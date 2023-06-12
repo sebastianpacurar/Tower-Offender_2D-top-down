@@ -292,9 +292,9 @@ namespace Player.Controllers {
 
             Gizmos.color = Color.red;
             Gizmos.DrawLine(pos, pos + transform.right.normalized * 3f);
-
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawLine(pos, pos + GetDirectionTowards(serviceBeacon.transform.position) * 3f);
+            
+            // Gizmos.color = Color.cyan;
+            // Gizmos.DrawLine(pos, pos + GetDirectionTowards(serviceBeacon.transform.position) * 3f);
         }
 
         // return a Vector2(x, y), where => x = right * direction; and y = up * direction

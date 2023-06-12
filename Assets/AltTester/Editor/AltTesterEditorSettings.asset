@@ -17,103 +17,131 @@ MonoBehaviour:
   IProxyPath: /usr/local/bin/iproxy
   XcrunPath: /usr/bin/xcrun
   MyTests:
-  - _selected: 1
+  - _selected: 0
     _testName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: 0
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestAssembly
     _parentName: 
-    _testCaseCount: 1
-    _foldOut: 0
+    _testCaseCount: 3
+    _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
     path: 
     _testSelectedCount: 1
-  - _selected: 1
+  - _selected: 0
     _testName: Editor
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: 0
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
-    _testCaseCount: 1
-    _foldOut: 0
+    _testCaseCount: 3
+    _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
     path: 
     _testSelectedCount: 1
-  - _selected: 1
+  - _selected: 0
     _testName: Editor.AltTests
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: 0
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: Editor
-    _testCaseCount: 1
-    _foldOut: 0
+    _testCaseCount: 3
+    _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
     path: 
     _testSelectedCount: 1
-  - _selected: 1
+  - _selected: 0
     _testName: Editor.AltTests.tests
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: 0
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: Editor.AltTests
-    _testCaseCount: 1
-    _foldOut: 0
+    _testCaseCount: 3
+    _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
     path: 
     _testSelectedCount: 1
-  - _selected: 1
+  - _selected: 0
     _testName: Editor.AltTests.tests.GamePlay
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: 0
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: Editor.AltTests.tests
-    _testCaseCount: 1
-    _foldOut: 0
+    _testCaseCount: 3
+    _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
     path: 
     _testSelectedCount: 1
-  - _selected: 1
-    _testName: Editor.AltTests.tests.GamePlay.TankMoveTests
+  - _selected: 0
+    _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: 0
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestFixture
     _parentName: Editor.AltTests.tests.GamePlay
-    _testCaseCount: 1
-    _foldOut: 0
+    _testCaseCount: 3
+    _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
     path: 
     _testSelectedCount: 1
+  - _selected: 0
+    _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToHealingBeacon
+    _testAssembly: Assembly-CSharp-Editor
+    _status: 0
+    _isSuite: 0
+    _type: NUnit.Framework.Internal.TestMethod
+    _parentName: Editor.AltTests.tests.GamePlay.TankNavigationTests
+    _testCaseCount: 1
+    _foldOut: 1
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 0
+    path: Assets/Editor/AltTests/tests/GamePlay/TankNavigationTests.cs
+    _testSelectedCount: 0
   - _selected: 1
-    _testName: Editor.AltTests.tests.GamePlay.TankMoveTests.NavigateToServiceBeacon
+    _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToPoints
     _testAssembly: Assembly-CSharp-Editor
     _status: 1
     _isSuite: 0
     _type: NUnit.Framework.Internal.TestMethod
-    _parentName: Editor.AltTests.tests.GamePlay.TankMoveTests
+    _parentName: Editor.AltTests.tests.GamePlay.TankNavigationTests
     _testCaseCount: 1
-    _foldOut: 0
+    _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
-    _testDuration: 12.1935536
-    path: Assets/Editor/AltTests/tests/GamePlay/TankMoveTests.cs
+    _testDuration: 52.49888
+    path: Assets/Editor/AltTests/tests/GamePlay/TankNavigationTests.cs
+    _testSelectedCount: 0
+  - _selected: 0
+    _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToServiceBeacon
+    _testAssembly: Assembly-CSharp-Editor
+    _status: 0
+    _isSuite: 0
+    _type: NUnit.Framework.Internal.TestMethod
+    _parentName: Editor.AltTests.tests.GamePlay.TankNavigationTests
+    _testCaseCount: 1
+    _foldOut: 1
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 0
+    path: Assets/Editor/AltTests/tests/GamePlay/TankNavigationTests.cs
     _testSelectedCount: 0
   - _selected: 0
     _testName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/AltTester.dll
@@ -142,7 +170,7 @@ MonoBehaviour:
     _testStackTrace: 
     _testDuration: 0
     path: 
-    _testSelectedCount: 1
+    _testSelectedCount: 0
   - _selected: 0
     _testName: TestExample.Test
     _testAssembly: AltTester
@@ -212,7 +240,7 @@ MonoBehaviour:
     _testStackTrace: 
     _testDuration: 0
     path: 
-    _testSelectedCount: 2
+    _testSelectedCount: 0
   - _selected: 0
     _testName: IntegrationTests.Integration_CanChangeInputBackendPlayerSettingInEditor
     _testAssembly: Unity.InputSystem.IntegrationTests
@@ -298,7 +326,7 @@ MonoBehaviour:
     path: 
     _testSelectedCount: 0
   - _selected: 1
-    _testName: /home/sebipacurar/Documents/my-git/data-0x559d7fe31ab0
+    _testName: /home/sebipacurar/Documents/my-git/data-0x563e8f538650
     _testAssembly: JetBrains.Rider.Unity.Editor.Plugin.Net46.Repacked
     _status: 0
     _isSuite: 1

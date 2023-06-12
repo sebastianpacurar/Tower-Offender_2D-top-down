@@ -51,7 +51,6 @@ namespace Editor.AltTests.props {
         }
         #endregion
 
-
         #region Service Beacon Data
         public static AltVector2 ServicePos(AltDriver driver) {
             var p = driver.FindObject(By.NAME, "ServiceBeacon").GetWorldPosition();
@@ -62,14 +61,42 @@ namespace Editor.AltTests.props {
             var canvas = driver.FindObject(By.PATH, "//BeaconsGrid/Beacons/ServiceBeacon/Canvas");
             return canvas.GetComponentProperty<bool>("UnityEngine.CanvasGroup", "interactable", "UnityEngine.UIModule");
         }
-        
+
         public static Func<bool> ServiceMenuInteractableDelegate(AltDriver driver) {
             var canvas = driver.FindObject(By.PATH, "//BeaconsGrid/Beacons/ServiceBeacon/Canvas");
             return () => canvas.GetComponentProperty<bool>("UnityEngine.CanvasGroup", "interactable", "UnityEngine.UIModule");
         }
-        
         #endregion
 
+        #region Healing Beacon Data
+        public static AltVector2 HealingPos(AltDriver driver) {
+            var p = driver.FindObject(By.TAG, "HealingBeacon").GetWorldPosition();
+            return ToAltV(p.x, p.y);
+        }
+
+        public static bool IsHealingBeaconActive(AltDriver driver) {
+            return driver.FindObject(By.TAG, "HealingBeacon").GetComponentProperty<bool>("Beacons.HandleHpBeacon", "isOnBeacon", "Assembly-CSharp", 1);
+        }
+
+        public static Func<bool> HealingBeaconActiveDelegate(AltDriver driver) {
+            return () => driver.FindObject(By.TAG, "HealingBeacon").GetComponentProperty<bool>("Beacons.HandleHpBeacon", "isOnBeacon", "Assembly-CSharp", 1);
+        }
+        #endregion
+
+        #region Navigation Point Data
+        public static AltVector2 NavPointPos(AltDriver driver, string objName) {
+            var v = driver.FindObject(By.NAME, objName).GetWorldPosition();
+            return ToAltV(v.x, v.y);
+        }
+
+        public static Func<bool> NavPointTriggerDelegate(AltDriver driver, string objName) {
+            return () => driver.FindObject(By.NAME, objName).GetComponentProperty<bool>("AltTestRelated.NavPointHandler", "isTriggered", "Assembly-CSharp", 1);
+        }
+
+        public static bool IsNavPointTriggered(AltDriver driver, string objName) {
+            return driver.FindObject(By.NAME, objName).GetComponentProperty<bool>("AltTestRelated.NavPointHandler", "isTriggered", "Assembly-CSharp", 1);
+        }
+        #endregion
 
         #region private methods
         private static AltVector2 ToAltV(Vector2 v) => new(v.x, v.y);

@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace Editor.AltTests.tests.GamePlay {
     public class ServiceBeaconShop {
         private AltDriver _altDriver;
-        private pages.GamePlay gamePlayPage;
+        private pages.GamePlay _gamePlayPage;
         private bool _hasTurned;
 
         [OneTimeSetUp]

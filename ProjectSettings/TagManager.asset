@@ -35,6 +35,7 @@ TagManager:
   - MapCamera
   - SafeWalls
   - HealingBeacon
+  - NavigationPoint
   layers:
   - Default
   - TransparentFX

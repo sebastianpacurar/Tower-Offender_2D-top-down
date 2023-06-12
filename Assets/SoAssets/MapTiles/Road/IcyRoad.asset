@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 927f10763c7ff53a8aeef14d7d90e90e, type: 3}
+  m_Name: IcyRoad
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: f1e84b127b618b840a33932047243024, type: 2}
+  - {fileID: 11400000, guid: a208420a8e9c1c441992188e56793f33, type: 2}
+  - {fileID: 11400000, guid: 8efe1c6c6b527b2b5aec0d9e622c00a7, type: 2}
+  - {fileID: 11400000, guid: 3ad19f4f9505433399f856b570dcd3a1, type: 2}
+  accFactor: 3
+  boostAccFactor: 5
+  maxSpeed: 3.25
+  boostMaxSpeed: 3

@@ -1,8 +1,8 @@
 using Altom.AltDriver;
 
 namespace Editor.AltTests.pages {
-    public class ShopPage : BasePage {
-        public ShopPage(AltDriver driver) : base(driver) { }
+    public class ShopModal : BasePage {
+        public ShopModal(AltDriver driver) : base(driver) { }
 
         public AltObject PlusBtnEmp => Driver.WaitForObject(By.NAME, "PlusBtnEmp");
         public AltObject MinusBtnEmp => Driver.WaitForObject(By.NAME, "MinusBtnEmp");

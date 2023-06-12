@@ -1,4 +1,3 @@
-using System;
 using Player.Controllers;
 using UnityEngine;
 using UnityEngine.UI;
