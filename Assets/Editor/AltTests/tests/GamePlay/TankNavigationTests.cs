@@ -2,7 +2,6 @@ using System.Linq;
 using Altom.AltDriver;
 using Editor.AltTests.props;
 using NUnit.Framework;
-using UnityEngine;
 
 namespace Editor.AltTests.tests.GamePlay {
     public class TankNavigationTests {
@@ -43,15 +42,16 @@ namespace Editor.AltTests.tests.GamePlay {
 
         [Test]
         public void NavigateToPoints() {
-            // get the target points, sorted based on the final char of their name
+            // get the target points, sorted based on the final char of their name (TODO doesn't seem to work...)
             var navPoints = _altDriver.FindObjectsWhichContain(By.TAG, "NavigationPoint").OrderBy(i => int.Parse(i.name[^1].ToString())).ToList();
 
             foreach (var obj in navPoints) {
                 var name = obj.name;
                 var pos = Props.NavPointPos(_altDriver, name);
-                
+                var isLast = obj.name.Equals(navPoints[^1].name);
+
                 Assert.AreEqual(Props.IsNavPointTriggered(_altDriver, name), false);
-                _gamePlayPage.NavigateToLocation(pos, Props.NavPointTriggerDelegate(_altDriver, name));
+                _gamePlayPage.NavigateToLocation(pos, Props.NavPointTriggerDelegate(_altDriver, name), isLast);
                 Assert.AreEqual(Props.IsNavPointTriggered(_altDriver, name), true);
             }
         }

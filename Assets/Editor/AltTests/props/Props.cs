@@ -23,16 +23,16 @@ namespace Editor.AltTests.props {
             return ToAltV(v);
         }
 
-        // get the angle between (rightVector and direction), and (upVector and direction)
+        // get the alignment between (rightVector and direction), and (upVector and direction)
         // NOTE: result => new AltVector2(right vs dir, up vs dir)
-        public static AltVector2 TankTargetAngles(AltDriver driver, AltVector2 target) {
+        public static AltVector2 TankTargetAlignment(AltDriver driver, AltVector2 target) {
             var dirVector = ToV(TankDirTo(driver, target));
             var upVector = ToV(TankUpVector(driver));
             var rightVector = ToV(TankRightVector(driver));
-            var upAngle = Vector2.Dot(upVector, dirVector);
-            var rightAngle = Vector2.Dot(rightVector, dirVector);
+            var alignX = Vector2.Dot(rightVector, dirVector);
+            var alignY = Vector2.Dot(upVector, dirVector);
 
-            return ToAltV(rightAngle, upAngle);
+            return ToAltV(alignX, alignY);
         }
 
         public static AltVector2 TankPos(AltDriver driver) {
@@ -48,6 +48,18 @@ namespace Editor.AltTests.props {
 
         public static float TankDistFrom(AltDriver driver, AltVector2 target) {
             return Vector3.Distance(ToV(TankPos(driver)), ToV(target));
+        }
+
+        public static float TankSteerFactor(AltDriver driver) {
+            return driver.FindObject(By.TAG, "Player").GetComponentProperty<float>("Player.Controllers.TankController", "steerFactor", "Assembly-CSharp", 1);
+        }
+
+        // get the total amount of time in seconds, needed for the tank to turn towards a target
+        public static float TankRotDur(AltDriver driver, AltVector2 target) {
+            var tankUp = ToV(TankUpVector(driver));
+            var dir = ToV(TankDirTo(driver, target));
+            var rads = Vector2.Angle(tankUp, dir) * Mathf.Deg2Rad;
+            return rads / TankSteerFactor(driver);
         }
         #endregion
 

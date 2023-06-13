@@ -41,12 +41,14 @@ namespace Player.Controllers {
         [SerializeField] private GameObject exhaustFront;
 
         [Header("For Debugging Purposes")]
-        [SerializeField] private GameObject serviceBeacon;
+        [SerializeField] private GameObject targetDir;
+        [SerializeField] private float rotDur;
+        [SerializeField] private float rotDurInAtan2;
         [SerializeField] private float rigidBodyDrag;
         [SerializeField] private Vector2 upVelocity;
         [SerializeField] private Vector2 rightVelocity;
         [SerializeField] private Vector2 localVelocity;
-        [SerializeField] private Vector2 tankTargetAngles;
+        [SerializeField] private Vector2 tankTargetAlignment;
 
 
         private void Awake() {
@@ -280,8 +282,10 @@ namespace Player.Controllers {
         #region AltTester related
         private void Debugger() {
             //NOTE: change stuff here!!
-            SetTankTargetAngle(serviceBeacon.transform.position);
+            SetTankTargetAngle(targetDir.transform.position);
             CalculateSpeed();
+            RotationDurationUsingAngle();
+            RotationDurationUsingAtan2();
         }
 
         private void OnDrawGizmos() {
@@ -292,23 +296,37 @@ namespace Player.Controllers {
 
             Gizmos.color = Color.red;
             Gizmos.DrawLine(pos, pos + transform.right.normalized * 3f);
-            
-            // Gizmos.color = Color.cyan;
-            // Gizmos.DrawLine(pos, pos + GetDirectionTowards(serviceBeacon.transform.position) * 3f);
+
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawLine(pos, pos + GetDirectionTowards(targetDir.transform.position) * 3f);
         }
 
-        // return a Vector2(x, y), where => x = right * direction; and y = up * direction
+        // set a Vector2(x, y), where => x = right * direction; and y = up * direction
         private void SetTankTargetAngle(Vector2 target) {
             var dir = GetDirectionTowards(target);
             var right = Vector2.Dot(transform.right, dir);
             var up = Vector2.Dot(transform.up, dir);
-            tankTargetAngles = new Vector2(right, up);
+            tankTargetAlignment = new Vector2(right, up);
         }
 
 
         // localVelocity.x = Left vs Right Speed (>0 = right, <0 = moves left)
         // localVelocity.y = Up vs Down speed (>0 = up, <0 = down).
         private void CalculateSpeed() => localVelocity = transform.InverseTransformDirection(_rb.velocity);
+
+        // set the duration needed to steer left or right, in seconds
+        private void RotationDurationUsingAngle() {
+            var angle = Vector2.Angle(transform.up, GetDirectionTowards(targetDir.transform.position));
+            var rads = angle * Mathf.Deg2Rad;
+            rotDur = (rads / steerFactor);
+        }
+
+        // NOTE: should work like the one above, but it doesn't...
+        private void RotationDurationUsingAtan2() {
+            var targetPos = targetDir.transform.position;
+            var up = transform.up;
+            rotDurInAtan2 = Mathf.Atan2(targetPos.y, targetPos.x) - Mathf.Atan2(up.y, up.x);
+        }
 
 
         private Vector3 GetDirectionTowards(Vector3 objPos) {
