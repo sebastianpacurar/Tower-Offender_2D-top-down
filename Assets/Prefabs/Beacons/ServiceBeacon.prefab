@@ -3604,7 +3604,7 @@ GameObject:
   - component: {fileID: 6594445575991437518}
   - component: {fileID: 5771615270227157904}
   m_Layer: 5
-  m_Name: Total
+  m_Name: TotalCash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7099,7 +7099,7 @@ GameObject:
   - component: {fileID: 7654774282713708234}
   - component: {fileID: 7149616676617840753}
   m_Layer: 5
-  m_Name: Final
+  m_Name: FinalCash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8051,7 +8051,7 @@ GameObject:
   - component: {fileID: 6451578616158121170}
   - component: {fileID: 4766597562616733383}
   m_Layer: 5
-  m_Name: Current
+  m_Name: CurrentCash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13458,7 +13458,7 @@ GameObject:
   - component: {fileID: 6171208918001276258}
   - component: {fileID: 6171208918001276259}
   m_Layer: 5
-  m_Name: UpgradeBtn
+  m_Name: UpgradeSectionBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14630,7 +14630,7 @@ GameObject:
   - component: {fileID: 6171208918241270717}
   - component: {fileID: 6171208918241270714}
   m_Layer: 5
-  m_Name: Count
+  m_Name: SniperCountTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14766,7 +14766,7 @@ GameObject:
   - component: {fileID: 6171208918282242999}
   - component: {fileID: 6171208918282242996}
   m_Layer: 5
-  m_Name: ShopBtn
+  m_Name: ShopSectionBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15313,7 +15313,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6171208918414761315}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 0.03
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -15705,7 +15705,7 @@ GameObject:
   - component: {fileID: 6171208918669789958}
   - component: {fileID: 6171208918669789959}
   m_Layer: 5
-  m_Name: Price
+  m_Name: SniperPrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16332,7 +16332,7 @@ GameObject:
   - component: {fileID: 6171208918818953409}
   - component: {fileID: 6171208918818953438}
   m_Layer: 5
-  m_Name: Price
+  m_Name: NukePrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16467,7 +16467,7 @@ GameObject:
   - component: {fileID: 6171208918876202786}
   - component: {fileID: 6171208918876202787}
   m_Layer: 5
-  m_Name: Count
+  m_Name: NukeCountTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16841,7 +16841,7 @@ GameObject:
   - component: {fileID: 6171208918991460192}
   - component: {fileID: 6171208918991460193}
   m_Layer: 5
-  m_Name: Price
+  m_Name: EmpPrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16976,7 +16976,7 @@ GameObject:
   - component: {fileID: 6171208919016532122}
   - component: {fileID: 6171208919016532123}
   m_Layer: 5
-  m_Name: Count
+  m_Name: EmpCountTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17112,7 +17112,7 @@ GameObject:
   - component: {fileID: 6171208919042304913}
   - component: {fileID: 6171208919042304942}
   m_Layer: 5
-  m_Name: BuyBtn
+  m_Name: ShopBuyBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17471,7 +17471,7 @@ GameObject:
   - component: {fileID: 6171208919266512538}
   - component: {fileID: 6171208919266512539}
   m_Layer: 5
-  m_Name: ShellName
+  m_Name: EmpLabelAndPriceTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17860,7 +17860,7 @@ GameObject:
   - component: {fileID: 6171208919608182935}
   - component: {fileID: 6171208919608182932}
   m_Layer: 5
-  m_Name: ShellName
+  m_Name: NukeLabelAndPriceTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19102,7 +19102,7 @@ GameObject:
   - component: {fileID: 6171208919963315910}
   - component: {fileID: 6171208919963315911}
   m_Layer: 5
-  m_Name: ShellName
+  m_Name: SniperLabelAndPriceTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

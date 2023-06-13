@@ -6,8 +6,6 @@ using NUnit.Framework;
 namespace Editor.AltTests.tests.GamePlay {
     public class TankNavigationTests {
         private AltDriver _altDriver;
-        private bool _hasTurned;
-
         private pages.GamePlay _gamePlayPage;
 
         [OneTimeSetUp]

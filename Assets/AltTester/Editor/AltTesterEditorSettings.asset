@@ -24,7 +24,7 @@ MonoBehaviour:
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestAssembly
     _parentName: 
-    _testCaseCount: 3
+    _testCaseCount: 6
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
@@ -38,7 +38,7 @@ MonoBehaviour:
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
-    _testCaseCount: 3
+    _testCaseCount: 6
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
@@ -52,7 +52,7 @@ MonoBehaviour:
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: Editor
-    _testCaseCount: 3
+    _testCaseCount: 6
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
@@ -66,7 +66,7 @@ MonoBehaviour:
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: Editor.AltTests
-    _testCaseCount: 3
+    _testCaseCount: 6
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
@@ -80,15 +80,15 @@ MonoBehaviour:
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: Editor.AltTests.tests
-    _testCaseCount: 3
+    _testCaseCount: 6
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
     path: 
     _testSelectedCount: 3
-  - _selected: 0
-    _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests
+  - _selected: 1
+    _testName: Editor.AltTests.tests.GamePlay.ShopAddRemoveItemsTests
     _testAssembly: Assembly-CSharp-Editor
     _status: 1
     _isSuite: 1
@@ -102,6 +102,62 @@ MonoBehaviour:
     path: 
     _testSelectedCount: 3
   - _selected: 1
+    _testName: Editor.AltTests.tests.GamePlay.ShopAddRemoveItemsTests.AddRemoveEmpShell
+    _testAssembly: Assembly-CSharp-Editor
+    _status: 1
+    _isSuite: 0
+    _type: NUnit.Framework.Internal.TestMethod
+    _parentName: Editor.AltTests.tests.GamePlay.ShopAddRemoveItemsTests
+    _testCaseCount: 1
+    _foldOut: 1
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 14.436518
+    path: Assets/Editor/AltTests/tests/GamePlay/ShopAddRemoveItemsTests.cs
+    _testSelectedCount: 0
+  - _selected: 1
+    _testName: Editor.AltTests.tests.GamePlay.ShopAddRemoveItemsTests.AddRemoveNukeShell
+    _testAssembly: Assembly-CSharp-Editor
+    _status: 1
+    _isSuite: 0
+    _type: NUnit.Framework.Internal.TestMethod
+    _parentName: Editor.AltTests.tests.GamePlay.ShopAddRemoveItemsTests
+    _testCaseCount: 1
+    _foldOut: 1
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 10.2668141
+    path: Assets/Editor/AltTests/tests/GamePlay/ShopAddRemoveItemsTests.cs
+    _testSelectedCount: 0
+  - _selected: 1
+    _testName: Editor.AltTests.tests.GamePlay.ShopAddRemoveItemsTests.AddRemoveSniperShell
+    _testAssembly: Assembly-CSharp-Editor
+    _status: 1
+    _isSuite: 0
+    _type: NUnit.Framework.Internal.TestMethod
+    _parentName: Editor.AltTests.tests.GamePlay.ShopAddRemoveItemsTests
+    _testCaseCount: 1
+    _foldOut: 1
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 10.2730219
+    path: Assets/Editor/AltTests/tests/GamePlay/ShopAddRemoveItemsTests.cs
+    _testSelectedCount: 0
+  - _selected: 0
+    _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests
+    _testAssembly: Assembly-CSharp-Editor
+    _status: 1
+    _isSuite: 1
+    _type: NUnit.Framework.Internal.TestFixture
+    _parentName: Editor.AltTests.tests.GamePlay
+    _testCaseCount: 3
+    _foldOut: 1
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 0
+    path: 
+    _testSelectedCount: 0
+  - _selected: 0
     _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToHealingBeacon
     _testAssembly: Assembly-CSharp-Editor
     _status: 1
@@ -112,10 +168,10 @@ MonoBehaviour:
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
-    _testDuration: 3.719683
+    _testDuration: 3.9268339
     path: Assets/Editor/AltTests/tests/GamePlay/TankNavigationTests.cs
     _testSelectedCount: 0
-  - _selected: 1
+  - _selected: 0
     _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToPoints
     _testAssembly: Assembly-CSharp-Editor
     _status: 1
@@ -126,10 +182,10 @@ MonoBehaviour:
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
-    _testDuration: 17.4479163
+    _testDuration: 18.4120434
     path: Assets/Editor/AltTests/tests/GamePlay/TankNavigationTests.cs
     _testSelectedCount: 0
-  - _selected: 1
+  - _selected: 0
     _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToServiceBeacon
     _testAssembly: Assembly-CSharp-Editor
     _status: 1
@@ -140,7 +196,7 @@ MonoBehaviour:
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
-    _testDuration: 5.3006643
+    _testDuration: 5.6333187
     path: Assets/Editor/AltTests/tests/GamePlay/TankNavigationTests.cs
     _testSelectedCount: 0
   - _selected: 0
@@ -326,7 +382,7 @@ MonoBehaviour:
     path: 
     _testSelectedCount: 0
   - _selected: 1
-    _testName: /home/sebipacurar/Documents/my-git/data-0x562353b6a2d0
+    _testName: /home/sebipacurar/Documents/my-git/data-0x56235b880bf0
     _testAssembly: JetBrains.Rider.Unity.Editor.Plugin.Net46.Repacked
     _status: 0
     _isSuite: 1

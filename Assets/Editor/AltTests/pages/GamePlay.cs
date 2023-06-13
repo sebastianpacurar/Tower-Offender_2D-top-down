@@ -22,6 +22,7 @@ namespace Editor.AltTests.pages {
                     break;
             }
 
+            //TODO: the below can be improved
             // Move Forward Logic
             Driver.KeyDown(AltKeyCode.W);
             SpeedBoostTank(location);
@@ -49,7 +50,7 @@ namespace Editor.AltTests.pages {
             var isMovingForward = Props.TankLocalVelocity(Driver).y > 0.1f;
             var dist = Props.TankDistFrom(Driver, target);
 
-            if (isMovingForward && dist > 5f) {
+            if (isMovingForward && dist > 6.5f) {
                 Driver.KeyDown(AltKeyCode.LeftShift);
             } else {
                 Driver.KeyUp(AltKeyCode.LeftShift);
