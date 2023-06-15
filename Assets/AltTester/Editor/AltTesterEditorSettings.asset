@@ -24,13 +24,13 @@ MonoBehaviour:
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestAssembly
     _parentName: 
-    _testCaseCount: 6
+    _testCaseCount: 7
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
     path: 
-    _testSelectedCount: 3
+    _testSelectedCount: 1
   - _selected: 0
     _testName: Editor
     _testAssembly: Assembly-CSharp-Editor
@@ -38,13 +38,13 @@ MonoBehaviour:
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
-    _testCaseCount: 6
+    _testCaseCount: 7
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
     path: 
-    _testSelectedCount: 3
+    _testSelectedCount: 1
   - _selected: 0
     _testName: Editor.AltTests
     _testAssembly: Assembly-CSharp-Editor
@@ -52,13 +52,13 @@ MonoBehaviour:
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: Editor
-    _testCaseCount: 6
+    _testCaseCount: 7
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
     path: 
-    _testSelectedCount: 3
+    _testSelectedCount: 1
   - _selected: 0
     _testName: Editor.AltTests.tests
     _testAssembly: Assembly-CSharp-Editor
@@ -66,13 +66,13 @@ MonoBehaviour:
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: Editor.AltTests
-    _testCaseCount: 6
+    _testCaseCount: 7
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
     path: 
-    _testSelectedCount: 3
+    _testSelectedCount: 1
   - _selected: 0
     _testName: Editor.AltTests.tests.GamePlay
     _testAssembly: Assembly-CSharp-Editor
@@ -80,17 +80,45 @@ MonoBehaviour:
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: Editor.AltTests.tests
-    _testCaseCount: 6
+    _testCaseCount: 7
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
     path: 
-    _testSelectedCount: 3
-  - _selected: 1
-    _testName: Editor.AltTests.tests.GamePlay.ShopAddRemoveItemsTests
+    _testSelectedCount: 1
+  - _selected: 0
+    _testName: Editor.AltTests.tests.GamePlay.ProgressBarTests
     _testAssembly: Assembly-CSharp-Editor
     _status: 1
+    _isSuite: 1
+    _type: NUnit.Framework.Internal.TestFixture
+    _parentName: Editor.AltTests.tests.GamePlay
+    _testCaseCount: 1
+    _foldOut: 1
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 0
+    path: 
+    _testSelectedCount: 1
+  - _selected: 1
+    _testName: Editor.AltTests.tests.GamePlay.ProgressBarTests.TestSpeedBar
+    _testAssembly: Assembly-CSharp-Editor
+    _status: 1
+    _isSuite: 0
+    _type: NUnit.Framework.Internal.TestMethod
+    _parentName: Editor.AltTests.tests.GamePlay.ProgressBarTests
+    _testCaseCount: 1
+    _foldOut: 1
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 13.9776514
+    path: Assets/Editor/AltTests/tests/GamePlay/ProgressBarTests.cs
+    _testSelectedCount: 0
+  - _selected: 0
+    _testName: Editor.AltTests.tests.GamePlay.ShopAddRemoveItemsTests
+    _testAssembly: Assembly-CSharp-Editor
+    _status: 0
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestFixture
     _parentName: Editor.AltTests.tests.GamePlay
@@ -100,11 +128,11 @@ MonoBehaviour:
     _testStackTrace: 
     _testDuration: 0
     path: 
-    _testSelectedCount: 3
-  - _selected: 1
+    _testSelectedCount: 0
+  - _selected: 0
     _testName: Editor.AltTests.tests.GamePlay.ShopAddRemoveItemsTests.AddRemoveEmpShell
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: 0
     _isSuite: 0
     _type: NUnit.Framework.Internal.TestMethod
     _parentName: Editor.AltTests.tests.GamePlay.ShopAddRemoveItemsTests
@@ -112,13 +140,13 @@ MonoBehaviour:
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
-    _testDuration: 14.436518
+    _testDuration: 0
     path: Assets/Editor/AltTests/tests/GamePlay/ShopAddRemoveItemsTests.cs
     _testSelectedCount: 0
-  - _selected: 1
+  - _selected: 0
     _testName: Editor.AltTests.tests.GamePlay.ShopAddRemoveItemsTests.AddRemoveNukeShell
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: 0
     _isSuite: 0
     _type: NUnit.Framework.Internal.TestMethod
     _parentName: Editor.AltTests.tests.GamePlay.ShopAddRemoveItemsTests
@@ -126,13 +154,13 @@ MonoBehaviour:
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
-    _testDuration: 10.2668141
+    _testDuration: 0
     path: Assets/Editor/AltTests/tests/GamePlay/ShopAddRemoveItemsTests.cs
     _testSelectedCount: 0
-  - _selected: 1
+  - _selected: 0
     _testName: Editor.AltTests.tests.GamePlay.ShopAddRemoveItemsTests.AddRemoveSniperShell
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: 0
     _isSuite: 0
     _type: NUnit.Framework.Internal.TestMethod
     _parentName: Editor.AltTests.tests.GamePlay.ShopAddRemoveItemsTests
@@ -140,18 +168,18 @@ MonoBehaviour:
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
-    _testDuration: 10.2730219
+    _testDuration: 0
     path: Assets/Editor/AltTests/tests/GamePlay/ShopAddRemoveItemsTests.cs
     _testSelectedCount: 0
   - _selected: 0
     _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: 0
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestFixture
     _parentName: Editor.AltTests.tests.GamePlay
     _testCaseCount: 3
-    _foldOut: 1
+    _foldOut: 0
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
@@ -160,114 +188,44 @@ MonoBehaviour:
   - _selected: 0
     _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToHealingBeacon
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: 0
     _isSuite: 0
     _type: NUnit.Framework.Internal.TestMethod
     _parentName: Editor.AltTests.tests.GamePlay.TankNavigationTests
     _testCaseCount: 1
-    _foldOut: 1
+    _foldOut: 0
     _testResultMessage: 
     _testStackTrace: 
-    _testDuration: 3.9268339
+    _testDuration: 0
     path: Assets/Editor/AltTests/tests/GamePlay/TankNavigationTests.cs
     _testSelectedCount: 0
   - _selected: 0
     _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToPoints
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: 0
     _isSuite: 0
     _type: NUnit.Framework.Internal.TestMethod
     _parentName: Editor.AltTests.tests.GamePlay.TankNavigationTests
     _testCaseCount: 1
-    _foldOut: 1
+    _foldOut: 0
     _testResultMessage: 
     _testStackTrace: 
-    _testDuration: 18.4120434
+    _testDuration: 0
     path: Assets/Editor/AltTests/tests/GamePlay/TankNavigationTests.cs
     _testSelectedCount: 0
   - _selected: 0
     _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToServiceBeacon
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: 0
     _isSuite: 0
     _type: NUnit.Framework.Internal.TestMethod
     _parentName: Editor.AltTests.tests.GamePlay.TankNavigationTests
     _testCaseCount: 1
-    _foldOut: 1
+    _foldOut: 0
     _testResultMessage: 
     _testStackTrace: 
-    _testDuration: 5.6333187
+    _testDuration: 0
     path: Assets/Editor/AltTests/tests/GamePlay/TankNavigationTests.cs
-    _testSelectedCount: 0
-  - _selected: 0
-    _testName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/AltTester.dll
-    _testAssembly: AltTester
-    _status: 0
-    _isSuite: 1
-    _type: NUnit.Framework.Internal.TestAssembly
-    _parentName: 
-    _testCaseCount: 1
-    _foldOut: 0
-    _testResultMessage: 
-    _testStackTrace: 
-    _testDuration: 0
-    path: 
-    _testSelectedCount: 0
-  - _selected: 0
-    _testName: TestExample
-    _testAssembly: AltTester
-    _status: 0
-    _isSuite: 1
-    _type: NUnit.Framework.Internal.TestFixture
-    _parentName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/AltTester.dll
-    _testCaseCount: 1
-    _foldOut: 0
-    _testResultMessage: 
-    _testStackTrace: 
-    _testDuration: 0
-    path: 
-    _testSelectedCount: 0
-  - _selected: 0
-    _testName: TestExample.Test
-    _testAssembly: AltTester
-    _status: 0
-    _isSuite: 0
-    _type: NUnit.Framework.Internal.TestMethod
-    _parentName: TestExample
-    _testCaseCount: 1
-    _foldOut: 0
-    _testResultMessage: 
-    _testStackTrace: 
-    _testDuration: 0
-    path: Assets/AltTester/Editor/DefaultTestExample.txt
-    _testSelectedCount: 0
-  - _selected: 1
-    _testName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/UnityEditor.TestRunner.dll
-    _testAssembly: UnityEditor.TestRunner
-    _status: 0
-    _isSuite: 1
-    _type: NUnit.Framework.Internal.TestAssembly
-    _parentName: 
-    _testCaseCount: 0
-    _foldOut: 0
-    _testResultMessage: 
-    _testStackTrace: 
-    _testDuration: 0
-    path: 
-    _testSelectedCount: 0
-  - _selected: 1
-    _testName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/Unity.Rider.Editor.dll
-    _testAssembly: Unity.Rider.Editor
-    _status: 0
-    _isSuite: 1
-    _type: NUnit.Framework.Internal.TestAssembly
-    _parentName: 
-    _testCaseCount: 0
-    _foldOut: 0
-    _testResultMessage: 
-    _testStackTrace: 
-    _testDuration: 0
-    path: 
     _testSelectedCount: 0
   - _selected: 0
     _testName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/Unity.InputSystem.IntegrationTests.dll
@@ -326,8 +284,8 @@ MonoBehaviour:
     path: Packages/com.unity.inputsystem/Tests/IntegrationTests
     _testSelectedCount: 0
   - _selected: 1
-    _testName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/AltTesterEditor.dll
-    _testAssembly: AltTesterEditor
+    _testName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/Unity.Rider.Editor.dll
+    _testAssembly: Unity.Rider.Editor
     _status: 0
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestAssembly
@@ -340,8 +298,8 @@ MonoBehaviour:
     path: 
     _testSelectedCount: 0
   - _selected: 1
-    _testName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/Unity.InputSystem.TestFramework.dll
-    _testAssembly: Unity.InputSystem.TestFramework
+    _testName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/UnityEditor.TestRunner.dll
+    _testAssembly: UnityEditor.TestRunner
     _status: 0
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestAssembly
@@ -368,6 +326,62 @@ MonoBehaviour:
     path: 
     _testSelectedCount: 0
   - _selected: 1
+    _testName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/AltTesterEditor.dll
+    _testAssembly: AltTesterEditor
+    _status: 0
+    _isSuite: 1
+    _type: NUnit.Framework.Internal.TestAssembly
+    _parentName: 
+    _testCaseCount: 0
+    _foldOut: 0
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 0
+    path: 
+    _testSelectedCount: 0
+  - _selected: 0
+    _testName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/AltTester.dll
+    _testAssembly: AltTester
+    _status: 0
+    _isSuite: 1
+    _type: NUnit.Framework.Internal.TestAssembly
+    _parentName: 
+    _testCaseCount: 1
+    _foldOut: 0
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 0
+    path: 
+    _testSelectedCount: 0
+  - _selected: 0
+    _testName: TestExample
+    _testAssembly: AltTester
+    _status: 0
+    _isSuite: 1
+    _type: NUnit.Framework.Internal.TestFixture
+    _parentName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/AltTester.dll
+    _testCaseCount: 1
+    _foldOut: 0
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 0
+    path: 
+    _testSelectedCount: 0
+  - _selected: 0
+    _testName: TestExample.Test
+    _testAssembly: AltTester
+    _status: 0
+    _isSuite: 0
+    _type: NUnit.Framework.Internal.TestMethod
+    _parentName: TestExample
+    _testCaseCount: 1
+    _foldOut: 0
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 0
+    path: Assets/AltTester/Editor/DefaultTestExample.txt
+    _testSelectedCount: 0
+  - _selected: 1
     _testName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/UnityEngine.TestRunner.dll
     _testAssembly: UnityEngine.TestRunner
     _status: 0
@@ -382,7 +396,21 @@ MonoBehaviour:
     path: 
     _testSelectedCount: 0
   - _selected: 1
-    _testName: /home/sebipacurar/Documents/my-git/data-0x56235b880bf0
+    _testName: /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Library/ScriptAssemblies/Unity.InputSystem.TestFramework.dll
+    _testAssembly: Unity.InputSystem.TestFramework
+    _status: 0
+    _isSuite: 1
+    _type: NUnit.Framework.Internal.TestAssembly
+    _parentName: 
+    _testCaseCount: 0
+    _foldOut: 0
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 0
+    path: 
+    _testSelectedCount: 0
+  - _selected: 1
+    _testName: /home/sebipacurar/Documents/my-git/data-0x5597d1a55850
     _testAssembly: JetBrains.Rider.Unity.Editor.Plugin.Net46.Repacked
     _status: 0
     _isSuite: 1

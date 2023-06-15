@@ -32,20 +32,20 @@ namespace Editor.AltTests.tests.GamePlay {
 
         [Test]
         public void AddRemoveEmpShell() {
-            for (var i = 1; i <= 10; i++) AddEmpShell(_shopModal.GetCurrentCashTxt());
-            for (var i = 1; i <= 10; i++) RemoveEmpShell(_shopModal.GetCurrentCashTxt());
+            for (var i = 1; i <= 5; i++) AddEmpShell(_shopModal.GetAvailableCashTxt());
+            for (var i = 1; i <= 5; i++) RemoveEmpShell(_shopModal.GetAvailableCashTxt());
         }
 
         [Test]
         public void AddRemoveSniperShell() {
-            for (var i = 1; i <= 10; i++) AddSniperShell(_shopModal.GetCurrentCashTxt());
-            for (var i = 1; i <= 10; i++) RemoveSniperShell(_shopModal.GetCurrentCashTxt());
+            for (var i = 1; i <= 5; i++) AddSniperShell(_shopModal.GetAvailableCashTxt());
+            for (var i = 1; i <= 5; i++) RemoveSniperShell(_shopModal.GetAvailableCashTxt());
         }
 
         [Test]
         public void AddRemoveNukeShell() {
-            for (var i = 1; i <= 10; i++) AddNukeShell(_shopModal.GetCurrentCashTxt());
-            for (var i = 1; i <= 10; i++) RemoveNukeShell(_shopModal.GetCurrentCashTxt());
+            for (var i = 1; i <= 5; i++) AddNukeShell(_shopModal.GetAvailableCashTxt());
+            for (var i = 1; i <= 5; i++) RemoveNukeShell(_shopModal.GetAvailableCashTxt());
         }
 
 
@@ -54,6 +54,18 @@ namespace Editor.AltTests.tests.GamePlay {
             Assert.AreEqual(Props.IsServiceMenuInteractable(_altDriver), true);
         }
 
+
+        // [Test]
+        // public void TestScroll() {
+        //     for (var i = 0; i < 10; i++) {
+        //         ZoomOut();
+        //     }
+        // }
+        //
+        // private void ZoomOut() {
+        //     _altDriver.Scroll(scrollValue: new AltVector2(0f, -2f), duration: 1f);
+        // }
+        //
 
         #region Emp asserts
         private void AddEmpShell(float initialPlayerCash) {

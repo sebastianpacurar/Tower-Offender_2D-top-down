@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -6,11 +7,13 @@ namespace AltTestRelated {
     public class NavPointHandler : MonoBehaviour {
         [SerializeField] private bool isTriggered;
         private Light2D _triggerLight;
+        private TextMeshProUGUI _counterTxt;
         private float _maxIntensity;
         private float _maxFalloff;
 
         private void Awake() {
             _triggerLight = transform.GetComponentInChildren<Light2D>();
+            _counterTxt = transform.GetComponentInChildren<TextMeshProUGUI>();
             isTriggered = false;
             _maxIntensity = 1.5f;
             _maxFalloff = 3f;
@@ -21,6 +24,9 @@ namespace AltTestRelated {
             _triggerLight.intensity = 0.5f;
             _triggerLight.shapeLightFalloffSize = 1f;
             _triggerLight.falloffIntensity = 0f;
+
+            _counterTxt.text = name[^1].ToString();
+            _counterTxt.color = Color.yellow;
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
@@ -30,6 +36,7 @@ namespace AltTestRelated {
                 _triggerLight.intensity = 0f;
                 _triggerLight.shapeLightFalloffSize = 0f;
 
+                _counterTxt.color = new Color(0f, 0.375f, 0f, 1f);
                 StartCoroutine(nameof(SwapEmpLightningIcon));
             }
         }

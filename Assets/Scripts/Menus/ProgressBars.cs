@@ -1,4 +1,3 @@
-using System;
 using Player;
 using Player.Controllers;
 using ScriptableObjects;
@@ -21,6 +20,9 @@ namespace Menus {
         [SerializeField] private TextMeshProUGUI empAmmoTxt;
         [SerializeField] private TextMeshProUGUI sniperAmmoTxt;
         [SerializeField] private TextMeshProUGUI nukeAmmoTxt;
+
+        [SerializeField] private float currentHpValue;
+        [SerializeField] private float currentSpeedValue;
 
         private TankController _tankController;
         private ShootController _shootController;
@@ -51,15 +53,15 @@ namespace Menus {
         }
 
         private void UpdateHpBar() {
-            var currentHpValue = _tankHpManager.TankHealthPoints / tankStatsSo.MaxHp;
+            currentHpValue = _tankHpManager.TankHealthPoints / tankStatsSo.MaxHp;
             hpMat.SetFloat(FillAmountProgress, currentHpValue);
             hpTxt.text = $"{(int)(currentHpValue * 100)}%";
         }
 
         private void UpdateSpeedBoostCd() {
-            var currentProgress = _tankController.SpeedBoostVal / tankStatsSo.SpeedBoostCapacity;
-            speedBoostMat.SetFloat(FillAmountProgress, currentProgress);
-            speedBoostTxt.text = $"{(int)(currentProgress * 100)}%";
+            currentSpeedValue = _tankController.SpeedBoostVal / tankStatsSo.SpeedBoostCapacity;
+            speedBoostMat.SetFloat(FillAmountProgress, currentSpeedValue);
+            speedBoostTxt.text = $"{(int)(currentSpeedValue * 100)}%";
         }
 
         private void UpdateLightShellReloadCd() {

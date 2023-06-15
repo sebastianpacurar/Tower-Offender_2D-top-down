@@ -24,7 +24,7 @@ namespace Editor.AltTests.pages {
         private AltObject MinusBtnNuke => Driver.WaitForObject(By.NAME, "MinusBtnNuke");
         private AltObject PriceTxtNuke => Driver.WaitForObject(By.NAME, "NukePrice");
 
-        private AltObject CurrentCashTxt => Driver.WaitForObject(By.NAME, "CurrentCash");
+        private AltObject AvailableCashTxt => Driver.WaitForObject(By.NAME, "AvailableCash");
         private AltObject TotalPriceTxt => Driver.WaitForObject(By.NAME, "TotalCash");
         private AltObject FinalPriceTxt => Driver.WaitForObject(By.NAME, "FinalCash");
 
@@ -32,29 +32,40 @@ namespace Editor.AltTests.pages {
         #endregion
 
         #region Actions
-        public int GetLabelPriceEmp() => ExtractInt(ItemLabelEmp.GetText());
         public void PressPlusBtnEmp() => PlusBtnEmp.Tap();
-        public int GetCountTxtEmp() => int.Parse(CountTxtEmp.GetText());
         public void PressMinusBtnEmp() => MinusBtnEmp.Tap();
+
+        public void PressPlusBtnSniper() => PlusBtnSniper.Tap();
+        public void PressMinusBtnSniper() => MinusBtnSniper.Tap();
+
+        public void PressPlusBtnNuke() => PlusBtnNuke.Tap();
+        public void PressMinusBtnNuke() => MinusBtnNuke.Tap();
+        
+        public void PressBuyBtn() => BuyBtn.Tap();
+        #endregion
+
+        #region getters
+        // emp
+        public int GetLabelPriceEmp() => ExtractInt(ItemLabelEmp.GetText());
+        public int GetCountTxtEmp() => int.Parse(CountTxtEmp.GetText());
+
         public int GetPriceTxtEmp() => int.Parse(PriceTxtEmp.GetText()[1..]);
 
+        // sniper
         public int GetLabelPriceSniper() => ExtractInt(ItemLabelSniper.GetText());
-        public void PressPlusBtnSniper() => PlusBtnSniper.Tap();
         public int GetCountTxtSniper() => int.Parse(CountTxtSniper.GetText());
-        public void PressMinusBtnSniper() => MinusBtnSniper.Tap();
+
         public int GetPriceTxtSniper() => int.Parse(PriceTxtSniper.GetText()[1..]);
 
+        // nuke 
         public int GetLabelPriceNuke() => ExtractInt(ItemLabelNuke.GetText());
-        public void PressPlusBtnNuke() => PlusBtnNuke.Tap();
         public int GetCountTxtNuke() => int.Parse(CountTxtNuke.GetText());
-        public void PressMinusBtnNuke() => MinusBtnNuke.Tap();
         public int GetPriceTxtNuke() => int.Parse(PriceTxtNuke.GetText()[1..]);
 
-        public float GetCurrentCashTxt() => float.Parse(CurrentCashTxt.GetText());
+        // final price area
+        public float GetAvailableCashTxt() => float.Parse(AvailableCashTxt.GetText());
         public float GetTotalPriceTxt() => float.Parse(TotalPriceTxt.GetText());
         public float GetFinalPriceTxt() => float.Parse(FinalPriceTxt.GetText());
-
-        public void PressBuyBtn() => BuyBtn.Tap();
         #endregion
 
         private int ExtractInt(string text) {

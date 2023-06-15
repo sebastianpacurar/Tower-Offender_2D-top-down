@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace Editor.AltTests.props {
     public static class Props {
+        #region Progress Bars
+        public static float HpShaderFillVal(AltDriver driver) {
+            return driver.FindObject(By.TAG, "GameUI").GetComponentProperty<float>("Menus.ProgressBars", "currentHpValue", "Assembly-CSharp", 1);
+        }
+
+        public static Func<float> SpeedShaderFillVal(AltDriver driver) {
+            return () => driver.FindObject(By.TAG, "GameUI").GetComponentProperty<float>("Menus.ProgressBars", "currentSpeedValue", "Assembly-CSharp", 1);
+        }
+        #endregion
+
         #region Tank Data
-        public static AltVector2 TankUpVector(AltDriver driver) {
-            var v = driver.FindObject(By.TAG, "Player").GetComponentProperty<Vector2>("UnityEngine.Transform", "up", "UnityEngine.CoreModule", 1).normalized;
-            return ToAltV(v);
-        }
-
-        public static AltVector2 TankRightVector(AltDriver driver) {
-            var v = driver.FindObject(By.TAG, "Player").GetComponentProperty<Vector2>("UnityEngine.Transform", "right", "UnityEngine.CoreModule", 1).normalized;
-            return ToAltV(v);
-        }
-
         //NOTE: returns the current speed as => new AltVector2(x, y) Where
         //  X == left (negative) or right (positive) rotation
         //  Y => == up (positive) or down (negative) movement
@@ -35,22 +35,32 @@ namespace Editor.AltTests.props {
             return ToAltV(alignX, alignY);
         }
 
-        public static AltVector2 TankPos(AltDriver driver) {
+        public static float TankDistFrom(AltDriver driver, AltVector2 target) {
+            return Vector3.Distance(ToV(TankPos(driver)), ToV(target));
+        }
+
+        private static AltVector2 TankUpVector(AltDriver driver) {
+            var v = driver.FindObject(By.TAG, "Player").GetComponentProperty<Vector2>("UnityEngine.Transform", "up", "UnityEngine.CoreModule", 1).normalized;
+            return ToAltV(v);
+        }
+
+        private static AltVector2 TankRightVector(AltDriver driver) {
+            var v = driver.FindObject(By.TAG, "Player").GetComponentProperty<Vector2>("UnityEngine.Transform", "right", "UnityEngine.CoreModule", 1).normalized;
+            return ToAltV(v);
+        }
+
+        private static AltVector2 TankPos(AltDriver driver) {
             var v = driver.FindObject(By.TAG, "Player").GetWorldPosition();
             return ToAltV(v.x, v.y);
         }
 
-        public static AltVector2 TankDirTo(AltDriver d, AltVector2 target) {
+        private static AltVector2 TankDirTo(AltDriver d, AltVector2 target) {
             var tank = ToV(TankPos(d));
             var t = ToV(target);
             return ToAltV((t - tank).normalized);
         }
 
-        public static float TankDistFrom(AltDriver driver, AltVector2 target) {
-            return Vector3.Distance(ToV(TankPos(driver)), ToV(target));
-        }
-
-        public static float TankSteerFactor(AltDriver driver) {
+        private static float TankSteerFactor(AltDriver driver) {
             return driver.FindObject(By.TAG, "Player").GetComponentProperty<float>("Player.Controllers.TankController", "steerFactor", "Assembly-CSharp", 1);
         }
 
@@ -110,12 +120,12 @@ namespace Editor.AltTests.props {
         }
         #endregion
 
-        #region private methods
+        #region vector conversion methods
         private static AltVector2 ToAltV(Vector2 v) => new(v.x, v.y);
         private static AltVector2 ToAltV(float x, float y) => new(x, y);
 
         private static Vector2 ToV(AltVector2 v) => new(v.x, v.y);
-        public static Vector2 ToV(float x, float y) => new(x, y);
+        private static Vector2 ToV(float x, float y) => new(x, y);
         #endregion
     }
 }

@@ -293,7 +293,7 @@ namespace Enemy.Tower {
                     break;
 
                 case 2: // handle 2 wall connection
-                    // for 180 degrees based wall edges (like N-S and W-E
+                    // for 180 degrees based wall edges (like N-S and W-E)
                     if ((north && south) || (east && west)) {
                         _sr.sprite = currentSpriteSet[2];
 
