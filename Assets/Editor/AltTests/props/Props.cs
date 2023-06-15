@@ -1,9 +1,32 @@
 using System;
+using System.Collections.Generic;
 using Altom.AltDriver;
 using UnityEngine;
 
 namespace Editor.AltTests.props {
     public static class Props {
+        #region Camera
+        // NOTE: use negative for Zoom Out and positive for Zoom In
+        public static void SetCamFinalOrthoZoom(AltDriver driver, float value) {
+            var currZoomVal = CamCurrentOrthoZoom(driver);
+            driver.FindObject(By.TAG, "Player").SetComponentProperty("Player.Controllers.CameraZoom", "finalZoomVal", currZoomVal - value, "Assembly-CSharp");
+        }
+
+        private static float CamCurrentOrthoZoom(AltDriver driver) {
+            return driver.FindObject(By.TAG, "Player").GetComponentProperty<float>("Player.Controllers.CameraZoom", "currentZoomVal", "Assembly-CSharp", 1);
+        }
+        #endregion
+
+        // TODO: change structure/hierarchy
+        #region game objects
+        // call SetActive of GameObject. //NOTE: set game object to active or inactive between tests
+        public static void SetObjectsActive(IEnumerable<AltObject> altObjects, bool value) {
+            foreach (var altObj in altObjects) {
+                altObj.CallComponentMethod<bool>("UnityEngine.GameObject", "SetActive", "UnityEngine.CoreModule", new object[] { value }, new[] { "System.Boolean" });
+            }
+        }
+        #endregion
+
         #region Progress Bars
         public static float HpShaderFillVal(AltDriver driver) {
             return driver.FindObject(By.TAG, "GameUI").GetComponentProperty<float>("Menus.ProgressBars", "currentHpValue", "Assembly-CSharp", 1);

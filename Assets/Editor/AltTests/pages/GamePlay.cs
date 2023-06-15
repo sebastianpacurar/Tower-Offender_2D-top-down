@@ -22,8 +22,12 @@ namespace Editor.AltTests.pages {
                     break;
             }
 
-            //TODO: the below can be improved
             // Move Forward Logic
+            // if (stopOnTarget && Props.TankDistFrom(Driver, location) < 5f && Props.TankLocalVelocity(Driver).y > 2f) {
+            //     Driver.KeyUp(AltKeyCode.W);
+            // } else {
+            //     Driver.KeyDown(AltKeyCode.W);
+            // }
             Driver.KeyDown(AltKeyCode.W);
             SpeedBoostTank(location);
 
@@ -36,6 +40,7 @@ namespace Editor.AltTests.pages {
             }
         }
 
+        //TODO: issues here??
         private void StopTank() {
             Driver.KeyUp(AltKeyCode.W);
 

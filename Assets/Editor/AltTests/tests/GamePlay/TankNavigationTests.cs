@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Altom.AltDriver;
 using Editor.AltTests.props;
@@ -8,10 +9,21 @@ namespace Editor.AltTests.tests.GamePlay {
         private AltDriver _altDriver;
         private pages.GamePlay _gamePlayPage;
 
+        private List<AltObject> _circlePoints;
+        private List<AltObject> _squarePoints;
+        private List<AltObject> _trianglePoints;
+
         [OneTimeSetUp]
         public void SetUp() {
             _altDriver = new AltDriver();
             _altDriver.LoadScene("NavigationScene");
+
+            _circlePoints = _altDriver.FindObjects(By.TAG, "NavPointCircle").OrderBy(i => int.Parse(i.name[^1].ToString())).ToList();
+            _squarePoints = _altDriver.FindObjects(By.TAG, "NavPointSquare").OrderBy(i => int.Parse(i.name[^1].ToString())).ToList();
+            _trianglePoints = _altDriver.FindObjects(By.TAG, "NavPointTriangle").OrderBy(i => int.Parse(i.name[^1].ToString())).ToList();
+
+
+            Props.SetCamFinalOrthoZoom(_altDriver, -5);
         }
 
         [OneTimeTearDown]
@@ -24,29 +36,43 @@ namespace Editor.AltTests.tests.GamePlay {
             _gamePlayPage = new pages.GamePlay(_altDriver);
         }
 
-        [Test]
-        public void NavigateToServiceBeacon() {
-            Assert.AreEqual(Props.IsServiceMenuInteractable(_altDriver), false);
-            _gamePlayPage.NavigateToLocation(Props.ServicePos(_altDriver), Props.ServiceMenuInteractableDelegate(_altDriver));
-            Assert.AreEqual(Props.IsServiceMenuInteractable(_altDriver), true);
+
+        [Test, Order(1)]
+        public void NavigateToSquarePoints() {
+            // set only the square points active in the scene
+            Props.SetObjectsActive(_circlePoints, false);
+            Props.SetObjectsActive(_trianglePoints, false);
+            Props.SetObjectsActive(_squarePoints, true);
+
+            PerformAssertions(_squarePoints);
         }
 
-        [Test]
-        public void NavigateToHealingBeacon() {
-            Assert.AreEqual(Props.IsHealingBeaconActive(_altDriver), false);
-            _gamePlayPage.NavigateToLocation(Props.HealingPos(_altDriver), Props.HealingBeaconActiveDelegate(_altDriver));
-            Assert.AreEqual(Props.IsHealingBeaconActive(_altDriver), true);
+        [Test, Order(2)]
+        public void NavigateToTrianglePoints() {
+            // set only the triangle points active in the scene
+            Props.SetObjectsActive(_circlePoints, false);
+            Props.SetObjectsActive(_trianglePoints, true);
+            Props.SetObjectsActive(_squarePoints, false);
+
+            PerformAssertions(_trianglePoints);
         }
 
-        [Test]
-        public void NavigateToPoints() {
-            // get the target points, sorted based on the final char of their name (TODO doesn't seem to work...)
-            var navPoints = _altDriver.FindObjectsWhichContain(By.TAG, "NavigationPoint").OrderBy(i => int.Parse(i.name[^1].ToString())).ToList();
+        [Test, Order(3)]
+        public void NavigateToCirclePoints() {
+            // set only the circle points active in the scene
+            Props.SetObjectsActive(_circlePoints, true);
+            Props.SetObjectsActive(_trianglePoints, false);
+            Props.SetObjectsActive(_squarePoints, false);
 
-            foreach (var obj in navPoints) {
+            PerformAssertions(_circlePoints);
+        }
+
+        // verify if navigation point turns to green upon contact
+        private void PerformAssertions(List<AltObject> targetPoints) {
+            foreach (var obj in targetPoints) {
                 var name = obj.name;
                 var pos = Props.NavPointPos(_altDriver, name);
-                var isLast = obj.name.Equals(navPoints[^1].name);
+                var isLast = obj.name.Equals(targetPoints[^1].name);
 
                 Assert.AreEqual(Props.IsNavPointTriggered(_altDriver, name), false);
                 _gamePlayPage.NavigateToLocation(pos, Props.NavPointTriggerDelegate(_altDriver, name), isLast);

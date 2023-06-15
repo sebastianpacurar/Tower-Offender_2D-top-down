@@ -36,6 +36,10 @@ TagManager:
   - SafeWalls
   - HealingBeacon
   - NavigationPoint
+  - NavPointTriangle
+  - NavPointSquare
+  - Undefined
+  - NavPointCircle
   layers:
   - Default
   - TransparentFX

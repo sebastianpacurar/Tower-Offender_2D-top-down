@@ -90,21 +90,21 @@ MonoBehaviour:
   - _selected: 0
     _testName: Editor.AltTests.tests.GamePlay.ProgressBarTests
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: 0
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestFixture
     _parentName: Editor.AltTests.tests.GamePlay
     _testCaseCount: 1
-    _foldOut: 1
+    _foldOut: 0
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
     path: 
-    _testSelectedCount: 1
-  - _selected: 1
+    _testSelectedCount: 0
+  - _selected: 0
     _testName: Editor.AltTests.tests.GamePlay.ProgressBarTests.TestSpeedBar
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: 0
     _isSuite: 0
     _type: NUnit.Framework.Internal.TestMethod
     _parentName: Editor.AltTests.tests.GamePlay.ProgressBarTests
@@ -112,7 +112,7 @@ MonoBehaviour:
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
-    _testDuration: 13.9776514
+    _testDuration: 0
     path: Assets/Editor/AltTests/tests/GamePlay/ProgressBarTests.cs
     _testSelectedCount: 0
   - _selected: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
     _type: NUnit.Framework.Internal.TestFixture
     _parentName: Editor.AltTests.tests.GamePlay
     _testCaseCount: 3
-    _foldOut: 1
+    _foldOut: 0
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
@@ -174,57 +174,122 @@ MonoBehaviour:
   - _selected: 0
     _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests
     _testAssembly: Assembly-CSharp-Editor
-    _status: 0
+    _status: -1
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestFixture
     _parentName: Editor.AltTests.tests.GamePlay
     _testCaseCount: 3
-    _foldOut: 0
+    _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
     path: 
-    _testSelectedCount: 0
+    _testSelectedCount: 1
   - _selected: 0
-    _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToHealingBeacon
+    _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToCirclePoints
     _testAssembly: Assembly-CSharp-Editor
-    _status: 0
+    _status: -1
     _isSuite: 0
     _type: NUnit.Framework.Internal.TestMethod
     _parentName: Editor.AltTests.tests.GamePlay.TankNavigationTests
     _testCaseCount: 1
-    _foldOut: 0
-    _testResultMessage: 
-    _testStackTrace: 
-    _testDuration: 0
+    _foldOut: 1
+    _testResultMessage: 'System.InvalidOperationException : The current state of
+      the connection is not Open.'
+    _testStackTrace: "  at AltWebSocketSharp.WebSocket.Send (System.String data)
+      [0x0001a] in <fa7f569146a940ec97d7d09439252ce5>:0 \n  at Altom.AltDriver.Commands.AltWebSocketClient.Send
+      (System.String data) [0x00001] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/AltTester/AltDriver/Commands/AltWebSocketClient.cs:29
+      \n  at Altom.AltDriver.Commands.DriverCommunicationWebSocket.Send (Altom.AltDriver.Commands.CommandParams
+      param) [0x0003c] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/AltTester/AltDriver/Commands/DriverCommunicationWebSocket.cs:143
+      \n  at Altom.AltDriver.Commands.AltCallComponentMethod`1[T].Execute () [0x00001]
+      in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/AltTester/AltDriver/Commands/ObjectCommands/AltCallComponentMethod.cs:20
+      \n  at Altom.AltDriver.AltObject.CallComponentMethod[T] (System.String componentName,
+      System.String methodName, System.String assemblyName, System.Object[] parameters,
+      System.String[] typeOfParameters) [0x00001] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/AltTester/AltDriver/Common/AltObject.cs:114
+      \n  at Editor.AltTests.props.Props.SetObjectsActive (System.Collections.Generic.IEnumerable`1[T]
+      altObjects, System.Boolean value) [0x00013] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/props/Props.cs:25
+      \n  at Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToCirclePoints
+      () [0x00001] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/tests/GamePlay/TankNavigationTests.cs:63
+      \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n 
+      at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
+      invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo
+      culture) [0x0006a] in <8f02bdf82edc4309b57af878cc7723ff>:0 "
+    _testDuration: 0.0006767
     path: Assets/Editor/AltTests/tests/GamePlay/TankNavigationTests.cs
     _testSelectedCount: 0
   - _selected: 0
-    _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToPoints
+    _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToSquarePoints
     _testAssembly: Assembly-CSharp-Editor
-    _status: 0
+    _status: -1
     _isSuite: 0
     _type: NUnit.Framework.Internal.TestMethod
     _parentName: Editor.AltTests.tests.GamePlay.TankNavigationTests
     _testCaseCount: 1
-    _foldOut: 0
-    _testResultMessage: 
-    _testStackTrace: 
-    _testDuration: 0
+    _foldOut: 1
+    _testResultMessage: 'Altom.AltDriver.AltException : Driver disconnected'
+    _testStackTrace: "  at Altom.AltDriver.Commands.DriverCommunicationWebSocket.Recvall[T]
+      (Altom.AltDriver.Commands.CommandParams param) [0x000ad] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/AltTester/AltDriver/Commands/DriverCommunicationWebSocket.cs:109
+      \n  at Altom.AltDriver.Commands.AltGetComponentProperty`1[T].Execute () [0x00013]
+      in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/AltTester/AltDriver/Commands/ObjectCommands/AltGetComponentProperty.cs:13
+      \n  at Altom.AltDriver.AltObject.GetComponentProperty[T] (System.String componentName,
+      System.String propertyName, System.String assemblyName, System.Int32 maxDepth)
+      [0x00001] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/AltTester/AltDriver/Common/AltObject.cs:101
+      \n  at Editor.AltTests.props.Props.TankLocalVelocity (Altom.AltDriver.AltDriver
+      driver) [0x00001] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/props/Props.cs:45
+      \n  at Editor.AltTests.pages.GamePlay.StopTank () [0x00026] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/pages/GamePlay.cs:46
+      \n  at Editor.AltTests.pages.GamePlay.NavigateToLocation (Altom.AltDriver.AltVector2
+      location, System.Func`1[TResult] conditionFunc, System.Boolean stopOnTarget)
+      [0x000f5] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/pages/GamePlay.cs:39
+      \n  at Editor.AltTests.pages.GamePlay.NavigateToLocation (Altom.AltDriver.AltVector2
+      location, System.Func`1[TResult] conditionFunc, System.Boolean stopOnTarget)
+      [0x000d9] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/pages/GamePlay.cs:37
+      \n  at Editor.AltTests.pages.GamePlay.NavigateToLocation (Altom.AltDriver.AltVector2
+      location, System.Func`1[TResult] conditionFunc, System.Boolean stopOnTarget)
+      [0x000d9] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/pages/GamePlay.cs:37
+      \n  at Editor.AltTests.pages.GamePlay.NavigateToLocation (Altom.AltDriver.AltVector2
+      location, System.Func`1[TResult] conditionFunc, System.Boolean stopOnTarget)
+      [0x000d9] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/pages/GamePlay.cs:37
+      \n  at Editor.AltTests.tests.GamePlay.TankNavigationTests.PerformAssertions
+      (System.Collections.Generic.List`1[T] targetPoints) [0x00068] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/tests/GamePlay/TankNavigationTests.cs:78
+      \n  at Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToSquarePoints
+      () [0x00028] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/tests/GamePlay/TankNavigationTests.cs:47
+      \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n 
+      at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
+      invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo
+      culture) [0x0006a] in <8f02bdf82edc4309b57af878cc7723ff>:0 "
+    _testDuration: 48.8609095
     path: Assets/Editor/AltTests/tests/GamePlay/TankNavigationTests.cs
     _testSelectedCount: 0
-  - _selected: 0
-    _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToServiceBeacon
+  - _selected: 1
+    _testName: Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToTrianglePoints
     _testAssembly: Assembly-CSharp-Editor
-    _status: 0
+    _status: -1
     _isSuite: 0
     _type: NUnit.Framework.Internal.TestMethod
     _parentName: Editor.AltTests.tests.GamePlay.TankNavigationTests
     _testCaseCount: 1
-    _foldOut: 0
-    _testResultMessage: 
-    _testStackTrace: 
-    _testDuration: 0
+    _foldOut: 1
+    _testResultMessage: 'System.InvalidOperationException : The current state of
+      the connection is not Open.'
+    _testStackTrace: "  at AltWebSocketSharp.WebSocket.Send (System.String data)
+      [0x0001a] in <fa7f569146a940ec97d7d09439252ce5>:0 \n  at Altom.AltDriver.Commands.AltWebSocketClient.Send
+      (System.String data) [0x00001] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/AltTester/AltDriver/Commands/AltWebSocketClient.cs:29
+      \n  at Altom.AltDriver.Commands.DriverCommunicationWebSocket.Send (Altom.AltDriver.Commands.CommandParams
+      param) [0x0003c] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/AltTester/AltDriver/Commands/DriverCommunicationWebSocket.cs:143
+      \n  at Altom.AltDriver.Commands.AltCallComponentMethod`1[T].Execute () [0x00001]
+      in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/AltTester/AltDriver/Commands/ObjectCommands/AltCallComponentMethod.cs:20
+      \n  at Altom.AltDriver.AltObject.CallComponentMethod[T] (System.String componentName,
+      System.String methodName, System.String assemblyName, System.Object[] parameters,
+      System.String[] typeOfParameters) [0x00001] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/AltTester/AltDriver/Common/AltObject.cs:114
+      \n  at Editor.AltTests.props.Props.SetObjectsActive (System.Collections.Generic.IEnumerable`1[T]
+      altObjects, System.Boolean value) [0x00013] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/props/Props.cs:25
+      \n  at Editor.AltTests.tests.GamePlay.TankNavigationTests.NavigateToTrianglePoints
+      () [0x00001] in /home/sebipacurar/Documents/my-git/Tank_Tower_Offender-2D_top_down_shooter/Assets/Editor/AltTests/tests/GamePlay/TankNavigationTests.cs:53
+      \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n 
+      at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
+      invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo
+      culture) [0x0006a] in <8f02bdf82edc4309b57af878cc7723ff>:0 "
+    _testDuration: 0.0008694
     path: Assets/Editor/AltTests/tests/GamePlay/TankNavigationTests.cs
     _testSelectedCount: 0
   - _selected: 0
@@ -410,7 +475,7 @@ MonoBehaviour:
     path: 
     _testSelectedCount: 0
   - _selected: 1
-    _testName: /home/sebipacurar/Documents/my-git/data-0x5597d1a55850
+    _testName: /home/sebipacurar/Documents/my-git/data-0x55b82ce084a0
     _testAssembly: JetBrains.Rider.Unity.Editor.Plugin.Net46.Repacked
     _status: 0
     _isSuite: 1

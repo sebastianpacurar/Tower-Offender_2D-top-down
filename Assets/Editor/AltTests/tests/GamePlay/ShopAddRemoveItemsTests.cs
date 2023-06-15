@@ -54,19 +54,6 @@ namespace Editor.AltTests.tests.GamePlay {
             Assert.AreEqual(Props.IsServiceMenuInteractable(_altDriver), true);
         }
 
-
-        // [Test]
-        // public void TestScroll() {
-        //     for (var i = 0; i < 10; i++) {
-        //         ZoomOut();
-        //     }
-        // }
-        //
-        // private void ZoomOut() {
-        //     _altDriver.Scroll(scrollValue: new AltVector2(0f, -2f), duration: 1f);
-        // }
-        //
-
         #region Emp asserts
         private void AddEmpShell(float initialPlayerCash) {
             var initialEmpCount = _shopModal.GetCountTxtEmp();

@@ -282,10 +282,10 @@ namespace Player.Controllers {
         #region AltTester related
         private void Debugger() {
             //NOTE: change stuff here!!
-            SetTankTargetAngle(targetDir.transform.position);
-            CalculateSpeed();
-            RotationDurationUsingAngle();
-            RotationDurationUsingAtan2();
+            // SetTankTargetAngle(targetDir.transform.position);
+            // CalculateSpeed();
+            // RotationDurationUsingAngle();
+            // RotationDurationUsingAtan2();
         }
 
         private void OnDrawGizmos() {
@@ -297,8 +297,8 @@ namespace Player.Controllers {
             Gizmos.color = Color.red;
             Gizmos.DrawLine(pos, pos + transform.right.normalized * 3f);
 
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawLine(pos, pos + GetDirectionTowards(targetDir.transform.position) * 3f);
+            // Gizmos.color = Color.cyan;
+            // Gizmos.DrawLine(pos, pos + GetDirectionTowards(targetDir.transform.position) * 3f);
         }
 
         // set a Vector2(x, y), where => x = right * direction; and y = up * direction
