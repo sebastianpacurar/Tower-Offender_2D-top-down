@@ -23,7 +23,7 @@ namespace Menus {
 
         [SerializeField] private float currentHpValue;
         [SerializeField] private float currentSpeedValue;
-
+        
         private TankController _tankController;
         private ShootController _shootController;
         private TankHpManager _tankHpManager;

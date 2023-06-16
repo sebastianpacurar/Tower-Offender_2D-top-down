@@ -55,7 +55,7 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _FillAmountPlaceholder: 1
-    - _FillAmountProgress: 0.5795955
+    - _FillAmountProgress: 0.07885257
     - _LineWidthProgress: 0.05
     - _Radius: 0.4
     - _RotationPlaceholder: 180

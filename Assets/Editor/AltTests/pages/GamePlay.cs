@@ -1,14 +1,18 @@
 using System;
 using Altom.AltDriver;
-using Editor.AltTests.props;
+using Editor.AltTests.gameObjects;
 
 namespace Editor.AltTests.pages {
     public class GamePlay : BasePage {
-        public GamePlay(AltDriver driver) : base(driver) { }
+        public TankObj Tank { get; }
+
+        public GamePlay(AltDriver driver) : base(driver) {
+            Tank = new TankObj(driver);
+        }
 
         public void NavigateToLocation(AltVector2 location, Func<bool> conditionFunc, bool stopOnTarget = true) {
-            var alignX = Props.TankTargetAlignment(Driver, location).x;
-            var pressDur = Props.TankRotDur(Driver, location);
+            var alignX = Tank.VectorAlignment(location).x;
+            var pressDur = Tank.RotationDuration(location);
 
             // Rotation Logic
             switch (alignX) {
@@ -22,14 +26,8 @@ namespace Editor.AltTests.pages {
                     break;
             }
 
-            // Move Forward Logic
-            // if (stopOnTarget && Props.TankDistFrom(Driver, location) < 5f && Props.TankLocalVelocity(Driver).y > 2f) {
-            //     Driver.KeyUp(AltKeyCode.W);
-            // } else {
-            //     Driver.KeyDown(AltKeyCode.W);
-            // }
-            Driver.KeyDown(AltKeyCode.W);
-            SpeedBoostTank(location);
+            Accelerate(location, stopOnTarget);
+            SpeedBoostTank(location, stopOnTarget);
 
             // exit conditions
             if (!conditionFunc()) {
@@ -40,24 +38,31 @@ namespace Editor.AltTests.pages {
             }
         }
 
-        //TODO: issues here??
         private void StopTank() {
             Driver.KeyUp(AltKeyCode.W);
 
-            while (Props.TankLocalVelocity(Driver).y > -0.05f) {
+            while (Tank.LocalVel().y > -0.05f) {
                 Driver.KeyDown(AltKeyCode.S);
             }
 
             Driver.KeyUp(AltKeyCode.S);
         }
 
-        private void SpeedBoostTank(AltVector2 target) {
-            var isMovingForward = Props.TankLocalVelocity(Driver).y > 0.1f;
-            var dist = Props.TankDistFrom(Driver, target);
-
-            if (isMovingForward && dist > 6.5f) {
-                Driver.KeyDown(AltKeyCode.LeftShift);
+        private void Accelerate(AltVector2 location, bool stopOnTarget) {
+            if (stopOnTarget && Tank.DistanceFrom(location) < 2.5f && Tank.LocalVel().y > 2f) {
+                Driver.KeyUp(AltKeyCode.W);
             } else {
+                Driver.KeyDown(AltKeyCode.W);
+            }
+        }
+
+        private void SpeedBoostTank(AltVector2 location, bool stopOnTarget) {
+            var isMovingForward = Tank.LocalVel().y > 0.1f;
+            var dist = Tank.DistanceFrom(location);
+
+            if (isMovingForward && !stopOnTarget) {
+                Driver.KeyDown(AltKeyCode.LeftShift);
+            } else if (dist > 6.5f) {
                 Driver.KeyUp(AltKeyCode.LeftShift);
             }
         }

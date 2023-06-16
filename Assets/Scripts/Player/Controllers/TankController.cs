@@ -278,12 +278,17 @@ namespace Player.Controllers {
             Array.ForEach(tankTracks, track => track.SetBool(IsMoving, isMoving));
         }
 
+        // localVelocity.x = Left vs Right Speed (>0 = right, <0 = moves left)
+        // localVelocity.y = Up vs Down speed (>0 = up, <0 = down).
+        private void CalculateSpeed() => localVelocity = transform.InverseTransformDirection(_rb.velocity);
+
 
         #region AltTester related
         private void Debugger() {
+            CalculateSpeed();
+
             //NOTE: change stuff here!!
             // SetTankTargetAngle(targetDir.transform.position);
-            // CalculateSpeed();
             // RotationDurationUsingAngle();
             // RotationDurationUsingAtan2();
         }
@@ -309,10 +314,6 @@ namespace Player.Controllers {
             tankTargetAlignment = new Vector2(right, up);
         }
 
-
-        // localVelocity.x = Left vs Right Speed (>0 = right, <0 = moves left)
-        // localVelocity.y = Up vs Down speed (>0 = up, <0 = down).
-        private void CalculateSpeed() => localVelocity = transform.InverseTransformDirection(_rb.velocity);
 
         // set the duration needed to steer left or right, in seconds
         private void RotationDurationUsingAngle() {

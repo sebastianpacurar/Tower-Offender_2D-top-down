@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Altom.AltDriver;
+using Editor.AltTests.gameObjects;
 using Editor.AltTests.props;
 using NUnit.Framework;
 
@@ -34,6 +35,9 @@ namespace Editor.AltTests.tests.GamePlay {
         [SetUp]
         public void TestSetup() {
             _gamePlayPage = new pages.GamePlay(_altDriver);
+
+            // set zoom out for every test. max would be a orthoSize - 15f
+            Props.SetCamFinalOrthoZoom(_altDriver, -5);
         }
 
 
@@ -69,14 +73,15 @@ namespace Editor.AltTests.tests.GamePlay {
 
         // verify if navigation point turns to green upon contact
         private void PerformAssertions(List<AltObject> targetPoints) {
-            foreach (var obj in targetPoints) {
-                var name = obj.name;
-                var pos = Props.NavPointPos(_altDriver, name);
-                var isLast = obj.name.Equals(targetPoints[^1].name);
+            foreach (var altObj in targetPoints) {
+                var gameObj = new NavPointObj(_altDriver);
+                var name = altObj.name;
+                var pos = gameObj.Pos(name);
+                var isLast = altObj.name.Equals(targetPoints[^1].name);
 
-                Assert.AreEqual(Props.IsNavPointTriggered(_altDriver, name), false);
-                _gamePlayPage.NavigateToLocation(pos, Props.NavPointTriggerDelegate(_altDriver, name), isLast);
-                Assert.AreEqual(Props.IsNavPointTriggered(_altDriver, name), true);
+                Assert.AreEqual(gameObj.IsTriggered(name), false);
+                _gamePlayPage.NavigateToLocation(pos, gameObj.GetTriggerVal(name), isLast);
+                Assert.AreEqual(gameObj.IsTriggered(name), true);
             }
         }
     }
