@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Editor.AltTests.gameObjects {
     public class TankObj : GameObj {
         public TankObj(AltDriver driver) : base(driver) { }
+
         private readonly string _playerTag = "Player";
 
         #region Assembly Names (modules)
@@ -12,10 +13,13 @@ namespace Editor.AltTests.gameObjects {
 
         #region Components
         private readonly string _controller = "Player.Controllers.TankController";
+        private readonly string _camController = "Player.Controllers.CameraZoom";
         #endregion
 
         #region Properties
         private readonly string _steerFactor = "steerFactor";
+        private readonly string _currZoomVal = "currentZoomVal";
+        private readonly string _finalZoomVal = "finalZoomVal";
         #endregion
 
         public AltVector2 VectorAlignment(AltVector2 target) {
@@ -46,12 +50,24 @@ namespace Editor.AltTests.gameObjects {
             return ToAltV((targetPosVector - tankPosVector).normalized);
         }
 
-        private float SteerFactor() {
-            return Driver.FindObject(By.TAG, "Player").GetComponentProperty<float>(_controller, "steerFactor", _cSharp, 1);
+
+        // NOTE: use negative for Zoom Out and positive for Zoom In
+        public void SetCamFinalOrthoZoom(float value) {
+            var currZoomVal = CamCurrentOrthoZoom();
+            Driver.FindObject(By.TAG, _playerTag).SetComponentProperty(_camController, _finalZoomVal, currZoomVal - value, _cSharp);
         }
+
 
         private AltVector2 Pos() => GetPos(By.TAG, _playerTag, Driver);
         private AltVector2 Up() => UpVector(By.TAG, _playerTag, Driver);
         private AltVector2 Right() => RightVector(By.TAG, _playerTag, Driver);
+
+        private float SteerFactor() {
+            return Driver.FindObject(By.TAG, _playerTag).GetComponentProperty<float>(_controller, _steerFactor, _cSharp, 1);
+        }
+
+        private float CamCurrentOrthoZoom() {
+            return Driver.FindObject(By.TAG, _playerTag).GetComponentProperty<float>(_camController, _currZoomVal, _cSharp, 1);
+        }
     }
 }

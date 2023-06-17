@@ -1,7 +1,7 @@
 using System;
 using Altom.AltDriver;
+using Editor.AltTests.Helpers;
 using Editor.AltTests.pages.canvas;
-using Editor.AltTests.props;
 using NUnit.Framework;
 
 namespace Editor.AltTests.tests.GamePlay {
@@ -29,19 +29,19 @@ namespace Editor.AltTests.tests.GamePlay {
         public void TestSpeedBar() {
             // perform assertion when the progress bar is decreasing and moving forward
             _altDriver.KeysDown(new[] { AltKeyCode.W, AltKeyCode.LeftShift });
-            PerformSpeedBarAssertions(Props.SpeedShaderFillVal(_altDriver), _progressBars.GetSpeedBarTxt(), 3.5f);
+            PerformSpeedBarAssertions(Globals.SpeedShaderFillVal(_altDriver), _progressBars.GetSpeedBarTxt(), 3.5f);
 
             // perform assertion when the progress bar is increasing and not moving
             _altDriver.KeysUp(new[] { AltKeyCode.W, AltKeyCode.LeftShift });
-            PerformSpeedBarAssertions(Props.SpeedShaderFillVal(_altDriver), _progressBars.GetSpeedBarTxt(), 2.5f);
+            PerformSpeedBarAssertions(Globals.SpeedShaderFillVal(_altDriver), _progressBars.GetSpeedBarTxt(), 2.5f);
 
             // perform assertion when the progress bar is decreasing and moving backward
             _altDriver.KeysDown(new[] { AltKeyCode.S, AltKeyCode.LeftShift });
-            PerformSpeedBarAssertions(Props.SpeedShaderFillVal(_altDriver), _progressBars.GetSpeedBarTxt(), 3.5f);
+            PerformSpeedBarAssertions(Globals.SpeedShaderFillVal(_altDriver), _progressBars.GetSpeedBarTxt(), 3.5f);
 
             // perform assertion when the progress bar is increasing and not moving
             _altDriver.KeysDown(new[] { AltKeyCode.S, AltKeyCode.LeftShift });
-            PerformSpeedBarAssertions(Props.SpeedShaderFillVal(_altDriver), _progressBars.GetSpeedBarTxt(), 5f);
+            PerformSpeedBarAssertions(Globals.SpeedShaderFillVal(_altDriver), _progressBars.GetSpeedBarTxt(), 5f);
         }
 
         // perform assertion using 2 delegates for shader fill Amount (defaults to 1) and gameObject text value (defaults to 100)

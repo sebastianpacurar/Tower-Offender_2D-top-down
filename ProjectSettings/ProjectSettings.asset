@@ -777,6 +777,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
+    Android: ALTTESTER
     Standalone: ALTTESTER
     WebGL: ALTTESTER
   additionalCompilerArguments: {}

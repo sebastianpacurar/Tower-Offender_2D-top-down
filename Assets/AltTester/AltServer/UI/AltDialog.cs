@@ -2,6 +2,7 @@ using System;
 using Altom.AltTester;
 using Altom.AltTester.Communication;
 using Altom.AltTester.Logging;
+using AltTester.AltServer;
 
 namespace Altom.AltTester.UI
 {

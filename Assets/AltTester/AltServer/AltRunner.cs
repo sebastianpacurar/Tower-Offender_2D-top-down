@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using Altom.AltDriver;
 using Altom.AltDriver.Logging;
+using Altom.AltTester;
 using Altom.AltTester.Communication;
 using Altom.AltTester.Logging;
 using Altom.AltTester.Notification;
 
-namespace Altom.AltTester
+namespace AltTester.AltServer
 {
     public class AltRunner : UnityEngine.MonoBehaviour
     {

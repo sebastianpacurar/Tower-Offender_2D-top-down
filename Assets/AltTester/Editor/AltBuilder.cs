@@ -3,6 +3,7 @@ using System.IO;
 using Altom.AltDriver;
 using Altom.AltTester;
 using Altom.AltTesterEditor.Logging;
+using AltTester.AltServer;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;

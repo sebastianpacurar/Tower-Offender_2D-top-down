@@ -1,6 +1,6 @@
 using Altom.AltDriver;
+using Editor.AltTests.gameObjects;
 using Editor.AltTests.pages;
-using Editor.AltTests.props;
 using NUnit.Framework;
 
 namespace Editor.AltTests.tests.GamePlay {
@@ -8,6 +8,7 @@ namespace Editor.AltTests.tests.GamePlay {
         private AltDriver _altDriver;
         private pages.GamePlay _gamePlayPage;
         private ShopModal _shopModal;
+        private ServiceObj _serviceObj;
 
         [OneTimeSetUp]
         public void SetUp() {
@@ -24,8 +25,9 @@ namespace Editor.AltTests.tests.GamePlay {
         public void TestSetup() {
             _gamePlayPage = new pages.GamePlay(_altDriver);
             _shopModal = new ShopModal(_altDriver);
+            _serviceObj = new ServiceObj(_altDriver);
 
-            if (!Props.IsServiceMenuInteractable(_altDriver)) {
+            if (!_serviceObj.IsInteractable()) {
                 NavigateToServicePos();
             }
         }
@@ -50,8 +52,8 @@ namespace Editor.AltTests.tests.GamePlay {
 
 
         private void NavigateToServicePos() {
-            _gamePlayPage.NavigateToLocation(Props.ServicePos(_altDriver), Props.ServiceMenuInteractableDelegate(_altDriver));
-            Assert.AreEqual(Props.IsServiceMenuInteractable(_altDriver), true);
+            _gamePlayPage.NavigateToLocation(_serviceObj.Pos(), _serviceObj.GetInteractableVal());
+            Assert.AreEqual(_serviceObj.IsInteractable(), true);
         }
 
         #region Emp asserts

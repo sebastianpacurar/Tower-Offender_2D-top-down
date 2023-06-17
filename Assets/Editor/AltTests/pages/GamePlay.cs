@@ -5,11 +5,18 @@ using Editor.AltTests.gameObjects;
 namespace Editor.AltTests.pages {
     public class GamePlay : BasePage {
         public TankObj Tank { get; }
+        public ServiceObj ServiceObj { get; }
 
         public GamePlay(AltDriver driver) : base(driver) {
             Tank = new TankObj(driver);
+            ServiceObj = new ServiceObj(driver);
         }
 
+        public void SetFinalOrthoZoom(float value) {
+            Tank.SetCamFinalOrthoZoom(value);
+        }
+
+        #region Tank
         public void NavigateToLocation(AltVector2 location, Func<bool> conditionFunc, bool stopOnTarget = true) {
             var alignX = Tank.VectorAlignment(location).x;
             var pressDur = Tank.RotationDuration(location);
@@ -57,14 +64,17 @@ namespace Editor.AltTests.pages {
         }
 
         private void SpeedBoostTank(AltVector2 location, bool stopOnTarget) {
-            var isMovingForward = Tank.LocalVel().y > 0.1f;
-            var dist = Tank.DistanceFrom(location);
+            var tankAlignY = Tank.VectorAlignment(location).y;
 
-            if (isMovingForward && !stopOnTarget) {
+            if (tankAlignY > 0.85f && !stopOnTarget) {
                 Driver.KeyDown(AltKeyCode.LeftShift);
-            } else if (dist > 6.5f) {
+            } else {
                 Driver.KeyUp(AltKeyCode.LeftShift);
             }
         }
+        #endregion
+
+        #region Service
+        #endregion
     }
 }

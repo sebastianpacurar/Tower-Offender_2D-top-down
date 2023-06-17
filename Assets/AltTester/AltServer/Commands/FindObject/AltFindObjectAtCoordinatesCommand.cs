@@ -1,5 +1,6 @@
 using Altom.AltDriver;
 using Altom.AltDriver.Commands;
+using AltTester.AltServer;
 
 namespace Altom.AltTester.Commands
 {

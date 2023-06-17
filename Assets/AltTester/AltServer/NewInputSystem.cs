@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Altom.AltTester;
+using AltTester.AltServer;
 #if USE_INPUT_SYSTEM_1_3
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;

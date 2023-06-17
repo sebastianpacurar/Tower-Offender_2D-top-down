@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Altom.AltDriver;
 using Editor.AltTests.gameObjects;
-using Editor.AltTests.props;
+using Editor.AltTests.Helpers;
 using NUnit.Framework;
 
 namespace Editor.AltTests.tests.GamePlay {
@@ -14,6 +14,8 @@ namespace Editor.AltTests.tests.GamePlay {
         private List<AltObject> _squarePoints;
         private List<AltObject> _trianglePoints;
 
+        private List<AltObject> _allPoints;
+
         [OneTimeSetUp]
         public void SetUp() {
             _altDriver = new AltDriver();
@@ -22,9 +24,7 @@ namespace Editor.AltTests.tests.GamePlay {
             _circlePoints = _altDriver.FindObjects(By.TAG, "NavPointCircle").OrderBy(i => int.Parse(i.name[^1].ToString())).ToList();
             _squarePoints = _altDriver.FindObjects(By.TAG, "NavPointSquare").OrderBy(i => int.Parse(i.name[^1].ToString())).ToList();
             _trianglePoints = _altDriver.FindObjects(By.TAG, "NavPointTriangle").OrderBy(i => int.Parse(i.name[^1].ToString())).ToList();
-
-
-            Props.SetCamFinalOrthoZoom(_altDriver, -5);
+            // _allPoints = _circlePoints.Concat(_squarePoints).Concat(_trianglePoints).ToList();
         }
 
         [OneTimeTearDown]
@@ -36,17 +36,17 @@ namespace Editor.AltTests.tests.GamePlay {
         public void TestSetup() {
             _gamePlayPage = new pages.GamePlay(_altDriver);
 
-            // set zoom out for every test. max would be a orthoSize - 15f
-            Props.SetCamFinalOrthoZoom(_altDriver, -5);
+            // set zoom out for every test. 
+            _gamePlayPage.SetFinalOrthoZoom(-2.5f);
         }
 
 
         [Test, Order(1)]
         public void NavigateToSquarePoints() {
             // set only the square points active in the scene
-            Props.SetObjectsActive(_circlePoints, false);
-            Props.SetObjectsActive(_trianglePoints, false);
-            Props.SetObjectsActive(_squarePoints, true);
+            Globals.SetObjectsActive(_circlePoints, false);
+            Globals.SetObjectsActive(_trianglePoints, false);
+            Globals.SetObjectsActive(_squarePoints, true);
 
             PerformAssertions(_squarePoints);
         }
@@ -54,9 +54,9 @@ namespace Editor.AltTests.tests.GamePlay {
         [Test, Order(2)]
         public void NavigateToTrianglePoints() {
             // set only the triangle points active in the scene
-            Props.SetObjectsActive(_circlePoints, false);
-            Props.SetObjectsActive(_trianglePoints, true);
-            Props.SetObjectsActive(_squarePoints, false);
+            Globals.SetObjectsActive(_circlePoints, false);
+            Globals.SetObjectsActive(_trianglePoints, true);
+            Globals.SetObjectsActive(_squarePoints, false);
 
             PerformAssertions(_trianglePoints);
         }
@@ -64,9 +64,9 @@ namespace Editor.AltTests.tests.GamePlay {
         [Test, Order(3)]
         public void NavigateToCirclePoints() {
             // set only the circle points active in the scene
-            Props.SetObjectsActive(_circlePoints, true);
-            Props.SetObjectsActive(_trianglePoints, false);
-            Props.SetObjectsActive(_squarePoints, false);
+            Globals.SetObjectsActive(_circlePoints, true);
+            Globals.SetObjectsActive(_trianglePoints, false);
+            Globals.SetObjectsActive(_squarePoints, false);
 
             PerformAssertions(_circlePoints);
         }
@@ -74,14 +74,12 @@ namespace Editor.AltTests.tests.GamePlay {
         // verify if navigation point turns to green upon contact
         private void PerformAssertions(List<AltObject> targetPoints) {
             foreach (var altObj in targetPoints) {
-                var gameObj = new NavPointObj(_altDriver);
-                var name = altObj.name;
-                var pos = gameObj.Pos(name);
-                var isLast = altObj.name.Equals(targetPoints[^1].name);
+                var gameObj = new NavPointObj(_altDriver, altObj.name);
+                var shouldStop = altObj.name.Equals(targetPoints[^1].name);
 
-                Assert.AreEqual(gameObj.IsTriggered(name), false);
-                _gamePlayPage.NavigateToLocation(pos, gameObj.GetTriggerVal(name), isLast);
-                Assert.AreEqual(gameObj.IsTriggered(name), true);
+                Assert.AreEqual(gameObj.IsTriggered(), false);
+                _gamePlayPage.NavigateToLocation(gameObj.Pos(), gameObj.GetTriggerVal(), shouldStop);
+                Assert.AreEqual(gameObj.IsTriggered(), true);
             }
         }
     }

@@ -7,6 +7,7 @@ using System.Threading;
 using Altom.AltDriver;
 using Altom.AltTester;
 using Altom.AltTesterEditor.Logging;
+using AltTester.AltServer;
 using Unity.EditorCoroutines.Editor;
 using UnityEditor;
 using UnityEditor.SceneManagement;

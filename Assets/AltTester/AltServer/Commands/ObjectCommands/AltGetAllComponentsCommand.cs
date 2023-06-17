@@ -2,6 +2,7 @@
 using Altom.AltDriver;
 using Altom.AltDriver.Commands;
 using Altom.AltTester.Logging;
+using AltTester.AltServer;
 
 namespace Altom.AltTester.Commands
 {

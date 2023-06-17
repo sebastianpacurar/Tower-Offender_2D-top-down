@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using Altom.AltDriver;
 using Altom.AltDriver.Commands;
+using AltTester.AltServer;
 
 namespace Altom.AltTester.Commands
 {

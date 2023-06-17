@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Altom.AltDriver;
 using Altom.AltDriver.Commands;
 using Altom.AltTester.Communication;
+using AltTester.AltServer;
 using UnityEngine;
 
 namespace Altom.AltTester.Commands

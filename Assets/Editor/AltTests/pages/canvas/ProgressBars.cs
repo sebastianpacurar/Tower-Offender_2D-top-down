@@ -1,5 +1,5 @@
-using Altom.AltDriver;
 using System;
+using Altom.AltDriver;
 
 namespace Editor.AltTests.pages.canvas {
     public class ProgressBars : BasePage {

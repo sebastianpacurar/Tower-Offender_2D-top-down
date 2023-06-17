@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using Altom.AltDriver;
 using Altom.AltDriver.Commands;
 using Altom.AltTester.Logging;
+using AltTester.AltServer;
 using Newtonsoft.Json;
 
 namespace Altom.AltTester.Commands

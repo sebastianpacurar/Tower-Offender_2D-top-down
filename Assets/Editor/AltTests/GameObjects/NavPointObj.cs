@@ -3,7 +3,11 @@ using Altom.AltDriver;
 
 namespace Editor.AltTests.gameObjects {
     public class NavPointObj : GameObj {
-        public NavPointObj(AltDriver driver) : base(driver) { }
+        private string Name { get; }
+
+        public NavPointObj(AltDriver driver, string name) : base(driver) {
+            Name = name;
+        }
 
         #region Assembly Names (modules)
         private readonly string _cSharp = "Assembly-CSharp";
@@ -17,27 +21,16 @@ namespace Editor.AltTests.gameObjects {
         private readonly string _isTriggered = "isTriggered";
         #endregion
 
-        public AltVector2 NavPointPos(AltDriver driver, string objName) {
-            var v = driver.FindObject(By.NAME, objName).GetWorldPosition();
-            return ToAltV(v.x, v.y);
+        public AltVector2 Pos() => GetPos(By.NAME, Name, Driver);
+        public bool IsTag(string tagValue) => CompareTag(By.NAME, Name, tagValue, Driver);
+        
+
+        public Func<bool> GetTriggerVal() {
+            return () => Driver.FindObject(By.NAME, Name).GetComponentProperty<bool>(_navPointHandler, _isTriggered, _cSharp, 1);
         }
 
-        public AltVector2 Pos(string name) => GetPos(By.NAME, name, Driver);
-
-        public Func<bool> GetTriggerVal(string objName) {
-            return () => Driver.FindObject(By.NAME, objName).GetComponentProperty<bool>(_navPointHandler, _isTriggered, _cSharp, 1);
-        }
-
-        public bool IsTriggered(string objName) {
-            return Driver.FindObject(By.NAME, objName).GetComponentProperty<bool>(_navPointHandler, _isTriggered, _cSharp, 1);
+        public bool IsTriggered() {
+            return Driver.FindObject(By.NAME, Name).GetComponentProperty<bool>(_navPointHandler, _isTriggered, _cSharp, 1);
         }
     }
 }
-// }        #region Navigation Point Data
-// public static AltVector2 NavPointPos(AltDriver driver, string objName) {
-//     var v = driver.FindObject(By.NAME, objName).GetWorldPosition();
-//     return ToAltV(v.x, v.y);
-// }
-//
-
-// #endregion
